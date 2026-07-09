@@ -461,14 +461,15 @@ svg.illu .acc { stroke: var(--aqua); }
   .next-event .ne-grid {
     grid-template-columns: 1.1fr 1fr;
     grid-template-areas:
-      "top    poster"
-      "bottom prices"
-      "bottom promo";
+      "info-top   poster"
+      "info-rest  poster"
+      "prices     prices"
+      "promo      promo";
     gap: 28px 40px;
   }
-  .next-event .ne-info-top    { grid-area: top; }
+  .next-event .ne-info-top    { grid-area: info-top; }
   .next-event .ne-poster-wrapper { grid-area: poster; }
-  .next-event .ne-info-bottom { grid-area: bottom; }
+  .next-event .ne-info-bottom { grid-area: info-rest; }
   .next-event .price-grid     { grid-area: prices; margin: 0; }
   .next-event .promo-strip    { grid-area: promo; margin-top: 0; }
 }
