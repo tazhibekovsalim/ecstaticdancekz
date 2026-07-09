@@ -457,7 +457,21 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event { background: var(--night); color: var(--cream); padding: clamp(40px, 7vw, 72px) 24px; }
 .next-event .ne-inner { max-width: var(--maxw); margin: 0 auto; }
 .next-event .ne-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
-@media (min-width: 820px) { .next-event .ne-grid { grid-template-columns: 1.1fr 1fr; gap: 40px; } }
+@media (min-width: 820px) {
+  .next-event .ne-grid {
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "top    poster"
+      "bottom prices"
+      "bottom promo";
+    gap: 28px 40px;
+  }
+  .next-event .ne-info-top    { grid-area: top; }
+  .next-event .ne-poster-wrapper { grid-area: poster; }
+  .next-event .ne-info-bottom { grid-area: bottom; }
+  .next-event .price-grid     { grid-area: prices; margin: 0; }
+  .next-event .promo-strip    { grid-area: promo; margin-top: 0; }
+}
 .next-event h2 { font-size: clamp(22px, 4vw, 32px); letter-spacing: -0.01em; margin-bottom: 14px; }
 .next-event .ne-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--cream); margin-bottom: 18px; }
 .next-event .ne-meta .dot { color: var(--aqua); }
@@ -768,7 +782,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <section class="next-event" id="tickets" data-od-id="tickets">
   <div class="ne-inner">
     <div class="ne-grid">
-      <div data-od-id="ne-info">
+      <div class="ne-info-top" data-od-id="ne-info-top">
         <p class="eyebrow">Ближайшее событие</p>
         <h2>Забери билет по лучшей цене</h2>
         <!-- TODO: обновить дату/место/остаток перед каждым событием -->
@@ -776,9 +790,15 @@ svg.illu .acc { stroke: var(--aqua); }
           <span>2 августа · 14:00–22:00</span><span class="dot">·</span>
           <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Тюркский парк, Алматы</span>
         </div>
+      </div>
+
+      <div class="ne-poster-wrapper" data-od-id="ne-poster-wrapper">
         <div class="ne-poster reveal" data-od-id="ne-poster">
           <img src="poster-event.jpg" alt="Афиша Ecstatic Dance Almaty — 2 августа, Тюркский парк" loading="lazy">
         </div>
+      </div>
+
+      <div class="ne-info-bottom" data-od-id="ne-info-bottom">
         <p class="ne-djs-label">Диджеи события</p>
         <div class="ne-djs">
           <span class="ne-dj">Salim</span>
