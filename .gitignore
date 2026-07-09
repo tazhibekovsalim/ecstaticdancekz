@@ -1,0 +1,11 @@
+# System
+.DS_Store
+
+# Source images (large, unoptimized — keep compressed versions only)
+mrdb*.png
+
+# Planning docs (not for the live site)
+*.md
+
+# Open Design metadata
+*.artifact.json

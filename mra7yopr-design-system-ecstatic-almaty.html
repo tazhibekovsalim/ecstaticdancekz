@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дизайн-система — Ecstatic Dance Almaty</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ТОКЕНЫ — скопируй этот блок в лендинг
+   ============================================ */
+:root {
+  /* Цвета */
+  --night: #131628;        /* Ночь — фон тёмных секций */
+  --night-soft: #1E2340;   /* Ночь+ — карточки на тёмном */
+  --aqua: #2EC4B6;         /* Бирюза — акцент №2: ссылки, иконки, подсветка слов */
+  --aqua-deep: #0E5E57;    /* Бирюза тёмная — текст на бирюзовых плашках */
+  --coral: #FF7A45;        /* Коралл — ТОЛЬКО кнопки и главные акценты */
+  --coral-dark: #3D1A08;   /* Текст на коралловой кнопке */
+  --lavender: #B889E0;     /* Лаванда — теги, детали, свечение на тёмном */
+  --warm-white: #F7F4EE;   /* Тёплый белый — фон светлых секций */
+  --card-light: #FFFFFF;   /* Карточки на светлом */
+  --ink: #23212B;          /* Основной текст на светлом */
+  --ink-soft: #6B6878;     /* Вторичный текст на светлом */
+  --cream: #F7F4EE;        /* Основной текст на тёмном */
+  --cream-soft: #9AA0C0;   /* Вторичный текст на тёмном */
+
+  /* Типографика */
+  --font-display: 'Unbounded', sans-serif;  /* заголовки, цифры, цены */
+  --font-body: 'Manrope', sans-serif;       /* всё остальное */
+  --fs-hero: clamp(32px, 7vw, 64px);
+  --fs-h2: clamp(24px, 5vw, 42px);
+  --fs-h3: clamp(18px, 3vw, 22px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+
+  /* Отступы и скругления */
+  --section-pad: clamp(56px, 10vw, 120px);
+  --card-pad: 24px;
+  --gap: 16px;
+  --radius-card: 20px;
+  --radius-btn: 999px;
+  --maxw: 1080px;
+}
+
+/* ============================================
+   БАЗА
+   ============================================ */
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.6; color: var(--ink); background: #FBF9F5; }
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.18; font-weight: 600; }
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+.hl { color: var(--aqua); }  /* подсветка одного слова в заголовке */
+
+/* ============================================
+   КНОПКИ
+   ============================================ */
+.btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: var(--radius-btn); text-decoration: none; border: none; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--coral); color: var(--coral-dark); }
+.btn-primary:hover { box-shadow: 0 6px 26px rgba(255,122,69,.45); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(247,244,238,.35); }
+.btn-secondary:hover { border-color: var(--aqua); color: var(--aqua); }
+.btn-secondary.on-light { color: var(--aqua-deep); border-color: var(--aqua); }
+
+/* ============================================
+   СЕКЦИИ
+   ============================================ */
+.section { padding: var(--section-pad) 24px; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: var(--night); color: var(--cream); }
+.section-dark h2 { color: var(--cream); }
+.section-light { background: var(--warm-white); }
+.eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--aqua); margin-bottom: 12px; }
+
+/* ============================================
+   КАРТОЧКИ
+   ============================================ */
+.card { background: var(--card-light); border-radius: var(--radius-card); padding: var(--card-pad); }
+.card-dark { background: var(--night-soft); border-radius: var(--radius-card); padding: var(--card-pad); color: var(--cream); }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* Тариф (лестница цен) */
+.price-card { text-align: center; border: 1.5px solid rgba(46,196,182,.2); background: var(--night-soft); color: var(--cream); border-radius: var(--radius-card); padding: var(--card-pad); }
+.price-card.featured { border: 2px solid var(--coral); position: relative; }
+.price-card.soldout { opacity: .45; }
+.price-value { font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--cream); }
+.price-card.featured .price-value { color: var(--coral); }
+.badge { display: inline-block; background: var(--coral); color: var(--coral-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .5px; }
+.badge-aqua { background: rgba(46,196,182,.15); color: var(--aqua); }
+.badge-lav { background: rgba(184,137,224,.15); color: var(--lavender); }
+
+/* Карточка диджея */
+.dj-card { display: flex; flex-direction: column; gap: 10px; }
+.dj-photo { width: 100%; aspect-ratio: 1; border-radius: 16px; background: linear-gradient(160deg, #2EC4B6 0%, #1E2340 55%, #B889E0 100%); }
+.dj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ============================================
+   ДЕКОР
+   ============================================ */
+.spiral-divider { text-align: center; color: var(--aqua); opacity: .4; font-size: 22px; letter-spacing: 10px; padding: 8px 0; }
+.glow-aqua { text-shadow: 0 0 34px rgba(46,196,182,.6); }
+.note-strip { background: rgba(46,196,182,.1); border-left: 3px solid var(--aqua); border-radius: 0 12px 12px 0; padding: 14px 18px; font-size: 15px; }
+
+/* Sticky CTA — мобильный */
+.sticky-cta { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 99; display: none; }
+.sticky-cta .btn { width: 100%; text-align: center; box-shadow: 0 8px 30px rgba(19,22,40,.4); }
+@media (max-width: 768px) { .sticky-cta { display: block; } }
+
+/* ============================================
+   Ниже — оформление самого гайда (не копировать)
+   ============================================ */
+.guide-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #A39FB0; margin: 0 0 14px; }
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.swatch { border-radius: 14px; padding: 18px 16px; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; }
+.swatch p { font-size: 13px; margin: 0; }
+.spec { font-size: 14px; color: var(--ink-soft); }
+.spec code { background: rgba(46,196,182,.1); color: var(--aqua-deep); padding: 2px 7px; border-radius: 6px; font-size: 13px; }
+.rule { border-left: 3px solid var(--coral); padding: 4px 0 4px 16px; margin: 10px 0; font-size: 15px; }
+.type-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid rgba(35,33,43,.08); }
+.type-row .spec { min-width: 220px; }
+</style>
+</head>
+<body>
+
+<!-- ШАПКА ГАЙДА -->
+<div class="section section-dark" style="padding-bottom: 40px;">
+  <div class="section-inner">
+    <p class="eyebrow">Дизайн-система · «Ночная спираль»</p>
+    <h1 style="font-size: clamp(28px,5vw,48px);">Ecstatic Dance <span class="hl glow-aqua">Almaty</span></h1>
+    <p style="color: var(--cream-soft); margin-top: 14px; max-width: 640px;">Осознанные вечеринки · трезвый рейв · live DJ-сеты. Настроение: тёмный зал, цветной свет, движение, тёплый чай после. Не клубный неон и не пастельная йога — между.</p>
+  </div>
+</div>
+
+<!-- 1. ЦВЕТА -->
+<div class="section" style="background:#FBF9F5;">
+  <div class="section-inner">
+    <p class="guide-label">01 · Палитра (от логотипа-спирали)</p>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#131628;"><p style="color:#F7F4EE;font-weight:600;">Ночь</p><p style="color:#9AA0C0;">#131628 · фон тёмных секций</p></div>
+      <div class="swatch" style="background:#1E2340;"><p style="color:#F7F4EE;font-weight:600;">Ночь+</p><p style="color:#9AA0C0;">#1E2340 · карточки на тёмном</p></div>
+      <div class="swatch" style="background:#2EC4B6;"><p style="color:#083D38;font-weight:600;">Бирюза</p><p style="color:#0E5E57;">#2EC4B6 · акцент №2, подсветка слов</p></div>
+      <div class="swatch" style="background:#FF7A45;"><p style="color:#3D1A08;font-weight:600;">Коралл</p><p style="color:#6E3010;">#FF7A45 · только кнопки</p></div>
+      <div class="swatch" style="background:#B889E0;"><p style="color:#2E1548;font-weight:600;">Лаванда</p><p style="color:#4E2A73;">#B889E0 · теги, детали, свечение</p></div>
+      <div class="swatch" style="background:#F7F4EE;border:1px solid rgba(35,33,43,.1);"><p style="color:#23212B;font-weight:600;">Тёплый белый</p><p style="color:#6B6878;">#F7F4EE · светлые секции</p></div>
+    </div>
+    <div style="margin-top: 24px;">
+      <p class="rule">Коралл — только кнопки и рамка выделенного тарифа. Одна коралловая кнопка на экран.</p>
+      <p class="rule">Бирюза — рабочий акцент: ссылки, иконки, одно подсвеченное слово в заголовке. Лаванда — третий голос, только детали.</p>
+      <p class="rule">Чередование секций: тёмная (hero) → светлая → светлая → тёмная (событие и цены) → светлая → тёмная (финальный CTA). Тёмное = вечеринка и продажа, светлое = объяснение.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ТИПОГРАФИКА -->
+<div class="section section-light">
+  <div class="section-inner">
+    <p class="guide-label">02 · Типографика</p>
+    <p class="spec" style="margin-bottom: 8px;">Заголовки и цифры: <code>Unbounded</code> · Текст: <code>Manrope</code>. Оба Google Fonts с кириллицей.</p>
+    <div class="type-row"><span class="spec">H1 hero · Unbounded 600 · clamp(32–64px)</span><span class="display" style="font-size: clamp(24px,4vw,40px);">Вечеринка, после которой утром <span class="hl">хорошо</span></span></div>
+    <div class="type-row"><span class="spec">H2 секции · Unbounded 600 · clamp(24–42px)</span><span class="display" style="font-size: clamp(20px,3.5vw,32px);">Как проходит вечер</span></div>
+    <div class="type-row"><span class="spec">H3 карточки · Unbounded 500 · 18–22px</span><span class="display" style="font-size:19px;font-weight:500;">Будь в теле</span></div>
+    <div class="type-row"><span class="spec">Eyebrow · Unbounded 400 · 13px · капс · +3px</span><span class="eyebrow" style="margin:0;">Ближайшая вечеринка</span></div>
+    <div class="type-row"><span class="spec">Текст · Manrope 400 · 17px / 1.6</span><span>Здесь нет правильных движений, зрителей и оценок. Диджей ведёт волну — ты просто танцуешь.</span></div>
+    <div class="type-row" style="border:none;"><span class="spec">Подпись · Manrope 400 · 14px</span><span style="font-size:14px;color:var(--ink-soft);">15:00–19:00 · Kiran Medical Yoga · Самал-2</span></div>
+    <p class="rule" style="margin-top:20px;">Подсветка бирюзой (класс <code>.hl</code>) — одно слово на заголовок, не больше. Свечение (glow) — только в hero.</p>
+  </div>
+</div>
+
+<!-- 3. КНОПКИ И БЕЙДЖИ -->
+<div class="section" style="background:#FBF9F5;">
+  <div class="section-inner">
+    <p class="guide-label">03 · Кнопки и бейджи</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="card-dark" style="text-align:center;">
+        <p style="font-size:13px;color:var(--cream-soft);margin-bottom:16px;">На тёмном</p>
+        <p style="margin-bottom:12px;"><a class="btn btn-primary" href="#">Купить билет — 8888 ₸</a></p>
+        <p><a class="btn btn-secondary" href="#">Что такое экстатик?</a></p>
+      </div>
+      <div class="card" style="text-align:center;border:1.5px solid rgba(46,196,182,.2);">
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px;">На светлом</p>
+        <p style="margin-bottom:12px;"><a class="btn btn-primary" href="#">Билет на вечеринку</a></p>
+        <p><a class="btn btn-secondary on-light" href="#">Смотреть отзывы</a></p>
+      </div>
+    </div>
+    <div style="margin-top: 20px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <span class="badge">Early bird · осталось 12</span>
+      <span class="badge badge-aqua">Без алкоголя</span>
+      <span class="badge badge-lav">Tribal Fusion</span>
+      <span class="spec">← коралл = срочность, бирюза = ценности формата, лаванда = теги диджеев</span>
+    </div>
+    <p class="rule" style="margin-top:18px;">CTA всегда с ценой или конкретикой: «Купить билет — 8888 ₸», не «Подробнее».</p>
+  </div>
+</div>
+
+<!-- 4. КАРТОЧКИ -->
+<div class="section section-light">
+  <div class="section-inner">
+    <p class="guide-label">04 · Карточки: соглашения, диджеи, цены</p>
+    <div class="grid" style="margin-bottom: 28px;">
+      <div class="card"><h3 style="margin:0 0 6px;color:var(--aqua-deep);">Будь присутствующим</h3><p style="font-size:15px;color:var(--ink-soft);">Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
+      <div class="card"><h3 style="margin:0 0 6px;color:var(--aqua-deep);">Будь чистым</h3><p style="font-size:15px;color:var(--ink-soft);">Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
+      <div class="card"><h3 style="margin:0 0 6px;color:var(--aqua-deep);">Будь в теле</h3><p style="font-size:15px;color:var(--ink-soft);">Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
+      <div class="card"><h3 style="margin:0 0 6px;color:var(--aqua-deep);">Будь уважительным</h3><p style="font-size:15px;color:var(--ink-soft);">Только совместное согласие. «Нет» здесь слышат.</p></div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 28px;">
+      <div class="card dj-card"><div class="dj-photo"></div><h3 style="margin:0;">Keytra</h3><div class="dj-tags"><span class="badge badge-lav">Этника</span><span class="badge badge-lav">Живой вокал</span></div></div>
+      <div class="card dj-card"><div class="dj-photo" style="background: linear-gradient(160deg, #B889E0 0%, #1E2340 55%, #FF7A45 100%);"></div><h3 style="margin:0;">Zhanna Aya</h3><div class="dj-tags"><span class="badge badge-lav">Tribal Fusion</span><span class="badge badge-lav">Этно-биты</span></div></div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+      <div class="price-card soldout"><p style="font-size:13px;color:var(--cream-soft);">Первые 5</p><p class="price-value">7777 ₸</p><p style="font-size:12px;color:var(--cream-soft);">Продано</p></div>
+      <div class="price-card featured"><span class="badge" style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);">Early bird</span><p style="font-size:13px;color:var(--cream-soft);">15 билетов</p><p class="price-value">8888 ₸</p><p style="font-size:12px;color:var(--cream-soft);">До 01.03</p></div>
+      <div class="price-card"><p style="font-size:13px;color:var(--cream-soft);">Regular</p><p class="price-value">9999 ₸</p><p style="font-size:12px;color:var(--cream-soft);">До 07.03</p></div>
+      <div class="price-card"><p style="font-size:13px;color:var(--cream-soft);">Последние 5</p><p class="price-value">12 000 ₸</p><p style="font-size:12px;color:var(--cream-soft);">И в день события</p></div>
+    </div>
+    <p class="rule" style="margin-top:20px;">Лестница цен — фирменная механика: раскупленные ступени не удалять, а показывать погашенными (класс <code>.soldout</code>) — видно, что цена реально растёт.</p>
+  </div>
+</div>
+
+<!-- 5. ДЕКОР И ФОТО -->
+<div class="section section-dark">
+  <div class="section-inner">
+    <p class="guide-label" style="color:#6B7099;">05 · Декор, фото, мотив</p>
+    <div class="spiral-divider">◌ ◌ ◉ ◌ ◌</div>
+    <div class="grid" style="margin-top: 20px;">
+      <div class="card-dark"><h3 style="color:var(--aqua);margin-bottom:8px;">Спираль</h3><p style="font-size:15px;color:var(--cream-soft);">Мотив логотипа. Полупрозрачная крупная спираль — фоновый декор тёмных секций; маленькая — разделитель между секциями.</p></div>
+      <div class="card-dark"><h3 style="color:var(--aqua);margin-bottom:8px;">Фото</h3><p style="font-size:15px;color:var(--cream-soft);">Тёмный зал, цветной свет (бирюза/лаванда/коралл), силуэты и размытое движение, босые ноги. Без лиц крупным планом и без клубного глянца. Оверлей rgba(19,22,40,.6).</p></div>
+      <div class="card-dark"><h3 style="color:var(--aqua);margin-bottom:8px;">Градиенты</h3><p style="font-size:15px;color:var(--cream-soft);">Разрешены только в заглушках фото диджеев (бирюза → ночь → лаванда) и подложке hero. В остальном дизайн плоский.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. СЕТКА -->
+<div class="section" style="background:#FBF9F5;">
+  <div class="section-inner">
+    <p class="guide-label">06 · Сетка и отступы</p>
+    <p class="spec">Контейнер <code>max-width: 1080px</code> · Секции <code>clamp(56–120px)</code> · Карточки <code>radius 20px</code>, паддинг 24px · Сетки <code>auto-fit minmax(240px, 1fr)</code>. Mobile-first: трафик из Instagram.</p>
+    <p class="rule" style="margin-top:16px;">Sticky-кнопка «Купить билет» внизу экрана на мобильном (класс <code>.sticky-cta</code>), появляется после скролла за hero.</p>
+    <div class="note-strip" style="margin-top:16px;">Плашка-заметка (класс <code>.note-strip</code>) — для снятия возражений по ходу страницы: «Не умеешь танцевать? Идеально. Здесь никто не умеет и никто не смотрит».</div>
+  </div>
+</div>
+
+<div class="section section-dark" style="padding: 40px 24px;">
+  <div class="section-inner" style="text-align:center;">
+    <p style="font-size:13px;color:var(--cream-soft);">Все токены — в первом блоке <code style="color:var(--aqua);">&lt;style&gt;</code> этого файла. Скопируй его в лендинг и собирай секции из готовых классов.</p>
+  </div>
+</div>
+
+</body>
+</html>

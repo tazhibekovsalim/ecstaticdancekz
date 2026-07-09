@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ecstatic Camp Fest — фестиваль Ecstatic Dance под Алматы, 29–30 августа</title>
+<meta name="description" content="Два дня музыки, свободного движения и практик на природе. 29–30 августа 2026, Campland, Алматы. Ночёвка в лагере, без алкоголя. Фестиваль от Ecstatic Dance Almaty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Токены «Ночь на поляне» (verbatim из дизайн-системы) ===== */
+:root {
+  --forest: #0E1512;
+  --forest-soft: #1A241D;
+  --leaf: #7CC46B;
+  --leaf-deep: #1C4014;
+  --gold: #F0A63C;
+  --gold-dark: #3A2405;
+  --ember: #FF8A6A;
+  --dawn: #F4F1E8;
+  --card-light: #FFFFFF;
+  --ink: #22281F;
+  --ink-soft: #68705F;
+  --cream: #F2EFE6;
+  --cream-soft: #9FAF9C;
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-hero: clamp(30px, 7vw, 60px);
+  --fs-h2: clamp(24px, 5vw, 40px);
+  --fs-h3: clamp(17px, 3vw, 21px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+  --section-pad: clamp(56px, 10vw, 120px);
+  --card-pad: 24px;
+  --gap: 16px;
+  --radius-card: 16px;
+  --radius-btn: 999px;
+  --maxw: 1080px;
+}
+
+/* ===== База ===== */
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+body {
+  font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.6;
+  color: var(--ink); background: var(--forest);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.18; font-weight: 600; }
+h1 { font-size: var(--fs-hero); letter-spacing: -0.02em; }
+h2 { font-size: var(--fs-h2); letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+p { max-width: 65ch; }
+.hl { color: var(--leaf); }
+img { display: block; max-width: 100%; }
+
+/* ===== Focus visible (keyboard a11y) ===== */
+:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-radius: 4px; }
+.btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 4px; }
+.nav-tickets:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.faq summary:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; border-radius: 8px; }
+.tl-info:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+
+/* ===== Skip to content (a11y) ===== */
+.skip-link { position: absolute; top: -100px; left: 0; z-index: 300; background: var(--gold); color: var(--gold-dark); padding: 12px 20px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 0 0 8px 0; transition: top .2s ease; }
+.skip-link:focus { top: 0; }
+
+/* ===== Фоновый фото-слой (position: fixed, не background-attachment) ===== */
+.bg-photo { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+.bg-photo .ph { position: absolute; inset: 0; background: linear-gradient(180deg, #1a2820 0%, #0E1512 40%, #1a2418 70%, #2a3025 100%); }
+/* PLACEHOLDER: заменить на фото закат→рассвет (поляна, предгорья, тёплые и зелёные тона) */
+.bg-photo .ph::after { content: ""; position: absolute; inset: 0; background:
+  radial-gradient(ellipse at 70% 20%, rgba(240,166,60,.15), transparent 50%),
+  radial-gradient(ellipse at 30% 80%, rgba(124,196,107,.08), transparent 50%); }
+
+/* ===== Контент поверх фона ===== */
+.page { position: relative; z-index: 1; }
+
+/* ===== Кнопки ===== */
+.btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 16px; letter-spacing: 0.02em; padding: 16px 36px; border-radius: var(--radius-btn); text-decoration: none; border: none; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--gold); color: var(--gold-dark); }
+.btn-primary:hover { box-shadow: 0 6px 26px rgba(240,166,60,.45); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(242,239,230,.35); }
+.btn-secondary:hover { border-color: var(--leaf); color: var(--leaf); }
+.btn-secondary.on-light { color: var(--leaf-deep); border-color: var(--leaf); }
+
+/* ===== Секции ===== */
+.section { padding: var(--section-pad) 24px; position: relative; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: rgba(14,21,18,.88); color: var(--cream); }
+.section-dark h2 { color: var(--cream); }
+.section-dark p { color: var(--cream-soft); }
+.section-light { background: var(--dawn); color: var(--ink); }
+.section-light p { color: var(--ink-soft); }
+.section-photo { position: relative; color: var(--cream); }
+.section-photo .overlay { position: absolute; inset: 0; background: rgba(14,21,18,.62); }
+.eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--leaf); margin-bottom: 14px; }
+.lead { font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5; max-width: 60ch; }
+
+/* ===== Карточки ===== */
+.card { background: var(--card-light); border-radius: var(--radius-card); padding: var(--card-pad); }
+.card-dark { background: var(--forest-soft); border-radius: var(--radius-card); padding: var(--card-pad); color: var(--cream); }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* ===== Декор ===== */
+.divider-ridge { text-align: center; color: var(--leaf); opacity: .4; font-size: 18px; letter-spacing: 0.4em; padding: 8px 0; }
+.glow-gold { text-shadow: 0 0 30px rgba(240,166,60,.5); }
+.pill-tag { display: inline-block; font-size: 13px; padding: 6px 14px; border-radius: 999px; background: rgba(124,196,107,.14); border: 1px solid rgba(124,196,107,.5); color: var(--leaf-deep); margin: 3px 2px; }
+.section-dark .pill-tag { color: var(--leaf); }
+
+/* ===== Urgency strip ===== */
+.urgency { background: var(--forest-soft); color: var(--cream); font-size: 14px; padding: 12px 24px; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; text-align: center; }
+.urgency a { color: var(--leaf); font-weight: 600; text-decoration: none; }
+.pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--ember); animation: pulse 1.4s infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+/* ===== Бейджи ===== */
+.badge { display: inline-block; background: var(--gold); color: var(--gold-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: 0.02em; }
+.badge-leaf { background: rgba(124,196,107,.16); color: var(--leaf); }
+.badge-leaf.on-light { color: var(--leaf-deep); }
+
+/* ===== Тариф ===== */
+.price-card { border: 1.5px solid rgba(124,196,107,.25); background: var(--forest-soft); color: var(--cream); border-radius: var(--radius-card); padding: var(--card-pad); }
+.price-card.featured { border: 2px solid var(--gold); position: relative; }
+.tier { display: flex; justify-content: space-between; font-size: 14px; padding: 7px 0; border-bottom: 1px solid rgba(242,239,230,.1); }
+.tier.past { opacity: .4; text-decoration: line-through; }
+.tier.now { color: var(--gold); font-weight: 600; }
+.tier:last-child { border-bottom: 0; }
+.price-card .badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+/* ===== Таймлайн лайн-апа ===== */
+.timeline { position: relative; padding: 8px 0; max-width: 640px; margin: 0 auto; }
+.timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(124,196,107,.3); }
+.tl-item { position: relative; width: 46%; padding: 10px 0; }
+.tl-item.right { margin-left: 54%; }
+.tl-item .dot { position: absolute; top: 18px; width: 11px; height: 11px; border-radius: 50%; background: var(--leaf); }
+.tl-item:not(.right) .dot { right: calc(-4% - 6px); }
+.tl-item.right .dot { left: calc(-8.7% - 5px); }
+.tl-time { font-family: var(--font-display); font-size: 12px; color: var(--leaf); letter-spacing: 0.06em; }
+.tl-name { font-weight: 600; color: var(--cream); }
+.tl-sub { font-size: 13px; color: var(--cream-soft); }
+.tl-info { cursor: pointer; color: var(--cream-soft); font-size: 13px; border: 1px solid rgba(242,239,230,.25); border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; margin-left: 6px; transition: color .15s, border-color .15s; }
+.tl-info:hover { color: var(--leaf); border-color: var(--leaf); }
+.tl-bio { display: none; margin-top: 8px; font-size: 14px; color: var(--cream-soft); padding: 12px; background: rgba(124,196,107,.06); border-radius: 10px; }
+.tl-item.open .tl-bio { display: block; }
+@media (max-width: 760px) {
+  .timeline::before { left: 8px; }
+  .tl-item, .tl-item.right { width: auto; margin-left: 28px; }
+  .tl-item .dot, .tl-item.right .dot { left: -25px; right: auto; }
+}
+
+/* ===== Табы лайн-апа ===== */
+.tabs { display: flex; gap: 8px; margin-bottom: 28px; justify-content: center; }
+.tab-btn { font-family: var(--font-display); font-weight: 500; font-size: 15px; padding: 10px 24px; border-radius: 999px; background: transparent; border: 1.5px solid rgba(124,196,107,.3); color: var(--cream-soft); cursor: pointer; transition: all .15s ease; -webkit-tap-highlight-color: transparent; }
+.tab-btn.active { background: rgba(124,196,107,.15); border-color: var(--leaf); color: var(--leaf); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ===== Соглашения (компактная полоса) ===== */
+.agreements-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.agreements-row .agr { padding: 16px; border-radius: 12px; background: rgba(124,196,107,.08); border: 1px solid rgba(124,196,107,.2); }
+.agreements-row .agr h3 { color: var(--leaf-deep); font-size: 15px; margin-bottom: 4px; }
+.agreements-row .agr p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+
+/* ===== Сравнение ===== */
+.compare-table { max-width: 680px; margin: 28px auto 0; }
+.compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid rgba(124,196,107,.15); }
+.compare-row .cell { padding: 14px 16px; font-size: 15px; line-height: 1.4; }
+.compare-row .cell.usual { color: var(--ink-soft); text-align: right; border-right: 1px solid rgba(124,196,107,.15); }
+.compare-row .cell.ecstatic { color: var(--ink); }
+.compare-row.accent .cell.ecstatic { color: var(--gold); font-weight: 500; }
+@media (max-width: 600px) {
+  .compare-row { grid-template-columns: 1fr; }
+  .compare-row .cell.usual { text-align: left; border-right: 0; border-bottom: 1px solid rgba(124,196,107,.1); opacity: .6; }
+}
+
+/* ===== Цитата ===== */
+.pull-quote { text-align: center; max-width: 30ch; margin: 28px auto 0; }
+.pull-quote q { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 3vw, 22px); line-height: 1.4; color: var(--ink); quotes: '\201C' '\201D'; }
+.pull-quote q::before { color: var(--leaf); }
+.pull-quote cite { display: block; margin-top: 8px; font-size: 13px; color: var(--leaf-deep); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ===== Лагерь ===== */
+.camp-cards { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px; }
+.checklist { list-style: none; margin-top: 20px; }
+.checklist li { padding: 8px 0 8px 28px; position: relative; font-size: 15px; color: var(--ink); }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 8px; color: var(--leaf); font-weight: 600; }
+
+/* ===== FAQ ===== */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid rgba(34,40,31,.12); padding: 4px 0; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--font-display); font-weight: 500; font-size: clamp(16px, 2.4vw, 19px); color: var(--ink); letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--leaf); color: var(--leaf-deep); display: grid; place-items: center; font-size: 18px; line-height: 1; transition: transform .2s ease; }
+.faq details[open] summary .pm { transform: rotate(45deg); }
+.faq .ans { padding: 0 0 20px; color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+
+/* ===== Navbar ===== */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; display: flex; align-items: center; gap: 16px; padding: 0 20px; background: rgba(14,21,18,.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(124,196,107,.15); }
+.nav-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--cream); font-family: var(--font-display); font-weight: 500; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; flex: 0 0 auto; }
+.nav-brand svg { width: 20px; height: 20px; }
+.nav-links { display: none; align-items: center; gap: 2px; flex: 1 1 auto; justify-content: center; }
+.nav-links a { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 8px; transition: color .15s ease, background .15s ease; -webkit-tap-highlight-color: transparent; }
+.nav-links a:hover, .nav-links a.active { color: var(--leaf); background: rgba(124,196,107,.1); }
+.nav-tickets { flex: 0 0 auto; background: var(--gold); color: var(--gold-dark); font-weight: 600; font-size: 14px; text-decoration: none; padding: 9px 22px; border-radius: 999px; transition: transform .15s ease, box-shadow .15s ease; }
+.nav-tickets:hover { box-shadow: 0 4px 18px rgba(240,166,60,.4); transform: translateY(-1px); }
+.nav-burger { display: flex; width: 38px; height: 38px; background: transparent; border: 0; cursor: pointer; color: var(--cream); padding: 0; align-items: center; justify-content: center; }
+.nav-burger svg { width: 20px; height: 20px; }
+.nav-burger .burger-close { display: none; }
+.navbar.burger-open .burger-open-icon { display: none; }
+.navbar.burger-open .burger-close { display: block; }
+.nav-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: rgba(14,21,18,.96); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(124,196,107,.15); padding: 10px 20px 18px; display: none; flex-direction: column; gap: 2px; }
+.navbar.burger-open .nav-dropdown { display: flex; }
+.nav-dropdown a { color: var(--cream); text-decoration: none; font-size: 16px; font-weight: 500; padding: 13px 6px; border-bottom: 1px solid rgba(242,239,230,.07); }
+.nav-dropdown a:last-child { border-bottom: 0; }
+.nav-dropdown a:hover, .nav-dropdown a.active { color: var(--leaf); }
+@media (min-width: 860px) { .nav-links { display: flex; } .nav-burger { display: none; } .nav-dropdown { display: none !important; } }
+body { padding-top: 60px; }
+section[id] { scroll-margin-top: 80px; }
+
+/* ===== Sticky CTA ===== */
+.sticky-cta { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 99; display: none; }
+.sticky-cta .btn { width: 100%; text-align: center; box-shadow: 0 8px 30px rgba(14,21,18,.45); }
+@media (max-width: 768px) { .sticky-cta.is-visible { display: block; } footer { padding-bottom: 84px; } }
+
+/* ===== Hero ===== */
+.hero { min-height: calc(100svh - 60px); display: flex; align-items: center; position: relative; overflow: hidden; }
+@media (max-width: 400px) { .hero { min-height: auto; padding-top: 40px; padding-bottom: 60px; } }
+.hero-inner { max-width: var(--maxw); margin: 0 auto; width: 100%; padding: 60px 24px 80px; position: relative; z-index: 1; }
+.hero h1 { max-width: 16ch; margin: 6px 0; }
+.hero .sub { margin-top: 16px; color: var(--cream-soft); font-size: clamp(15px, 2.4vw, 19px); max-width: 44ch; }
+.hero-facts { margin-top: 22px; font-size: 14px; color: var(--cream); letter-spacing: 0.02em; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.hero-facts .sep { color: var(--leaf); opacity: .5; }
+.hero-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-cta .btn { width: 100%; text-align: center; }
+.hero .fine { margin-top: 16px; font-size: 13px; color: var(--cream-soft); }
+@media (min-width: 560px) { .hero-cta .btn { width: auto; } }
+
+/* ===== Геометрические иконки ===== */
+.geo-icon { width: 48px; height: 48px; margin-bottom: 12px; }
+.section-dark .geo-icon { color: var(--leaf); }
+.section-light .geo-icon { color: var(--leaf-deep); }
+
+/* ===== Значения (строка) ===== */
+.values-row { display: flex; gap: 24px; flex-wrap: wrap; margin: 20px 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(16px, 2.6vw, 20px); color: var(--leaf-deep); }
+.values-row span { display: flex; align-items: center; gap: 8px; }
+.values-row span::before { content: "●"; color: var(--leaf); font-size: 10px; }
+
+/* ===== Footer ===== */
+footer { background: var(--forest); color: var(--cream-soft); padding: 48px 24px 32px; border-top: 1px solid rgba(124,196,107,.15); }
+footer .section-inner { display: flex; flex-direction: column; gap: 18px; align-items: center; text-align: center; }
+footer a { color: var(--cream); text-decoration: none; }
+footer .foot-nav { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; font-size: 14px; }
+footer .foot-nav a:hover { color: var(--leaf); }
+footer .foot-brand { display: flex; align-items: center; gap: 8px; color: var(--cream); font-family: var(--font-display); font-weight: 500; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+footer .foot-brand svg { width: 20px; height: 20px; }
+footer .socials { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 14px; }
+footer .copyright { font-size: 12px; color: var(--cream-soft); opacity: .7; }
+
+/* ===== Scroll reveal ===== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .pulse { animation: none; } }
+
+/* ===== Промокод-полоска ===== */
+.promo-line { background: rgba(124,196,107,.1); border-top: 1px solid rgba(124,196,107,.2); border-bottom: 1px solid rgba(124,196,107,.2); padding: 14px 24px; text-align: center; font-size: 14px; color: var(--cream); }
+.promo-line a { color: var(--leaf); font-weight: 600; text-decoration: none; }
+
+/* ===== Локация ===== */
+.loc-map { aspect-ratio: 16/10; border-radius: var(--radius-card); background: var(--forest-soft); margin: 24px 0; display: grid; place-items: center; color: var(--cream-soft); font-size: 14px; border: 1px solid rgba(124,196,107,.15); }
+/* PLACEHOLDER: скриншот карты 2GIS */
+.loc-how { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 20px; }
+@media (min-width: 640px) { .loc-how { grid-template-columns: 1fr 1fr; } }
+.loc-how .lh-card { padding: 18px; border-radius: 12px; background: var(--card-light); }
+.loc-how .lh-card h3 { color: var(--leaf-deep); margin-bottom: 4px; }
+.loc-how .lh-card p { font-size: 14px; }
+
+/* ===== Crowd photo ===== */
+.crowd { min-height: 50vh; display: grid; place-items: center; text-align: center; position: relative; }
+/* PLACEHOLDER: толпа на закате */
+.crowd .overlay { position: absolute; inset: 0; background: rgba(14,21,18,.55); }
+.crowd-inner { position: relative; z-index: 1; padding: 60px 24px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<!-- ===== Фоновый фото-слой (fixed) ===== -->
+<div class="bg-photo" aria-hidden="true"><div class="ph"></div></div>
+
+<div class="page">
+
+<main id="main">
+<!-- ===== NAV ===== -->
+<nav class="navbar" id="navbar" data-od-id="navbar" aria-label="Навигация фестиваля">
+  <a class="nav-brand" href="#top" data-od-id="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/></svg>
+    Ecstatic Camp Fest
+  </a>
+  <div class="nav-links" data-od-id="nav-links">
+    <a href="#about" data-od-id="nav-about">О фестивале</a>
+    <a href="#lineup" data-od-id="nav-lineup">Лайн-ап</a>
+    <a href="#camp" data-od-id="nav-camp">Лагерь</a>
+    <a href="#tickets" data-od-id="nav-tickets">Билеты</a>
+    <a href="#location" data-od-id="nav-location">Локация</a>
+    <a href="#faq" data-od-id="nav-faq">FAQ</a>
+  </div>
+  <a class="nav-tickets" href="#tickets" data-od-id="nav-tickets-btn">Билеты</a>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false" data-od-id="nav-burger">
+    <svg class="burger-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="nav-dropdown" id="navDropdown" data-od-id="nav-dropdown">
+    <a href="#about" data-od-id="dd-about">О фестивале</a>
+    <a href="#lineup" data-od-id="dd-lineup">Лайн-ап</a>
+    <a href="#camp" data-od-id="dd-camp">Лагерь</a>
+    <a href="#tickets" data-od-id="dd-tickets">Билеты</a>
+    <a href="#location" data-od-id="dd-location">Локация</a>
+    <a href="#faq" data-od-id="dd-faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero section-photo" id="top" data-od-id="hero">
+  <div class="overlay"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Campland · Алматы</p>
+    <h1>ECSTATIC <span class="hl glow-gold">CAMP</span> FEST</h1>
+    <p class="sub">Два дня музыки, свободного движения и практик на природе — там, где закат встречается с рассветом.</p>
+    <div class="hero-facts">
+      <span>29–30 августа 2026</span><span class="sep">·</span>
+      <span>2 дня</span><span class="sep">·</span>
+      <span>ночёвка в лагере</span><span class="sep">·</span>
+      <span>без алкоголя</span><span class="sep">·</span>
+      <span>1,5 часа от Алматы</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta-tickets">Купить билет</a>
+      <a class="btn btn-secondary" href="#lineup" data-od-id="hero-cta-lineup">Смотреть лайн-ап</a>
+    </div>
+    <p class="fine">фестиваль от Ecstatic Dance Almaty</p>
+  </div>
+</section>
+
+<!-- ===== URGENCY STRIP ===== -->
+<div class="urgency" data-od-id="urgency">
+  <span class="pulse"></span>
+  Продажи открыты · текущая цена
+  <!-- TODO: цена и порог -->
+  <strong style="color:var(--gold);">8888 ₸</strong> до 1 августа ·
+  <!-- TODO: осталось билетов -->
+  осталось 47 билетов
+  <a href="#tickets">→ Билеты</a>
+</div>
+
+<!-- ===== ЛАЙН-АП ===== -->
+<section class="section section-dark" id="lineup" data-od-id="lineup">
+  <div class="section-inner">
+    <p class="eyebrow">Программа</p>
+    <h2>Лайн-ап</h2>
+    <div class="tabs reveal" data-od-id="lineup-tabs">
+      <button class="tab-btn active" type="button" data-day="1" data-od-id="tab-day1">День 1 — 29 августа</button>
+      <button class="tab-btn" type="button" data-day="2" data-od-id="tab-day2">День 2 — 30 августа</button>
+    </div>
+
+    <!-- День 1 -->
+    <div class="tab-panel active" data-day="1" data-od-id="panel-day1">
+      <div class="timeline">
+        <div class="tl-item" data-od-id="d1-open"><span class="dot"></span><p class="tl-time">12:00</p><p class="tl-name">Открытие фестиваля</p></div>
+        <div class="tl-item right" data-od-id="d1-osho"><span class="dot"></span><p class="tl-time">13:00</p><p class="tl-name">Ошо медитация</p></div>
+        <div class="tl-item" data-od-id="d1-ambient"><span class="dot"></span><p class="tl-time">14:00</p><p class="tl-name">Эмбиент / саундхилинг</p></div>
+        <div class="tl-item right" data-od-id="d1-alina"><span class="dot"></span><p class="tl-time">15:00</p><p class="tl-name">Alina Haib <span class="tl-info">i</span></p><p class="tl-sub">экстатик-диджей</p><div class="tl-bio"><!-- TODO: био Alina Haib --></div></div>
+        <div class="tl-item" data-od-id="d1-tantra"><span class="dot"></span><p class="tl-time">16:30</p><p class="tl-name">Тантра <span class="tl-info">i</span></p><p class="tl-sub">ведёт Dishandi</p><div class="tl-bio"><!-- TODO: био Dishandi --></div></div>
+        <div class="tl-item right" data-od-id="d1-rules"><span class="dot"></span><p class="tl-time">18:00</p><p class="tl-name">Ecstatic соглашения</p></div>
+        <div class="tl-item" data-od-id="d1-tea"><span class="dot"></span><p class="tl-time">весь день</p><p class="tl-name">Чайная зона + арома бар <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true" style="width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-left:2px;"><path d="M4 8h10v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M14 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 4c0 1 1 1 1 2M10 3c0 1 1 1 1 2"/></svg></p></div>
+        <div class="tl-item right" data-od-id="d1-alex"><span class="dot"></span><p class="tl-time">19:00</p><p class="tl-name">Ecstatic Dance by Alex Muller <span class="tl-info">i</span></p><p class="tl-sub">хедлайнер · Сочи</p><div class="tl-bio"><!-- TODO: био Alex Muller --></div></div>
+        <div class="tl-item" data-od-id="d1-breath"><span class="dot"></span><p class="tl-time">21:00</p><p class="tl-name">Дыхательная практика «Перезагрузка»</p></div>
+        <div class="tl-item right" data-od-id="d1-salim"><span class="dot"></span><p class="tl-time">22:00</p><p class="tl-name">Ecstatic Dance by Salim <span class="tl-info">i</span></p><p class="tl-sub">хедлайнер · Алматы</p><div class="tl-bio"><!-- TODO: био Salim --></div></div>
+        <div class="tl-item" data-od-id="d1-gong"><span class="dot"></span><p class="tl-time">23:30</p><p class="tl-name">Гонг медитация</p></div>
+        <div class="tl-item right" data-od-id="d1-mantra"><span class="dot"></span><p class="tl-time">00:00</p><p class="tl-name">Mantra Jam у костра</p></div>
+      </div>
+    </div>
+
+    <!-- День 2 -->
+    <div class="tab-panel" data-day="2" data-od-id="panel-day2">
+      <div class="timeline">
+        <div class="tl-item" data-od-id="d2-yoga"><span class="dot"></span><p class="tl-time">07:00</p><p class="tl-name">Йога с Нигарой <span class="tl-info">i</span></p><p class="tl-sub">на рассвете</p><div class="tl-bio"><!-- TODO: био Нигары --></div></div>
+        <div class="tl-item right" data-od-id="d2-factor"><span class="dot"></span><p class="tl-time">10:00</p><p class="tl-name">Factor Motivation <span class="tl-info">i</span></p><div class="tl-bio"><!-- TODO: био Factor Motivation --></div></div>
+        <div class="tl-item" data-od-id="d2-akku"><span class="dot"></span><p class="tl-time">12:00</p><p class="tl-name">Ecstatic AkkuMiss <span class="tl-info">i</span></p><div class="tl-bio"><!-- TODO: био AkkuMiss --></div></div>
+        <div class="tl-item right" data-od-id="d2-keytra"><span class="dot"></span><p class="tl-time">14:00</p><p class="tl-name">Ecstatic Keytra <span class="tl-info">i</span></p><div class="tl-bio"><!-- TODO: био Keytra --></div></div>
+        <div class="tl-item" data-od-id="d2-opendeck"><span class="dot"></span><p class="tl-time">16:00</p><p class="tl-name">Open Deck / Баня</p></div>
+        <div class="tl-item right" data-od-id="d2-close"><span class="dot"></span><p class="tl-time">18:00</p><p class="tl-name">Закрытие фестиваля</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== О ФЕСТИВАЛЕ ===== -->
+<section class="section section-light" id="about" data-od-id="about">
+  <div class="section-inner">
+    <p class="eyebrow">О фестивале</p>
+    <h2>Что такое Ecstatic Dance?</h2>
+    <p class="lead" style="margin-top: 16px;">Ecstatic Dance — это свободное танцевальное путешествие в безопасном пространстве, которое ведёт диджей: волна музыки поднимается от мягкого погружения к пику и плавно опускается. Ты двигаешься так, как просит тело — без правильных движений, зрителей и оценок.</p>
+
+    <p style="margin-top: 18px; font-size: clamp(16px, 2.2vw, 19px); color: var(--ink);">Ecstatic Dance — событие для меломанов. Тут есть все возможные жанры:</p>
+    <div style="margin-top: 12px;" data-od-id="genres">
+      <!-- TODO: список из 13 жанров -->
+      <span class="pill-tag">Organic house</span>
+      <span class="pill-tag">Этника</span>
+      <span class="pill-tag">Tribal</span>
+      <span class="pill-tag">Downtempo</span>
+      <span class="pill-tag">Мантры</span>
+      <span class="pill-tag">World beats</span>
+      <span class="pill-tag">Ambient</span>
+      <span class="pill-tag">--</span>
+      <span class="pill-tag">--</span>
+      <span class="pill-tag">--</span>
+      <span class="pill-tag">--</span>
+      <span class="pill-tag">--</span>
+      <span class="pill-tag">--</span>
+    </div>
+
+    <div class="values-row reveal" data-od-id="values">
+      <span>Свобода</span><span>Контакт</span><span>Присутствие</span>
+    </div>
+
+    <div class="grid reveal" style="margin-top: 24px;" data-od-id="about-cards">
+      <div class="card" data-od-id="about-no-judge">
+        <svg class="geo-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="20"/><path d="M14 24h20"/></svg>
+        <h3 style="color:var(--leaf-deep); margin-bottom:6px;">Без оценки</h3>
+        <p>Нет правильных движений и зрителей. Танцуй как хочешь — с закрытыми глазами, на полу, в прыжке.</p>
+      </div>
+      <div class="card" data-od-id="about-connect">
+        <svg class="geo-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="24" r="8"/><circle cx="32" cy="24" r="8"/></svg>
+        <h3 style="color:var(--leaf-deep); margin-bottom:6px;">Живое общение</h3>
+        <p>Чайная зона знакомит лучше любого нетворкинга. Знакомства на трезвую голову.</p>
+      </div>
+      <div class="card" data-od-id="about-nature">
+        <svg class="geo-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M24 40V16M24 16l-10 10M24 16l10 10M8 40h32"/></svg>
+        <h3 style="color:var(--leaf-deep); margin-bottom:6px;">На природе</h3>
+        <p>Поляна в предгорьях, костёр, рассвет над хребтом. Два дня — вне города и привычного ритма.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== СОГЛАШЕНИЯ ===== -->
+<section class="section section-light" id="agreements" data-od-id="agreements" style="padding-top: 0;">
+  <div class="section-inner">
+    <div class="agreements-row reveal" data-od-id="agr-row">
+      <div class="agr" data-od-id="agr-present"><h3>Будь присутствующим</h3><p>Без телефонов на танцполе.</p></div>
+      <div class="agr" data-od-id="agr-clean"><h3>Будь чистым</h3><p>Без алкоголя и интоксикантов.</p></div>
+      <div class="agr" data-od-id="agr-body"><h3>Будь в теле</h3><p>Без разговоров на танцполе.</p></div>
+      <div class="agr" data-od-id="agr-respect"><h3>Будь уважительным</h3><p>Только совместное согласие.</p></div>
+    </div>
+    <p style="text-align: center; margin-top: 18px; font-size: 14px;">Мировой стандарт Ecstatic Dance — то, что делает пространство безопасным.</p>
+  </div>
+</section>
+
+<!-- ===== СРАВНЕНИЕ ===== -->
+<section class="section section-light" id="compare" data-od-id="compare" style="padding-top: 0;">
+  <div class="section-inner">
+    <h2 style="text-align: center;">Это не обычная вечеринка.<br>Это свидание с собой</h2>
+    <div class="compare-table reveal" data-od-id="compare-table">
+      <div class="compare-row accent"><div class="cell usual">Состояние делает алкоголь</div><div class="cell ecstatic">Состояние делают музыка, дыхание и общая волна зала</div></div>
+      <div class="compare-row accent"><div class="cell usual">Утром — разбитость и провал в памяти</div><div class="cell ecstatic">Утром — лёгкость, ясность и тело, которое говорит спасибо</div></div>
+      <div class="compare-row"><div class="cell usual">Танцуешь «как положено», ловишь взгляды</div><div class="cell ecstatic">Танцуешь как хочешь: с закрытыми глазами, на полу, в прыжке</div></div>
+      <div class="compare-row"><div class="cell usual">Знакомства под градусом, наутро неловко</div><div class="cell ecstatic">Честные знакомства в чайной зоне на трезвую голову</div></div>
+      <div class="compare-row"><div class="cell usual">Перекрикивать музыку, чтобы поговорить</div><div class="cell ecstatic">Тишина на танцполе — редкий отдых от слов</div></div>
+      <div class="compare-row"><div class="cell usual">Начинается в полночь, разгон к трём утра</div><div class="cell ecstatic">Начинается днём — на пике твоей энергии</div></div>
+      <div class="compare-row"><div class="cell usual">Домой под утро, день потерян</div><div class="cell ecstatic">В 19:00 ты дома: душ, ужин, нормальный сон</div></div>
+    </div>
+    <div class="pull-quote" data-od-id="rumi">
+      <q>Танцуй, когда ты совершенно свободен</q>
+      <cite>Руми</cite>
+    </div>
+    <div style="text-align: center; margin-top: 28px;"><a class="btn btn-primary" href="#tickets" data-od-id="compare-cta">Купить билет</a></div>
+  </div>
+</section>
+
+<!-- ===== ЛАГЕРЬ И НОЧЁВКА ===== -->
+<section class="section section-dark" id="camp" data-od-id="camp">
+  <div class="section-inner">
+    <p class="eyebrow">Лагерь и ночёвка</p>
+    <h2>Фестиваль живёт два дня без перерыва</h2>
+    <p class="lead" style="margin-top: 14px;">Вечером — костёр и мантры, утром — йога на рассвете. Оставайся ночевать в лагере.</p>
+
+    <div class="camp-cards reveal" data-od-id="camp-cards">
+      <div class="card-dark" data-od-id="camp-tent-free">
+        <h3 style="color: var(--leaf); margin-bottom: 8px;">Своя палатка — бесплатно</h3>
+        <p style="font-size: 15px;">Место в лагере включено в билет. Ставь палатку среди деревьев, рядом с гирляндами.</p>
+      </div>
+      <div class="card-dark" data-od-id="camp-tent-rent">
+        <h3 style="color: var(--leaf); margin-bottom: 8px;">Палатка в аренду</h3>
+        <p style="font-size: 15px;">Приезжай налегке.</p>
+        <!-- TODO: цена аренды и что входит -->
+        <p style="font-size: 13px; margin-top: 6px; opacity: .6;">Цена и комплект — уточняется</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px;" data-od-id="camp-food">
+      <h3 style="color: var(--cream); margin-bottom: 8px;">Питание</h3>
+      <!-- TODO: фудкорт/чайная зона, что по еде -->
+      <p style="font-size: 15px;">Чайная зона работает весь фестиваль. Подробности по питанию — уточняются.</p>
+    </div>
+
+    <div style="margin-top: 24px;" data-od-id="camp-checklist">
+      <h3 style="color: var(--cream); margin-bottom: 8px;">Что взять с собой</h3>
+      <ul class="checklist">
+        <li>Палатка и спальник (если свои)</li>
+        <li>Тёплая кофта на ночь</li>
+        <li>Коврик</li>
+        <li>Купальник для бани</li>
+        <li>Фонарик</li>
+      </ul>
+    </div>
+
+    <div class="card-dark" style="margin-top: 24px; border-color: var(--ember); border: 1.5px solid rgba(255,138,106,.4); text-align: center;" data-od-id="camp-sober">
+      <p style="color: var(--ember); font-weight: 600; font-size: 15px;">Фестиваль полностью безалкогольный</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== БИЛЕТЫ ===== -->
+<section class="section section-dark" id="tickets" data-od-id="tickets">
+  <div class="section-inner">
+    <p class="eyebrow">Билеты</p>
+    <h2>Забери билет по лучшей цене</h2>
+
+    <!-- Таймер до повышения -->
+    <div class="card-dark reveal" style="text-align: center; margin: 24px 0; border: 1px solid rgba(240,166,60,.25);" data-od-id="price-timer">
+      <p style="font-size: 13px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;">Цена повышается</p>
+      <!-- TODO: дата повышения -->
+      <p style="font-family: var(--font-display); font-size: clamp(22px, 4vw, 32px); color: var(--gold);">до 1 августа</p>
+      <p style="font-size: 14px; margin-top: 6px;">
+        <!-- TODO: осталось билетов -->
+        осталось <strong style="color: var(--gold);">47</strong> билетов
+      </p>
+    </div>
+
+    <div class="grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));" data-od-id="price-grid">
+      <!-- Без трансфера -->
+      <div class="price-card" data-od-id="price-no-transfer">
+        <h3 style="margin-bottom: 4px; color: var(--cream);">Без трансфера</h3>
+        <p style="font-size: 13px; color: var(--cream-soft); margin-bottom: 14px;">2 дня · лагерь · чайная зона</p>
+        <!-- TODO: суммы порогов -->
+        <div class="tier past"><span>Первые 20</span><span>7777 ₸</span></div>
+        <div class="tier now"><span>Сейчас · до 1.08</span><span>8888 ₸</span></div>
+        <div class="tier"><span>До 15.08</span><span>9999 ₸</span></div>
+        <div class="tier"><span>До 28.08</span><span>11 000 ₸</span></div>
+        <div class="tier"><span>В день феста</span><span>13 000 ₸</span></div>
+        <p style="margin-top: 14px; font-size: 13px; color: var(--cream-soft);">Включено: 2 дня программы, место в лагере, чайная зона.</p>
+        <!-- TODO: ссылка эквайринга -->
+        <p style="margin-top: 16px; text-align: center;"><a class="btn btn-secondary" href="#" style="padding: 12px 28px;" data-od-id="buy-no-transfer">Купить</a></p>
+      </div>
+
+      <!-- С трансфером -->
+      <div class="price-card featured" data-od-id="price-transfer">
+        <span class="badge">С трансфером</span>
+        <h3 style="margin-bottom: 4px; color: var(--gold);">С трансфером</h3>
+        <p style="font-size: 13px; color: var(--cream-soft); margin-bottom: 14px;">+ автобус туда-обратно из Алматы</p>
+        <!-- TODO: суммы порогов -->
+        <div class="tier past"><span>Первые 20</span><span>9999 ₸</span></div>
+        <div class="tier now"><span>Сейчас · до 1.08</span><span>11 111 ₸</span></div>
+        <div class="tier"><span>До 15.08</span><span>12 500 ₸</span></div>
+        <div class="tier"><span>До 28.08</span><span>14 000 ₸</span></div>
+        <div class="tier"><span>В день феста</span><span>—</span></div>
+        <p style="margin-top: 14px; font-size: 13px; color: var(--cream-soft);">Включено: всё из «Без трансфера» + автобус туда-обратно.</p>
+        <!-- TODO: ссылка эквайринга -->
+        <p style="margin-top: 16px; text-align: center;"><a class="btn btn-primary" href="#" style="padding: 12px 28px;" data-od-id="buy-transfer">Купить</a></p>
+      </div>
+    </div>
+
+    <p style="font-size: 14px; margin-top: 20px; text-align: center;">Цена растёт по мере выкупа билетов — чем раньше, тем дешевле.</p>
+
+    <!-- Промокод для новичков -->
+    <div class="promo-line reveal" style="margin-top: 24px;" data-od-id="promo">
+      Впервые на экстатике?
+      <a href="https://wa.me/77777777777?text=Хочу промокод на первый экстатик&utm_source=camp-fest&utm_medium=messenger&utm_content=promo" target="_blank" rel="noopener">Промокод на первый раз → WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ЛОКАЦИЯ ===== -->
+<section class="section section-light" id="location" data-od-id="location">
+  <div class="section-inner">
+    <p class="eyebrow">Локация</p>
+    <h2>Campland · Алматы</h2>
+    <p style="margin-top: 12px;">1,5 часа от центра Алматы. Поляна в предгорьях, среди деревьев.</p>
+
+    <div class="loc-map" data-od-id="loc-map">
+      <!-- PLACEHOLDER: скриншот карты 2GIS -->
+      <p>Скриншот карты 2GIS</p>
+    </div>
+    <p style="text-align: center;"><a class="btn btn-secondary on-light" href="#" target="_blank" rel="noopener" data-od-id="loc-2gis">Открыть в 2GIS</a></p>
+
+    <div class="loc-how reveal" data-od-id="loc-how">
+      <div class="lh-card" data-od-id="how-own">
+        <h3>Своим транспортом</h3>
+        <p>1,5 часа от центра Алматы. Парковка на территории.</p>
+      </div>
+      <div class="lh-card" data-od-id="how-transfer">
+        <h3>На трансфере</h3>
+        <p>Автобус туда-обратно. Выбери тариф «С трансфером» при покупке билета.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;" data-od-id="loc-times">
+      <p><strong style="color: var(--leaf-deep);">Заезд:</strong> 29 августа с 10:00 · <strong style="color: var(--leaf-deep);">Выезд:</strong> 30 августа до 20:00</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section-light" id="faq" data-od-id="faq">
+  <div class="section-inner">
+    <p class="eyebrow" style="text-align: center;">Частые вопросы</p>
+    <h2 style="text-align: center;">Если ещё сомневаешься</h2>
+    <div class="faq reveal" style="margin-top: 28px;" data-od-id="faq-list">
+      <details data-od-id="faq-dance"><summary>Я не умею танцевать — можно?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Да. Нет движений, которые нужно знать. Закрой глаза и слушай музыку — тело само разберётся.</div></details>
+      <details data-od-id="faq-bring"><summary>Что взять с собой?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Палатка и спальник (если свои), тёплая кофта на ночь, коврик, купальник для бани, фонарик.</div></details>
+      <details data-od-id="faq-food"><summary>Что с питанием?<span class="pm" aria-hidden="true">+</span></summary><div class="ans"><!-- TODO: питание -->Подробности по питанию — уточняются. Чайная зона работает весь фестиваль.</div></details>
+      <details data-od-id="faq-how"><summary>Как добраться и когда заезд/выезд?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">1,5 часа от центра Алматы. Заезд 29 августа с 10:00, выезд 30 августа до 20:00. Можно своим транспортом или на трансфере (тариф «С трансфером»).</div></details>
+      <details data-od-id="faq-kids"><summary>Можно ли с детьми?<span class="pm" aria-hidden="true">+</span></summary><div class="ans"><!-- TODO: возрастные ограничения -->Уточняется.</div></details>
+      <details data-od-id="faq-sleep"><summary>Где я буду спать?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Своя палатка — бесплатно, место в лагере включено в билет. Есть палатки в аренду — приезжай налегке.</div></details>
+      <details data-od-id="faq-alcohol"><summary>Правда без алкоголя?<span class="pm" aria-hidden="true">+</span></summary><div class="ans">Да, фестиваль полностью безалкогольный. Состояние делают музыка, движение и природа.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CROWD PHOTO ===== -->
+<section class="crowd section-photo" data-od-id="crowd">
+  <div class="overlay"></div>
+  <!-- PLACEHOLDER: толпа на закате -->
+  <div class="crowd-inner">
+    <h2 style="color: var(--cream); max-width: 18ch; margin: 0 auto 20px;">Два дня, которые меняют ритм</h2>
+    <a class="btn btn-primary" href="#tickets" data-od-id="crowd-cta">Купить билет</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer data-od-id="footer">
+  <div class="section-inner">
+    <div class="foot-brand" data-od-id="foot-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/></svg>
+      Ecstatic Camp Fest
+    </div>
+    <div class="foot-nav" data-od-id="foot-nav">
+      <a href="#about">О фестивале</a>
+      <a href="#lineup">Лайн-ап</a>
+      <a href="#camp">Лагерь</a>
+      <a href="#tickets">Билеты</a>
+      <a href="#location">Локация</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <p><a href="index.html" style="color: var(--leaf);">← На основной сайт Ecstatic Dance Almaty</a></p>
+    <div class="socials" data-od-id="socials">
+      <a href="#" data-od-id="soc-ig">Instagram @ecstaticdance_almaty</a>
+      <a href="#" data-od-id="soc-tg">Telegram</a>
+    </div>
+    <p class="copyright">© 2026 Ecstatic Dance Almaty · ecstaticdance.kz</p>
+  </div>
+</footer>
+
+</div><!-- /.page -->
+
+<!-- Sticky CTA (mobile) -->
+<div class="sticky-cta" id="stickyCta" data-od-id="sticky-cta">
+  <a class="btn btn-primary" href="#tickets">Купить билет — 8888 ₸</a>
+</div>
+
+<script>
+(function () {
+  // === Scroll reveal ===
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  // === Sticky mobile CTA ===
+  var hero = document.getElementById('top');
+  var sticky = document.getElementById('stickyCta');
+  if (hero && sticky && 'IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { sticky.classList.toggle('is-visible', !e.isIntersecting); });
+    }, { threshold: 0 });
+    sio.observe(hero);
+  }
+
+  // === Tabs (лайн-ап) ===
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var day = btn.getAttribute('data-day');
+      tabBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      tabPanels.forEach(function (p) { p.classList.toggle('active', p.getAttribute('data-day') === day); });
+    });
+  });
+
+  // === Timeline info toggle ===
+  document.querySelectorAll('.tl-info').forEach(function (info) {
+    info.addEventListener('click', function () {
+      var item = info.closest('.tl-item');
+      item.classList.toggle('open');
+      info.textContent = item.classList.contains('open') ? '×' : 'i';
+    });
+  });
+
+  // === FAQ accordion (exclusive) ===
+  var faqItems = document.querySelectorAll('.faq details');
+  faqItems.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) { faqItems.forEach(function (o) { if (o !== d) o.open = false; }); }
+    });
+  });
+
+  // === Burger ===
+  var burger = document.getElementById('navBurger');
+  var navbar = document.getElementById('navbar');
+  var ddLinks = document.querySelectorAll('.nav-dropdown a');
+  if (burger && navbar) {
+    burger.addEventListener('click', function () {
+      var open = navbar.classList.toggle('burger-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    ddLinks.forEach(function (a) { a.addEventListener('click', function () { navbar.classList.remove('burger-open'); burger.setAttribute('aria-expanded', 'false'); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { navbar.classList.remove('burger-open'); burger.setAttribute('aria-expanded', 'false'); } });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 860) { navbar.classList.remove('burger-open'); burger.setAttribute('aria-expanded', 'false'); } });
+  }
+
+  // === Scroll-spy ===
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var spyTargets = [];
+  navLinks.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var sec = document.getElementById(id);
+    if (sec) spyTargets.push({ link: a, el: sec });
+  });
+  if (spyTargets.length && 'IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var rec = spyTargets.find(function (t) { return t.el === e.target; });
+        if (rec && e.isIntersecting) {
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          rec.link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    spyTargets.forEach(function (t) { spy.observe(t.el); });
+  }
+})();
+</script>
+</body>
+</html>

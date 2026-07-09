@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ecstatic Dance Almaty — осознанные вечеринки и свободный танец в Алматы</title>
+<meta name="description" content="Осознанные вечеринки Ecstatic Dance в Алматы: свободный танец под live DJ-сеты, саунд-хилинг и чайная зона. Без алкоголя, без разговоров, без телефонов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Токены дизайн-системы «Ночная спираль» (verbatim) ===== */
+:root {
+  --night: #131628;
+  --night-soft: #1E2340;
+  --aqua: #2EC4B6;
+  --aqua-deep: #0E5E57;
+  --coral: #FF7A45;
+  --coral-dark: #3D1A08;
+  --lavender: #B889E0;
+  --warm-white: #F7F4EE;
+  --card-light: #FFFFFF;
+  --ink: #23212B;
+  --ink-soft: #6B6878;
+  --cream: #F7F4EE;
+  --cream-soft: #9AA0C0;
+
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-hero: clamp(32px, 7vw, 64px);
+  --fs-h2: clamp(24px, 5vw, 42px);
+  --fs-h3: clamp(18px, 3vw, 22px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+
+  --section-pad: clamp(56px, 10vw, 120px);
+  --card-pad: 24px;
+  --gap: 16px;
+  --radius-card: 20px;
+  --radius-btn: 999px;
+  --maxw: 1080px;
+}
+
+/* ===== База ===== */
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--warm-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.18; font-weight: 600; }
+h1 { font-size: var(--fs-hero); letter-spacing: -0.01em; }
+h2 { font-size: var(--fs-h2); letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+p { max-width: 65ch; }
+.hl { color: var(--aqua); }
+img { display: block; max-width: 100%; }
+
+/* ===== Кнопки ===== */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  padding: 16px 36px;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--coral); color: var(--coral-dark); }
+.btn-primary:hover { box-shadow: 0 6px 26px rgba(255,122,69,.45); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(247,244,238,.35); }
+.btn-secondary:hover { border-color: var(--aqua); color: var(--aqua); }
+.btn-secondary.on-light { color: var(--aqua-deep); border-color: var(--aqua); }
+.btn-secondary.on-light:hover { background: rgba(46,196,182,.08); }
+
+/* ===== Секции ===== */
+.section { padding: var(--section-pad) 24px; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: var(--night); color: var(--cream); }
+.section-dark h2 { color: var(--cream); }
+.section-dark p { color: var(--cream-soft); }
+.section-light { background: var(--warm-white); }
+.section-light p { color: var(--ink-soft); }
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aqua);
+  margin-bottom: 14px;
+}
+
+/* ===== Карточки ===== */
+.card { background: var(--card-light); border-radius: var(--radius-card); padding: var(--card-pad); }
+.card-dark { background: var(--night-soft); border-radius: var(--radius-card); padding: var(--card-pad); color: var(--cream); }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* ===== Декор ===== */
+.spiral-divider { text-align: center; color: var(--aqua); opacity: .4; font-size: 22px; letter-spacing: 0.4em; padding: 8px 0; }
+.glow-aqua { text-shadow: 0 0 34px rgba(46,196,182,.6); }
+
+/* ===== Navbar ===== */
+.navbar {
+  position: relative; z-index: 200;
+  height: 64px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 24px;
+  background: var(--night);
+  border-bottom: 1px solid rgba(46,196,182,.15);
+}
+.navbar .nav-brand {
+  display: inline-flex; align-items: center; gap: 9px;
+  color: var(--cream); font-family: var(--font-display); font-weight: 500;
+  font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none; flex: 0 0 auto; margin-right: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+.navbar .nav-brand svg { width: 22px; height: 22px; }
+.navbar .nav-links { display: none; align-items: center; gap: 4px; flex: 1 1 auto; justify-content: center; }
+.navbar .nav-links a {
+  color: var(--cream); text-decoration: none;
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  padding: 8px 12px; border-radius: 8px;
+  letter-spacing: 0.02em; transition: color .15s ease, background .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.navbar .nav-links a:hover { color: var(--aqua); }
+.navbar .nav-links a.active { color: var(--aqua); background: rgba(46,196,182,.1); }
+
+/* Бургер (мобильный) */
+.nav-burger {
+  display: none;
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  background: transparent; border: 0; cursor: pointer;
+  color: var(--cream);
+  padding: 0; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-burger svg { width: 22px; height: 22px; }
+.nav-burger .burger-close { display: none; }
+.navbar.burger-open .nav-burger .burger-open-icon { display: none; }
+.navbar.burger-open .nav-burger .burger-close { display: block; }
+
+/* Выпадающее меню (мобильный) */
+.nav-dropdown {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--night);
+  border-bottom: 1px solid rgba(46,196,182,.15);
+  padding: 12px 24px 20px;
+  display: none;
+  flex-direction: column; gap: 2px;
+  z-index: 199;
+}
+.navbar.burger-open .nav-dropdown { display: flex; }
+.nav-dropdown a {
+  color: var(--cream); text-decoration: none;
+  font-family: var(--font-body); font-size: 16px; font-weight: 500;
+  padding: 14px 8px;
+  border-bottom: 1px solid rgba(247,244,238,.07);
+  letter-spacing: 0.02em;
+  transition: color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-dropdown a:last-child { border-bottom: 0; }
+.nav-dropdown a:hover, .nav-dropdown a.active { color: var(--aqua); }
+.nav-dropdown a .dd-arrow { float: right; color: var(--aqua); opacity: .5; font-size: 14px; }
+
+@media (max-width: 859px) {
+  .nav-burger { display: flex; }
+}
+@media (min-width: 860px) {
+  .navbar .nav-links { display: flex; }
+  .nav-dropdown { display: none !important; }
+}
+@media (max-width: 859px) {
+  .navbar .nav-brand { font-size: 13px; }
+}
+body { padding-top: 0; }
+section[id], div.next-event[id] { scroll-margin-top: 24px; }
+.note-strip {
+  background: rgba(46,196,182,.1);
+  border-left: 3px solid var(--aqua);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  font-size: 15px;
+  color: var(--aqua-deep);
+}
+
+/* ===== HERO ===== */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: rgba(19,22,40,.66); }
+.hero-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; width: 100%; padding: 100px 24px 120px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; color: var(--cream); font-family: var(--font-display); font-weight: 500; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
+.logo svg { width: 26px; height: 26px; }
+.hero h1 { max-width: 14ch; }
+.hero .sub { margin-top: 18px; color: var(--cream-soft); font-size: clamp(15px, 2.4vw, 18px); max-width: 46ch; }
+.hero-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-cta .btn { width: 100%; text-align: center; }
+@media (min-width: 560px) { .hero-cta .btn { width: auto; } }
+
+/* ===== Цифры (what is) ===== */
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 12px; margin: 32px 0; }
+.stat .num { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 7vw, 40px); color: var(--aqua-deep); line-height: 1; letter-spacing: -0.01em; }
+.stat .lbl { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+@media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+
+/* ===== Таймлайн ===== */
+.timeline { list-style: none; counter-reset: step; }
+.timeline li { position: relative; padding: 0 0 28px 44px; }
+.timeline li::before {
+  counter-increment: step; content: counter(step, decimal-leading-zero);
+  position: absolute; left: 0; top: 0;
+  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  color: var(--aqua-deep); background: rgba(46,196,182,.12);
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+}
+.timeline li::after { content: ""; position: absolute; left: 14px; top: 30px; bottom: 0; width: 2px; background: rgba(46,196,182,.2); }
+.timeline li:last-child::after { display: none; }
+.timeline h3 { margin-bottom: 4px; color: var(--ink); }
+.timeline p { font-size: 15px; }
+
+/* ===== Соглашения / Зачем ===== */
+.cards-4 { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.lead { font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5; color: var(--ink); max-width: 60ch; }
+
+/* ===== Диджеи ===== */
+.dj-card { display: flex; flex-direction: column; gap: 12px; }
+.dj-photo { width: 100%; aspect-ratio: 1; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #2EC4B6 0%, #1E2340 55%, #B889E0 100%); }
+.dj-photo img { width: 100%; height: 100%; object-fit: cover; }
+.dj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ===== Бейджи ===== */
+.badge { display: inline-block; background: var(--coral); color: var(--coral-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 12px; border-radius: 999px; letter-spacing: 0.02em; }
+.badge-aqua { background: rgba(46,196,182,.15); color: var(--aqua); }
+.badge-lav { background: rgba(184,137,224,.15); color: var(--lavender); }
+
+/* ===== Лестница цен ===== */
+.price-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); margin: 28px 0; }
+.price-card { text-align: center; border: 1.5px solid rgba(46,196,182,.2); background: var(--night-soft); color: var(--cream); border-radius: var(--radius-card); padding: 20px 14px; position: relative; }
+.price-card.featured { border: 2px solid var(--coral); }
+.price-card.soldout { opacity: .45; }
+.price-card .tier { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+.price-value { font-family: var(--font-display); font-size: clamp(24px, 6vw, 32px); font-weight: 600; color: var(--cream); margin: 8px 0 4px; letter-spacing: -0.01em; }
+.price-card.featured .price-value { color: var(--coral); }
+.price-card .meta { font-size: 12px; color: var(--cream-soft); }
+.price-card.featured .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+@media (min-width: 720px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.event-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-bottom: 6px; }
+.event-meta span { font-family: var(--font-body); font-size: 15px; color: var(--cream); }
+.event-meta .dot { color: var(--aqua); }
+
+/* ===== Отзывы + галерея ===== */
+.quote { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 3vw, 24px); line-height: 1.35; color: var(--ink); }
+.quote-author { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 28px; }
+.gallery .g { aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: var(--night-soft); }
+.gallery .g img { width: 100%; height: 100%; object-fit: cover; }
+.gallery .g.wide { grid-column: 1 / -1; aspect-ratio: 16/9; }
+@media (min-width: 720px) { .gallery { grid-template-columns: repeat(4, 1fr); } .gallery .g.wide { grid-column: span 2; aspect-ratio: 16/9; } }
+
+/* ===== FAQ ===== */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid rgba(35,33,43,.12); padding: 4px 0; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--font-display); font-weight: 500; font-size: clamp(16px, 2.4vw, 19px); color: var(--ink); letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--aqua); color: var(--aqua-deep); display: grid; place-items: center; font-size: 18px; line-height: 1; transition: transform .2s ease; }
+.faq details[open] summary .pm { transform: rotate(45deg); }
+.faq .ans { padding: 0 0 20px; color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+
+/* ===== Финальный CTA + футер ===== */
+.final { text-align: center; position: relative; overflow: hidden; }
+.final .spiral-bg { position: absolute; inset: 0; opacity: .12; display: grid; place-items: center; pointer-events: none; }
+.final .spiral-bg svg { width: min(80vw, 520px); height: auto; color: var(--aqua); }
+.final-inner { position: relative; z-index: 1; }
+.final h2 { margin-bottom: 14px; }
+.final .sub { color: var(--cream-soft); margin-bottom: 28px; font-size: clamp(15px, 2.4vw, 18px); }
+.final .btn { margin: 0 auto; }
+footer { border-top: 1px solid rgba(247,244,238,.12); padding: 36px 24px; color: var(--cream-soft); font-size: 14px; }
+footer .section-inner { display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; }
+footer a { color: var(--cream); text-decoration: none; }
+footer .socials { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
+
+/* ===== Sticky CTA ===== */
+.sticky-cta { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 99; display: none; }
+.sticky-cta .btn { width: 100%; text-align: center; box-shadow: 0 8px 30px rgba(19,22,40,.4); }
+@media (max-width: 768px) { .sticky-cta.is-visible { display: block; } }
+
+/* ===== Кнопка «наверх» ===== */
+.to-top {
+  position: fixed; bottom: 24px; right: 24px; z-index: 98;
+  width: 44px; height: 44px;
+  background: rgba(19,22,40,.9);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(46,196,182,.25);
+  border-radius: 50%;
+  color: var(--aqua);
+  display: grid; place-items: center;
+  cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .3s ease, transform .3s ease, background .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.to-top svg { width: 20px; height: 20px; }
+.to-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { background: var(--night-soft); border-color: var(--aqua); }
+.to-top:active { transform: scale(.92); }
+@media (max-width: 768px) {
+  .to-top { bottom: 84px; right: 16px; }
+}
+
+/* ===== Блок «Послушай, как это звучит» ===== */
+.listen-block { display: grid; gap: 24px; grid-template-columns: 1fr; align-items: center; margin-top: 32px; }
+.listen-block .lb-eq { width: 100%; max-width: 280px; margin: 0 auto; }
+.listen-block .lb-text h3 { margin-bottom: 10px; }
+.listen-block .lb-text p { margin-bottom: 18px; }
+@media (min-width: 720px) { .listen-block { grid-template-columns: 200px 1fr; gap: 40px; } .listen-block .lb-eq { margin: 0; } }
+
+/* ===== Плашка-промокод (в блоке события) ===== */
+.promo-strip { background: rgba(46,196,182,.1); border: 1px solid rgba(46,196,182,.3); border-radius: 14px; padding: 18px 20px; margin-top: 18px; }
+.promo-strip .ps-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; justify-content: space-between; }
+.promo-strip .ps-text { font-size: 15px; color: var(--cream); }
+.promo-strip .ps-text strong { color: var(--aqua); }
+.promo-strip .ps-fine { font-size: 12px; color: var(--cream-soft); margin-top: 8px; }
+.promo-strip .btn { padding: 11px 22px; font-size: 14px; background: var(--aqua); color: var(--aqua-deep); border: 0; }
+.promo-strip .btn:hover { box-shadow: 0 4px 18px rgba(46,196,182,.4); transform: translateY(-1px); }
+
+/* ===== Сравнение (vs обычная вечеринка) ===== */
+.compare { display: grid; gap: 14px; grid-template-columns: 1fr; margin-top: 28px; }
+.compare .col { border-radius: var(--radius-card); padding: 22px 22px 10px; }
+.compare .col-usual { background: #ECE7DC; }
+.compare .col-ecstatic { background: var(--card-light); border: 2px solid var(--aqua); }
+.compare .col h3 { margin-bottom: 14px; }
+.compare .col-usual h3 { color: var(--ink-soft); }
+.compare .col-ecstatic h3 { color: var(--aqua-deep); }
+.compare .line { padding: 13px 0; font-size: 15px; border-top: 1px solid rgba(35,33,43,.08); line-height: 1.45; }
+.compare .col-usual .line { color: var(--ink-soft); }
+.compare .col-ecstatic .line { color: var(--ink); }
+@media (min-width: 760px) { .compare { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+/* ===== Основатель (Салим) ===== */
+.founder { display: grid; gap: 24px; grid-template-columns: 1fr; align-items: start; }
+.founder-photo { aspect-ratio: 4/5; border-radius: 18px; overflow: hidden; background: linear-gradient(160deg, #2EC4B6 0%, #1E2340 55%, #B889E0 100%); max-width: 340px; width: 100%; }
+.founder-photo img { width: 100%; height: 100%; object-fit: cover; }
+.founder-body p { color: var(--cream-soft); margin-bottom: 14px; }
+.founder-badges { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 6px; }
+.founder-quote { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 3vw, 24px); line-height: 1.35; color: var(--cream); border-left: 3px solid var(--aqua); padding: 6px 0 6px 20px; margin-top: 22px; max-width: 30ch; }
+@media (min-width: 720px) { .founder { grid-template-columns: 320px 1fr; gap: 40px; } }
+
+/* ===== Полоса-анонс под hero ===== */
+.announce-strip { background: var(--night-soft); padding: 12px 24px; text-align: center; font-size: 14px; color: var(--cream-soft); line-height: 1.5; }
+.announce-strip a { color: var(--aqua); text-decoration: none; border-bottom: 1px solid rgba(46,196,182,.4); }
+.announce-strip a:hover { border-color: var(--aqua); }
+.announce-strip .sep { color: var(--aqua); opacity: .6; margin: 0 6px; }
+
+/* ===== Фестивали ===== */
+.fest-grid { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 32px; }
+@media (min-width: 900px) { .fest-grid { grid-template-columns: 1fr 1fr; } }
+.fest-card { border-radius: var(--radius-card); overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.fest-card .fest-photo { aspect-ratio: 16/10; overflow: hidden; }
+.fest-card .fest-photo img { width: 100%; height: 100%; object-fit: cover; }
+.fest-card .fest-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.fest-card .fest-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(20px, 3vw, 26px); line-height: 1.2; letter-spacing: -0.01em; }
+.fest-card .fest-facts { font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.fest-card .fest-facts span { display: inline-flex; align-items: center; }
+.fest-card .fest-facts .sep { color: currentColor; opacity: .4; }
+.fest-card .fest-badge { align-self: flex-start; }
+.fest-card .fest-cta { margin-top: auto; align-self: flex-start; }
+
+/* Festival 1 — Dance & Meditate (закатная гамма) */
+.fest-card.fest-dm { background: #1E2142; color: #F6EFE4; }
+.fest-card.fest-dm .fest-photo { background: linear-gradient(160deg, #F2994A 0%, #1E2142 60%, #2B2F5C 100%); }
+.fest-card.fest-dm .fest-title { color: #FFE3A8; }
+.fest-card.fest-dm .fest-body p { color: rgba(246,239,228,.72); }
+.fest-card.fest-dm .fest-facts { color: rgba(255,227,168,.85); }
+.fest-card.fest-dm .fest-badge { background: #F2994A; color: #1E2142; font-weight: 600; font-size: var(--fs-caption); padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em; }
+.fest-card.fest-dm .fest-btn { background: #F2994A; color: #1E2142; font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius-btn); text-decoration: none; align-self: flex-start; transition: transform .15s ease, box-shadow .15s ease; }
+.fest-card.fest-dm .fest-btn:hover { box-shadow: 0 6px 24px rgba(242,153,74,.4); transform: translateY(-2px); }
+
+/* Festival 2 — Ecstatic Fest (основная гамма) */
+.fest-card.fest-ef { background: var(--night-soft); color: var(--cream); }
+.fest-card.fest-ef .fest-photo { background: linear-gradient(160deg, #2EC4B6 0%, #1E2340 60%, #FF7A45 100%); }
+.fest-card.fest-ef .fest-title { color: var(--cream); }
+.fest-card.fest-ef .fest-body p { color: var(--cream-soft); }
+.fest-card.fest-ef .fest-facts { color: var(--cream-soft); }
+.fest-card.fest-ef .fest-badge { background: rgba(46,196,182,.15); color: var(--aqua); font-weight: 600; font-size: var(--fs-caption); padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em; }
+.fest-card.fest-ef .fest-btn { background: var(--coral); color: var(--coral-dark); font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius-btn); text-decoration: none; align-self: flex-start; transition: transform .15s ease, box-shadow .15s ease; }
+.fest-card.fest-ef .fest-btn:hover { box-shadow: 0 6px 26px rgba(255,122,69,.45); transform: translateY(-2px); }
+
+/* ===== Цитата-разрыв (Руми) ===== */
+.pull-quote { background: var(--warm-white); padding: clamp(56px, 9vw, 96px) 24px; text-align: center; }
+.pull-quote blockquote { font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 4.5vw, 38px); line-height: 1.32; color: var(--ink); max-width: 22ch; margin: 0 auto; letter-spacing: -0.01em; }
+.pull-quote cite { display: block; margin-top: 18px; font-family: var(--font-body); font-style: normal; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--aqua-deep); }
+
+/* ===== Why: одно громкое слово ===== */
+.why-word { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 3.4vw, 28px); letter-spacing: 0.04em; color: var(--aqua-deep); margin-bottom: 8px; line-height: 1; }
+
+/* ===== Line-art иллюстрации (единый стиль) ===== */
+svg.illu { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; color: var(--ink); overflow: visible; }
+svg.illu .acc { stroke: var(--aqua); }
+.section-dark svg.illu { color: var(--cream); }
+.illu-spot { width: 64px; height: 64px; margin: 0 auto 12px; display: block; }
+.illu-sm { width: 40px; height: 40px; display: block; }
+.illu-lg { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto; }
+
+/* Волна сета */
+.wave-diagram { width: 100%; max-width: 440px; margin: 30px auto 6px; display: block; }
+.wave-labels { display: flex; max-width: 440px; margin: 0 auto 8px; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+.wave-labels span { flex: 1; text-align: center; }
+.wave-labels .mid { color: var(--aqua-deep); font-weight: 600; }
+
+/* Таймлайн с иллюстрациями */
+.timeline li.has-illu { padding-left: 0; display: grid; grid-template-columns: 52px 1fr; gap: 8px 18px; align-items: center; }
+.timeline li.has-illu::before, .timeline li.has-illu::after { display: none; }
+.timeline .tl-illu { width: 52px; height: 52px; }
+.timeline li.has-illu .tl-content { padding-bottom: 28px; }
+
+/* Иллюстрация над колонкой сравнения */
+.compare-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.compare-head svg { width: 40px; height: 40px; flex: 0 0 auto; }
+.compare-head h3 { margin: 0; }
+
+/* Спот-иллюстрация в карточке */
+.card .illu-spot { width: 56px; height: 56px; margin: 0 0 10px; }
+.card.illu-card { display: flex; flex-direction: column; }
+
+/* Карта пути основателя */
+.route-map { width: 100%; max-width: 480px; margin: 24px 0 0; display: block; }
+.route-labels { display: flex; max-width: 480px; margin: 6px auto 0; font-size: 11px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+.route-labels span { flex: 1; text-align: center; }
+
+/* Дервиш за цитатой Руми */
+.pull-quote { position: relative; overflow: hidden; }
+.pull-quote .dervish { position: absolute; right: -6%; top: 50%; transform: translateY(-50%); width: min(46vw, 360px); height: auto; opacity: 0.12; color: var(--ink); pointer-events: none; }
+@media (max-width: 720px) { .pull-quote .dervish { width: 60vw; right: -20%; } }
+
+/* ===== Compact Next Event (after hero) ===== */
+.next-event { background: var(--night); color: var(--cream); padding: clamp(40px, 7vw, 72px) 24px; }
+.next-event .ne-inner { max-width: var(--maxw); margin: 0 auto; }
+.next-event .ne-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 820px) { .next-event .ne-grid { grid-template-columns: 1.1fr 1fr; gap: 40px; } }
+.next-event h2 { font-size: clamp(22px, 4vw, 32px); letter-spacing: -0.01em; margin-bottom: 14px; }
+.next-event .ne-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--cream); margin-bottom: 18px; }
+.next-event .ne-meta .dot { color: var(--aqua); }
+.next-event .ne-meta .pin { width: 14px; height: 14px; display: inline-block; vertical-align: -2px; margin-right: 4px; color: var(--aqua); }
+.next-event .ne-djs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; }
+.next-event .ne-djs .ne-dj { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: rgba(46,196,182,.12); color: var(--aqua); letter-spacing: 0.02em; }
+.next-event .ne-djs-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.next-event .ne-note { font-size: 13px; color: var(--cream-soft); margin-top: 14px; }
+.next-event .price-grid { margin: 0 0 18px; }
+.next-event .ne-poster { border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.35); margin-bottom: 20px; }
+.next-event .ne-poster img { display: block; width: 100%; height: auto; }
+
+/* ===== CTA-полоска (compact) ===== */
+.cta-strip { background: rgba(46,196,182,.08); border-top: 1px solid rgba(46,196,182,.2); border-bottom: 1px solid rgba(46,196,182,.2); padding: 18px 24px; }
+.cta-strip .cs-inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; justify-content: space-between; }
+.cta-strip .cs-text { font-family: var(--font-body); font-size: clamp(15px, 2.2vw, 17px); color: var(--ink); }
+.cta-strip .cs-text strong { color: var(--aqua-deep); font-weight: 600; }
+.cta-strip .btn { padding: 12px 26px; font-size: 15px; }
+
+/* Чайная зона в FAQ */
+.faq-tea { width: 100%; max-width: 320px; margin: 0 auto 18px; display: block; }
+
+/* ===== Scroll reveal ===== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar" id="navbar" data-od-id="navbar" aria-label="Основная навигация">
+  <a class="nav-brand" href="#top" data-od-id="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+      <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/>
+    </svg>
+    Ecstatic Dance Almaty
+  </a>
+  <div class="nav-links" data-od-id="nav-links">
+    <a href="#tickets" data-od-id="nav-event">Событие</a>
+    <a href="#what" data-od-id="nav-what">Что это</a>
+    <a href="#festivals" data-od-id="nav-festivals">Фестивали</a>
+    <a href="#reviews" data-od-id="nav-reviews">Отзывы</a>
+    <a href="#faq" data-od-id="nav-faq">FAQ</a>
+  </div>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false" data-od-id="nav-burger">
+    <svg class="burger-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="nav-dropdown" id="navDropdown" data-od-id="nav-dropdown">
+    <a href="#tickets" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
+    <a href="#what" data-od-id="dd-what">Что это <span class="dd-arrow">→</span></a>
+    <a href="#festivals" data-od-id="dd-festivals">Фестивали <span class="dd-arrow">→</span></a>
+    <a href="#reviews" data-od-id="dd-reviews">Отзывы <span class="dd-arrow">→</span></a>
+    <a href="#faq" data-od-id="dd-faq">FAQ <span class="dd-arrow">→</span></a>
+  </div>
+</nav>
+
+<!-- ===== SVG sprite: line-art иллюстрации (единая толщина 1.5, без заливок) ===== -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+  <defs>
+    <!-- Волна сета (что такое) -->
+    <symbol id="i-wave" viewBox="0 0 320 90">
+      <path d="M10 70 Q 60 70 92 54 C 120 40 140 18 160 18 C 180 18 200 40 228 54 Q 260 70 310 70"/>
+      <circle class="acc" cx="92" cy="54" r="3.5" fill="none"/>
+      <circle class="acc" cx="160" cy="18" r="4" fill="none"/>
+      <circle class="acc" cx="228" cy="54" r="3.5" fill="none"/>
+    </symbol>
+
+    <!-- Круг людей (открытие) -->
+    <symbol id="i-circle" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="17" stroke-dasharray="2 4"/>
+      <circle cx="32" cy="13" r="3"/>
+      <circle cx="49" cy="22" r="3"/>
+      <circle cx="49" cy="42" r="3"/>
+      <circle cx="32" cy="51" r="3"/>
+      <circle cx="15" cy="42" r="3"/>
+      <circle cx="15" cy="22" r="3"/>
+    </symbol>
+
+    <!-- Поднимающаяся волна (первая волна) -->
+    <symbol id="i-wave-up" viewBox="0 0 64 64">
+      <path d="M8 52 Q 18 52 24 44 T 36 30"/>
+      <path d="M22 52 Q 32 52 38 44 T 50 30 T 60 16" class="acc"/>
+    </symbol>
+
+    <!-- Танцующая фигура (пик) -->
+    <symbol id="i-figure" viewBox="0 0 64 64">
+      <circle cx="33" cy="14" r="5"/>
+      <path d="M33 19 Q 30 32 27 44"/>
+      <path d="M33 22 Q 46 16 54 8" class="acc"/>
+      <path d="M33 22 Q 22 28 17 38"/>
+      <path d="M27 44 Q 22 52 18 60"/>
+      <path d="M27 44 Q 36 52 42 58"/>
+    </symbol>
+
+    <!-- Поющая чаша (приземление) -->
+    <symbol id="i-bowl" viewBox="0 0 64 64">
+      <path d="M16 38 Q 32 56 48 38"/>
+      <path d="M14 38 H 50"/>
+      <path d="M22 30 Q 32 22 42 30"/>
+      <path d="M18 22 Q 32 8 46 22" class="acc"/>
+    </symbol>
+
+    <!-- Чайник + пиала + пар (чайная зона) -->
+    <symbol id="i-teapot" viewBox="0 0 64 64">
+      <path d="M16 34 Q 16 50 30 50 Q 44 50 44 34"/>
+      <path d="M16 34 H 44"/>
+      <path d="M44 36 Q 52 34 54 28"/>
+      <path d="M26 30 H 34"/>
+      <circle cx="30" cy="26" r="1.6" fill="currentColor" stroke="none"/>
+      <path d="M48 48 Q 48 56 54 56 Q 60 56 60 48" />
+      <path d="M48 48 H 60"/>
+      <path d="M40 18 Q 44 14 42 10" class="acc"/>
+      <path d="M46 20 Q 50 16 48 12" class="acc"/>
+    </symbol>
+
+    <!-- Перечёркнутый бокал (обычная вечеринка) -->
+    <symbol id="i-glass" viewBox="0 0 64 64">
+      <path d="M14 14 H 50 L 32 36 Z"/>
+      <path d="M32 36 V 52"/>
+      <path d="M22 52 H 42"/>
+      <path d="M14 50 L 50 14" class="acc"/>
+    </symbol>
+
+    <!-- Босые ступни (Ecstatic) -->
+    <symbol id="i-barefoot" viewBox="0 0 64 64">
+      <path d="M18 20 C 13 20 11 28 11 36 C 11 46 16 50 22 50 C 28 50 30 46 30 38 C 30 28 28 20 24 20 C 21 20 20 22 18 20 Z"/>
+      <path d="M40 22 C 35 22 33 30 33 38 C 33 48 38 52 44 52 C 50 52 52 48 52 40 C 52 30 50 22 46 22 C 43 22 42 24 40 22 Z"/>
+      <path d="M11 56 H 52" class="acc"/>
+    </symbol>
+
+    <!-- Солнце из спиралей (РАДОСТЬ) -->
+    <symbol id="i-sun-spiral" viewBox="0 0 64 64">
+      <path d="M32 32 m -7 0 a 7 7 0 1 0 14 0 a 11 11 0 1 0 -18 0 a 15 15 0 1 0 22 0"/>
+      <path d="M32 6 V 12"/>
+      <path d="M32 52 V 58"/>
+      <path d="M6 32 H 12"/>
+      <path d="M52 32 H 58"/>
+      <path d="M14 14 L 18 18"/>
+      <path d="M46 46 L 50 50"/>
+      <path d="M50 14 L 46 18" class="acc"/>
+      <path d="M18 46 L 14 50" class="acc"/>
+    </symbol>
+
+    <!-- Медитация с волной мыслей (ГЛУБИНА) -->
+    <symbol id="i-meditation" viewBox="0 0 64 64">
+      <circle cx="32" cy="22" r="6"/>
+      <path d="M32 28 V 44"/>
+      <path d="M32 36 Q 24 42 20 46"/>
+      <path d="M32 36 Q 40 42 44 46"/>
+      <path d="M20 46 Q 32 42 44 46"/>
+      <path d="M20 16 Q 26 10 32 16" class="acc"/>
+      <path d="M32 16 Q 38 10 44 16" class="acc"/>
+    </symbol>
+
+    <!-- Развевающаяся фигура (СВОБОДА) -->
+    <symbol id="i-flow" viewBox="0 0 64 64">
+      <circle cx="30" cy="16" r="5"/>
+      <path d="M30 21 Q 28 34 31 46"/>
+      <path d="M30 24 Q 44 20 50 28 Q 47 38 39 40" class="acc"/>
+      <path d="M30 28 Q 17 32 13 42 Q 17 48 24 46"/>
+      <path d="M31 46 Q 26 54 22 60"/>
+      <path d="M31 46 Q 38 52 44 58"/>
+    </symbol>
+
+    <!-- Молния → ровная линия (ПЕРЕЗАГРУЗКА) -->
+    <symbol id="i-bolt" viewBox="0 0 64 64">
+      <path d="M10 40 L 18 24 L 25 38 L 33 22"/>
+      <path d="M33 22 C 38 22 42 32 48 32 L 56 32" class="acc"/>
+    </symbol>
+
+    <!-- Три пиалы в круге (СРЕДА) -->
+    <symbol id="i-cups" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="20" stroke-dasharray="2 4"/>
+      <path d="M22 30 Q 22 36 26 36 Q 30 36 30 30"/>
+      <path d="M22 30 H 30"/>
+      <path d="M40 22 Q 40 28 44 28 Q 48 28 48 22"/>
+      <path d="M40 22 H 48"/>
+      <path d="M34 42 Q 34 48 38 48 Q 42 48 42 42"/>
+      <path d="M34 42 H 42"/>
+    </symbol>
+
+    <!-- Ладони кругом (БЕЗОПАСНОСТЬ) -->
+    <symbol id="i-hands" viewBox="0 0 64 64">
+      <path d="M14 40 Q 9 30 17 24 Q 25 21 27 30 L 27 40 Q 25 46 19 45 Z"/>
+      <path d="M50 40 Q 55 30 47 24 Q 39 21 37 30 L 37 40 Q 39 46 45 45 Z"/>
+      <circle cx="32" cy="33" r="4" class="acc"/>
+    </symbol>
+
+    <!-- Солнце на горизонте (РИТМ) -->
+    <symbol id="i-horizon" viewBox="0 0 64 64">
+      <path d="M8 42 H 56"/>
+      <path d="M20 42 A 12 12 0 0 1 44 42" class="acc"/>
+      <path d="M32 24 V 30"/>
+      <path d="M18 30 L 22 33"/>
+      <path d="M46 30 L 42 33"/>
+    </symbol>
+
+    <!-- Телефон в зачёркнутом круге (присутствие) -->
+    <symbol id="i-phone" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="22"/>
+      <path d="M27 16 H 37 V 30 Q 37 34 32 34 Q 27 34 27 30 Z"/>
+      <path d="M14 14 L 50 50" class="acc"/>
+    </symbol>
+
+    <!-- Палец у губ / закрытый рот спиралью (в теле) -->
+    <symbol id="i-lips" viewBox="0 0 64 64">
+      <path d="M20 34 Q 32 28 44 34 Q 32 42 20 34 Z"/>
+      <path d="M44 32 m 0 0 a 4 4 0 1 0 8 0 a 6 6 0 1 0 -12 0" class="acc"/>
+    </symbol>
+
+    <!-- Две ладони навстречу (уважение) -->
+    <symbol id="i-hands-meet" viewBox="0 0 64 64">
+      <path d="M18 18 Q 12 30 18 42 Q 25 46 29 40 L 29 22 Q 25 16 18 18 Z"/>
+      <path d="M46 18 Q 52 30 46 42 Q 39 46 35 40 L 35 22 Q 39 16 46 18 Z"/>
+      <path d="M32 24 V 40" class="acc"/>
+    </symbol>
+
+    <!-- Карта пути основателя -->
+    <symbol id="i-route" viewBox="0 0 320 110">
+      <path d="M30 70 Q 70 40 90 80 Q 110 50 130 78 Q 150 50 170 76 Q 190 50 210 74 Q 240 50 270 72 Q 290 60 300 66" stroke-dasharray="1 5"/>
+      <path d="M40 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
+      <path d="M150 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
+      <path d="M270 68 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
+      <circle cx="40" cy="70" r="3" class="acc"/>
+      <circle cx="150" cy="70" r="3" class="acc"/>
+      <circle cx="270" cy="70" r="3" class="acc"/>
+    </symbol>
+
+    <!-- Кружащийся дервиш (Руми) -->
+    <symbol id="i-dervish" viewBox="0 0 200 200">
+      <circle cx="100" cy="34" r="9"/>
+      <path d="M100 44 Q 70 50 56 78"/>
+      <path d="M100 44 Q 130 50 144 78" class="acc"/>
+      <path d="M100 60 Q 60 100 56 180"/>
+      <path d="M100 60 Q 140 100 144 180"/>
+      <path d="M100 64 Q 78 110 70 176"/>
+      <path d="M100 64 Q 122 110 130 176"/>
+      <path d="M56 180 Q 100 192 144 180"/>
+    </symbol>
+
+    <!-- Чайная зона (FAQ) -->
+    <symbol id="i-tea-zone" viewBox="0 0 320 100">
+      <path d="M40 70 Q 40 86 64 86 Q 88 86 88 70"/>
+      <path d="M40 70 H 88"/>
+      <path d="M200 70 Q 200 86 224 86 Q 248 86 248 70"/>
+      <path d="M200 70 H 248"/>
+      <path d="M120 78 H 200"/>
+      <path d="M150 70 Q 150 80 158 80 Q 166 80 166 70"/>
+      <path d="M150 70 H 166"/>
+      <path d="M150 60 Q 156 54 152 48" class="acc"/>
+      <path d="M160 58 Q 166 52 162 46" class="acc"/>
+      <path d="M212 56 Q 218 50 214 44" class="acc"/>
+    </symbol>
+
+    <!-- Эквалайзер / волна (Послушай, как это звучит) -->
+    <symbol id="i-equalizer" viewBox="0 0 200 120">
+      <path d="M10 100 Q 50 100 70 80 Q 90 60 100 30 Q 110 60 130 80 Q 150 100 190 100"/>
+      <path d="M10 90 Q 45 90 65 75 Q 85 60 95 40 Q 105 60 125 75 Q 145 90 190 90" class="acc"/>
+      <path d="M10 110 H 190"/>
+      <circle cx="100" cy="30" r="3" class="acc"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ====================== 1. HERO ====================== -->
+<section class="hero section-dark" id="top" data-od-id="hero">
+  <div class="hero-bg">
+    <img src="image-flux-pro-ultra-mra80r3x.jpg" alt="Тёмный зал, силуэты свободно танцующих людей в бирюзово-лавандовом свете" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
+    <span class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/>
+      </svg>
+      Ecstatic Dance Almaty
+    </span>
+    <p class="eyebrow" style="margin-bottom: 18px;">ECSTATIC DANCE ALMATY</p>
+    <h1><span class="hl glow-aqua">Осознанная</span> вечеринка</h1>
+    <p class="sub">Танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#tickets">Билет на ближайшее событие</a>
+      <a class="btn btn-secondary" href="#what">Что такое экстатик?</a>
+    </div>
+    <p class="hero-facts" style="margin-top: 20px; font-size: 14px; color: var(--cream-soft); letter-spacing: 0.02em;">
+      <span style="color: var(--aqua);">●</span> Вечеринка при дневном свете
+      <span style="opacity:.4; margin: 0 8px;">·</span>
+      2 августа
+      <span style="opacity:.4; margin: 0 8px;">·</span>
+      14:00–22:00
+      <span style="opacity:.4; margin: 0 8px;">·</span>
+      без алкоголя
+      <span style="opacity:.4; margin: 0 8px;">·</span>
+      босиком
+    </p>
+  </div>
+</section>
+
+<!-- ===== Полоса-анонс: фестивали Лето-2026 ===== -->
+<div class="announce-strip" data-od-id="announce-festivals">
+  Лето-2026: фестиваль Dance &amp; Meditate на Иссык-Куле 7–9.08 и Ecstatic Fest Almaty 29–30.08
+  <span class="sep">→</span>
+  <a href="#festivals">Смотреть фестивали</a>
+</div>
+
+<!-- ====================== 2. БЛИЖАЙШЕЕ СОБЫТИЕ (компакт) ====================== -->
+<section class="next-event" id="tickets" data-od-id="tickets">
+  <div class="ne-inner">
+    <div class="ne-grid">
+      <div data-od-id="ne-info">
+        <p class="eyebrow">Ближайшее событие</p>
+        <h2>Забери билет по лучшей цене</h2>
+        <!-- TODO: обновить дату/место/остаток перед каждым событием -->
+        <div class="ne-meta">
+          <span>2 августа · 14:00–22:00</span><span class="dot">·</span>
+          <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Тюркский парк, Алматы</span>
+        </div>
+        <div class="ne-poster reveal" data-od-id="ne-poster">
+          <img src="poster-event.jpg" alt="Афиша Ecstatic Dance Almaty — 2 августа, Тюркский парк" loading="lazy">
+        </div>
+        <p class="ne-djs-label">Диджеи события</p>
+        <div class="ne-djs">
+          <span class="ne-dj">Salim</span>
+          <span class="ne-dj">Alex Muller</span>
+        </div>
+        <p class="ne-djs-label" style="margin-top:14px;">Проводники практик</p>
+        <div class="ne-djs">
+          <span class="ne-dj">Пётр Эзау — контактная импровизация</span>
+          <span class="ne-dj">Алина Хаиб — Sacrum</span>
+        </div>
+        <p class="ne-note">Цена растёт по мере выкупа билетов — чем раньше, тем дешевле.</p>
+        <div style="margin-top: 22px;" data-od-id="ne-buy-cta">
+          <!-- TODO: ссылка на оплату/бронь -->
+          <a class="btn btn-primary" href="#">Купить билет — 8888 ₸</a>
+        </div>
+        <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247,244,238,.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;" data-od-id="ne-what-to-bring">
+          <strong style="color:var(--cream);">Что взять:</strong> удобная одежда (дресс-код свободный, танцуем босиком), бутылка воды, сменка зимой.
+        </div>
+      </div>
+      <div class="price-grid reveal" data-od-id="ne-price-ladder">
+        <div class="price-card soldout" data-od-id="ne-price-7777">
+          <div class="tier">Первые 5</div>
+          <div class="price-value">7777 ₸</div>
+          <div class="meta">Продано</div>
+        </div>
+        <div class="price-card featured" data-od-id="ne-price-8888">
+          <span class="badge">Early bird</span>
+          <div class="tier">15 билетов</div>
+          <div class="price-value">8888 ₸</div>
+          <div class="meta">Осталось 12</div>
+        </div>
+        <div class="price-card" data-od-id="ne-price-9999">
+          <div class="tier">Regular</div>
+          <div class="price-value">9999 ₸</div>
+          <div class="meta">15 билетов</div>
+        </div>
+        <div class="price-card" data-od-id="ne-price-12000">
+          <div class="tier">Последние 5</div>
+          <div class="price-value">12 000 ₸</div>
+          <div class="meta">И в день события</div>
+        </div>
+      </div>
+
+      <!-- Промокод для новичков -->
+      <div class="promo-strip reveal" data-od-id="promo-strip">
+        <div class="ps-row">
+          <span class="ps-text">Впервые на экстатике? Получи <strong>промокод на скидку</strong> для первого раза <!-- TODO: размер скидки --></span>
+          <a class="btn" href="https://wa.me/77777777777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA&utm_source=landing&utm_medium=messenger&utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
+        </div>
+        <p class="ps-fine">Пришлём код в ответном сообщении.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 3. ЧТО ТАКОЕ ECSTATIC DANCE ====================== -->
+<section class="section section-light" id="what" data-od-id="what-is">
+  <div class="section-inner">
+    <p class="eyebrow">Что это такое</p>
+    <h2>И вечеринка, и практика</h2>
+    <p class="lead" style="margin-top: 18px;">Ecstatic Dance — это свободное танцевальное путешествие в безопасном пространстве, которое ведёт диджей: волна музыки поднимается от мягкого погружения к пику и плавно опускается. Ты двигаешься так, как просит тело — без правильных движений, зрителей и оценок. Похожа на вечеринку — работает как практика: состояние делают музыка, дыхание и общая волна зала, а не алкоголь.</p>
+
+    <svg class="illu wave-diagram" viewBox="0 0 320 90" role="img" aria-label="Волна сета: погружение, пик, приземление"><use href="#i-wave"/></svg>
+    <div class="wave-labels"><span>погружение</span><span class="mid">пик</span><span>приземление</span></div>
+
+    <div class="stats reveal" data-od-id="stats">
+      <div class="stat" data-od-id="stat-cities"><div class="num">100+</div><div class="lbl">городов мира</div></div>
+      <div class="stat" data-od-id="stat-hours"><div class="num">4 часа</div><div class="lbl">путешествия</div></div>
+      <div class="stat" data-od-id="stat-alcohol"><div class="num">0%</div><div class="lbl">алкоголя</div></div>
+      <div class="stat" data-od-id="stat-barefoot"><div class="num">7 дней</div><div class="lbl">послевкусия</div></div>
+    </div>
+
+    <div class="note-strip reveal">Не умеешь танцевать? Идеально. Здесь никто не умеет и никто не смотрит. Свободный танец — он для всех.</div>
+  </div>
+</section>
+
+<!-- ====================== 3b. ЧЕМ ОТЛИЧАЕТСЯ ОТ ОБЫЧНОЙ ВЕЧЕРИНКИ ====================== -->
+<section class="section section-light" id="compare" data-od-id="compare">
+  <div class="section-inner">
+    <p class="eyebrow">Чем это отличается</p>
+    <h2>Не обычная вечеринка</h2>
+    <div class="compare reveal" data-od-id="compare-grid">
+      <div class="col col-usual" data-od-id="compare-usual">
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-glass"/></svg><h3>Обычная вечеринка</h3></div>
+        <div class="line">Состояние делает алкоголь</div>
+        <div class="line">Утром — разбитость и провал в памяти</div>
+        <div class="line">Танцуешь «как положено», ловишь взгляды</div>
+        <div class="line">Знакомства под градусом, наутро неловко</div>
+        <div class="line">Перекрикивать музыку, чтобы поговорить</div>
+        <div class="line">Счёт в баре больше входного</div>
+        <div class="line">Эффект заканчивается с ночью</div>
+        <div class="line">Начинается в полночь, разгон к трём утра</div>
+        <div class="line">Домой под утро, день потерян</div>
+      </div>
+      <div class="col col-ecstatic" data-od-id="compare-ecstatic">
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-barefoot"/></svg><h3>Ecstatic Dance</h3></div>
+        <div class="line">Состояние делают музыка, дыхание и общая волна зала</div>
+        <div class="line">Утром — лёгкость, ясность и тело, которое говорит спасибо</div>
+        <div class="line">Танцуешь как хочешь: с закрытыми глазами, на полу, в прыжке</div>
+        <div class="line">Честные знакомства в чайной зоне на трезвую голову</div>
+        <div class="line">Тишина на танцполе — редкий отдых от слов</div>
+        <div class="line">Билет + чай. Всё</div>
+        <div class="line">Эффект практики накапливается от события к событию</div>
+        <div class="line">Начинается днём — на пике твоей энергии, а не на её остатках</div>
+        <div class="line">В 19:00 ты дома: душ, ужин, нормальный сон — и целый вечер ещё твой</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA-полоска после «Сравнения» -->
+<div class="cta-strip" data-od-id="cta-strip-1">
+  <div class="cs-inner">
+    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>8888 ₸</strong></span>
+    <a class="btn btn-primary" href="#tickets">Купить билет</a>
+  </div>
+</div>
+
+<!-- ====================== 4. ПОЧЕМУ ВЫБИРАЮТ ЭТИ СОБЫТИЯ ====================== -->
+<section class="section section-light" id="why" data-od-id="why">
+  <div class="section-inner">
+    <p class="eyebrow">Почему выбирают</p>
+    <h2>Почему осознанные люди по всему миру выбирают эти события</h2>
+    <p class="lead" style="margin-top: 18px;">Ecstatic Dance проходит более чем в 100 городах — от Амстердама и Бали до Гватемалы и Гоа. Формат вырос из простого наблюдения: телу нужно движение, психике — разрядка, а человеку — живое общение без химии.</p>
+    <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="card illu-card" data-od-id="why-joy"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-sun-spiral"/></svg><div class="why-word">РАДОСТЬ</div><p>Свободный танец даёт мощный эмоциональный заряд и снимает стресс. Гормоны счастья — без единого грамма алкоголя.</p></div>
+      <div class="card illu-card" data-od-id="why-depth"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-meditation"/></svg><div class="why-word">ГЛУБИНА</div><p>Медитация в движении: поток мыслей останавливается, остаются ритм и тело.</p></div>
+      <div class="card illu-card" data-od-id="why-freedom"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-flow"/></svg><div class="why-word">СВОБОДА</div><p>Танец без правил и инструкций. Тело само знает, как правильно именно сейчас.</p></div>
+      <div class="card illu-card" data-od-id="why-reload"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-bolt"/></svg><div class="why-word">ПЕРЕЗАГРУЗКА</div><p>4 часа движения снимают напряжение, которое не берёт ни массаж, ни спортзал.</p></div>
+      <div class="card illu-card" data-od-id="why-tribe"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-cups"/></svg><div class="why-word">СРЕДА</div><p>События собирают предпринимателей, творцов, йогов, психологов. Чайная зона знакомит лучше любого нетворкинга.</p></div>
+      <div class="card illu-card" data-od-id="why-safety"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-hands"/></svg><div class="why-word">БЕЗОПАСНОСТЬ</div><p>Соглашения и культура согласия: танцпол, где спокойно каждому.</p></div>
+      <div class="card illu-card" data-od-id="why-rhythm"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-horizon"/></svg><div class="why-word">РИТМ</div><p>Вечеринка при дневном свете: 14:00–22:00. Не ломает сон, не крадёт следующий день. В понедельник ты в лучшей форме недели, а не в худшей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 5. КАК ПРОХОДИТ ВЕЧЕР ====================== -->
+<section class="section section-light" id="flow" data-od-id="flow">
+  <div class="section-inner">
+    <p class="eyebrow">Как проходит вечер</p>
+    <h2>Волна длиной в четыре часа</h2>
+    <ol class="timeline reveal" style="margin-top: 28px;">
+      <li class="has-illu" data-od-id="flow-opening"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-circle"/></svg><div class="tl-content"><h3>Открытие круга</h3><p>Знакомство с пространством, настройка, лёгкая разминка или тантра/арома-активация.</p></div></li>
+      <li class="has-illu" data-od-id="flow-wave1"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-wave-up"/></svg><div class="tl-content"><h3>Первая волна</h3><p>DJ-сет: от медленного погружения к ритму.</p></div></li>
+      <li class="has-illu" data-od-id="flow-peak"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-figure"/></svg><div class="tl-content"><h3>Пик</h3><p>Самая мощная часть: этника, электроника, племенной вайб.</p></div></li>
+      <li class="has-illu" data-od-id="flow-land"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-bowl"/></svg><div class="tl-content"><h3>Приземление</h3><p>Саунд-хилинг: поющие чаши, глубокое расслабление лёжа.</p></div></li>
+      <li class="has-illu" data-od-id="flow-tea"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-teapot"/></svg><div class="tl-content"><h3>Чайная зона</h3><p>Тёплый чай, тишина, мягкое возвращение. Работает весь вечер.</p></div></li>
+    </ol>
+    <!-- TODO: тайминги уточнить перед событием -->
+  </div>
+</section>
+
+<!-- ===== Послушай, как это звучит ===== -->
+<section class="section section-light" id="listen" data-od-id="listen">
+  <div class="section-inner">
+    <p class="eyebrow">Послушать сет</p>
+    <div class="listen-block reveal" data-od-id="listen-block">
+      <svg class="illu lb-eq" viewBox="0 0 200 120" role="img" aria-label="Волна сета"><use href="#i-equalizer"/></svg>
+      <div class="lb-text">
+        <h3>Хочешь услышать, под что мы танцуем?</h3>
+        <p>Сет с прошлого экстатика и плейлисты резидентов — в нашем Telegram-канале. Там же анонсы и ранние цены.</p>
+        <a class="btn btn-secondary on-light" href="https://t.me/ecstaticdance_almaty?utm_source=landing&utm_medium=referral&utm_content=playlist" target="_blank" rel="noopener" data-od-id="listen-tg">Слушать сет в Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spiral-divider" aria-hidden="true">◌ ◌ ◉ ◌ ◌</div>
+
+<!-- ====================== 6. СОГЛАШЕНИЯ ====================== -->
+<section class="section section-light" id="agreements" data-od-id="agreements">
+  <div class="section-inner">
+    <p class="eyebrow">Четыре соглашения</p>
+    <h2>То, что делает пространство безопасным</h2>
+    <div class="cards-4 reveal" style="margin-top: 28px;">
+      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
+      <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
+      <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
+      <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
+    </div>
+    <p style="margin-top: 22px; font-size: 15px;">Эти правила — мировой стандарт Ecstatic Dance. Именно они превращают вечеринку в практику.</p>
+  </div>
+</section>
+
+<!-- CTA-полоска после «Соглашений» -->
+<div class="cta-strip" data-od-id="cta-strip-2">
+  <div class="cs-inner">
+    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>8888 ₸</strong></span>
+    <a class="btn btn-primary" href="#tickets">Купить билет</a>
+  </div>
+</div>
+
+<!-- ===== Цитата-разрыв: Руми ===== -->
+<section class="pull-quote" data-od-id="rumi-quote">
+  <svg class="illu dervish" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-dervish"/></svg>
+  <blockquote>«Танцуй, когда ты сломлен. Танцуй, когда сорвал повязки. Танцуй посреди битвы. Танцуй, когда ты совершенно свободен»</blockquote>
+  <cite>Руми</cite>
+</section>
+
+<!-- ====================== 5b. САЛИМ — ОСНОВАТЕЛЬ ====================== -->
+<section class="section section-dark" id="founder" data-od-id="founder">
+  <div class="section-inner">
+    <p class="eyebrow">Основатель</p>
+    <h2>Салим — основатель Ecstatic Dance Almaty</h2>
+    <div class="founder reveal" style="margin-top: 28px;" data-od-id="founder-body">
+      <div class="founder-photo" data-od-id="founder-photo">
+        <!-- TODO: фото Салима за пультом -->
+        <img src="image-flux-pro-ultra-mra81p4r.jpg" alt="Салим за диджейским пультом" loading="lazy">
+      </div>
+      <div class="founder-body">
+        <p>Диджей из Алматы. За четыре года за пультом стал одним из заметных представителей международного сообщества Ecstatic Dance, выступая на крупнейших площадках Центральной Америки, Индии и Казахстана.</p>
+        <p>Путь начался в Гватемале: Салим был управляющим, а затем резидентом Gaia Dance Temple — крупнейшей площадки Ecstatic Dance в Центральной Америке, и играл в Eagle's Nest, где проходят Cacao Dance легендарного Mose. Экстатик-диджеингу обучался у пионеров мирового движения: Scott Nice, Temple Step Project, Atyya и Mose.</p>
+        <p>В Индии выступал на крупнейшей площадке страны Shunya Wellness, был регулярным диджеем сообщества Arambolians, играл на главной сцене фестиваля Foure вместе с хедлайнером Lizwi и на сцене Moonlight. Регулярно представляет формат на Sunchill Camp Fest.</p>
+        <p>Сегодня развивает одно из самых активных сообществ Ecstatic Dance в Центральной Азии и обучил больше 20 диджеев, которые проводят экстатики по всему миру.</p>
+        <div class="founder-badges">
+          <span class="badge badge-aqua">4 года в формате</span>
+          <span class="badge badge-aqua">Гватемала → Индия → Казахстан</span>
+          <span class="badge badge-aqua">Ученик Scott Nice и Mose</span>
+          <span class="badge badge-aqua">20+ обученных диджеев</span>
+        </div>
+        <p class="founder-quote">«Каждый сет — музыкальное путешествие: органичная электроника, этника, современные биты и эмоциональная драматургия»</p>
+        <svg class="illu route-map" viewBox="0 0 320 110" role="img" aria-label="Карта пути: Гватемала → Индия → Алматы"><use href="#i-route"/></svg>
+        <div class="route-labels"><span>Гватемала</span><span>Индия</span><span>Алматы</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 6. ДИДЖЕИ И КОМАНДА ====================== -->
+<section class="section section-dark" id="djs" data-od-id="djs">
+  <div class="section-inner">
+    <p class="eyebrow">Кто ведёт волну</p>
+    <h2>Резиденты и гости</h2>
+    <div class="grid reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="dj-card" data-od-id="dj-salim">
+        <div class="dj-photo" style="background: linear-gradient(160deg, #2EC4B6 0%, #131628 55%, #FF7A45 100%);"></div>
+        <h3 style="color:var(--cream);">Salim <span style="font-size:12px; color:var(--cream-soft); font-weight:400; letter-spacing:0;">— основатель</span></h3>
+        <p style="font-size:15px;">Органичная электроника, этника, эмоциональная драматургия.</p>
+        <div class="dj-tags"><span class="badge badge-lav">Органика</span><span class="badge badge-lav">Этника</span></div>
+      </div>
+      <div class="dj-card" data-od-id="dj-skvorex">
+        <div class="dj-photo" style="background: linear-gradient(160deg, #1E2340 0%, #B889E0 60%, #2EC4B6 100%);"></div>
+        <h3 style="color:var(--cream);">Skvorex</h3>
+        <p style="font-size:15px;"><!-- TODO: описание Skvorex -->Резидент сообщества.</p>
+        <div class="dj-tags"><span class="badge badge-lav">Резидент</span></div>
+      </div>
+      <div class="dj-card" data-od-id="dj-keytra">
+        <div class="dj-photo"><img src="image-flux-pro-ultra-mra81p4r.jpg" alt="Диджей за пультом в цветном свете" loading="lazy"></div>
+        <h3 style="color:var(--cream);">Keytra</h3>
+        <p style="font-size:15px;">Певица и DJ: этника + электроника + живой вокал, племенной вайб.</p>
+        <div class="dj-tags"><span class="badge badge-lav">Этника</span><span class="badge badge-lav">Живой вокал</span></div>
+      </div>
+      <div class="dj-card" data-od-id="dj-zhanna">
+        <div class="dj-photo" style="background: linear-gradient(160deg, #B889E0 0%, #1E2340 55%, #FF7A45 100%);"></div>
+        <h3 style="color:var(--cream);">Zhanna Aya</h3>
+        <p style="font-size:15px;">DJ, йог, танцовщица Tribal Fusion: музыку, которую слышишь телом.</p>
+        <div class="dj-tags"><span class="badge badge-lav">Tribal Fusion</span><span class="badge badge-lav">Этно-биты</span></div>
+      </div>
+    </div>
+    <!-- TODO: состав резидентов обновлять перед каждым событием -->
+  </div>
+</section>
+
+<!-- ====================== 7b. ФЕСТИВАЛИ ====================== -->
+<section class="section section-dark" id="festivals" data-od-id="festivals">
+  <div class="section-inner">
+    <p class="eyebrow">За пределами зала</p>
+    <h2>Наши фестивали</h2>
+    <p style="margin-top: 14px; max-width: 56ch;">Раз в сезон мы выезжаем за пределы зала — на большие open-air события.</p>
+
+    <div class="fest-grid reveal" data-od-id="fest-grid">
+
+      <!-- Карточка 1: Dance & Meditate (закатная гамма) -->
+      <article class="fest-card fest-dm" data-od-id="fest-dm">
+        <div class="fest-photo" data-od-id="fest-dm-photo">
+          <!-- TODO: сгенерировать фото — закат над Иссык-Кулем, палаточный лагерь с фонарями -->
+        </div>
+        <div class="fest-body">
+          <span class="fest-badge">Early bird 2900 сом — первые 35 мест</span>
+          <h3 class="fest-title">Dance &amp; Meditate · 08/08</h3>
+          <p>Три дня музыки, практик и свободы на берегу Иссык-Куля. Open air, палаточный лагерь у воды, DJ-сеты, экстатик, йога, sound healing и джемы у костра. Ведущий мастер — Фердуса.</p>
+          <div class="fest-facts">
+            <span>7–9 августа</span><span class="sep">·</span>
+            <span>южный берег Иссык-Куля</span><span class="sep">·</span>
+            <span>без алкоголя</span>
+          </div>
+          <!-- TODO: ссылка на лендинг фестиваля -->
+          <a class="fest-btn" href="#">Подробнее и билеты</a>
+        </div>
+      </article>
+
+      <!-- Карточка 2: Ecstatic Fest Almaty (основная гамма) -->
+      <article class="fest-card fest-ef" data-od-id="fest-ef">
+        <div class="fest-photo" data-od-id="fest-ef-photo">
+          <!-- TODO: сгенерировать фото — open-air танцпол на закате в горах Алматы, силуэты танцующих -->
+        </div>
+        <div class="fest-body">
+          <span class="fest-badge">Скоро в продаже</span>
+          <h3 class="fest-title">Ecstatic Fest Almaty · 29–30 августа</h3>
+          <p>Два дня экстатика в Алматы: несколько DJ-волн, саунд-хилинг, чайная зона и все любимые форматы сообщества — в большом формате.</p>
+          <div class="fest-facts">
+            <span>29–30 августа</span><span class="sep">·</span>
+            <span>Алматы</span><span class="sep">·</span>
+            <!-- TODO: место -->
+            <span>место уточняется</span>
+          </div>
+          <!-- TODO: ссылка или якорь «оставить предзапись» -->
+          <a class="fest-btn" href="https://wa.me/77777777777?text=%D0%9F%D1%80%D0%B5%D0%B4%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%20%D0%BD%D0%B0%20Ecstatic%20Fest%2029-30.08&utm_source=landing&utm_medium=messenger&utm_content=fest" target="_blank" rel="noopener" data-od-id="fest-ef-btn">Оставить предзапись</a>
+          <p style="font-size: 13px; color: rgba(246,239,228,.6); margin-top: 10px;">Откроем продажи — напишем первым, у предзаписи лучшая цена.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 8. ОТЗЫВЫ + ГАЛЕРЕЯ ====================== -->
+<section class="section section-light" id="reviews" data-od-id="reviews">
+  <div class="section-inner">
+    <p class="eyebrow">После события</p>
+    <h2>Что говорят те, кто уже пришёл</h2>
+
+    <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="card" data-od-id="review-1">
+        <p class="quote">«Очень классный формат!»</p>
+        <p class="quote-author">— участник вечера</p>
+      </div>
+      <div class="card" data-od-id="review-2">
+        <p class="quote">«Как танцует зал — можно смотреть вечно»</p>
+        <p class="quote-author">— участник вечера</p>
+      </div>
+      <div class="card" data-od-id="review-3">
+        <p class="quote">«Очнулся, когда прыгал в центре толпы с ощущением давно забытой радости»</p>
+        <p class="quote-author">— участник вечера</p>
+      </div>
+    </div>
+    <!-- TODO: заменить на реальные отзывы из хайлайта и комментариев -->
+
+    <div class="gallery reveal" data-od-id="gallery">
+      <div class="g wide"><img src="image-flux-pro-ultra-mra80r3x.jpg" alt="Атмосфера зала" loading="lazy"></div>
+      <div class="g" style="background: linear-gradient(160deg, #1E2340, #2EC4B6);"></div>
+      <div class="g" style="background: linear-gradient(160deg, #B889E0, #1E2340);"></div>
+      <div class="g" style="background: linear-gradient(160deg, #2EC4B6, #FF7A45);"></div>
+      <div class="g" style="background: linear-gradient(160deg, #FF7A45, #131628);"></div>
+    </div>
+    <!-- TODO: заменить заглушки галереи на сгенерированные фото (чайная зона, саунд-хилинг) -->
+  </div>
+</section>
+
+<!-- ====================== 9. FAQ ====================== -->
+<section class="section section-light" id="faq" data-od-id="faq">
+  <div class="section-inner">
+    <svg class="illu faq-tea" viewBox="0 0 320 100" role="img" aria-label="Чайная зона: подушки, пиалы, пар"><use href="#i-tea-zone"/></svg>
+    <p class="eyebrow" style="text-align:center;">Частые вопросы</p>
+    <h2 style="text-align:center;">Если ещё сомневаешься</h2>
+    <div class="faq reveal" style="margin-top: 28px;">
+      <details data-od-id="faq-dance">
+        <summary>Я не умею танцевать — точно можно?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Да. Нет движений, которые нужно знать. Закрой глаза и слушай музыку — тело само разберётся.</div>
+      </details>
+      <details data-od-id="faq-party-or-practice">
+        <summary>Это вечеринка или практика?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">И то и другое: по ощущениям — вечеринка, по эффекту — практика. Веселишься сегодня, пользу чувствуешь всю неделю.</div>
+      </details>
+      <details data-od-id="faq-daytime">
+        <summary>Почему днём, а не ночью?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Тело на пике энергии днём, а не в два часа ночи. Четыре часа танца при дневном свете дают состояние, ради которого клубам нужна ночь и бар. А в 19:00 ты уже свободен — с чистой головой и целым вечером впереди.</div>
+      </details>
+      <details data-od-id="faq-music">
+        <summary>Какая музыка будет звучать?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Живой DJ-сет одной волной: органичная электроника, этника, world beats и глубокие ритмы. Каждое событие — новое музыкальное путешествие.</div>
+      </details>
+      <details data-od-id="faq-alone">
+        <summary>Можно прийти одному/одной?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Большинство так и приходит. Это самое дружелюбное пространство города.</div>
+      </details>
+      <details data-od-id="faq-silent">
+        <summary>Почему нельзя разговаривать?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Чтобы каждый мог уйти вглубь себя, не выпадая из состояния. Для общения есть чайная зона.</div>
+      </details>
+      <details data-od-id="faq-dress">
+        <summary>Есть ли дресс-код?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Свободный и удобный. Танцуем босиком или в носках.</div>
+      </details>
+      <details data-od-id="faq-alcohol">
+        <summary>Правда совсем без алкоголя?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Да, и в этом суть: это безалкогольная вечеринка, где состояние делают музыка и движение. Трезвые танцы дают чистую энергию зала, которую не получить под градусом.</div>
+      </details>
+      <details data-od-id="faq-age">
+        <summary>С какого возраста?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans"><!-- TODO: уточнить возрастное ограничение -->Уточняется перед событием.</div>
+      </details>
+      <details data-od-id="faq-buy">
+        <summary>Как купить билет?<span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans">Онлайн на этой странице — кнопка «Купить билет» в блоке ближайшего события. <!-- TODO: механика оплаты --></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 10. ФИНАЛЬНЫЙ CTA + ФУТЕР ====================== -->
+<section class="section section-dark final" id="final" data-od-id="final">
+  <div class="spiral-bg" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+      <path d="M100 100 m-6 0 a6 6 0 1 0 12 0 m-2 0 a10 10 0 1 0 -20 0 m-14 0 a34 34 0 1 0 68 0 m-52 0 a52 52 0 1 0 104 0 m-78 0 a78 78 0 1 0 156 0"/>
+    </svg>
+  </div>
+  <div class="section-inner final-inner">
+    <p class="eyebrow">До встречи</p>
+    <h2>Найди себя в танце</h2>
+    <!-- TODO: дата и остаток билетов -->
+    <p class="sub" style="margin-bottom: 10px;">Следующее событие — <span style="color:var(--aqua);">скоро</span>. Осталось N билетов.</p>
+    <p class="sub">Приходи в субботу днём. Воскресенье скажет спасибо.</p>
+    <p class="sub" style="margin-top: 6px; opacity: .8;">Приходи повеселиться. Уйдёшь с чем-то большим.</p>
+    <a class="btn btn-primary" href="#tickets">Купить билет</a>
+  </div>
+</section>
+
+<footer data-od-id="footer">
+  <div class="section-inner">
+    <div class="socials">
+      <a href="#" data-od-id="social-ig">Instagram @ecstaticdance_almaty</a>
+      <a href="#" data-od-id="social-tg">Telegram-канал</a>
+      <a href="#" data-od-id="social-wa">WhatsApp</a>
+    </div>
+    <p style="font-size: 13px;">Фестивали: <a href="#festivals" style="color:var(--aqua);">Dance &amp; Meditate 08/08</a> · <a href="#festivals" style="color:var(--aqua);">Ecstatic Fest Almaty 29–30.08</a></p>
+    <p style="font-size: 13px;">Ecstatic Dance Almaty · осознанные вечеринки · трезвые танцы · экстатик данс Алматы</p>
+    <!-- TODO: ссылки на соцсети -->
+  </div>
+</footer>
+
+<!-- Sticky CTA (mobile) -->
+<div class="sticky-cta" id="stickyCta" data-od-id="sticky-cta">
+  <a class="btn btn-primary" href="#tickets">Купить билет — 8888 ₸</a>
+</div>
+
+<!-- Кнопка «наверх» -->
+<button class="to-top" id="toTop" type="button" aria-label="Наверх" data-od-id="to-top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function () {
+  // === Scroll reveal (IO-based, no scrollIntoView) ===
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  // === Sticky mobile CTA visibility (after hero) ===
+  var hero = document.getElementById('top');
+  var sticky = document.getElementById('stickyCta');
+  var navbar = document.getElementById('navbar');
+  if (hero && sticky && 'IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        sticky.classList.toggle('is-visible', !e.isIntersecting);
+      });
+    }, { threshold: 0 });
+    sio.observe(hero);
+  }
+
+  // === Кнопка «наверх» ===
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    var onScroll = function () {
+      toTop.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // === Scroll-spy: подсветка активного пункта navbar ===
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var ddLinks = document.querySelectorAll('.nav-dropdown a');
+  var spyTargets = [];
+  navLinks.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var sec = document.getElementById(id);
+    if (sec) spyTargets.push({ link: a, dd: null, el: sec });
+  });
+  // Привязываем dropdown-ссылки к тем же секциям по href
+  ddLinks.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var sec = document.getElementById(id);
+    if (sec) {
+      var rec = spyTargets.find(function (t) { return t.el === sec; });
+      if (rec) rec.dd = a;
+    }
+  });
+  if (spyTargets.length && 'IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var rec = spyTargets.find(function (t) { return t.el === e.target; });
+        if (!rec) return;
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          ddLinks.forEach(function (l) { l.classList.remove('active'); });
+          rec.link.classList.add('active');
+          if (rec.dd) rec.dd.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    spyTargets.forEach(function (t) { spy.observe(t.el); });
+  }
+
+  // === Бургер: открытие/закрытие мобильного меню ===
+  var burger = document.getElementById('navBurger');
+  var dropdown = document.getElementById('navDropdown');
+  if (burger && dropdown) {
+    function closeBurger() {
+      navbar.classList.remove('burger-open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    function openBurger() {
+      navbar.classList.add('burger-open');
+      burger.setAttribute('aria-expanded', 'true');
+    }
+    burger.addEventListener('click', function () {
+      if (navbar.classList.contains('burger-open')) closeBurger();
+      else openBurger();
+    });
+    // Закрытие по клику на пункт меню
+    ddLinks.forEach(function (a) { a.addEventListener('click', closeBurger); });
+    // Закрытие по Esc
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navbar.classList.contains('burger-open')) closeBurger();
+    });
+    // Закрытие при ресайзе на десктоп
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 860) closeBurger();
+    });
+  }
+
+  // === FAQ: exclusive accordion (open one at a time) ===
+  var faqItems = document.querySelectorAll('.faq details');
+  faqItems.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) {
+        faqItems.forEach(function (o) { if (o !== d) o.open = false; });
+      }
+    });
+  });
+
+  // === Update sticky CTA price from featured price card ===
+  var featured = document.querySelector('.price-card.featured .price-value');
+  var stickyBtn = sticky && sticky.querySelector('.btn');
+  if (featured && stickyBtn) {
+    var txt = featured.textContent.trim();
+    stickyBtn.textContent = 'Купить билет — ' + txt;
+  }
+})();
+</script>
+</body>
+</html>

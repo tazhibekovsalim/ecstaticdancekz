@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дизайн-система — Ecstatic Camp Fest</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ТОКЕНЫ — скопируй этот блок в лендинг
+   ============================================ */
+:root {
+  /* Цвета */
+  --forest: #0E1512;        /* Хвоя ночью — фон тёмных секций (зеленоватая ночь) */
+  --forest-soft: #1A241D;   /* Хвоя+ — карточки на тёмном */
+  --leaf: #7CC46B;          /* Листва — главный акцент природы: ссылки, узлы, бейджи, подсветка слов */
+  --leaf-deep: #1C4014;     /* Листва тёмная — текст на зелёных плашках */
+  --gold: #F0A63C;          /* Закатное золото — ТОЛЬКО кнопки покупки и ключевые акценты */
+  --gold-dark: #3A2405;     /* Текст на золотой кнопке */
+  --ember: #FF8A6A;         /* Уголёк — только мигающий индикатор продаж, больше нигде */
+  --dawn: #F4F1E8;          /* Рассвет — фон светлых секций */
+  --card-light: #FFFFFF;    /* Карточки на светлом */
+  --ink: #22281F;           /* Основной текст на светлом */
+  --ink-soft: #68705F;      /* Вторичный текст на светлом */
+  --cream: #F2EFE6;         /* Основной текст на тёмном */
+  --cream-soft: #9FAF9C;    /* Вторичный текст на тёмном */
+
+  /* Типографика */
+  --font-display: 'Unbounded', sans-serif;  /* заголовки, даты, цены */
+  --font-body: 'Manrope', sans-serif;       /* всё остальное */
+  --fs-hero: clamp(30px, 7vw, 60px);
+  --fs-h2: clamp(24px, 5vw, 40px);
+  --fs-h3: clamp(17px, 3vw, 21px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+
+  /* Отступы и скругления */
+  --section-pad: clamp(56px, 10vw, 120px);
+  --card-pad: 24px;
+  --gap: 16px;
+  --radius-card: 16px;
+  --radius-btn: 999px;
+  --maxw: 1080px;
+}
+
+/* ============================================
+   БАЗА
+   ============================================ */
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.6; color: var(--ink); background: #FAF8F2; }
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.18; font-weight: 600; }
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+.hl { color: var(--leaf); }
+
+/* ============================================
+   КНОПКИ
+   ============================================ */
+.btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: var(--radius-btn); text-decoration: none; border: none; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--gold); color: var(--gold-dark); }
+.btn-primary:hover { box-shadow: 0 6px 26px rgba(240,166,60,.45); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(242,239,230,.35); }
+.btn-secondary:hover { border-color: var(--leaf); color: var(--leaf); }
+.btn-secondary.on-light { color: var(--leaf-deep); border-color: var(--leaf); }
+
+/* ============================================
+   СЕКЦИИ
+   ============================================ */
+.section { padding: var(--section-pad) 24px; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: var(--forest); color: var(--cream); }
+.section-light { background: var(--dawn); }
+.eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--leaf); margin-bottom: 12px; }
+
+/* Секции поверх фиксированного фонового фото (hero, crowd photo) */
+.section-photo { position: relative; color: var(--cream); }
+.section-photo .overlay { position: absolute; inset: 0; background: rgba(14,21,18,.62); }
+
+/* Urgency strip */
+.urgency { background: var(--forest-soft); color: var(--cream); font-size: 14px; padding: 12px 24px; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--ember); animation: pulse 1.4s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+/* ============================================
+   КАРТОЧКИ
+   ============================================ */
+.card { background: var(--card-light); border-radius: var(--radius-card); padding: var(--card-pad); }
+.card-dark { background: var(--forest-soft); border-radius: var(--radius-card); padding: var(--card-pad); color: var(--cream); }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* Тариф */
+.price-card { border: 1.5px solid rgba(124,196,107,.25); background: var(--forest-soft); color: var(--cream); border-radius: var(--radius-card); padding: var(--card-pad); }
+.price-card.featured { border: 2px solid var(--gold); position: relative; }
+.tier { display: flex; justify-content: space-between; font-size: 14px; padding: 7px 0; border-bottom: 1px solid rgba(242,239,230,.1); }
+.tier.past { opacity: .4; text-decoration: line-through; }
+.tier.now { color: var(--gold); font-weight: 600; }
+.badge { display: inline-block; background: var(--gold); color: var(--gold-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .5px; }
+.badge-leaf { background: rgba(124,196,107,.16); color: var(--leaf); }
+.badge-leaf.on-light { color: var(--leaf-deep); }
+
+/* Таймлайн лайн-апа */
+.timeline { position: relative; padding: 8px 0; }
+.timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(124,196,107,.3); }
+.tl-item { position: relative; width: 46%; padding: 10px 0; }
+.tl-item.right { margin-left: 54%; }
+.tl-item .dot { position: absolute; top: 18px; width: 11px; height: 11px; border-radius: 50%; background: var(--leaf); }
+.tl-item:not(.right) .dot { right: calc(-4% - 6px); }
+.tl-item.right .dot { left: calc(-8.7% - 5px); }
+.tl-time { font-family: var(--font-display); font-size: 12px; color: var(--leaf); letter-spacing: 1px; }
+.tl-info { cursor: pointer; color: var(--cream-soft); font-size: 13px; border: 1px solid rgba(242,239,230,.25); border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; margin-left: 6px; }
+@media (max-width: 760px) { .timeline::before { left: 8px; } .tl-item, .tl-item.right { width: auto; margin-left: 28px; } .tl-item .dot, .tl-item.right .dot { left: -25px; right: auto; } }
+
+/* ============================================
+   ДЕКОР
+   ============================================ */
+.divider-ridge { text-align: center; color: var(--leaf); opacity: .4; font-size: 18px; letter-spacing: 8px; padding: 8px 0; }
+.glow-gold { text-shadow: 0 0 30px rgba(240,166,60,.5); }
+.pill-tag { display: inline-block; font-size: 13px; padding: 6px 14px; border-radius: 999px; background: rgba(124,196,107,.14); border: 1px solid rgba(124,196,107,.5); color: var(--leaf); margin: 3px 2px; }
+
+/* Sticky CTA */
+.sticky-cta { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 99; display: none; }
+.sticky-cta .btn { width: 100%; text-align: center; box-shadow: 0 8px 30px rgba(14,21,18,.45); }
+@media (max-width: 768px) { .sticky-cta { display: block; } }
+
+/* ============================================
+   Ниже — оформление самого гайда (не копировать)
+   ============================================ */
+.guide-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #9C9A8C; margin: 0 0 14px; }
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.swatch { border-radius: 14px; padding: 18px 16px; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; }
+.swatch p { font-size: 13px; margin: 0; }
+.spec { font-size: 14px; color: var(--ink-soft); }
+.spec code { background: rgba(124,196,107,.12); color: var(--leaf-deep); padding: 2px 7px; border-radius: 6px; font-size: 13px; }
+.rule { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; margin: 10px 0; font-size: 15px; }
+.type-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid rgba(34,40,31,.08); }
+.type-row .spec { min-width: 220px; }
+</style>
+</head>
+<body>
+
+<!-- ШАПКА ГАЙДА -->
+<div class="section section-dark" style="padding-bottom: 32px;">
+  <div class="section-inner">
+    <p class="eyebrow">Дизайн-система · «Ночь на поляне»</p>
+    <h1 style="font-size: clamp(26px,5vw,44px);">Ecstatic <span class="hl">Camp</span> Fest</h1>
+    <p style="color: var(--cream-soft); margin-top: 14px; max-width: 660px;">29–30 августа · Campland, Алматы · фестиваль от Ecstatic Dance Almaty. Настроение: ночной лес, костёр, гирлянды между деревьями, рассвет над горами. Зелень — природа, золото — закат и костёр.</p>
+  </div>
+</div>
+<div class="urgency"><span class="pulse"></span> Продажи открыты · 8888 ₸ до 1 августа · осталось 47 билетов <a href="#" style="color:var(--leaf);font-weight:600;">→ Билеты</a></div>
+
+<!-- 1. ЦВЕТА -->
+<div class="section" style="background:#FAF8F2;">
+  <div class="section-inner">
+    <p class="guide-label">01 · Палитра</p>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#0E1512;"><p style="color:#F2EFE6;font-weight:600;">Хвоя ночью</p><p style="color:#9FAF9C;">#0E1512 · фон тёмных секций</p></div>
+      <div class="swatch" style="background:#1A241D;"><p style="color:#F2EFE6;font-weight:600;">Хвоя+</p><p style="color:#9FAF9C;">#1A241D · карточки на тёмном</p></div>
+      <div class="swatch" style="background:#7CC46B;"><p style="color:#1C4014;font-weight:600;">Листва</p><p style="color:#2E5C22;">#7CC46B · акцент природы</p></div>
+      <div class="swatch" style="background:#F0A63C;"><p style="color:#3A2405;font-weight:600;">Закатное золото</p><p style="color:#6E4712;">#F0A63C · только кнопки покупки</p></div>
+      <div class="swatch" style="background:#FF8A6A;"><p style="color:#4A1505;font-weight:600;">Уголёк</p><p style="color:#7A2E14;">#FF8A6A · только пульс продаж</p></div>
+      <div class="swatch" style="background:#F4F1E8;border:1px solid rgba(34,40,31,.1);"><p style="color:#22281F;font-weight:600;">Рассвет</p><p style="color:#68705F;">#F4F1E8 · светлые секции</p></div>
+    </div>
+    <div style="margin-top: 24px;">
+      <p class="rule">Зелёный — айдентика природы и главный рабочий акцент: узлы таймлайна, ссылки, бейджи, теги жанров, подсветка слов. Золото — дефицит: только «Купить билет», рамка выделенного тарифа и акцентные строки сравнения.</p>
+      <p class="rule">Отличие от феста Фердусы: там сумерки-синева и фонарный жёлтый, здесь зелёная ночь и листва. Золото тёплое общее — оно и связывает события, не повторяя их.</p>
+      <p class="rule">Чередование: тёмная (hero на фото) → светлая → тёмная (лайн-ап) → светлая → тёмная (билеты) → светлая → фото (crowd) → тёмная (футер).</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ТИПОГРАФИКА -->
+<div class="section section-light">
+  <div class="section-inner">
+    <p class="guide-label">02 · Типографика</p>
+    <p class="spec" style="margin-bottom: 8px;">Как на основном сайте: заголовки и цифры — <code>Unbounded</code>, текст — <code>Manrope</code>. Единая семья со всеми проектами Ecstatic Dance Almaty.</p>
+    <div class="type-row"><span class="spec">H1 hero · Unbounded 600 · clamp(30–60px)</span><span class="display" style="font-size: clamp(22px,4vw,38px);">Ecstatic <span class="hl">Camp</span> Fest</span></div>
+    <div class="type-row"><span class="spec">H2 секции · Unbounded 600</span><span class="display" style="font-size: clamp(20px,3.5vw,30px);">Лайн-ап</span></div>
+    <div class="type-row"><span class="spec">Eyebrow · Unbounded 400 · 13px · капс</span><span class="eyebrow" style="margin:0;">Campland · Алматы</span></div>
+    <div class="type-row"><span class="spec">Текст · Manrope 400 · 17px / 1.6</span><span>Два дня музыки, свободного движения и практик на природе — там, где закат встречается с рассветом.</span></div>
+    <div class="type-row" style="border:none;"><span class="spec">Подпись · Manrope 400 · 14px</span><span style="font-size:14px;color:var(--ink-soft);">29–30 августа · ночёвка в лагере · без алкоголя</span></div>
+  </div>
+</div>
+
+<!-- 3. КНОПКИ И БЕЙДЖИ -->
+<div class="section" style="background:#FAF8F2;">
+  <div class="section-inner">
+    <p class="guide-label">03 · Кнопки, бейджи, теги жанров</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="card-dark" style="text-align:center;">
+        <p style="font-size:13px;color:var(--cream-soft);margin-bottom:16px;">На тёмном</p>
+        <p style="margin-bottom:12px;"><a class="btn btn-primary" href="#">Купить билет — 8888 ₸</a></p>
+        <p><a class="btn btn-secondary" href="#">Смотреть лайн-ап</a></p>
+      </div>
+      <div class="card" style="text-align:center;border:1.5px solid rgba(124,196,107,.3);">
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px;">На светлом</p>
+        <p style="margin-bottom:12px;"><a class="btn btn-primary" href="#">Купить билет</a></p>
+        <p><a class="btn btn-secondary on-light" href="#">Открыть в 2GIS</a></p>
+      </div>
+    </div>
+    <div style="margin-top: 20px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <span class="badge">Текущая цена · 8888 ₸</span>
+      <span class="badge badge-leaf on-light">Ночёвка включена</span>
+      <span class="badge badge-leaf on-light">Без алкоголя</span>
+    </div>
+    <div style="margin-top: 14px;">
+      <span class="pill-tag" style="color:#2E5C22;">Organic house</span><span class="pill-tag" style="color:#2E5C22;">Этника</span><span class="pill-tag" style="color:#2E5C22;">Tribal</span><span class="pill-tag" style="color:#2E5C22;">Downtempo</span><span class="pill-tag" style="color:#2E5C22;">Мантры</span>
+      <span class="spec" style="margin-left:8px;">← pill-теги жанров, зелёные</span>
+    </div>
+    <p class="rule" style="margin-top:18px;">Золотая (залитая) кнопка = только покупка. Всё остальное — outline. Одна золотая на экран.</p>
+  </div>
+</div>
+
+<!-- 4. ТАЙМЛАЙН И ТАРИФЫ -->
+<div class="section section-dark">
+  <div class="section-inner">
+    <p class="guide-label" style="color:#5E6E5B;">04 · Таймлайн лайн-апа и тарифы</p>
+    <div class="timeline" style="max-width:640px;margin:0 auto 32px;">
+      <div class="tl-item"><span class="dot"></span><p class="tl-time">12:00</p><p style="font-weight:600;">Открытие фестиваля</p></div>
+      <div class="tl-item right"><span class="dot"></span><p class="tl-time">14:30</p><p style="font-weight:600;">Ecstatic Dance by Alex Muller <span class="tl-info">i</span></p><p style="font-size:13px;color:var(--cream-soft);">хедлайнер · Сочи</p></div>
+      <div class="tl-item"><span class="dot"></span><p class="tl-time">17:00</p><p style="font-weight:600;">Ecstatic Dance by Salim <span class="tl-info">i</span></p><p style="font-size:13px;color:var(--cream-soft);">хедлайнер · Алматы</p></div>
+      <div class="tl-item right"><span class="dot"></span><p class="tl-time">22:00</p><p style="font-weight:600;">Mantra Jam у костра</p></div>
+    </div>
+    <p class="spec" style="color:var(--cream-soft);margin-bottom:24px;">Линия по центру, узлы — зелёные точки, чередование лево/право. Иконка (i) раскрывает фото + био. На мобильном линия уходит влево, все элементы в один столбец.</p>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="price-card">
+        <h3 style="margin-bottom:4px;">Без трансфера</h3>
+        <p style="font-size:13px;color:var(--cream-soft);margin-bottom:12px;">2 дня · лагерь · чайная зона</p>
+        <div class="tier past"><span>Первые 20</span><span>7777 ₸</span></div>
+        <div class="tier now"><span>Сейчас · до 1.08</span><span>8888 ₸</span></div>
+        <div class="tier"><span>До 15.08</span><span>9999 ₸</span></div>
+        <div class="tier"><span>До 28.08</span><span>11 000 ₸</span></div>
+        <div class="tier" style="border:none;"><span>В день феста</span><span>13 000 ₸</span></div>
+        <p style="margin-top:16px;text-align:center;"><a class="btn btn-secondary" href="#" style="padding:12px 28px;">Купить</a></p>
+      </div>
+      <div class="price-card featured">
+        <span class="badge" style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);">С трансфером</span>
+        <h3 style="margin-bottom:4px;color:var(--gold);">С трансфером</h3>
+        <p style="font-size:13px;color:var(--cream-soft);margin-bottom:12px;">+ автобус туда-обратно из Алматы</p>
+        <div class="tier past"><span>Первые 20</span><span>9999 ₸</span></div>
+        <div class="tier now"><span>Сейчас · до 1.08</span><span>11 111 ₸</span></div>
+        <div class="tier"><span>До 15.08</span><span>12 500 ₸</span></div>
+        <div class="tier"><span>До 28.08</span><span>14 000 ₸</span></div>
+        <div class="tier" style="border:none;"><span>В день феста</span><span>—</span></div>
+        <p style="margin-top:16px;text-align:center;"><a class="btn btn-primary" href="#" style="padding:12px 28px;">Купить</a></p>
+      </div>
+    </div>
+    <p class="rule" style="margin-top:20px;border-color:var(--leaf);">Цены в карточках — примерные заглушки [TODO]. Пройденные пороги гасим и зачёркиваем, текущий — золотом. Механика «цена растёт» — фирменная для всех событий.</p>
+  </div>
+</div>
+
+<!-- 5. ДЕКОР И ФОТО -->
+<div class="section section-light">
+  <div class="section-inner">
+    <p class="guide-label">05 · Декор, фото, фоновый слой</p>
+    <div class="grid">
+      <div class="card"><h3 style="color:var(--leaf-deep);margin-bottom:8px;">Фоновое фото</h3><p style="font-size:15px;color:var(--ink-soft);">Твоё решение сохранено: единая фотография закат→рассвет на всю высоту страницы слоем position: fixed. Подложки секций — rgba(14,21,18,.55–.9), тон зеленоватый (не сине-фиолетовый — это отличие от феста Фердусы).</p></div>
+      <div class="card"><h3 style="color:var(--leaf-deep);margin-bottom:8px;">Спираль</h3><p style="font-size:15px;color:var(--ink-soft);">Логотип-спираль в зелёной версии — hero и футер. Узлы таймлайна и маркеры — спирали/точки. Разделитель секций — линия горного хребта или ряд точек-гирлянды.</p></div>
+      <div class="card"><h3 style="color:var(--leaf-deep);margin-bottom:8px;">Фото-контент</h3><p style="font-size:15px;color:var(--ink-soft);">Заглушки-ИИ до финальных фото: поляна в предгорьях, палатки с гирляндами среди деревьев, костёр, танцующие силуэты на закате, рассвет над хребтом. Тёплые и зелёные тона, без пурпура и неона.</p></div>
+    </div>
+    <p class="rule" style="margin-top:20px;">Свечение (glow) — только у дат «29–30» в hero (золотое). Геометрические иконки карточек «О фестивале» (круг/кольца/треугольник) — рисуем линиями цвета листвы.</p>
+  </div>
+</div>
+
+<!-- 6. СЕТКА -->
+<div class="section" style="background:#FAF8F2;">
+  <div class="section-inner">
+    <p class="guide-label">06 · Сетка и адаптив</p>
+    <p class="spec">Контейнер <code>max-width: 1080px</code> · секции <code>clamp(56–120px)</code> · карточки radius 16px · сетки <code>auto-fit minmax(240px,1fr)</code>. Мобайл ≤760px: липкий nav с бургером, urgency-strip в колонку, таймлайн в один столбец, sticky-кнопка «Билеты» внизу (класс <code>.sticky-cta</code>).</p>
+  </div>
+</div>
+
+<div class="section section-dark" style="padding: 40px 24px;">
+  <div class="section-inner" style="text-align:center;">
+    <p style="font-size:13px;color:var(--cream-soft);">Все токены — в первом блоке <code style="color:var(--leaf);">&lt;style&gt;</code> этого файла. Готовые классы: кнопки, бейджи, pill-теги, urgency-strip, таймлайн, карточки тарифов с порогами.</p>
+  </div>
+</div>
+
+</body>
+</html>
