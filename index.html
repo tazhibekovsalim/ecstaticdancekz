@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+<!doctype html>
+<html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ecstatic Dance Almaty — осознанные вечеринки и свободный танец в Алматы</title>
 <meta name="description" content="Осознанные вечеринки Ecstatic Dance в Алматы: свободный танец под live DJ-сеты, саунд-хилинг и чайная зона. Без алкоголя, без разговоров, без телефонов.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 /* ===== Токены дизайн-системы «Ночная спираль» (verbatim) ===== */
 :root {
@@ -79,7 +78,7 @@ img { display: block; max-width: 100%; }
   -webkit-tap-highlight-color: transparent;
 }
 .btn:active { transform: scale(.97); }
-.btn-primary { background: var(--coral); color: var(--coral-dark); }
+.btn-primary { background: var(--coral); color: var(--night); }
 .btn-primary:hover { box-shadow: 0 6px 26px rgba(255,122,69,.45); transform: translateY(-2px); }
 .btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(247,244,238,.35); }
 .btn-secondary:hover { border-color: var(--aqua); color: var(--aqua); }
@@ -252,16 +251,33 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .badge-lav { background: rgba(184,137,224,.15); color: var(--lavender); }
 
 /* ===== Лестница цен ===== */
-.price-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); margin: 28px 0; }
+.price-grid { display: grid; gap: 12px; grid-template-columns: 1fr; margin: 28px 0; }
 .price-card { text-align: center; border: 1.5px solid rgba(46,196,182,.2); background: var(--night-soft); color: var(--cream); border-radius: var(--radius-card); padding: 20px 14px; position: relative; }
 .price-card.featured { border: 2px solid var(--coral); }
 .price-card.soldout { opacity: .45; }
 .price-card .tier { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
-.price-value { font-family: var(--font-display); font-size: clamp(24px, 6vw, 32px); font-weight: 600; color: var(--cream); margin: 8px 0 4px; letter-spacing: -0.01em; }
+.price-value { font-family: var(--font-display); font-size: clamp(20px, 3.4vw, 28px); font-weight: 600; letter-spacing: -0.01em; margin: 8px 0; }
 .price-card.featured .price-value { color: var(--coral); }
 .price-card .meta { font-size: 12px; color: var(--cream-soft); }
 .price-card.featured .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+@media (min-width: 480px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 720px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* ===== Countdown widget ===== */
+.price-countdown { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: rgba(255,122,69,.08); border: 1.5px solid rgba(255,122,69,.28); border-radius: var(--radius-card); padding: 14px 20px; margin-bottom: 4px; text-align: center; }
+.pc-label { font-size: 13px; color: var(--cream-soft); letter-spacing: 0.02em; text-align: center; }
+.pc-timer { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.pc-unit { display: flex; flex-direction: column; align-items: center; min-width: 42px; }
+.pc-num { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: clamp(22px, 4vw, 28px); font-weight: 600; color: var(--coral); font-variant-numeric: tabular-nums; line-height: 1; }
+.pc-lbl { font-size: 10px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 5px; }
+.pc-sep { font-size: 22px; color: var(--cream-soft); opacity: .4; align-self: flex-start; margin-top: 2px; }
+.pc-done { font-size: 14px; color: var(--coral); font-weight: 600; }
+
+/* At-door price strip (separate from ladder) */
+.at-door-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; background: rgba(247,244,238,.05); border: 1px dashed rgba(247,244,238,.22); border-radius: var(--radius-card); padding: 14px 20px; margin-top: 12px; }
+.at-door-strip .ads-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+.at-door-strip .ads-price { font-family: var(--font-display); font-size: clamp(20px, 4vw, 26px); font-weight: 600; color: var(--cream); letter-spacing: -0.01em; }
+.at-door-strip .ads-note { font-size: 12px; color: var(--cream-soft); margin-left: auto; }
 
 .event-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-bottom: 6px; }
 .event-meta span { font-family: var(--font-body); font-size: 15px; color: var(--cream); }
@@ -456,23 +472,45 @@ svg.illu .acc { stroke: var(--aqua); }
 /* ===== Compact Next Event (after hero) ===== */
 .next-event { background: var(--night); color: var(--cream); padding: clamp(40px, 7vw, 72px) 24px; }
 .next-event .ne-inner { max-width: var(--maxw); margin: 0 auto; }
-.next-event .ne-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+
+/* === Mobile-first (single column, poster-first for visual anchor) === */
+.next-event .ne-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "poster"
+    "info-top"
+    "info-rest"
+    "countdown"
+    "prices"
+    "at-door"
+    "promo";
+  align-items: start;
+}
+.next-event .ne-info-top       { grid-area: info-top; }
+.next-event .ne-poster-wrapper  { grid-area: poster; }
+.next-event .ne-info-bottom    { grid-area: info-rest; }
+.next-event .price-countdown   { grid-area: countdown; }
+.next-event .price-grid        { grid-area: prices; margin: 0; }
+.next-event .at-door-strip     { grid-area: at-door; margin-top: 0; }
+.next-event .promo-strip       { grid-area: promo; margin-top: 0; }
+
+/* === Tablet / desktop (2-col, info-left + poster-right) === */
 @media (min-width: 820px) {
   .next-event .ne-grid {
     grid-template-columns: 1.1fr 1fr;
     grid-template-areas:
       "info-top   poster"
       "info-rest  poster"
+      "countdown  countdown"
       "prices     prices"
+      "at-door    at-door"
       "promo      promo";
-    gap: 28px 40px;
+    gap: 24px 40px;
   }
-  .next-event .ne-info-top    { grid-area: info-top; }
-  .next-event .ne-poster-wrapper { grid-area: poster; }
-  .next-event .ne-info-bottom { grid-area: info-rest; }
-  .next-event .price-grid     { grid-area: prices; margin: 0; }
-  .next-event .promo-strip    { grid-area: promo; margin-top: 0; }
 }
+
 .next-event h2 { font-size: clamp(22px, 4vw, 32px); letter-spacing: -0.01em; margin-bottom: 14px; }
 .next-event .ne-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--cream); margin-bottom: 18px; }
 .next-event .ne-meta .dot { color: var(--aqua); }
@@ -481,9 +519,15 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event .ne-djs .ne-dj { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: rgba(46,196,182,.12); color: var(--aqua); letter-spacing: 0.02em; }
 .next-event .ne-djs-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
 .next-event .ne-note { font-size: 13px; color: var(--cream-soft); margin-top: 14px; }
-.next-event .price-grid { margin: 0 0 18px; }
-.next-event .ne-poster { border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.35); margin-bottom: 20px; }
+.next-event .ne-poster { border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.35); }
 .next-event .ne-poster img { display: block; width: 100%; height: auto; }
+
+/* Poster max-height so it doesn't dwarf the info column on tablet */
+@media (min-width: 820px) and (max-width: 1024px) {
+  .next-event .ne-poster-wrapper { max-height: 420px; }
+  .next-event .ne-poster { max-height: 420px; }
+  .next-event .ne-poster img { height: 100%; object-fit: cover; }
+}
 
 /* ===== CTA-полоска (compact) ===== */
 .cta-strip { background: rgba(46,196,182,.08); border-top: 1px solid rgba(46,196,182,.2); border-bottom: 1px solid rgba(46,196,182,.2); padding: 18px 24px; }
@@ -507,7 +551,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <nav class="navbar" id="navbar" data-od-id="navbar" aria-label="Основная навигация">
   <a class="nav-brand" href="#top" data-od-id="nav-brand">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-      <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/>
+      <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"></path>
     </svg>
     Ecstatic Dance Almaty
   </a>
@@ -519,8 +563,8 @@ svg.illu .acc { stroke: var(--aqua); }
     <a href="#faq" data-od-id="nav-faq">FAQ</a>
   </div>
   <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false" data-od-id="nav-burger">
-    <svg class="burger-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    <svg class="burger-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
   </button>
   <div class="nav-dropdown" id="navDropdown" data-od-id="nav-dropdown">
     <a href="#tickets" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
@@ -536,205 +580,205 @@ svg.illu .acc { stroke: var(--aqua); }
   <defs>
     <!-- Волна сета (что такое) -->
     <symbol id="i-wave" viewBox="0 0 320 90">
-      <path d="M10 70 Q 60 70 92 54 C 120 40 140 18 160 18 C 180 18 200 40 228 54 Q 260 70 310 70"/>
-      <circle class="acc" cx="92" cy="54" r="3.5" fill="none"/>
-      <circle class="acc" cx="160" cy="18" r="4" fill="none"/>
-      <circle class="acc" cx="228" cy="54" r="3.5" fill="none"/>
+      <path d="M10 70 Q 60 70 92 54 C 120 40 140 18 160 18 C 180 18 200 40 228 54 Q 260 70 310 70"></path>
+      <circle class="acc" cx="92" cy="54" r="3.5" fill="none"></circle>
+      <circle class="acc" cx="160" cy="18" r="4" fill="none"></circle>
+      <circle class="acc" cx="228" cy="54" r="3.5" fill="none"></circle>
     </symbol>
 
     <!-- Круг людей (открытие) -->
     <symbol id="i-circle" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="17" stroke-dasharray="2 4"/>
-      <circle cx="32" cy="13" r="3"/>
-      <circle cx="49" cy="22" r="3"/>
-      <circle cx="49" cy="42" r="3"/>
-      <circle cx="32" cy="51" r="3"/>
-      <circle cx="15" cy="42" r="3"/>
-      <circle cx="15" cy="22" r="3"/>
+      <circle cx="32" cy="32" r="17" stroke-dasharray="2 4"></circle>
+      <circle cx="32" cy="13" r="3"></circle>
+      <circle cx="49" cy="22" r="3"></circle>
+      <circle cx="49" cy="42" r="3"></circle>
+      <circle cx="32" cy="51" r="3"></circle>
+      <circle cx="15" cy="42" r="3"></circle>
+      <circle cx="15" cy="22" r="3"></circle>
     </symbol>
 
     <!-- Поднимающаяся волна (первая волна) -->
     <symbol id="i-wave-up" viewBox="0 0 64 64">
-      <path d="M8 52 Q 18 52 24 44 T 36 30"/>
-      <path d="M22 52 Q 32 52 38 44 T 50 30 T 60 16" class="acc"/>
+      <path d="M8 52 Q 18 52 24 44 T 36 30"></path>
+      <path d="M22 52 Q 32 52 38 44 T 50 30 T 60 16" class="acc"></path>
     </symbol>
 
     <!-- Танцующая фигура (пик) -->
     <symbol id="i-figure" viewBox="0 0 64 64">
-      <circle cx="33" cy="14" r="5"/>
-      <path d="M33 19 Q 30 32 27 44"/>
-      <path d="M33 22 Q 46 16 54 8" class="acc"/>
-      <path d="M33 22 Q 22 28 17 38"/>
-      <path d="M27 44 Q 22 52 18 60"/>
-      <path d="M27 44 Q 36 52 42 58"/>
+      <circle cx="33" cy="14" r="5"></circle>
+      <path d="M33 19 Q 30 32 27 44"></path>
+      <path d="M33 22 Q 46 16 54 8" class="acc"></path>
+      <path d="M33 22 Q 22 28 17 38"></path>
+      <path d="M27 44 Q 22 52 18 60"></path>
+      <path d="M27 44 Q 36 52 42 58"></path>
     </symbol>
 
     <!-- Поющая чаша (приземление) -->
     <symbol id="i-bowl" viewBox="0 0 64 64">
-      <path d="M16 38 Q 32 56 48 38"/>
-      <path d="M14 38 H 50"/>
-      <path d="M22 30 Q 32 22 42 30"/>
-      <path d="M18 22 Q 32 8 46 22" class="acc"/>
+      <path d="M16 38 Q 32 56 48 38"></path>
+      <path d="M14 38 H 50"></path>
+      <path d="M22 30 Q 32 22 42 30"></path>
+      <path d="M18 22 Q 32 8 46 22" class="acc"></path>
     </symbol>
 
     <!-- Чайник + пиала + пар (чайная зона) -->
     <symbol id="i-teapot" viewBox="0 0 64 64">
-      <path d="M16 34 Q 16 50 30 50 Q 44 50 44 34"/>
-      <path d="M16 34 H 44"/>
-      <path d="M44 36 Q 52 34 54 28"/>
-      <path d="M26 30 H 34"/>
-      <circle cx="30" cy="26" r="1.6" fill="currentColor" stroke="none"/>
-      <path d="M48 48 Q 48 56 54 56 Q 60 56 60 48" />
-      <path d="M48 48 H 60"/>
-      <path d="M40 18 Q 44 14 42 10" class="acc"/>
-      <path d="M46 20 Q 50 16 48 12" class="acc"/>
+      <path d="M16 34 Q 16 50 30 50 Q 44 50 44 34"></path>
+      <path d="M16 34 H 44"></path>
+      <path d="M44 36 Q 52 34 54 28"></path>
+      <path d="M26 30 H 34"></path>
+      <circle cx="30" cy="26" r="1.6" fill="currentColor" stroke="none"></circle>
+      <path d="M48 48 Q 48 56 54 56 Q 60 56 60 48"></path>
+      <path d="M48 48 H 60"></path>
+      <path d="M40 18 Q 44 14 42 10" class="acc"></path>
+      <path d="M46 20 Q 50 16 48 12" class="acc"></path>
     </symbol>
 
     <!-- Перечёркнутый бокал (обычная вечеринка) -->
     <symbol id="i-glass" viewBox="0 0 64 64">
-      <path d="M14 14 H 50 L 32 36 Z"/>
-      <path d="M32 36 V 52"/>
-      <path d="M22 52 H 42"/>
-      <path d="M14 50 L 50 14" class="acc"/>
+      <path d="M14 14 H 50 L 32 36 Z"></path>
+      <path d="M32 36 V 52"></path>
+      <path d="M22 52 H 42"></path>
+      <path d="M14 50 L 50 14" class="acc"></path>
     </symbol>
 
     <!-- Босые ступни (Ecstatic) -->
     <symbol id="i-barefoot" viewBox="0 0 64 64">
-      <path d="M18 20 C 13 20 11 28 11 36 C 11 46 16 50 22 50 C 28 50 30 46 30 38 C 30 28 28 20 24 20 C 21 20 20 22 18 20 Z"/>
-      <path d="M40 22 C 35 22 33 30 33 38 C 33 48 38 52 44 52 C 50 52 52 48 52 40 C 52 30 50 22 46 22 C 43 22 42 24 40 22 Z"/>
-      <path d="M11 56 H 52" class="acc"/>
+      <path d="M18 20 C 13 20 11 28 11 36 C 11 46 16 50 22 50 C 28 50 30 46 30 38 C 30 28 28 20 24 20 C 21 20 20 22 18 20 Z"></path>
+      <path d="M40 22 C 35 22 33 30 33 38 C 33 48 38 52 44 52 C 50 52 52 48 52 40 C 52 30 50 22 46 22 C 43 22 42 24 40 22 Z"></path>
+      <path d="M11 56 H 52" class="acc"></path>
     </symbol>
 
     <!-- Солнце из спиралей (РАДОСТЬ) -->
     <symbol id="i-sun-spiral" viewBox="0 0 64 64">
-      <path d="M32 32 m -7 0 a 7 7 0 1 0 14 0 a 11 11 0 1 0 -18 0 a 15 15 0 1 0 22 0"/>
-      <path d="M32 6 V 12"/>
-      <path d="M32 52 V 58"/>
-      <path d="M6 32 H 12"/>
-      <path d="M52 32 H 58"/>
-      <path d="M14 14 L 18 18"/>
-      <path d="M46 46 L 50 50"/>
-      <path d="M50 14 L 46 18" class="acc"/>
-      <path d="M18 46 L 14 50" class="acc"/>
+      <path d="M32 32 m -7 0 a 7 7 0 1 0 14 0 a 11 11 0 1 0 -18 0 a 15 15 0 1 0 22 0"></path>
+      <path d="M32 6 V 12"></path>
+      <path d="M32 52 V 58"></path>
+      <path d="M6 32 H 12"></path>
+      <path d="M52 32 H 58"></path>
+      <path d="M14 14 L 18 18"></path>
+      <path d="M46 46 L 50 50"></path>
+      <path d="M50 14 L 46 18" class="acc"></path>
+      <path d="M18 46 L 14 50" class="acc"></path>
     </symbol>
 
     <!-- Медитация с волной мыслей (ГЛУБИНА) -->
     <symbol id="i-meditation" viewBox="0 0 64 64">
-      <circle cx="32" cy="22" r="6"/>
-      <path d="M32 28 V 44"/>
-      <path d="M32 36 Q 24 42 20 46"/>
-      <path d="M32 36 Q 40 42 44 46"/>
-      <path d="M20 46 Q 32 42 44 46"/>
-      <path d="M20 16 Q 26 10 32 16" class="acc"/>
-      <path d="M32 16 Q 38 10 44 16" class="acc"/>
+      <circle cx="32" cy="22" r="6"></circle>
+      <path d="M32 28 V 44"></path>
+      <path d="M32 36 Q 24 42 20 46"></path>
+      <path d="M32 36 Q 40 42 44 46"></path>
+      <path d="M20 46 Q 32 42 44 46"></path>
+      <path d="M20 16 Q 26 10 32 16" class="acc"></path>
+      <path d="M32 16 Q 38 10 44 16" class="acc"></path>
     </symbol>
 
     <!-- Развевающаяся фигура (СВОБОДА) -->
     <symbol id="i-flow" viewBox="0 0 64 64">
-      <circle cx="30" cy="16" r="5"/>
-      <path d="M30 21 Q 28 34 31 46"/>
-      <path d="M30 24 Q 44 20 50 28 Q 47 38 39 40" class="acc"/>
-      <path d="M30 28 Q 17 32 13 42 Q 17 48 24 46"/>
-      <path d="M31 46 Q 26 54 22 60"/>
-      <path d="M31 46 Q 38 52 44 58"/>
+      <circle cx="30" cy="16" r="5"></circle>
+      <path d="M30 21 Q 28 34 31 46"></path>
+      <path d="M30 24 Q 44 20 50 28 Q 47 38 39 40" class="acc"></path>
+      <path d="M30 28 Q 17 32 13 42 Q 17 48 24 46"></path>
+      <path d="M31 46 Q 26 54 22 60"></path>
+      <path d="M31 46 Q 38 52 44 58"></path>
     </symbol>
 
     <!-- Молния → ровная линия (ПЕРЕЗАГРУЗКА) -->
     <symbol id="i-bolt" viewBox="0 0 64 64">
-      <path d="M10 40 L 18 24 L 25 38 L 33 22"/>
-      <path d="M33 22 C 38 22 42 32 48 32 L 56 32" class="acc"/>
+      <path d="M10 40 L 18 24 L 25 38 L 33 22"></path>
+      <path d="M33 22 C 38 22 42 32 48 32 L 56 32" class="acc"></path>
     </symbol>
 
     <!-- Три пиалы в круге (СРЕДА) -->
     <symbol id="i-cups" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="20" stroke-dasharray="2 4"/>
-      <path d="M22 30 Q 22 36 26 36 Q 30 36 30 30"/>
-      <path d="M22 30 H 30"/>
-      <path d="M40 22 Q 40 28 44 28 Q 48 28 48 22"/>
-      <path d="M40 22 H 48"/>
-      <path d="M34 42 Q 34 48 38 48 Q 42 48 42 42"/>
-      <path d="M34 42 H 42"/>
+      <circle cx="32" cy="32" r="20" stroke-dasharray="2 4"></circle>
+      <path d="M22 30 Q 22 36 26 36 Q 30 36 30 30"></path>
+      <path d="M22 30 H 30"></path>
+      <path d="M40 22 Q 40 28 44 28 Q 48 28 48 22"></path>
+      <path d="M40 22 H 48"></path>
+      <path d="M34 42 Q 34 48 38 48 Q 42 48 42 42"></path>
+      <path d="M34 42 H 42"></path>
     </symbol>
 
     <!-- Ладони кругом (БЕЗОПАСНОСТЬ) -->
     <symbol id="i-hands" viewBox="0 0 64 64">
-      <path d="M14 40 Q 9 30 17 24 Q 25 21 27 30 L 27 40 Q 25 46 19 45 Z"/>
-      <path d="M50 40 Q 55 30 47 24 Q 39 21 37 30 L 37 40 Q 39 46 45 45 Z"/>
-      <circle cx="32" cy="33" r="4" class="acc"/>
+      <path d="M14 40 Q 9 30 17 24 Q 25 21 27 30 L 27 40 Q 25 46 19 45 Z"></path>
+      <path d="M50 40 Q 55 30 47 24 Q 39 21 37 30 L 37 40 Q 39 46 45 45 Z"></path>
+      <circle cx="32" cy="33" r="4" class="acc"></circle>
     </symbol>
 
     <!-- Солнце на горизонте (РИТМ) -->
     <symbol id="i-horizon" viewBox="0 0 64 64">
-      <path d="M8 42 H 56"/>
-      <path d="M20 42 A 12 12 0 0 1 44 42" class="acc"/>
-      <path d="M32 24 V 30"/>
-      <path d="M18 30 L 22 33"/>
-      <path d="M46 30 L 42 33"/>
+      <path d="M8 42 H 56"></path>
+      <path d="M20 42 A 12 12 0 0 1 44 42" class="acc"></path>
+      <path d="M32 24 V 30"></path>
+      <path d="M18 30 L 22 33"></path>
+      <path d="M46 30 L 42 33"></path>
     </symbol>
 
     <!-- Телефон в зачёркнутом круге (присутствие) -->
     <symbol id="i-phone" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="22"/>
-      <path d="M27 16 H 37 V 30 Q 37 34 32 34 Q 27 34 27 30 Z"/>
-      <path d="M14 14 L 50 50" class="acc"/>
+      <circle cx="32" cy="32" r="22"></circle>
+      <path d="M27 16 H 37 V 30 Q 37 34 32 34 Q 27 34 27 30 Z"></path>
+      <path d="M14 14 L 50 50" class="acc"></path>
     </symbol>
 
     <!-- Палец у губ / закрытый рот спиралью (в теле) -->
     <symbol id="i-lips" viewBox="0 0 64 64">
-      <path d="M20 34 Q 32 28 44 34 Q 32 42 20 34 Z"/>
-      <path d="M44 32 m 0 0 a 4 4 0 1 0 8 0 a 6 6 0 1 0 -12 0" class="acc"/>
+      <path d="M20 34 Q 32 28 44 34 Q 32 42 20 34 Z"></path>
+      <path d="M44 32 m 0 0 a 4 4 0 1 0 8 0 a 6 6 0 1 0 -12 0" class="acc"></path>
     </symbol>
 
     <!-- Две ладони навстречу (уважение) -->
     <symbol id="i-hands-meet" viewBox="0 0 64 64">
-      <path d="M18 18 Q 12 30 18 42 Q 25 46 29 40 L 29 22 Q 25 16 18 18 Z"/>
-      <path d="M46 18 Q 52 30 46 42 Q 39 46 35 40 L 35 22 Q 39 16 46 18 Z"/>
-      <path d="M32 24 V 40" class="acc"/>
+      <path d="M18 18 Q 12 30 18 42 Q 25 46 29 40 L 29 22 Q 25 16 18 18 Z"></path>
+      <path d="M46 18 Q 52 30 46 42 Q 39 46 35 40 L 35 22 Q 39 16 46 18 Z"></path>
+      <path d="M32 24 V 40" class="acc"></path>
     </symbol>
 
     <!-- Карта пути основателя -->
     <symbol id="i-route" viewBox="0 0 320 110">
-      <path d="M30 70 Q 70 40 90 80 Q 110 50 130 78 Q 150 50 170 76 Q 190 50 210 74 Q 240 50 270 72 Q 290 60 300 66" stroke-dasharray="1 5"/>
-      <path d="M40 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
-      <path d="M150 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
-      <path d="M270 68 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"/>
-      <circle cx="40" cy="70" r="3" class="acc"/>
-      <circle cx="150" cy="70" r="3" class="acc"/>
-      <circle cx="270" cy="70" r="3" class="acc"/>
+      <path d="M30 70 Q 70 40 90 80 Q 110 50 130 78 Q 150 50 170 76 Q 190 50 210 74 Q 240 50 270 72 Q 290 60 300 66" stroke-dasharray="1 5"></path>
+      <path d="M40 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"></path>
+      <path d="M150 70 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"></path>
+      <path d="M270 68 q -10 -8 -16 -2 q -6 8 4 12 q 10 2 12 -6 q 0 -6 -2 -6"></path>
+      <circle cx="40" cy="70" r="3" class="acc"></circle>
+      <circle cx="150" cy="70" r="3" class="acc"></circle>
+      <circle cx="270" cy="70" r="3" class="acc"></circle>
     </symbol>
 
     <!-- Кружащийся дервиш (Руми) -->
     <symbol id="i-dervish" viewBox="0 0 200 200">
-      <circle cx="100" cy="34" r="9"/>
-      <path d="M100 44 Q 70 50 56 78"/>
-      <path d="M100 44 Q 130 50 144 78" class="acc"/>
-      <path d="M100 60 Q 60 100 56 180"/>
-      <path d="M100 60 Q 140 100 144 180"/>
-      <path d="M100 64 Q 78 110 70 176"/>
-      <path d="M100 64 Q 122 110 130 176"/>
-      <path d="M56 180 Q 100 192 144 180"/>
+      <circle cx="100" cy="34" r="9"></circle>
+      <path d="M100 44 Q 70 50 56 78"></path>
+      <path d="M100 44 Q 130 50 144 78" class="acc"></path>
+      <path d="M100 60 Q 60 100 56 180"></path>
+      <path d="M100 60 Q 140 100 144 180"></path>
+      <path d="M100 64 Q 78 110 70 176"></path>
+      <path d="M100 64 Q 122 110 130 176"></path>
+      <path d="M56 180 Q 100 192 144 180"></path>
     </symbol>
 
     <!-- Чайная зона (FAQ) -->
     <symbol id="i-tea-zone" viewBox="0 0 320 100">
-      <path d="M40 70 Q 40 86 64 86 Q 88 86 88 70"/>
-      <path d="M40 70 H 88"/>
-      <path d="M200 70 Q 200 86 224 86 Q 248 86 248 70"/>
-      <path d="M200 70 H 248"/>
-      <path d="M120 78 H 200"/>
-      <path d="M150 70 Q 150 80 158 80 Q 166 80 166 70"/>
-      <path d="M150 70 H 166"/>
-      <path d="M150 60 Q 156 54 152 48" class="acc"/>
-      <path d="M160 58 Q 166 52 162 46" class="acc"/>
-      <path d="M212 56 Q 218 50 214 44" class="acc"/>
+      <path d="M40 70 Q 40 86 64 86 Q 88 86 88 70"></path>
+      <path d="M40 70 H 88"></path>
+      <path d="M200 70 Q 200 86 224 86 Q 248 86 248 70"></path>
+      <path d="M200 70 H 248"></path>
+      <path d="M120 78 H 200"></path>
+      <path d="M150 70 Q 150 80 158 80 Q 166 80 166 70"></path>
+      <path d="M150 70 H 166"></path>
+      <path d="M150 60 Q 156 54 152 48" class="acc"></path>
+      <path d="M160 58 Q 166 52 162 46" class="acc"></path>
+      <path d="M212 56 Q 218 50 214 44" class="acc"></path>
     </symbol>
 
     <!-- Эквалайзер / волна (Послушай, как это звучит) -->
     <symbol id="i-equalizer" viewBox="0 0 200 120">
-      <path d="M10 100 Q 50 100 70 80 Q 90 60 100 30 Q 110 60 130 80 Q 150 100 190 100"/>
-      <path d="M10 90 Q 45 90 65 75 Q 85 60 95 40 Q 105 60 125 75 Q 145 90 190 90" class="acc"/>
-      <path d="M10 110 H 190"/>
-      <circle cx="100" cy="30" r="3" class="acc"/>
+      <path d="M10 100 Q 50 100 70 80 Q 90 60 100 30 Q 110 60 130 80 Q 150 100 190 100"></path>
+      <path d="M10 90 Q 45 90 65 75 Q 85 60 95 40 Q 105 60 125 75 Q 145 90 190 90" class="acc"></path>
+      <path d="M10 110 H 190"></path>
+      <circle cx="100" cy="30" r="3" class="acc"></circle>
     </symbol>
   </defs>
 </svg>
@@ -747,27 +791,27 @@ svg.illu .acc { stroke: var(--aqua); }
   <div class="hero-inner">
     <span class="logo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-        <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/>
+        <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"></path>
       </svg>
       Ecstatic Dance Almaty
     </span>
-    <p class="eyebrow" style="margin-bottom: 18px;">ECSTATIC DANCE ALMATY</p>
+    <p class="eyebrow" style="margin-bottom: 18px;">Свободный танец · живой DJ-сет · трезвое состояние</p>
     <h1><span class="hl glow-aqua">Осознанная</span> вечеринка</h1>
     <p class="sub">Танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#tickets">Билет на ближайшее событие</a>
       <a class="btn btn-secondary" href="#what">Что такое экстатик?</a>
     </div>
-    <p class="hero-facts" style="margin-top: 20px; font-size: 14px; color: var(--cream-soft); letter-spacing: 0.02em;">
-      <span style="color: var(--aqua);">●</span> Вечеринка при дневном свете
-      <span style="opacity:.4; margin: 0 8px;">·</span>
-      2 августа
-      <span style="opacity:.4; margin: 0 8px;">·</span>
-      14:00–22:00
-      <span style="opacity:.4; margin: 0 8px;">·</span>
-      без алкоголя
-      <span style="opacity:.4; margin: 0 8px;">·</span>
-      босиком
+    <p class="hero-facts" style="margin-top: 20px; font-size: 14px; color: var(--cream-soft); letter-spacing: 0.02em; display: flex; flex-wrap: wrap; gap: 4px 10px;">
+      <span style="white-space: nowrap;">Вечеринка при дневном свете</span>
+      <span style="opacity:.4;">·</span>
+      <span style="white-space: nowrap;">без телефонов</span>
+      <span style="opacity:.4;">·</span>
+      <span style="white-space: nowrap;">без разговоров</span>
+      <span style="opacity:.4;">·</span>
+      <span style="white-space: nowrap;">босиком</span>
+      <span style="width:100%;"></span>
+      <span style="color: var(--cream); font-weight: 600; white-space: nowrap;">Следующий ивент — 2 августа, 14:00–22:00.</span>
     </p>
   </div>
 </section>
@@ -789,7 +833,7 @@ svg.illu .acc { stroke: var(--aqua); }
         <!-- TODO: обновить дату/место/остаток перед каждым событием -->
         <div class="ne-meta">
           <span>2 августа · 14:00–22:00</span><span class="dot">·</span>
-          <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Тюркский парк, Алматы</span>
+          <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"></path><circle cx="8" cy="6" r="1.5"></circle></svg>Тюркский парк, Алматы</span>
         </div>
       </div>
 
@@ -810,44 +854,63 @@ svg.illu .acc { stroke: var(--aqua); }
           <span class="ne-dj">Пётр Эзау — контактная импровизация</span>
           <span class="ne-dj">Алина Хаиб — Sacrum</span>
         </div>
-        <p class="ne-note">Цена растёт по мере выкупа билетов — чем раньше, тем дешевле.</p>
+        <p class="ne-note">Цена растёт по датам и выкупу: <strong style="color:var(--cream);">12, 19 и 26 июля</strong> — пороги повышения. Чем раньше, тем дешевле. В день события — 20 000 ₸.</p>
         <div style="margin-top: 22px;" data-od-id="ne-buy-cta">
           <!-- TODO: ссылка на оплату/бронь -->
-          <a class="btn btn-primary" href="#">Купить билет — 8888 ₸</a>
+          <a class="btn btn-primary" href="#">Купить билет — 9999 ₸</a>
         </div>
-        <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247,244,238,.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;" data-od-id="ne-what-to-bring">
-          <strong style="color:var(--cream);">Что взять:</strong> удобная одежда (дресс-код свободный, танцуем босиком), бутылка воды, сменка зимой.
+        <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;" data-od-id="ne-what-to-bring">
+          <strong style="color:var(--cream);">Что взять:</strong> удобная одежда (дресс-код свободный, танцуем босиком), бутылка воды.
         </div>
       </div>
+      <div class="price-countdown reveal" data-od-id="price-countdown" data-deadline="2026-07-12T23:59:59+06:00">
+        <span class="pc-label">Цена растёт <strong style="color:var(--coral);">12 июля</strong>. Осталось:</span>
+        <div class="pc-timer" role="timer" aria-live="off">
+          <div class="pc-unit"><span class="pc-num" id="pc-days">--</span><span class="pc-lbl">дней</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" id="pc-hours">--</span><span class="pc-lbl">часов</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" id="pc-mins">--</span><span class="pc-lbl">минут</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" id="pc-secs">--</span><span class="pc-lbl">секунд</span></div>
+        </div>
+      </div>
+
       <div class="price-grid reveal" data-od-id="ne-price-ladder">
-        <div class="price-card soldout" data-od-id="ne-price-7777">
-          <div class="tier">Первые 5</div>
-          <div class="price-value">7777 ₸</div>
-          <div class="meta">Продано</div>
-        </div>
-        <div class="price-card featured" data-od-id="ne-price-8888">
+        <div class="price-card featured" data-od-id="ne-price-9999">
           <span class="badge">Early bird</span>
-          <div class="tier">15 билетов</div>
-          <div class="price-value">8888 ₸</div>
-          <div class="meta">Осталось 12</div>
-        </div>
-        <div class="price-card" data-od-id="ne-price-9999">
-          <div class="tier">Regular</div>
+          <div class="tier">Первые 10 билетов</div>
           <div class="price-value">9999 ₸</div>
-          <div class="meta">15 билетов</div>
+          <div class="meta">до 12 июля</div>
         </div>
-        <div class="price-card" data-od-id="ne-price-12000">
-          <div class="tier">Последние 5</div>
-          <div class="price-value">12 000 ₸</div>
-          <div class="meta">И в день события</div>
+        <div class="price-card" data-od-id="ne-price-11111">
+          <div class="tier">Следующая волна · 50 билетов</div>
+          <div class="price-value">11 111 ₸</div>
+          <div class="meta">до 19 июля</div>
         </div>
+        <div class="price-card" data-od-id="ne-price-13000">
+          <div class="tier">Regular · 50 билетов</div>
+          <div class="price-value">13 000 ₸</div>
+          <div class="meta">до 26 июля</div>
+        </div>
+        <div class="price-card" data-od-id="ne-price-14000">
+          <div class="tier">Последние · все остальные</div>
+          <div class="price-value">14 000 ₸</div>
+          <div class="meta">до даты события</div>
+        </div>
+      </div>
+
+      <div class="at-door-strip reveal" data-od-id="ne-price-at-door">
+        <span class="ads-label">В день события</span>
+        <span class="ads-price">20 000 ₸</span>
+        <span class="ads-note">только при наличии мест · оплата на входе</span>
       </div>
 
       <!-- Промокод для новичков -->
       <div class="promo-strip reveal" data-od-id="promo-strip">
         <div class="ps-row">
           <span class="ps-text">Впервые на экстатике? Получи <strong>промокод на скидку</strong> для первого раза <!-- TODO: размер скидки --></span>
-          <a class="btn" href="https://wa.me/77777777777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA&utm_source=landing&utm_medium=messenger&utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
+          <a class="btn" href="https://wa.me/77777777777?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
         </div>
         <p class="ps-fine">Пришлём код в ответном сообщении.</p>
       </div>
@@ -862,7 +925,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <h2>И вечеринка, и практика</h2>
     <p class="lead" style="margin-top: 18px;">Ecstatic Dance — это свободное танцевальное путешествие в безопасном пространстве, которое ведёт диджей: волна музыки поднимается от мягкого погружения к пику и плавно опускается. Ты двигаешься так, как просит тело — без правильных движений, зрителей и оценок. Похожа на вечеринку — работает как практика: состояние делают музыка, дыхание и общая волна зала, а не алкоголь.</p>
 
-    <svg class="illu wave-diagram" viewBox="0 0 320 90" role="img" aria-label="Волна сета: погружение, пик, приземление"><use href="#i-wave"/></svg>
+    <svg class="illu wave-diagram" viewBox="0 0 320 90" role="img" aria-label="Волна сета: погружение, пик, приземление"><use href="#i-wave"></use></svg>
     <div class="wave-labels"><span>погружение</span><span class="mid">пик</span><span>приземление</span></div>
 
     <div class="stats reveal" data-od-id="stats">
@@ -883,7 +946,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <h2>Не обычная вечеринка</h2>
     <div class="compare reveal" data-od-id="compare-grid">
       <div class="col col-usual" data-od-id="compare-usual">
-        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-glass"/></svg><h3>Обычная вечеринка</h3></div>
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3>Обычная вечеринка</h3></div>
         <div class="line">Состояние делает алкоголь</div>
         <div class="line">Утром — разбитость и провал в памяти</div>
         <div class="line">Танцуешь «как положено», ловишь взгляды</div>
@@ -895,7 +958,7 @@ svg.illu .acc { stroke: var(--aqua); }
         <div class="line">Домой под утро, день потерян</div>
       </div>
       <div class="col col-ecstatic" data-od-id="compare-ecstatic">
-        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-barefoot"/></svg><h3>Ecstatic Dance</h3></div>
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-barefoot"></use></svg><h3>Ecstatic Dance</h3></div>
         <div class="line">Состояние делают музыка, дыхание и общая волна зала</div>
         <div class="line">Утром — лёгкость, ясность и тело, которое говорит спасибо</div>
         <div class="line">Танцуешь как хочешь: с закрытыми глазами, на полу, в прыжке</div>
@@ -913,7 +976,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Сравнения» -->
 <div class="cta-strip" data-od-id="cta-strip-1">
   <div class="cs-inner">
-    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>8888 ₸</strong></span>
+    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>9999 ₸</strong> — до 12 июля</span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -925,13 +988,13 @@ svg.illu .acc { stroke: var(--aqua); }
     <h2>Почему осознанные люди по всему миру выбирают эти события</h2>
     <p class="lead" style="margin-top: 18px;">Ecstatic Dance проходит более чем в 100 городах — от Амстердама и Бали до Гватемалы и Гоа. Формат вырос из простого наблюдения: телу нужно движение, психике — разрядка, а человеку — живое общение без химии.</p>
     <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-      <div class="card illu-card" data-od-id="why-joy"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-sun-spiral"/></svg><div class="why-word">РАДОСТЬ</div><p>Свободный танец даёт мощный эмоциональный заряд и снимает стресс. Гормоны счастья — без единого грамма алкоголя.</p></div>
-      <div class="card illu-card" data-od-id="why-depth"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-meditation"/></svg><div class="why-word">ГЛУБИНА</div><p>Медитация в движении: поток мыслей останавливается, остаются ритм и тело.</p></div>
-      <div class="card illu-card" data-od-id="why-freedom"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-flow"/></svg><div class="why-word">СВОБОДА</div><p>Танец без правил и инструкций. Тело само знает, как правильно именно сейчас.</p></div>
-      <div class="card illu-card" data-od-id="why-reload"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-bolt"/></svg><div class="why-word">ПЕРЕЗАГРУЗКА</div><p>4 часа движения снимают напряжение, которое не берёт ни массаж, ни спортзал.</p></div>
-      <div class="card illu-card" data-od-id="why-tribe"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-cups"/></svg><div class="why-word">СРЕДА</div><p>События собирают предпринимателей, творцов, йогов, психологов. Чайная зона знакомит лучше любого нетворкинга.</p></div>
-      <div class="card illu-card" data-od-id="why-safety"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-hands"/></svg><div class="why-word">БЕЗОПАСНОСТЬ</div><p>Соглашения и культура согласия: танцпол, где спокойно каждому.</p></div>
-      <div class="card illu-card" data-od-id="why-rhythm"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-horizon"/></svg><div class="why-word">РИТМ</div><p>Вечеринка при дневном свете: 14:00–22:00. Не ломает сон, не крадёт следующий день. В понедельник ты в лучшей форме недели, а не в худшей.</p></div>
+      <div class="card illu-card" data-od-id="why-joy"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-sun-spiral"></use></svg><div class="why-word">РАДОСТЬ</div><p>Свободный танец даёт мощный эмоциональный заряд и снимает стресс. Гормоны счастья — без единого грамма алкоголя.</p></div>
+      <div class="card illu-card" data-od-id="why-depth"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-meditation"></use></svg><div class="why-word">ГЛУБИНА</div><p>Медитация в движении: поток мыслей останавливается, остаются ритм и тело.</p></div>
+      <div class="card illu-card" data-od-id="why-freedom"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-flow"></use></svg><div class="why-word">СВОБОДА</div><p>Танец без правил и инструкций. Тело само знает, как правильно именно сейчас.</p></div>
+      <div class="card illu-card" data-od-id="why-reload"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-bolt"></use></svg><div class="why-word">ПЕРЕЗАГРУЗКА</div><p>4 часа движения снимают напряжение, которое не берёт ни массаж, ни спортзал.</p></div>
+      <div class="card illu-card" data-od-id="why-tribe"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-cups"></use></svg><div class="why-word">СРЕДА</div><p>События собирают предпринимателей, творцов, йогов, психологов. Чайная зона знакомит лучше любого нетворкинга.</p></div>
+      <div class="card illu-card" data-od-id="why-safety"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-hands"></use></svg><div class="why-word">БЕЗОПАСНОСТЬ</div><p>Соглашения и культура согласия: танцпол, где спокойно каждому.</p></div>
+      <div class="card illu-card" data-od-id="why-rhythm"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-horizon"></use></svg><div class="why-word">РИТМ</div><p>Вечеринка при дневном свете: 14:00–22:00. Не ломает сон, не крадёт следующий день. В понедельник ты в лучшей форме недели, а не в худшей.</p></div>
     </div>
   </div>
 </section>
@@ -942,11 +1005,11 @@ svg.illu .acc { stroke: var(--aqua); }
     <p class="eyebrow">Как проходит вечер</p>
     <h2>Волна длиной в четыре часа</h2>
     <ol class="timeline reveal" style="margin-top: 28px;">
-      <li class="has-illu" data-od-id="flow-opening"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-circle"/></svg><div class="tl-content"><h3>Открытие круга</h3><p>Знакомство с пространством, настройка, лёгкая разминка или тантра/арома-активация.</p></div></li>
-      <li class="has-illu" data-od-id="flow-wave1"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-wave-up"/></svg><div class="tl-content"><h3>Первая волна</h3><p>DJ-сет: от медленного погружения к ритму.</p></div></li>
-      <li class="has-illu" data-od-id="flow-peak"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-figure"/></svg><div class="tl-content"><h3>Пик</h3><p>Самая мощная часть: этника, электроника, племенной вайб.</p></div></li>
-      <li class="has-illu" data-od-id="flow-land"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-bowl"/></svg><div class="tl-content"><h3>Приземление</h3><p>Саунд-хилинг: поющие чаши, глубокое расслабление лёжа.</p></div></li>
-      <li class="has-illu" data-od-id="flow-tea"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-teapot"/></svg><div class="tl-content"><h3>Чайная зона</h3><p>Тёплый чай, тишина, мягкое возвращение. Работает весь вечер.</p></div></li>
+      <li class="has-illu" data-od-id="flow-opening"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-circle"></use></svg><div class="tl-content"><h3>Открытие круга</h3><p>Знакомство с пространством, настройка, лёгкая разминка или тантра/арома-активация.</p></div></li>
+      <li class="has-illu" data-od-id="flow-wave1"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-wave-up"></use></svg><div class="tl-content"><h3>Первая волна</h3><p>DJ-сет: от медленного погружения к ритму.</p></div></li>
+      <li class="has-illu" data-od-id="flow-peak"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-figure"></use></svg><div class="tl-content"><h3>Пик</h3><p>Самая мощная часть: этника, электроника, племенной вайб.</p></div></li>
+      <li class="has-illu" data-od-id="flow-land"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-bowl"></use></svg><div class="tl-content"><h3>Приземление</h3><p>Саунд-хилинг: поющие чаши, глубокое расслабление лёжа.</p></div></li>
+      <li class="has-illu" data-od-id="flow-tea"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-teapot"></use></svg><div class="tl-content"><h3>Чайная зона</h3><p>Тёплый чай, тишина, мягкое возвращение. Работает весь вечер.</p></div></li>
     </ol>
     <!-- TODO: тайминги уточнить перед событием -->
   </div>
@@ -957,11 +1020,11 @@ svg.illu .acc { stroke: var(--aqua); }
   <div class="section-inner">
     <p class="eyebrow">Послушать сет</p>
     <div class="listen-block reveal" data-od-id="listen-block">
-      <svg class="illu lb-eq" viewBox="0 0 200 120" role="img" aria-label="Волна сета"><use href="#i-equalizer"/></svg>
+      <svg class="illu lb-eq" viewBox="0 0 200 120" role="img" aria-label="Волна сета"><use href="#i-equalizer"></use></svg>
       <div class="lb-text">
         <h3>Хочешь услышать, под что мы танцуем?</h3>
         <p>Сет с прошлого экстатика и плейлисты резидентов — в нашем Telegram-канале. Там же анонсы и ранние цены.</p>
-        <a class="btn btn-secondary on-light" href="https://t.me/ecstaticdance_almaty?utm_source=landing&utm_medium=referral&utm_content=playlist" target="_blank" rel="noopener" data-od-id="listen-tg">Слушать сет в Telegram</a>
+        <a class="btn btn-secondary on-light" href="https://t.me/ecstaticdance_almaty?utm_source=landing&amp;utm_medium=referral&amp;utm_content=playlist" target="_blank" rel="noopener" data-od-id="listen-tg">Слушать сет в Telegram</a>
       </div>
     </div>
   </div>
@@ -975,10 +1038,10 @@ svg.illu .acc { stroke: var(--aqua); }
     <p class="eyebrow">Четыре соглашения</p>
     <h2>То, что делает пространство безопасным</h2>
     <div class="cards-4 reveal" style="margin-top: 28px;">
-      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
-      <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
-      <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
-      <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"/></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
+      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
+      <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
+      <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
+      <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
     </div>
     <p style="margin-top: 22px; font-size: 15px;">Эти правила — мировой стандарт Ecstatic Dance. Именно они превращают вечеринку в практику.</p>
   </div>
@@ -987,14 +1050,14 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Соглашений» -->
 <div class="cta-strip" data-od-id="cta-strip-2">
   <div class="cs-inner">
-    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>8888 ₸</strong></span>
+    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>9999 ₸</strong> — до 12 июля</span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
 
 <!-- ===== Цитата-разрыв: Руми ===== -->
 <section class="pull-quote" data-od-id="rumi-quote">
-  <svg class="illu dervish" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-dervish"/></svg>
+  <svg class="illu dervish" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-dervish"></use></svg>
   <blockquote>«Танцуй, когда ты сломлен. Танцуй, когда сорвал повязки. Танцуй посреди битвы. Танцуй, когда ты совершенно свободен»</blockquote>
   <cite>Руми</cite>
 </section>
@@ -1021,7 +1084,7 @@ svg.illu .acc { stroke: var(--aqua); }
           <span class="badge badge-aqua">20+ обученных диджеев</span>
         </div>
         <p class="founder-quote">«Каждый сет — музыкальное путешествие: органичная электроника, этника, современные биты и эмоциональная драматургия»</p>
-        <svg class="illu route-map" viewBox="0 0 320 110" role="img" aria-label="Карта пути: Гватемала → Индия → Алматы"><use href="#i-route"/></svg>
+        <svg class="illu route-map" viewBox="0 0 320 110" role="img" aria-label="Карта пути: Гватемала → Индия → Алматы"><use href="#i-route"></use></svg>
         <div class="route-labels"><span>Гватемала</span><span>Индия</span><span>Алматы</span></div>
       </div>
     </div>
@@ -1107,7 +1170,7 @@ svg.illu .acc { stroke: var(--aqua); }
             <span>место уточняется</span>
           </div>
           <!-- TODO: ссылка или якорь «оставить предзапись» -->
-          <a class="fest-btn" href="https://wa.me/77777777777?text=%D0%9F%D1%80%D0%B5%D0%B4%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%20%D0%BD%D0%B0%20Ecstatic%20Fest%2029-30.08&utm_source=landing&utm_medium=messenger&utm_content=fest" target="_blank" rel="noopener" data-od-id="fest-ef-btn">Оставить предзапись</a>
+          <a class="fest-btn" href="https://wa.me/77777777777?text=%D0%9F%D1%80%D0%B5%D0%B4%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%20%D0%BD%D0%B0%20Ecstatic%20Fest%2029-30.08&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=fest" target="_blank" rel="noopener" data-od-id="fest-ef-btn">Оставить предзапись</a>
           <p style="font-size: 13px; color: rgba(246,239,228,.6); margin-top: 10px;">Откроем продажи — напишем первым, у предзаписи лучшая цена.</p>
         </div>
       </article>
@@ -1152,7 +1215,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- ====================== 9. FAQ ====================== -->
 <section class="section section-light" id="faq" data-od-id="faq">
   <div class="section-inner">
-    <svg class="illu faq-tea" viewBox="0 0 320 100" role="img" aria-label="Чайная зона: подушки, пиалы, пар"><use href="#i-tea-zone"/></svg>
+    <svg class="illu faq-tea" viewBox="0 0 320 100" role="img" aria-label="Чайная зона: подушки, пиалы, пар"><use href="#i-tea-zone"></use></svg>
     <p class="eyebrow" style="text-align:center;">Частые вопросы</p>
     <h2 style="text-align:center;">Если ещё сомневаешься</h2>
     <div class="faq reveal" style="margin-top: 28px;">
@@ -1204,7 +1267,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <section class="section section-dark final" id="final" data-od-id="final">
   <div class="spiral-bg" aria-hidden="true">
     <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-      <path d="M100 100 m-6 0 a6 6 0 1 0 12 0 m-2 0 a10 10 0 1 0 -20 0 m-14 0 a34 34 0 1 0 68 0 m-52 0 a52 52 0 1 0 104 0 m-78 0 a78 78 0 1 0 156 0"/>
+      <path d="M100 100 m-6 0 a6 6 0 1 0 12 0 m-2 0 a10 10 0 1 0 -20 0 m-14 0 a34 34 0 1 0 68 0 m-52 0 a52 52 0 1 0 104 0 m-78 0 a78 78 0 1 0 156 0"></path>
     </svg>
   </div>
   <div class="section-inner final-inner">
@@ -1233,12 +1296,12 @@ svg.illu .acc { stroke: var(--aqua); }
 
 <!-- Sticky CTA (mobile) -->
 <div class="sticky-cta" id="stickyCta" data-od-id="sticky-cta">
-  <a class="btn btn-primary" href="#tickets">Купить билет — 8888 ₸</a>
+  <a class="btn btn-primary" href="#tickets">Купить билет — 9999 ₸</a>
 </div>
 
 <!-- Кнопка «наверх» -->
 <button class="to-top" id="toTop" type="button" aria-label="Наверх" data-od-id="to-top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
 </button>
 
 <script>
@@ -1361,7 +1424,41 @@ svg.illu .acc { stroke: var(--aqua); }
     var txt = featured.textContent.trim();
     stickyBtn.textContent = 'Купить билет — ' + txt;
   }
+
+  // === Countdown to next price increase ===
+  var pcEl = document.querySelector('.price-countdown');
+  if (pcEl) {
+    var deadline = new Date(pcEl.getAttribute('data-deadline')).getTime();
+    var dEl = document.getElementById('pc-days');
+    var hEl = document.getElementById('pc-hours');
+    var mEl = document.getElementById('pc-mins');
+    var sEl = document.getElementById('pc-secs');
+    var pcLabel = pcEl.querySelector('.pc-label');
+    var pcTimer = pcEl.querySelector('.pc-timer');
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function tick() {
+      var diff = deadline - Date.now();
+      if (diff <= 0) {
+        if (dEl) dEl.textContent = '0';
+        if (hEl) hEl.textContent = '00';
+        if (mEl) mEl.textContent = '00';
+        if (sEl) sEl.textContent = '00';
+        if (pcLabel) pcLabel.innerHTML = 'Цена повысилась — забери билет по <strong style="color:var(--coral);">11 111 ₸</strong> (до 19 июля)';
+        return;
+      }
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+      if (dEl) dEl.textContent = days;
+      if (hEl) hEl.textContent = pad(hours);
+      if (mEl) mEl.textContent = pad(mins);
+      if (sEl) sEl.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
 })();
 </script>
-</body>
-</html>
+
+</body></html>
