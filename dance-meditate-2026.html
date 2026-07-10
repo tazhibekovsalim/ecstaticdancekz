@@ -219,6 +219,15 @@ p { max-width: 70ch; margin-inline: auto; }
 @media (min-width: 720px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
 .gallery-grid .photo { min-height: 180px; }
 @media (min-width: 720px) { .gallery-grid .photo:nth-child(1), .gallery-grid .photo:nth-child(4) { grid-column: span 2; min-height: 240px; } }
+
+.video-reel { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; margin-bottom: 30px; }
+.video-reel::-webkit-scrollbar { height: 3px; }
+.video-reel::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 3px; }
+.video-card { flex: 0 0 160px; scroll-snap-align: start; position: relative; border-radius: 14px; overflow: hidden; background: var(--dusk); aspect-ratio: 9/16; }
+.video-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-card .vid-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; background: linear-gradient(transparent, rgba(0,0,0,.45)); color: #fff; font-size: 11px; line-height: 1.3; pointer-events: none; }
+.video-card .vid-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.3); color: #fff; font-size: 32px; opacity: .9; transition: opacity .2s; pointer-events: none; }
+.video-card.playing .vid-play { opacity: 0; }
 .reviews { display: grid; gap: 14px; grid-template-columns: 1fr; }
 @media (min-width: 640px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
 .review { background: var(--sand-card); border-radius: var(--radius-card); padding: 26px 24px; position: relative; }
@@ -587,6 +596,23 @@ p { max-width: 70ch; margin-inline: auto; }
       <div class="photo" data-od-id="gallery-3" style="background-image:url('image-flux-pro-ultra-mr968qbn.jpg');"><div class="ph-label">Йога на рассвете у воды</div></div>
       <div class="photo" data-od-id="gallery-4" style="background-image:url('image-flux-pro-ultra-mr967c33.jpg');"><div class="ph-label">Суфийское кружение</div></div>
     </div>
+    <div class="video-reel" data-od-id="video-reel">
+      <div class="video-card" data-od-id="video-1">
+        <video src="mrekie3y-video_2026-07-10_11-41-34.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Танец на закате</div>
+      </div>
+      <div class="video-card" data-od-id="video-2">
+        <video src="mrekie4j-video_2026-07-10_11-41-31.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Практика у воды</div>
+      </div>
+      <div class="video-card" data-od-id="video-3">
+        <video src="mrekie4m-video_2026-07-10_11-41-29.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Энергия фестиваля</div>
+      </div>
+    </div>
     <div class="reviews" data-od-id="reviews">
       <div class="review"><p>«Еду! Это идеальное время для отдыха»</p><div class="src">из комментариев Instagram</div></div>
       <div class="review"><p>«Вау. Спасибо, дорогая, за знак»</p><div class="src">из комментариев Instagram</div></div>
@@ -802,6 +828,31 @@ p { max-width: 70ch; margin-inline: auto; }
       });
     }, { rootMargin: '200px 0px' });
     lazyPhotos.forEach(function (el) { io2.observe(el); });
+  }
+
+  // ---- Video lazy-load + tap-to-play ----
+  var videoCards = document.querySelectorAll('.video-card');
+  if ('IntersectionObserver' in window) {
+    var vidIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var v = e.target.querySelector('video');
+          if (v && v.preload === 'none') { v.preload = 'auto'; v.load(); }
+          vidIO.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    videoCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var v = card.querySelector('video');
+        if (!v) return;
+        if (v.paused) {
+          videoCards.forEach(function (c) { var ov = c.querySelector('video'); if (ov) { ov.pause(); c.classList.remove('playing'); } });
+          v.play(); card.classList.add('playing');
+        } else { v.pause(); card.classList.remove('playing'); }
+      });
+      vidIO.observe(card);
+    });
   }
 
   // ---- Booking modal ----
