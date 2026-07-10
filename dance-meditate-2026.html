@@ -94,6 +94,7 @@ p { max-width: 70ch; margin-inline: auto; }
    ДЕКОР — знак 08/08
    ============================================ */
 .hero-logo { display: block; margin: 0 auto 16px; max-width: 120px; height: auto; filter: brightness(0) invert(1); }
+@media (max-width: 600px) { .hero-logo { margin-top: -40px; } }
 .mark-0808 { font-family: var(--font-display); color: var(--lantern); letter-spacing: 4px; }
 .divider-0808 { text-align: center; font-family: var(--font-display); color: var(--lantern); opacity: .5; font-size: 20px; letter-spacing: 6px; padding: 8px 0; }
 .glow { text-shadow: 0 0 30px rgba(255,227,168,.55), 0 0 60px rgba(255,227,168,.3); }
@@ -123,7 +124,6 @@ p { max-width: 70ch; margin-inline: auto; }
 .hero-mark { font-size: clamp(28px, 6vw, 56px); margin-bottom: 18px; }
 .hero h1 { color: var(--cream); margin-bottom: 16px; }
 .hero .lead { color: var(--cream); margin: 0 auto 22px; }
-@media (max-width: 600px) { .hero { padding-top: 16px; justify-content: flex-start; } }
 .facts-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: var(--fs-small); color: var(--lake-light); margin-bottom: 28px; letter-spacing: .02em; }
 .facts-row span:not(:last-child)::after { content: " ·"; color: rgba(123,184,196,.5); margin-left: 14px; }
 .facts-row span:last-child { font-weight: 600; }
