@@ -123,6 +123,7 @@ p { max-width: 70ch; margin-inline: auto; }
 .hero-mark { font-size: clamp(28px, 6vw, 56px); margin-bottom: 18px; }
 .hero h1 { color: var(--cream); margin-bottom: 16px; }
 .hero .lead { color: var(--cream); margin: 0 auto 22px; }
+@media (max-width: 600px) { .hero { padding-top: 16px; justify-content: flex-start; } }
 .facts-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: var(--fs-small); color: var(--lake-light); margin-bottom: 28px; letter-spacing: .02em; }
 .facts-row span:not(:last-child)::after { content: " ·"; color: rgba(123,184,196,.5); margin-left: 14px; }
 .facts-row span:last-child { font-weight: 600; }
