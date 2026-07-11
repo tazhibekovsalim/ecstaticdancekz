@@ -202,9 +202,16 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 
 /* ===== HERO ===== */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
 .hero-bg::after { content: ""; position: absolute; inset: 0; background: rgba(19,22,40,.66); }
+/* Mobile: on narrow/tall viewports the photo's full height shows (cover crops sides only),
+   which puts the bright skyline/DJ-booth band right behind the headline. Scale up from the
+   bottom edge to push that bright band above the frame so the headline sits over the darker
+   crowd area instead. */
+@media (max-width: 768px) {
+  .hero-bg img { object-position: 42% center; transform: scale(1.2); transform-origin: 50% 100%; }
+}
 .hero-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; width: 100%; padding: 100px 24px 120px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; color: var(--cream); font-family: var(--font-display); font-weight: 500; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
 .logo svg { width: 26px; height: 26px; }
@@ -786,18 +793,12 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- ====================== 1. HERO ====================== -->
 <section class="hero section-dark" id="top" data-od-id="hero">
   <div class="hero-bg">
-    <img src="image-flux-pro-ultra-mra80r3x.jpg" alt="Тёмный зал, силуэты свободно танцующих людей в бирюзово-лавандовом свете" fetchpriority="high">
+    <img src="event-photo-hero-2-recolored.jpg" alt="Живое фото с вечеринки Ecstatic Dance Almaty — диджей за пультом на фоне ночного города в бирюзово-лавандовом свете" fetchpriority="high">
   </div>
   <div class="hero-inner">
-    <span class="logo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-        <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"></path>
-      </svg>
-      Ecstatic Dance Almaty
-    </span>
     <p class="eyebrow" style="margin-bottom: 18px;">Свободный танец · живой DJ-сет · трезвое состояние</p>
     <h1><span class="hl glow-aqua">Осознанная</span> вечеринка</h1>
-    <p class="sub">Танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
+    <p class="sub">Ecstatic Dance — танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#tickets">Билет на ближайшее событие</a>
       <a class="btn btn-secondary" href="#what">Что такое экстатик?</a>
@@ -1138,7 +1139,7 @@ svg.illu .acc { stroke: var(--aqua); }
       <!-- Карточка 1: Dance & Meditate (закатная гамма) -->
       <article class="fest-card fest-dm" data-od-id="fest-dm">
         <div class="fest-photo" data-od-id="fest-dm-photo">
-          <!-- TODO: сгенерировать фото — закат над Иссык-Кулем, палаточный лагерь с фонарями -->
+          <img src="image-flux-pro-ultra-mr964cqv.jpg" alt="Закат над Иссык-Кулем, палаточный лагерь с тёплыми фонарями среди деревьев, силуэты гор" loading="lazy">
         </div>
         <div class="fest-body">
           <span class="fest-badge">Early bird 2900 сом — первые 35 мест</span>
@@ -1149,8 +1150,7 @@ svg.illu .acc { stroke: var(--aqua); }
             <span>южный берег Иссык-Куля</span><span class="sep">·</span>
             <span>без алкоголя</span>
           </div>
-          <!-- TODO: ссылка на лендинг фестиваля -->
-          <a class="fest-btn" href="#">Подробнее и билеты</a>
+          <a class="fest-btn" href="https://ecstaticdance.kz/dance-meditate-2026" data-od-id="fest-dm-btn">Подробнее и билеты</a>
         </div>
       </article>
 
