@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dance & Meditate · 08/08 · Open Air на Иссык-Куле</title>
+<meta name="description" content="Три дня музыки, практик и свободы на берегу Иссык-Куля. 7–9 августа. Open Air с мастером Фердусой.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ТОКЕНЫ (из дизайн-системы)
+   ============================================ */
+:root {
+  --dusk: #1E2142;
+  --dusk-soft: #2B2F5C;
+  --lake: #2E6E7E;
+  --lake-light: #7BB8C4;
+  --sunset: #F2994A;
+  --sunset-dark: #4A2604;
+  --lantern: #FFE3A8;
+  --sand: #F6EFE4;
+  --sand-card: #FFFFFF;
+  --ink: #2A2620;
+  --ink-soft: #6E6455;
+  --cream: #F6EFE4;
+  --cream-soft: #9EA2CC;
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-hero: clamp(36px, 8vw, 72px);
+  --fs-h2: clamp(26px, 5vw, 44px);
+  --fs-h3: clamp(18px, 3vw, 24px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+  --section-pad: clamp(56px, 10vw, 120px);
+  --card-pad: 24px;
+  --gap: 16px;
+  --radius-card: 20px;
+  --radius-btn: 999px;
+  --maxw: 1080px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: var(--fs-body); line-height: 1.6; color: var(--ink); background: var(--sand); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.15; font-weight: 600; }
+h1 { font-size: var(--fs-hero); letter-spacing: -0.01em; }
+h2 { font-size: var(--fs-h2); letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+a { color: var(--lake); }
+p { max-width: 70ch; margin-inline: auto; }
+.hero p { margin-inline: auto; text-align: center; }
+.transfer-aside p { margin-inline: 0; }
+
+/* ============================================
+   КНОПКИ
+   ============================================ */
+.btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: var(--radius-btn); text-decoration: none; border: none; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; line-height: 1; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--sunset); color: var(--sunset-dark); }
+.btn-primary:hover { box-shadow: 0 6px 24px rgba(242,153,74,.45); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(246,239,228,.4); }
+.btn-secondary:hover { border-color: var(--lantern); color: var(--lantern); }
+.btn-secondary.on-light { color: var(--lake); border-color: rgba(46,110,126,.4); }
+.btn-secondary.on-light:hover { border-color: var(--lake); color: var(--lake); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid rgba(42,38,32,.16); }
+.btn-ghost:hover { border-color: var(--lake); color: var(--lake); }
+
+/* ============================================
+   СЕКЦИИ
+   ============================================ */
+.section { padding: var(--section-pad) 24px; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: var(--dusk); color: var(--cream); }
+.section-dark h2 { color: var(--lantern); }
+.section-dark h3 { color: var(--lantern); }
+.section-light { background: var(--sand); }
+.eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--lake); margin-bottom: 14px; }
+.section-dark .eyebrow { color: var(--lake-light); }
+.lead { font-size: clamp(17px, 2.4vw, 21px); line-height: 1.5; max-width: 60ch; }
+.section-lede { font-size: 15px; color: var(--cream-soft); margin: 10px auto 0; max-width: 60ch; text-align: center; }
+.section-light .section-lede { color: var(--ink-soft); }
+
+/* ============================================
+   КАРТОЧКИ
+   ============================================ */
+.card { background: var(--sand-card); border-radius: var(--radius-card); padding: var(--card-pad); }
+.card-dark { background: var(--dusk-soft); border-radius: var(--radius-card); padding: var(--card-pad); color: var(--cream); }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* ============================================
+   ДЕКОР — знак 08/08
+   ============================================ */
+.hero-logo { display: block; margin: 0 auto 16px; max-width: 120px; height: auto; filter: brightness(0) invert(1); }
+@media (max-width: 600px) { .hero-logo { margin-top: -40px; } }
+.mark-0808 { font-family: var(--font-display); color: var(--lantern); letter-spacing: 4px; }
+.divider-0808 { text-align: center; font-family: var(--font-display); color: var(--lantern); opacity: .5; font-size: 20px; letter-spacing: 6px; padding: 8px 0; }
+.glow { text-shadow: 0 0 30px rgba(255,227,168,.55), 0 0 60px rgba(255,227,168,.3); }
+
+/* ============================================
+   ПЛАСХОЛДЕРЫ ФОТО
+   ============================================ */
+.ph { position: relative; border-radius: var(--radius-card); overflow: hidden; background:
+   radial-gradient(circle at 30% 20%, #F2994A 0%, transparent 45%),
+   radial-gradient(circle at 70% 80%, #2E6E7E 0%, transparent 55%),
+   linear-gradient(135deg, #1E2142 0%, #2B2F5C 100%);
+  display: flex; align-items: flex-end; min-height: 220px; border: 1px solid rgba(255,227,168,.15); }
+.ph::before { content: "TODO"; position: absolute; top: 10px; right: 12px; font-family: var(--font-body); font-size: 10px; letter-spacing: 2px; color: rgba(255,227,168,.55); text-transform: uppercase; }
+.ph-label { padding: 16px 18px; font-family: var(--font-body); font-size: 13px; color: var(--cream); background: linear-gradient(0deg, rgba(30,33,66,.72), transparent); width: 100%; }
+.photo { position: relative; border-radius: var(--radius-card); overflow: hidden; background-size: cover; background-position: center; display: flex; align-items: flex-end; min-height: 180px; background-color: var(--dusk); }
+.photo .ph-label { position: relative; z-index: 2; }
+.photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(30,33,66,.55) 100%); z-index: 1; pointer-events: none; }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 56px 24px; overflow: hidden; background: var(--dusk); color: var(--cream); }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg .ph { position: absolute; inset: 0; border-radius: 0; min-height: 0; height: 100%; border: 0; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(30,33,66,.55) 0%, rgba(30,33,66,.7) 100%); z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 760px; }
+.hero-mark { font-size: clamp(28px, 6vw, 56px); margin-bottom: 18px; }
+.hero h1 { color: var(--cream); margin-bottom: 16px; }
+.hero .lead { color: var(--cream); margin: 0 auto 22px; }
+.facts-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: var(--fs-small); color: var(--lake-light); margin-bottom: 28px; letter-spacing: .02em; }
+.facts-row span:not(:last-child)::after { content: " ·"; color: rgba(123,184,196,.5); margin-left: 14px; }
+.facts-row span:last-child { font-weight: 600; }
+.early-note { font-size: var(--fs-small); color: var(--cream-soft); margin: 14px auto 0; text-align: center; max-width: none; }
+.early-note strong { color: var(--lantern); font-weight: 600; }
+
+/* ============================================
+   ЦИФРЫ (sec 2)
+   ============================================ */
+.stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 36px; }
+@media (min-width: 640px) { .stat-row { grid-template-columns: repeat(4, 1fr); } }
+.stat { text-align: center; padding: 20px 8px; border-top: 1px solid rgba(46,110,126,.18); }
+.stat-num { font-family: var(--font-display); font-size: clamp(28px, 6vw, 44px); font-weight: 600; color: var(--dusk); line-height: 1; }
+.stat-lbl { font-size: var(--fs-small); color: var(--ink-soft); margin-top: 8px; }
+
+/* ============================================
+   МАСТЕР (sec 3)
+   ============================================ */
+.master-grid { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; }
+@media (min-width: 720px) { .master-grid { grid-template-columns: 360px 1fr; gap: 40px; } }
+.master-photo { min-height: 420px; }
+.master-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+.master-practices { list-style: none; padding: 0; margin-top: 18px; }
+.master-practices li { padding: 10px 0; border-top: 1px solid rgba(46,110,126,.15); font-size: var(--fs-small); color: var(--ink-soft); }
+.master-practices li strong { color: var(--ink); font-weight: 600; }
+
+/* ============================================
+   ПРОГРАММА (sec 4)
+   ============================================ */
+.program-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 560px) { .program-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 880px) { .program-grid { grid-template-columns: repeat(3, 1fr); } }
+.program-card { background: var(--sand-card); border-radius: var(--radius-card); padding: 22px 20px; border: 1px solid rgba(46,110,126,.1); }
+.program-card .ico { width: 40px; height: 40px; border-radius: 12px; background: rgba(46,110,126,.1); display: grid; place-items: center; margin-bottom: 14px; color: var(--lake); }
+.program-card h3 { margin-bottom: 8px; }
+.program-card p { font-size: var(--fs-small); color: var(--ink-soft); max-width: none; }
+.program-note { margin-top: 22px; font-size: var(--fs-small); color: var(--ink-soft); text-align: center; font-style: italic; }
+
+/* ============================================
+   РАСПИСАНИЕ (sec 5)
+   ============================================ */
+.timeline { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .timeline { grid-template-columns: repeat(3, 1fr); } }
+.tl-step { position: relative; }
+.tl-day { font-family: var(--font-display); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--lake-light); margin-bottom: 8px; }
+.tl-title { font-family: var(--font-display); font-weight: 500; color: var(--lantern); font-size: 20px; margin-bottom: 12px; }
+.tl-list { list-style: none; padding: 0; }
+.tl-list li { padding: 9px 0; border-top: 1px solid rgba(158,162,204,.18); font-size: var(--fs-small); color: var(--cream-soft); }
+.tl-list li:first-child { border-top: 0; }
+
+/* ============================================
+   МЕСТО (sec 6)
+   ============================================ */
+.location-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .location-grid { grid-template-columns: 1.1fr .9fr; } }
+.location-map { min-height: 300px; }
+.stay-card h3 { margin-bottom: 10px; }
+.stay-card p { font-size: 15px; color: var(--ink-soft); margin-bottom: 14px; }
+.stay-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .stay-grid { grid-template-columns: 1fr 1fr; } }
+.food-block { margin-top: 28px; padding: 22px; border-radius: var(--radius-card); background: var(--sand-card); }
+.food-block h3 { margin-bottom: 8px; }
+.alco-banner { margin-top: 18px; padding: 16px 20px; border-radius: 14px; background: rgba(46,110,126,.1); border: 1px solid rgba(46,110,126,.25); color: var(--lake); font-weight: 600; font-size: 15px; }
+.checklist { margin-top: 26px; }
+.checklist h3 { margin-bottom: 14px; }
+.checklist ul { list-style: none; display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .checklist ul { grid-template-columns: 1fr 1fr; } }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--fs-small); color: var(--ink); }
+.checklist li::before { content: "✓"; color: var(--lake); font-weight: 700; flex-shrink: 0; }
+
+/* ============================================
+   БИЛЕТЫ (sec 7)
+   ============================================ */
+.price-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 600px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 920px) { .price-grid { grid-template-columns: repeat(3, 1fr); } }
+.price-card { text-align: center; border: 1.5px solid rgba(158,162,204,.22); background: var(--dusk-soft); color: var(--cream); border-radius: var(--radius-card); padding: 26px 20px; display: flex; flex-direction: column; }
+.price-card.featured { border: 2px solid var(--sunset); position: relative; }
+.price-card .tier { font-size: var(--fs-small); color: var(--cream-soft); }
+.price-value { font-family: var(--font-display); font-size: 38px; font-weight: 600; color: var(--cream); margin: 8px 0 4px; }
+.price-value small { font-size: 16px; font-weight: 400; }
+.price-card.featured .price-value { color: var(--sunset); }
+.price-card .desc { font-size: var(--fs-small); color: var(--cream-soft); margin-bottom: 18px; min-height: 2.4em; }
+.price-card .btn { margin-top: auto; width: 100%; }
+.price-card .btn-ghost { color: var(--cream); border-color: rgba(246,239,228,.3); }
+.price-card .btn-ghost:hover { border-color: var(--lantern); color: var(--lantern); }
+.badge { display: inline-block; background: var(--sunset); color: var(--sunset-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .5px; }
+.price-card.featured .badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.tickets-foot { margin-top: 22px; text-align: center; font-size: var(--fs-small); color: var(--cream-soft); }
+
+/* ============================================
+   ОТЗЫВЫ (sec 8)
+   ============================================ */
+.gallery-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-bottom: 30px; }
+@media (min-width: 720px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+.gallery-grid .photo { min-height: 180px; }
+@media (min-width: 720px) { .gallery-grid .photo:nth-child(1), .gallery-grid .photo:nth-child(4) { grid-column: span 2; min-height: 240px; } }
+
+.video-reel { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; margin-bottom: 30px; }
+.video-reel::-webkit-scrollbar { height: 3px; }
+.video-reel::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 3px; }
+.video-card { flex: 0 0 160px; scroll-snap-align: start; position: relative; border-radius: 14px; overflow: hidden; background: var(--dusk); aspect-ratio: 9/16; }
+.video-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-card .vid-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; background: linear-gradient(transparent, rgba(0,0,0,.45)); color: #fff; font-size: 11px; line-height: 1.3; pointer-events: none; }
+.video-card .vid-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.3); color: #fff; font-size: 32px; opacity: .9; transition: opacity .2s; pointer-events: none; }
+.video-card.playing .vid-play { opacity: 0; }
+.reviews { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+.review { background: var(--sand-card); border-radius: var(--radius-card); padding: 26px 24px; position: relative; }
+.review::before { content: "\201C"; display: block; font-family: var(--font-display); font-size: 38px; line-height: 1; color: var(--lake); margin-bottom: 6px; }
+.review p { font-size: 16px; line-height: 1.5; color: var(--ink); margin-bottom: 12px; }
+.review .src { font-size: var(--fs-small); color: var(--ink-soft); }
+
+/* ============================================
+   FAQ (sec 9)
+   ============================================ */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq details { background: var(--sand-card); border-radius: 14px; border: 1px solid rgba(46,110,126,.12); margin-bottom: 10px; overflow: hidden; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 22px; font-family: var(--font-display); font-weight: 500; font-size: 17px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-body); font-weight: 400; font-size: 22px; color: var(--lake); transition: transform .2s ease; flex-shrink: 0; }
+.faq details[open] summary::after { content: "−"; }
+.faq .answer { padding: 0 22px 20px; font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+
+/* ============================================
+   ФИНАЛ (sec 10)
+   ============================================ */
+.final { position: relative; text-align: center; overflow: hidden; }
+.final h2 { color: var(--lantern); margin: 18px 0 14px; }
+.final .sub { color: var(--cream); margin-bottom: 28px; max-width: 40ch; margin-left: auto; margin-right: auto; }
+.final .btn-primary { margin-bottom: 0; }
+.footer { margin-top: 60px; padding-top: 28px; border-top: 1px solid rgba(158,162,204,.18); display: flex; flex-direction: column; gap: 10px; align-items: center; font-size: var(--fs-small); color: var(--cream-soft); }
+.footer .links { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; }
+.footer .links a { color: var(--lake-light); text-decoration: none; }
+
+/* ============================================
+   ТРАНСФЕР (sec 7.5)
+   ============================================ */
+.transfer-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 760px) { .transfer-grid { grid-template-columns: 1.05fr .95fr; gap: 40px; } }
+.transfer-points { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 12px; }
+.transfer-points li { display: flex; align-items: flex-start; gap: 12px; font-size: var(--fs-small); color: var(--ink); line-height: 1.5; }
+.transfer-points li::before { content: "→"; color: var(--lake); font-family: var(--font-display); font-weight: 500; flex-shrink: 0; }
+.transfer-aside { background: var(--dusk); color: var(--cream); border-radius: var(--radius-card); padding: 28px 24px; }
+.transfer-aside h3 { color: var(--lantern); margin-bottom: 12px; }
+.transfer-aside p { font-size: var(--fs-small); color: var(--cream-soft); margin-bottom: 8px; }
+.transfer-aside .badge { margin-bottom: 18px; }
+.transfer-aside .btn { width: 100%; margin-top: 8px; }
+
+/* ============================================
+   МОДАЛКА БРОНИРОВАНИЯ
+   ============================================ */
+.modal-overlay { position: fixed; inset: 0; background: rgba(30,33,66,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity .2s ease; }
+.modal-overlay.open { display: flex; opacity: 1; }
+.modal { background: var(--sand-card); border-radius: 22px; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; padding: 28px 26px 24px; position: relative; box-shadow: 0 20px 60px rgba(30,33,66,.4); }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(46,110,126,.08); color: var(--lake); font-size: 22px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .15s; }
+.modal-close:hover { background: rgba(46,110,126,.18); }
+.modal-eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--lake); margin-bottom: 8px; }
+.modal-title { font-family: var(--font-display); font-size: clamp(22px, 5vw, 28px); font-weight: 600; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+.modal-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 18px; max-width: none; }
+.modal-form { display: grid; gap: 14px; }
+.form-row { display: grid; gap: 5px; }
+.form-row.two { grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: .02em; }
+.form-label small { color: var(--ink-soft); font-weight: 400; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; font-family: var(--font-body); font-size: 15px; color: var(--ink);
+  background: #FDFAF4; border: 1.5px solid rgba(46,110,126,.18); border-radius: 12px;
+  padding: 12px 14px; transition: border-color .15s, box-shadow .15s; outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--lake); box-shadow: 0 0 0 3px rgba(46,110,126,.12); }
+.form-textarea { resize: vertical; min-height: 70px; }
+.form-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%232E6E7E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-help { font-size: 12px; color: var(--ink-soft); }
+.form-notice { background: rgba(46,110,126,.08); border: 1px solid rgba(46,110,126,.2); border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--lake); line-height: 1.5; margin-bottom: 4px; }
+.form-notice strong { font-weight: 600; }
+.form-actions { display: grid; gap: 10px; margin-top: 6px; }
+.form-actions .btn { width: 100%; text-align: center; justify-content: center; }
+.form-meta { font-size: 11px; color: var(--ink-soft); text-align: center; margin-top: 10px; letter-spacing: .02em; }
+.btn-wa { background: var(--dusk); color: var(--cream); border-color: transparent; }
+.btn-wa:hover { background: #2B2F5C; box-shadow: 0 6px 20px rgba(30,33,66,.35); transform: translateY(-2px); }
+
+/* Карточки: две кнопки в столбик + note */
+.price-card .btn-row { display: grid; gap: 8px; margin-top: auto; width: 100%; }
+.price-card .btn-row .btn { width: 100%; margin-top: 0; }
+.price-card .btn-secondary { padding: 12px 24px; font-size: 14px; }
+.price-card .transfer-note { font-size: 11px; color: var(--cream-soft); text-align: center; margin-top: 6px; letter-spacing: .02em; line-height: 1.4; }
+
+/* ============================================
+   STICKY CTA
+   ============================================ */
+.sticky-cta { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 99; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+.sticky-cta.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.sticky-cta .btn { width: 100%; text-align: center; box-shadow: 0 8px 30px rgba(30,33,66,.45); display: flex; justify-content: center; align-items: center; gap: 10px; }
+.sticky-cta .count { font-size: 13px; opacity: .85; }
+@media (min-width: 768px) { .sticky-cta { display: none !important; } }
+
+</style>
+</head>
+<body>
+
+<!-- ============ 1. HERO ============ -->
+<header id="hero" class="hero" data-od-id="hero">
+  <div class="hero-bg" data-od-id="hero-bg">
+    <img src="image-flux-pro-ultra-mr964cqv.jpg" alt="Закат над Иссык-Кулем, палаточный лагерь с тёплыми фонарями среди деревьев, силуэты гор" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" fetchpriority="high">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="mrel634x-IMG_5239.PNG" alt="Dance & Meditate" class="hero-logo" data-od-id="hero-logo" width="120" height="120">
+    <div class="mark-0808 glow" data-od-id="hero-mark">08 / 08</div>
+    <h1 data-od-id="hero-title">Dance &amp; Meditate</h1>
+    <p class="lead" data-od-id="hero-subtitle">Три дня музыки, практик и свободы на берегу Иссык-Куля</p>
+    <div class="facts-row" data-od-id="hero-facts">
+      <span>7–9 августа</span>
+      <span>южный берег Иссык-Куля</span>
+      <span>open air</span>
+    </div>
+    <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta">Забронировать билет · 2900 сом</a>
+    <p class="early-note">Early bird — первые 35 мест, осталось <strong id="early-left-hero">30</strong></p>
+  </div>
+</header>
+
+<!-- ============ 2. ЧТО ЭТО ============ -->
+<section id="about" class="section section-light" data-od-id="about">
+  <div class="section-inner">
+    <p class="eyebrow">Что это</p>
+    <h2 data-od-id="about-title">Уехать туда, где слышно себя</h2>
+    <p class="lead" style="margin-top: 18px;">Забудь про бетонные стены города. Мы уезжаем на берег жемчужного Иссык-Куля — жить в палатках в пешей доступности от воды, танцевать под открытым небом, встречать закаты и дышать чистейшим горным воздухом. Чистое состояние, чистая энергия, настоящие знакомства.</p>
+    <div class="stat-row" data-od-id="about-stats">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">дня open air</div></div>
+      <div class="stat"><div class="stat-num">08/08</div><div class="stat-lbl">основная программа</div></div>
+      <div class="stat"><div class="stat-num">35</div><div class="stat-lbl">early-bird мест</div></div>
+      <div class="stat"><div class="stat-num">300</div><div class="stat-lbl">мест в продаже</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-lbl">практик в программе</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. МАСТЕР ============ -->
+<section id="master" class="section section-light" data-od-id="master" style="background:#FDFAF4;">
+  <div class="section-inner">
+    <p class="eyebrow">Мастер open air</p>
+    <div class="master-grid">
+      <div class="master-photo photo" data-od-id="master-photo" style="background-image:url('mrejubqd-photo_2026-07-10_11-21-58.jpg'); min-height: 420px;">
+        <div class="ph-label">Фердуса · суфийское кружение на закате</div>
+      </div>
+      <div data-od-id="master-text">
+        <h2 data-od-id="master-title">Open Air ведёт Фердуса</h2>
+        <p style="margin-top: 16px;">Жизнерадостный мастер с 27-летней личной практикой. Автор методики «Дыхание Сердца». Сертифицированный учитель йоги RYT500 (India), международный тренер динамических медитаций (Pune, India). Лауреат премии People Awards — «Лучший энергопрактик и мастер медитаций».</p>
+        <p style="margin-top: 12px;">Провела более сотни авторских ретритов по всему миру: Индия, Непал, Тибет, Греция, Египет.</p>
+        <div class="master-badges" data-od-id="master-badges">
+          <span class="badge" style="background:rgba(46,110,126,.12); color:var(--lake);">27+ лет практики</span>
+          <span class="badge" style="background:rgba(46,110,126,.12); color:var(--lake);">RYT500 India</span>
+          <span class="badge" style="background:rgba(46,110,126,.12); color:var(--lake);">People Awards</span>
+          <span class="badge" style="background:rgba(46,110,126,.12); color:var(--lake);">131K в Instagram</span>
+        </div>
+        <p style="font-size: var(--fs-small); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 1px;">Что проведёт на open air</p>
+        <ul class="master-practices" data-od-id="master-practices">
+          <li><strong>Суфийские кружения</strong> — древняя практика вращения, тишина ума через движение</li>
+          <li><strong>«Дыхание Сердца»</strong> — авторская методика Фердусы</li>
+          <li><strong>Гонг-медитация</strong> — глубокая звуковая перезагрузка</li>
+          <li><strong>Sound healing</strong> — хрустальные чаши на закате</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. ПРОГРАММА ============ -->
+<section id="program" class="section section-light" data-od-id="program">
+  <div class="section-inner">
+    <p class="eyebrow">Программа</p>
+    <h2 data-od-id="program-title">Три дня, чтобы сбросить напряжение и собрать себя заново</h2>
+    <div class="program-grid" style="margin-top: 30px;" data-od-id="program-grid">
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Динамические медитации Фердусы</h3><p>Авторские динамические медитации — сброс напряжения и перезагрузка через движение, разработанные Фердусой.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3a9 9 0 0 1 0 18M12 3a9 9 0 0 0 0 18"/><circle cx="12" cy="12" r="2"/></svg></div><h3>Суфийские кружения</h3><p>Древняя практика вращения с Фердусой: тишина ума через движение.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></div><h3>Ecstatic Dance</h3><p>Танец без правил и оценок, сеты от диджеев.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 18l3-9 4 6 3-5 4 8z"/></svg></div><h3>Сакральная баня</h3><p>Банные ритуалы как практика очищения тела и духа.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12c5-1 15-1 20 0"/></svg></div><h3>Йога на рассвете</h3><p>Мягкое пробуждение под шум волн, медитации у воды.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Sound Healing и гонг</h3><p>Звукотерапия на закате, хрустальные чаши, массовая гонг-медитация.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3c-2 3-3 5-3 8s1 5 3 5 3-2 3-5-1-5-3-8z"/><path d="M9 17c-2 1-3 2-3 4M15 17c2 1 3 2 3 4"/></svg></div><h3>Джем у костра</h3><p>Живые сейшны с бубнами и барабанами под ночным небом.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 4h12v6a6 6 0 0 1-12 0z"/><path d="M6 7H3M6 10H3M18 7h3M18 10h3"/><path d="M12 16v4M8 22h8"/></svg></div><h3>Мастер-классы студий</h3><p>Танцевальные сессии от топовых студий города.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16l-2 13H6z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div><h3>Ярмарка мастеров</h3><p>Крафт, творчество, розыгрыши призов.</p></div>
+      <div class="program-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 14c4-3 16-3 20 0M4 10c3-2 13-2 16 0M7 6c2-1 8-1 10 0"/></svg></div><h3>Озеро</h3><p>Сапы, купание, бесконечные закаты в пешей доступности.</p></div>
+    </div>
+    <p class="program-note">Полное расписание по дням опубликуем ближе к событию. Программа предварительная, наполнение можно корректировать.</p>
+  </div>
+</section>
+
+<!-- ============ 5. РАСПИСАНИЕ ============ -->
+<section id="schedule" class="section section-dark" data-od-id="schedule">
+  <div class="section-inner">
+    <p class="eyebrow">Расписание по дням</p>
+    <h2 data-od-id="schedule-title">Как пройдут три дня</h2>
+    <div class="timeline" style="margin-top: 32px;" data-od-id="schedule-timeline">
+      <!-- TODO: расписание примерное — уточнить тайминги ближе к событию -->
+      <div class="card-dark tl-step">
+        <div class="tl-day">7 августа</div>
+        <div class="tl-title">Заезд</div>
+        <ul class="tl-list">
+          <li>Размещение в лагере</li>
+          <li>Вечернее знакомство</li>
+          <li>Открытие open air</li>
+          <li>Джем у костра</li>
+        </ul>
+      </div>
+      <div class="card-dark tl-step">
+        <div class="tl-day">8 августа</div>
+        <div class="tl-title">Основной день</div>
+        <ul class="tl-list">
+          <li>Йога на рассвете</li>
+          <li>Динамические медитации Фердусы</li>
+          <li>Мастер-классы и ecstatic dance</li>
+          <li>Сакральная баня</li>
+          <li>Sound healing на закате</li>
+          <li>DJ-сеты и кружения под звёздами</li>
+        </ul>
+      </div>
+      <div class="card-dark tl-step">
+        <div class="tl-day">9 августа</div>
+        <div class="tl-title">Выезд</div>
+        <ul class="tl-list">
+          <li>Утренняя медитация с Фердусой</li>
+          <li>Закрытие круга</li>
+          <li>Обнимашки</li>
+          <li>Отъезд</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. МЕСТО ============ -->
+<section id="location" class="section section-light" data-od-id="location">
+  <div class="section-inner">
+    <p class="eyebrow">Место и проживание</p>
+    <h2 data-od-id="location-title">Ablepiha Camp, южный берег Иссык-Куля</h2>
+    <div class="location-grid" style="margin-top: 28px;">
+      <div class="location-map photo" data-od-id="location-map" style="background-image:url('image-flux-pro-ultra-mrek6l1w.jpg'); min-height: 300px;">
+        <div class="ph-label">5 км от отеля «Марко Поло» · 50 км от Каракола</div>
+      </div>
+      <div data-od-id="location-info">
+        <p style="font-size: 16px;">Частная территория Ablepiha Camp — 5 км от отеля «Марко Поло», 50 км от Каракола. Берег — в пешей доступности.</p>
+        <div class="stay-grid" style="margin-top: 22px;">
+          <div class="card stay-card">
+            <h3>Своя палатка — бесплатно</h3>
+            <p>Приезжай со своей палаткой и живи в лагере без доплат. Место в кемпинге включено в билет.</p>
+          </div>
+          <div class="card stay-card">
+            <h3>Палатка-дом в аренду</h3>
+            <p>Готовая просторная палатка со всеми удобствами — заезжай налегке. Аренда оплачивается отдельно.</p>
+            <span style="font-size: var(--fs-small); color: var(--ink-soft);"><!-- TODO: цена аренды -->цена — уточняется</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="food-block">
+      <h3>Еда</h3>
+      <p>Готовить не нужно — на территории работают фудкорты и ярмарка еды. Питание оплачивается на месте.</p>
+    </div>
+    <div class="alco-banner">На территории не продаётся алкоголь.</div>
+    <div class="checklist">
+      <h3>Что взять с собой</h3>
+      <ul>
+        <li>Палатка и спальник (если своя)</li>
+        <li>Тёплая кофта на вечер</li>
+        <li>Купальник</li>
+        <li>Коврик для практик</li>
+        <li>Фонарик</li>
+        <li>Хорошее настроение</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. БИЛЕТЫ ============ -->
+<section id="tickets" class="section section-dark" data-od-id="tickets">
+  <div class="section-inner">
+    <p class="eyebrow">Билеты</p>
+    <h2 data-od-id="tickets-title">Бронируй место — оплата подключается</h2>
+    <p class="section-lede" data-od-id="tickets-lede">Сейчас бронь без оплаты: мы свяжемся для подтверждения, онлайн-эквайринг подключается. В каждой карточке есть отдельная кнопка «с трансфером» — цена трансфера зависит от группы и транспорта.</p>
+    <div class="price-grid" style="margin-top: 36px;" data-od-id="tickets-grid">
+      <!-- TODO: заменить бронь → оплата эквайринга, когда подключат -->
+      <div class="price-card featured" data-od-id="ticket-early">
+        <span class="badge">Early bird · первые 35 мест</span>
+        <div class="tier">Ранний билет</div>
+        <div class="price-value">2900<small> сом</small></div>
+        <div class="desc">3 дня, место в кемпинге, вся программа</div>
+        <div class="btn-row">
+          <button class="btn btn-primary" type="button" data-book="early-2900" data-tier="Ранний билет · 2900 сом">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="early-2900-transfer" data-tier="Ранний билет · 2900 сом + трансфер">Забронировать с трансфером</button>
+        </div>
+        <p class="transfer-note">Трансфер оплачивается отдельно</p>
+      </div>
+      <div class="price-card" data-od-id="ticket-standard">
+        <div class="tier">Стандарт</div>
+        <div class="price-value">4000<small> сом</small></div>
+        <div class="desc">После ранних билетов</div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" type="button" data-book="standard-4000" data-tier="Стандарт · 4000 сом">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="standard-4000-transfer" data-tier="Стандарт · 4000 сом + трансфер">Забронировать с трансфером</button>
+        </div>
+        <p class="transfer-note">Трансфер оплачивается отдельно</p>
+      </div>
+      <div class="price-card" data-od-id="ticket-company4">
+        <div class="tier">Компания 4 человека</div>
+        <div class="price-value">2900<small> сом/чел</small></div>
+        <div class="desc">За человека</div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" type="button" data-book="company4-2900" data-tier="Компания 4 · 2900 сом/чел">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="company4-2900-transfer" data-tier="Компания 4 · 2900 сом/чел + трансфер">Забронировать с трансфером</button>
+        </div>
+        <p class="transfer-note">Трансфер оплачивается отдельно</p>
+      </div>
+      <div class="price-card" data-od-id="ticket-company6">
+        <div class="tier">Компания 6 человек</div>
+        <div class="price-value">2500<small> сом/чел</small></div>
+        <div class="desc">За человека</div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" type="button" data-book="company6-2500" data-tier="Компания 6 · 2500 сом/чел">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="company6-2500-transfer" data-tier="Компания 6 · 2500 сом/чел + трансфер">Забронировать с трансфером</button>
+        </div>
+        <p class="transfer-note">Трансфер оплачивается отдельно</p>
+      </div>
+      <div class="price-card" data-od-id="ticket-dayof">
+        <div class="tier">В день события</div>
+        <div class="price-value">4500<small> сом</small></div>
+        <div class="desc">Оплата на входе</div>
+        <div class="btn-row">
+          <span class="btn btn-ghost" style="opacity:.6; cursor: default; pointer-events: none; text-align:center;">Оплата на входе</span>
+        </div>
+      </div>
+    </div>
+    <p class="tickets-foot"><!-- TODO: возраст детей — уточнить -->Дети до N лет — бесплатно</p>
+  </div>
+</section>
+
+<!-- ============ 7.5. ТРАНСФЕР ============ -->
+<section id="transfer" class="section section-light" data-od-id="transfer">
+  <div class="section-inner">
+    <p class="eyebrow">Трансфер</p>
+    <h2 data-od-id="transfer-title">Добраться от Алматы до лагеря</h2>
+    <div class="transfer-grid" style="margin-top: 28px;">
+      <div data-od-id="transfer-info">
+        <p style="font-size: 16px; color: var(--ink); line-height: 1.55;">Уже купил билет и понял, что нужен трансфер? Забронируй его отдельно — мы соберём людей по точкам отправления, подберём транспорт (джип или микроавтобус) и скинем цену в WhatsApp-чат координаторов.</p>
+        <ul class="transfer-points" data-od-id="transfer-points">
+          <li>Забронировать можно даже после того, как купил билет — кнопка ниже</li>
+          <li>Стоимость зависит от количества людей и типа транспорта — называем в чате</li>
+          <li>Координация: отдельная WhatsApp-группа, точки сбора, время отбытия</li>
+          <li>Можно приехать на своей машине —coords лагеря пришлём в чате</li>
+        </ul>
+        <button class="btn btn-primary" type="button" data-book="transfer-only" data-tier="Только трансфер" data-od-id="transfer-cta" style="padding: 16px 32px;">Забронировать трансфер</button>
+      </div>
+      <aside class="transfer-aside" data-od-id="transfer-aside">
+        <span class="badge">Без предоплаты</span>
+        <h3>Как считается цена</h3>
+        <p>Собираем людей по точкам отправления (Алматы → Иссык-Куль).</p>
+        <p>Джип — для отдельных заявок или маленьких групп. Микроавтобус — для наполненной группы.</p>
+        <p style="margin-bottom: 0;">Бронируешь → мы пишем в WhatsApp → подбираем транспорт → называем цену.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. ОТЗЫВЫ ============ -->
+<section id="vibe" class="section section-light" data-od-id="vibe">
+  <div class="section-inner">
+    <p class="eyebrow">Атмосфера и отзывы</p>
+    <h2 data-od-id="vibe-title">Эмоции прошлых событий</h2>
+    <div class="gallery-grid" style="margin-top: 28px;" data-od-id="gallery">
+      <div class="photo" data-od-id="gallery-1" style="background-image:url('image-flux-pro-ultra-mr967dit.jpg');" loading="lazy"><div class="ph-label">Танцующие люди на берегу на закате</div></div>
+      <div class="photo" data-od-id="gallery-2" style="background-image:url('image-flux-pro-ultra-mr968n9n.jpg');"><div class="ph-label">Костёр с барабанами ночью</div></div>
+      <div class="photo" data-od-id="gallery-3" style="background-image:url('image-flux-pro-ultra-mr968qbn.jpg');"><div class="ph-label">Йога на рассвете у воды</div></div>
+      <div class="photo" data-od-id="gallery-4" style="background-image:url('image-flux-pro-ultra-mr967c33.jpg');"><div class="ph-label">Суфийское кружение</div></div>
+    </div>
+    <div class="video-reel" data-od-id="video-reel">
+      <div class="video-card" data-od-id="video-1">
+        <video src="mrekie3y-video_2026-07-10_11-41-34.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Танец на закате</div>
+      </div>
+      <div class="video-card" data-od-id="video-2">
+        <video src="mrekie4j-video_2026-07-10_11-41-31.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Практика у воды</div>
+      </div>
+      <div class="video-card" data-od-id="video-3">
+        <video src="mrekie4m-video_2026-07-10_11-41-29.mp4" preload="none" playsinline muted loop poster=""></video>
+        <div class="vid-play">▶</div>
+        <div class="vid-label">Энергия open air</div>
+      </div>
+    </div>
+    <div class="reviews" data-od-id="reviews">
+      <div class="review"><p>«Еду! Это идеальное время для отдыха»</p><div class="src">из комментариев Instagram</div></div>
+      <div class="review"><p>«Вау. Спасибо, дорогая, за знак»</p><div class="src">из комментариев Instagram</div></div>
+      <div class="review"><p>«Какое вдохновляющее мероприятие! Обязательно нужно посетить»</p><div class="src">из комментариев Instagram</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. FAQ ============ -->
+<section id="faq" class="section section-light" data-od-id="faq" style="background:#FDFAF4;">
+  <div class="section-inner">
+    <p class="eyebrow" style="text-align:center;">FAQ</p>
+    <h2 style="text-align:center; margin-bottom: 30px;" data-od-id="faq-title">Частые вопросы</h2>
+    <div class="faq" data-od-id="faq-list">
+      <details>
+        <summary>Нужна ли своя палатка?</summary>
+        <div class="answer">Не обязательно: можно арендовать палатку-дом со всеми удобствами или приехать со своей бесплатно.</div>
+      </details>
+      <details>
+        <summary>Что с едой?</summary>
+        <div class="answer">На территории работают фудкорты и ярмарка еды. Питание покупается на месте, готовить самостоятельно не нужно.</div>
+      </details>
+      <details>
+        <summary>Продаётся ли алкоголь на территории?</summary>
+        <div class="answer">Нет, на территории алкоголь не продаётся.</div>
+      </details>
+      <details>
+        <summary>Как добраться?</summary>
+        <div class="answer">Южный берег Иссык-Куля, 5 км от «Марко Поло», 50 км от Каракола. <!-- TODO: детали трансфера -->Детали трансфера опубликуем ближе к событию.</div>
+      </details>
+      <details>
+        <summary>Я никогда не медитировал(а), мне подойдёт?</summary>
+        <div class="answer">Да. Все практики рассчитаны на любой уровень, опыт не нужен.</div>
+      </details>
+      <details>
+        <summary>Как оплатить?</summary>
+        <div class="answer">Сейчас бронь без онлайн-оплаты: оставляешь контакты в форме, мы пишем в WhatsApp для подтверждения. Онлайн-эквайринг подключается позже — тогда кнопки сменятся на «Купить».</div>
+      </details>
+      <details>
+        <summary>Нужен трансфер — как?</summary>
+        <div class="answer">На каждой карточке билета есть кнопка «Забронировать с трансфером». Если уже купил билет и решил, что нужен трансфер — в секции «Трансфер» нажми «Забронировать трансфер», оставь контакты. Цена зависит от группы и транспорта (джип или микроавтобус), называем её в WhatsApp-чате координаторов.</div>
+      </details>
+      <details>
+        <summary>Что если дождь?</summary>
+        <div class="answer">Программа адаптируется под погоду, основные площадки с навесами. <!-- TODO: детали -->Open Air проходит в любую погоду.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. ФИНАЛ ============ -->
+<section id="final" class="section section-dark final" data-od-id="final">
+  <div class="section-inner">
+    <div class="divider-0808">— ∞ 08/08 ∞ —</div>
+    <h2 data-od-id="final-title">Осталось <span id="early-left-final">30</span> билетов по 2900 сом</h2>
+    <p class="sub" data-od-id="final-sub">7–9 августа пройдут без тебя или с тобой. Выбирай.</p>
+    <a class="btn btn-primary" href="#tickets" data-od-id="final-cta">Забронировать билет</a>
+    <div class="footer">
+      <div class="links">
+        <a href="#" target="_blank" rel="noopener">@whirling_ferdusa</a>
+        <a href="#" target="_blank" rel="noopener">@dance_and_meditate</a>
+        <a href="#" target="_blank" rel="noopener">@ablepiha_camp_fest</a>
+      </div>
+      <!-- TODO: вставить реальные ссылки на Instagram -->
+      <div>Dance &amp; Meditate · 08/08 · Иссык-Куль</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ МОДАЛКА БРОНИРОВАНИЯ ============ -->
+<div class="modal-overlay" id="book-overlay" data-od-id="book-modal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
+    <button class="modal-close" type="button" id="book-close" aria-label="Закрыть">×</button>
+    <p class="modal-eyebrow" id="book-kind">Бронирование</p>
+    <h3 class="modal-title" id="book-title">Забронировать место</h3>
+    <p class="modal-sub" id="book-sub">Оставь контакты — напишем в WhatsApp для подтверждения. Без оплаты, всё человеческое.</p>
+
+    <form class="modal-form" id="book-form" autocomplete="on" data-od-id="booking-form">
+      <div class="form-row">
+        <label class="form-label" for="bk-name">Имя <small>(как к тебе обращаться)</small></label>
+        <input class="form-input" id="bk-name" name="name" type="text" required placeholder="Айгерим">
+      </div>
+      <div class="form-row two">
+        <div>
+          <label class="form-label" for="bk-phone">Телефон</label>
+          <input class="form-input" id="bk-phone" name="phone" type="tel" required placeholder="+7 777 123 45 67">
+        </div>
+        <div>
+          <label class="form-label" for="bk-from">Откуда</label>
+          <input class="form-input" id="bk-from" name="from" type="text" value="Алматы" placeholder="Алматы / другой город">
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="bk-tier">Что бронируешь</label>
+        <input class="form-input" id="bk-tier" name="tier" type="text" readonly>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="bk-comment">Комментарий <small>(необязательно)</small></label>
+        <textarea class="form-textarea" id="bk-comment" name="comment" placeholder="Например: еду со своей палаткой, нужен джип на 2 человек"></textarea>
+      </div>
+      <div class="form-notice" id="bk-notice">
+        <strong>Без онлайн-оплаты.</strong> Бронируешь → мы пишем в WhatsApp → подбираем транспорт и цену (для заявок с трансфером).
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-wa" type="submit" id="bk-submit">Отправить бронь в WhatsApp →</button>
+      </div>
+      <p class="form-meta">Нажимая «Отправить», откроется WhatsApp с готовым сообщением. Номера не сохраняем, спама не шлём.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ STICKY CTA (mobile) ============ -->
+<div class="sticky-cta" id="sticky-cta" data-od-id="sticky-cta">
+  <a class="btn btn-primary" href="#tickets">
+    <span>Забронировать билет · 2900 сом</span>
+    <span class="count" id="sticky-count">осталось 30</span>
+  </a>
+</div>
+
+<script>
+(function () {
+  // ---- Early-bird counter ----
+  // TODO: поменяй число вручную по мере продаж
+  var EARLY_BIRD_LEFT = 30;
+  function setEarlyLeft(v) {
+    var els = ['early-left-hero', 'early-left-final'];
+    els.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = v;
+    });
+    var sc = document.getElementById('sticky-count');
+    if (sc) sc.textContent = 'осталось ' + v;
+  }
+  setEarlyLeft(EARLY_BIRD_LEFT);
+
+  // ---- Sticky CTA show-after-hero ----
+  var hero = document.getElementById('hero');
+  var sticky = document.getElementById('sticky-cta');
+  if (hero && sticky && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        // hero out of view (above) → show sticky
+        if (e.isIntersecting) sticky.classList.remove('visible');
+        else sticky.classList.add('visible');
+      });
+    }, { threshold: 0.05 });
+    io.observe(hero);
+  } else if (sticky) {
+    // fallback: show after 600px scroll
+    function toggle() {
+      if (window.scrollY > 600) sticky.classList.add('visible');
+      else sticky.classList.remove('visible');
+    }
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+  }
+
+  // ---- FAQ: exclusive accordion ----
+  var faqDetails = document.querySelectorAll('.faq details');
+  faqDetails.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) {
+        faqDetails.forEach(function (other) {
+          if (other !== d) other.open = false;
+        });
+      }
+    });
+  });
+
+  // ---- Hide sticky CTA when tickets/final in view (avoid double orange) ----
+  ['tickets', 'final'].forEach(function (id) {
+    var t = document.getElementById(id);
+    if (t && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) sticky.classList.remove('visible');
+          else if (hero && !heroIsVisible) sticky.classList.add('visible');
+        });
+      }, { threshold: 0.1 }).observe(t);
+    }
+  });
+  var heroIsVisible = true;
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { heroIsVisible = e.isIntersecting; });
+    }, { threshold: 0.05 }).observe(hero);
+  }
+
+  // ---- Smooth anchor scroll (scrollTo, safe in OD preview) ----
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var t = document.getElementById(id);
+      if (t) {
+        e.preventDefault();
+        var y = t.getBoundingClientRect().top + window.scrollY - 8;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ---- Lazy-load background photos (gallery / map / master) ----
+  var lazyPhotos = document.querySelectorAll('.photo[data-od-id]');
+  if ('IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var el = e.target;
+          // force background load (already set inline, this just ensures decode)
+          el.style.willChange = 'auto';
+          io2.unobserve(el);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    lazyPhotos.forEach(function (el) { io2.observe(el); });
+  }
+
+  // ---- Video lazy-load + tap-to-play ----
+  var videoCards = document.querySelectorAll('.video-card');
+  if ('IntersectionObserver' in window) {
+    var vidIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var v = e.target.querySelector('video');
+          if (v && v.preload === 'none') { v.preload = 'auto'; v.load(); }
+          vidIO.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    videoCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var v = card.querySelector('video');
+        if (!v) return;
+        if (v.paused) {
+          videoCards.forEach(function (c) { var ov = c.querySelector('video'); if (ov) { ov.pause(); c.classList.remove('playing'); } });
+          v.play(); card.classList.add('playing');
+        } else { v.pause(); card.classList.remove('playing'); }
+      });
+      vidIO.observe(card);
+    });
+  }
+
+  // ---- Booking modal ----
+  // TODO: вставь реальный WhatsApp-номер координатора в формате без + (например "77700000000")
+  var WA_NUMBER = "77700000000";
+  var overlay = document.getElementById('book-overlay');
+  var form = document.getElementById('book-form');
+  var fKind = document.getElementById('book-kind');
+  var fTitle = document.getElementById('book-title');
+  var fSub = document.getElementById('book-sub');
+  var fTier = document.getElementById('bk-tier');
+  var fNotice = document.getElementById('bk-notice');
+  var closeBtn = document.getElementById('book-close');
+
+  function openBook(intent, tier) {
+    if (!overlay) return;
+    var kind, title, sub, notice;
+    if (intent === 'transfer-only') {
+      kind = 'Трансфер';
+      title = 'Забронировать трансфер';
+      sub = 'Оставь контакты — добавим тебя в WhatsApp-чат координаторов, подберём транспорт и скинем цену.';
+      notice = '<strong>Без предоплаты.</strong> Цена трансфера зависит от количества людей и типа транспорта (джип / микроавтобус).';
+    } else if (intent.indexOf('-transfer') > -1) {
+      kind = 'Билет + трансфер';
+      title = 'Забронировать с трансфером';
+      sub = 'Оставь контакты — подтвердим бронь билета и добавим в чат координаторов по трансферу.';
+      notice = '<strong>Билет и трансфер — отдельно.</strong> Билет бронируем сейчас, цену трансфера называем в WhatsApp.';
+    } else {
+      kind = 'Билет';
+      title = 'Забронировать место';
+      sub = 'Оставь контакты — напишем в WhatsApp для подтверждения брони. Без оплаты, всё человеческое.';
+      notice = '<strong>Без онлайн-оплаты.</strong> Бронируешь → мы пишем в WhatsApp → подтверждаем место.';
+    }
+    fKind.textContent = kind;
+    fTitle.textContent = title;
+    fSub.textContent = sub;
+    fTier.value = tier;
+    fNotice.innerHTML = notice;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { var n = document.getElementById('bk-name'); if (n) n.focus(); }, 60);
+  }
+
+  function closeBook() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-book]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var intent = btn.getAttribute('data-book');
+      var tier = btn.getAttribute('data-tier') || '';
+      openBook(intent, tier);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeBook);
+  if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeBook(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeBook(); });
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = (document.getElementById('bk-name').value || '').trim();
+      var phone = (document.getElementById('bk-phone').value || '').trim();
+      var from = (document.getElementById('bk-from').value || '').trim();
+      var tier = (document.getElementById('bk-tier').value || '').trim();
+      var comment = (document.getElementById('bk-comment').value || '').trim();
+      if (!name || !phone) return;
+      var lines = [
+        'Новая бронь — Dance & Meditate 08/08',
+        '',
+        'Тариф: ' + tier,
+        'Имя: ' + name,
+        'Телефон: ' + phone,
+        'Откуда: ' + (from || 'Алматы')
+      ];
+      if (comment) lines.push('Комментарий: ' + comment);
+      var msg = encodeURIComponent(lines.join('\n'));
+      var url = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+})();
+</script>
+<!--
+  Фото вставлены (6 шт., Fal flux-pro-ultra).
+  Осталось вставить (помечено TODO в коде):
+  - WhatsApp-номер координатора в JS (WA_NUMBER) — для модалки бронирования
+  - URL эквайринга (когда подключат — заменить кнопки «Забронировать» на «Купить»)
+  - Точную цену аренды палатки-дома
+  - Возраст детей для бесплатного входа
+  - Реальные Instagram-ссылки в футере
+  - Число early-bird мест обновлять вручную в JS (EARLY_BIRD_LEFT)
+-->
+</body>
+</html>
