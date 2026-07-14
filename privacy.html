@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Политика конфиденциальности — Ecstatic Dance Almaty</title>
+<meta name="description" content="Политика конфиденциальности и обработки персональных данных — Ecstatic Dance Almaty" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+
+<style>
+/* ===== Токены дизайн-системы «Ночная спираль» ===== */
+:root {
+  --night: #131628;
+  --night-soft: #1E2340;
+  --aqua: #2EC4B6;
+  --aqua-deep: #0E5E57;
+  --coral: #FF7A45;
+  --coral-dark: #3D1A08;
+  --lavender: #B889E0;
+  --warm-white: #F7F4EE;
+  --card-light: #FFFFFF;
+  --ink: #23212B;
+  --ink-soft: #6B6878;
+  --cream: #F7F4EE;
+  --cream-soft: #9AA0C0;
+
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --fs-h1: clamp(28px, 5vw, 48px);
+  --fs-h2: clamp(22px, 4vw, 36px);
+  --fs-h3: clamp(18px, 3vw, 22px);
+  --fs-body: 17px;
+  --fs-small: 14px;
+
+  --section-pad: clamp(48px, 8vw, 90px);
+  --radius-card: 20px;
+  --maxw: 840px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--warm-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: var(--font-display); line-height: 1.18; font-weight: 600; }
+h1 { font-size: var(--fs-h1); letter-spacing: -0.01em; }
+h2 { font-size: var(--fs-h2); letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
+p { max-width: 65ch; }
+.hl { color: var(--aqua); }
+
+/* Navbar */
+.navbar {
+  position: relative; z-index: 200;
+  height: 64px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 24px;
+  background: var(--night);
+  border-bottom: 1px solid rgba(46,196,182,.15);
+}
+.navbar .nav-brand {
+  display: inline-flex; align-items: center; gap: 9px;
+  color: var(--cream); font-family: var(--font-display); font-weight: 500;
+  font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+.navbar .nav-brand svg { width: 22px; height: 22px; }
+.navbar .nav-back {
+  color: var(--cream); text-decoration: none;
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  padding: 8px 12px; border-radius: 8px;
+  letter-spacing: 0.02em; -webkit-tap-highlight-color: transparent;
+}
+.navbar .nav-back:hover { color: var(--aqua); }
+
+/* Sections */
+.section { padding: var(--section-pad) 24px; }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-dark { background: var(--night); color: var(--cream); }
+.section-dark h2 { color: var(--cream); }
+.section-dark p { color: var(--cream-soft); }
+.section-light { background: var(--warm-white); }
+.section-light p { color: var(--ink-soft); }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aqua);
+  margin-bottom: 14px;
+}
+
+.prose { max-width: 65ch; }
+.prose p { margin-bottom: 14px; }
+.prose .note {
+  background: rgba(46,196,182,.08);
+  border-left: 3px solid var(--aqua);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  font-size: 15px;
+  margin: 18px 0;
+  color: var(--ink-soft);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid rgba(247,244,238,.12);
+  padding: 36px 24px;
+  color: var(--cream-soft);
+  font-size: 14px;
+  background: var(--night);
+}
+footer .section-inner {
+  display: flex; flex-direction: column;
+  gap: 16px; align-items: center; text-align: center;
+  max-width: var(--maxw); margin: 0 auto;
+}
+footer a { color: var(--cream); text-decoration: none; }
+footer a:hover { color: var(--aqua); }
+footer .socials { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
+
+/* WhatsApp button */
+.wa-btn {
+  position: fixed; bottom: 84px; right: 24px; z-index: 98;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+.wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 22px rgba(37,211,102,.45); }
+.wa-btn svg { width: 26px; height: 26px; fill: currentColor; }
+@media (max-width: 768px) { .wa-btn { bottom: 24px; right: 16px; } }
+</style>
+</head>
+<body data-od-id="privacy-page">
+
+<nav class="navbar" data-od-id="navbar" aria-label="Навигация">
+  <a class="nav-brand" href="index.html" data-od-id="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--aqua)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M12 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/>
+      <path d="M12 22c4-2 6-5 6-9a6 6 0 0 0-12 0c0 2 1 4 3 5 2-1 3-2 3-4a3 3 0 0 1 6 0c0 1-1 2-2 3"/>
+    </svg>
+    Ecstatic Dance Almaty
+  </a>
+  <a class="nav-back" href="index.html" data-od-id="back-link">← На главную</a>
+</nav>
+
+<main data-od-id="main">
+
+<section class="section section-dark" data-od-id="hero-privacy">
+  <div class="section-inner">
+    <p class="eyebrow">ecstaticdance.kz</p>
+    <h1>Политика <span class="hl">конфиденциальности</span></h1>
+    <p style="color: var(--cream-soft); margin-top: 12px; font-size: 16px;">
+      Обработка персональных данных участников мероприятий Ecstatic Dance Almaty.
+    </p>
+  </div>
+</section>
+
+<section class="section section-light" data-od-id="general">
+  <div class="section-inner">
+    <h2>1. Общие положения</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p>1.1. Настоящая Политика разработана в соответствии с Законом Республики Казахстан «О персональных данных и их защите».</p>
+      <p>1.2. Используя Сайт и регистрируясь на мероприятия Ecstatic Dance Almaty, посетитель подтверждает согласие с условиями настоящей Политики.</p>
+      <p>1.3. Персонифицированной информацией Оператор называет данные, позволяющие прямо или косвенно идентифицировать конкретного посетителя (имя, фамилия, телефон, email). Анонимными — данные, которые невозможно однозначно связать с конкретным человеком (например, статистика посещаемости).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" data-od-id="data-collected">
+  <div class="section-inner">
+    <h2>2. Какие данные собираются и с какой целью</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p style="color: var(--cream-soft);">При регистрации на мероприятие через форму (Telegram Mini App) собираются:</p>
+      <ul style="color: var(--cream-soft); padding-left: 20px; display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+        <li>имя и фамилия — для учёта участников и допуска на мероприятие;</li>
+        <li>номер телефона — для связи с участником и идентификации заказа;</li>
+        <li>email (указывается по желанию) — для отправки подтверждений и, при отдельном согласии, рассылок;</li>
+        <li>промокод (при наличии) — для применения скидки;</li>
+        <li>UTM-метки источника перехода — для внутренней аналитики эффективности каналов привлечения.</li>
+      </ul>
+      <p style="color: var(--cream-soft); margin-top: 16px;">Отдельно, необязательно: согласие на получение рассылок (marketing_consent) — предоставляется отдельным чекбоксом, не связано с самой регистрацией на мероприятие и не влияет на возможность купить билет.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" data-od-id="legal-basis">
+  <div class="section-inner">
+    <h2>3. Правовые основания обработки</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p>3.1. Обработка персональных данных осуществляется на основании согласия субъекта персональных данных, предоставляемого при заполнении формы регистрации на Сайте, а также в целях исполнения договора публичной оферты (оказание услуги участия в мероприятии).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" data-od-id="storage">
+  <div class="section-inner">
+    <h2>4. Где и как хранятся данные, кто имеет доступ</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p style="color: var(--cream-soft);">4.1. Данные участников хранятся в защищённой облачной таблице (Google Sheets, инфраструктура Google Cloud), доступ к которой ограничен технической учётной записью системы и Оператором. Backend-сервис, обрабатывающий заказы, размещён на serverless-хостинге (Vercel или аналогичная платформа).</p>
+      <p style="color: var(--cream-soft);">4.2. Указанная инфраструктура физически размещена за пределами Республики Казахстан. Закон РК «О персональных данных и их защите» (ст. 17 п. 2) предусматривает хранение персональных данных граждан РК на серверах, физически находящихся на территории Республики Казахстан. Оператор осознанно принимает данный риск на текущем этапе работы и планирует пересмотреть решение при увеличении масштаба деятельности.</p>
+      <p style="color: var(--cream-soft);">4.3. Доступ к персональным данным участников имеют: Оператор лично и назначенные координаторы мероприятий — исключительно в объёме, необходимом для обработки заявок на изменение данных участника или отмену/перенос участия.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" data-od-id="retention">
+  <div class="section-inner">
+    <h2>5. Срок хранения и порядок удаления данных</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p>5.1. Персональные данные участников (имя, фамилия, номер телефона) хранятся в рабочей базе не более 30–60 дней после даты прошедшего мероприятия, после чего удаляются из рабочего листа данных. Обезличенная статистика может сохраняться дольше.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" data-od-id="third-party">
+  <div class="section-inner">
+    <h2>6. Передача данных третьим лицам</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p style="color: var(--cream-soft);">6.1. Оператор не передаёт персональные данные участников третьим лицам, за исключением случаев, когда предоставление такой информации уполномоченным государственным органам прямо предписано действующим законодательством Республики Казахстан.</p>
+      <p style="color: var(--cream-soft);">6.2. Данные банковской карты не передаются Оператору и не обрабатываются им — ввод и обработка данных карты происходит непосредственно на стороне АО «Банк ЦентрКредит».</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" data-od-id="rights">
+  <div class="section-inner">
+    <h2>7. Права субъекта персональных данных</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p>7.1. Участник вправе в любой момент запросить у Оператора информацию об обрабатываемых персональных данных, потребовать их уточнения, блокирования или удаления, если данные являются неполными, устаревшими, недостоверными или были собраны с нарушением закона.</p>
+      <p>7.2. Для реализации указанных прав необходимо обратиться на email <a href="mailto:tazhibekov.salim@gmail.com" style="color: var(--aqua);">tazhibekov.salim@gmail.com</a> или через Telegram-бота, использованного при регистрации.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" data-od-id="card-processing">
+  <div class="section-inner">
+    <h2>8. Обработка данных банковской карты</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p style="color: var(--cream-soft);">8.1. Оплата производится через интернет-эквайринг АО «Банк ЦентрКредит». Ввод данных банковской карты (номер, срок действия, CVV2/CVC2) происходит на защищённой платёжной странице банка с применением технологии 3-D Secure. Оператор не получает, не хранит и не обрабатывает данные банковской карты Участника.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" data-od-id="marketing">
+  <div class="section-inner">
+    <h2>9. Согласие на рассылки</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p>9.1. Согласие на получение информационных и рекламных рассылок (marketing_consent) даётся Участником добровольно, отдельным действием при регистрации, и не является обязательным условием для покупки билета.</p>
+      <p>9.2. Участник может отозвать согласие на рассылки в любой момент — по ссылке «отписаться» в письме рассылки (для email) либо написав об этом в Telegram-боте или на email Оператора.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" data-od-id="contacts-privacy">
+  <div class="section-inner">
+    <h2>10. Контакты и порядок изменения политики</h2>
+    <div class="prose" style="margin-top: 16px;">
+      <p style="color: var(--cream-soft);">10.1. По всем вопросам, касающимся настоящей Политики и обработки персональных данных, обращайтесь на email <a href="mailto:tazhibekov.salim@gmail.com" style="color: var(--aqua);">tazhibekov.salim@gmail.com</a> или по телефону <a href="tel:+77789837875" style="color: var(--aqua);">+7 778 983 78 75</a>.</p>
+      <p style="color: var(--cream-soft);">10.2. Оператор вправе вносить изменения в настоящую Политику, размещая обновлённую редакцию на Сайте.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer data-od-id="footer">
+  <div class="section-inner">
+    <div class="socials">
+      <a href="https://www.instagram.com/ecstaticdance_almaty/" rel="noopener" target="_blank" data-od-id="social-ig">Instagram @ecstaticdance_almaty</a>
+      <a href="https://t.me/ecstaticdancealmaty1" rel="noopener" target="_blank" data-od-id="social-tg">Telegram-канал</a>
+      <a href="https://wa.me/77789837875" rel="noopener" target="_blank" data-od-id="social-wa">WhatsApp +7 778 983 78 75</a>
+    </div>
+    <p style="font-size: 13px;"><a href="privacy.html" style="color: var(--aqua);">Политика конфиденциальности</a> · <a href="oferta.html" style="color: var(--aqua);">Договор оферты</a> · <a href="return.html" style="color: var(--aqua);">Оплата и возврат</a></p>
+    <p style="font-size: 13px;">Ecstatic Dance Almaty · осознанные вечеринки · трезвые танцы · экстатик данс Алматы</p>
+  </div>
+</footer>
+
+<!-- WhatsApp button -->
+<a class="wa-btn" href="https://wa.me/77789837875" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" data-od-id="wa-btn">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>

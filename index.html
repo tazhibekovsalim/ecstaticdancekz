@@ -261,12 +261,16 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .price-grid { display: grid; gap: 12px; grid-template-columns: 1fr; margin: 28px 0; }
 .price-card { text-align: center; border: 1.5px solid rgba(46,196,182,.2); background: var(--night-soft); color: var(--cream); border-radius: var(--radius-card); padding: 20px 14px; position: relative; }
 .price-card.featured { border: 2px solid var(--coral); }
-.price-card.soldout { opacity: .45; }
+.price-card.soldout { opacity: .4; }
+.price-card.soldout .price-value { text-decoration: line-through; text-decoration-color: var(--coral); text-decoration-thickness: 2px; }
 .price-card .tier { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
 .price-value { font-family: var(--font-display); font-size: clamp(20px, 3.4vw, 28px); font-weight: 600; letter-spacing: -0.01em; margin: 8px 0; }
 .price-card.featured .price-value { color: var(--coral); }
 .price-card .meta { font-size: 12px; color: var(--cream-soft); }
-.price-card.featured .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.price-card .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; display: none; }
+.price-card.featured .badge-active { display: inline-block; }
+.price-card.soldout .badge-done { display: inline-block; }
+.badge-done { background: rgba(247,244,238,.1); color: var(--cream-soft); }
 @media (min-width: 480px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 720px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -349,6 +353,24 @@ footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
 .to-top:active { transform: scale(.92); }
 @media (max-width: 768px) {
   .to-top { bottom: 84px; right: 16px; }
+}
+
+/* ===== WhatsApp floating button ===== */
+.wa-btn {
+  position: fixed; bottom: 84px; right: 24px; z-index: 98;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 22px rgba(37,211,102,.45); }
+.wa-btn svg { width: 26px; height: 26px; fill: currentColor; }
+@media (max-width: 768px) {
+  .wa-btn { bottom: 140px; right: 16px; }
 }
 
 /* ===== Блок «Послушай, как это звучит» ===== */
@@ -858,7 +880,7 @@ svg.illu .acc { stroke: var(--aqua); }
         <p class="ne-note">Цена растёт по датам и выкупу: <strong style="color:var(--cream);">12, 19 и 26 июля</strong> — пороги повышения. Чем раньше, тем дешевле. В день события — 20 000 ₸.</p>
         <div style="margin-top: 22px;" data-od-id="ne-buy-cta">
           <!-- TODO: ссылка на оплату/бронь -->
-          <a class="btn btn-primary" href="#">Купить билет — 9999 ₸</a>
+          <a class="btn btn-primary js-buy-btn" href="#">Купить билет — 9999 ₸</a>
         </div>
         <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;" data-od-id="ne-what-to-bring">
           <strong style="color:var(--cream);">Что взять:</strong> удобная одежда (дресс-код свободный, танцуем босиком), бутылка воды.
@@ -878,23 +900,30 @@ svg.illu .acc { stroke: var(--aqua); }
       </div>
 
       <div class="price-grid reveal" data-od-id="ne-price-ladder">
-        <div class="price-card featured" data-od-id="ne-price-9999">
-          <span class="badge">Early bird</span>
+        <div class="price-card" data-od-id="ne-price-9999" data-deadline="2026-07-12T23:59:59+06:00" data-price="9999 ₸" data-date="12 июля">
+          <span class="badge badge-active">Early bird</span>
+          <span class="badge badge-done">Завершено</span>
           <div class="tier">Первые 10 билетов</div>
           <div class="price-value">9999 ₸</div>
           <div class="meta">до 12 июля</div>
         </div>
-        <div class="price-card" data-od-id="ne-price-11111">
+        <div class="price-card" data-od-id="ne-price-11111" data-deadline="2026-07-19T23:59:59+06:00" data-price="11 111 ₸" data-date="19 июля">
+          <span class="badge badge-active">Сейчас</span>
+          <span class="badge badge-done">Завершено</span>
           <div class="tier">Следующая волна · 50 билетов</div>
           <div class="price-value">11 111 ₸</div>
           <div class="meta">до 19 июля</div>
         </div>
-        <div class="price-card" data-od-id="ne-price-13000">
+        <div class="price-card" data-od-id="ne-price-13000" data-deadline="2026-07-26T23:59:59+06:00" data-price="13 000 ₸" data-date="26 июля">
+          <span class="badge badge-active">Сейчас</span>
+          <span class="badge badge-done">Завершено</span>
           <div class="tier">Regular · 50 билетов</div>
           <div class="price-value">13 000 ₸</div>
           <div class="meta">до 26 июля</div>
         </div>
-        <div class="price-card" data-od-id="ne-price-14000">
+        <div class="price-card" data-od-id="ne-price-14000" data-deadline="2026-08-02T13:59:59+06:00" data-price="14 000 ₸" data-date="даты события">
+          <span class="badge badge-active">Сейчас</span>
+          <span class="badge badge-done">Завершено</span>
           <div class="tier">Последние · все остальные</div>
           <div class="price-value">14 000 ₸</div>
           <div class="meta">до даты события</div>
@@ -977,7 +1006,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Сравнения» -->
 <div class="cta-strip" data-od-id="cta-strip-1">
   <div class="cs-inner">
-    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>9999 ₸</strong> — до 12 июля</span>
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 12 июля</span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1051,7 +1080,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Соглашений» -->
 <div class="cta-strip" data-od-id="cta-strip-2">
   <div class="cs-inner">
-    <span class="cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong>9999 ₸</strong> — до 12 июля</span>
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 12 июля</span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1284,11 +1313,12 @@ svg.illu .acc { stroke: var(--aqua); }
 <footer data-od-id="footer">
   <div class="section-inner">
     <div class="socials">
-      <a href="#" data-od-id="social-ig">Instagram @ecstaticdance_almaty</a>
-      <a href="#" data-od-id="social-tg">Telegram-канал</a>
-      <a href="#" data-od-id="social-wa">WhatsApp</a>
+      <a href="https://www.instagram.com/ecstaticdance_almaty/" rel="noopener" target="_blank" data-od-id="social-ig">Instagram @ecstaticdance_almaty</a>
+      <a href="https://t.me/ecstaticdancealmaty1" rel="noopener" target="_blank" data-od-id="social-tg">Telegram-канал</a>
+      <a href="https://wa.me/77789837875" rel="noopener" target="_blank" data-od-id="social-wa">WhatsApp +7 778 983 78 75</a>
     </div>
     <p style="font-size: 13px;">Фестивали: <a href="#festivals" style="color:var(--aqua);">Dance &amp; Meditate 08/08</a> · <a href="#festivals" style="color:var(--aqua);">Ecstatic Fest Almaty 29–30.08</a></p>
+    <p style="font-size: 13px;"><a href="privacy.html" style="color:var(--aqua);">Политика конфиденциальности</a> · <a href="oferta.html" style="color:var(--aqua);">Договор оферты</a> · <a href="return.html" style="color:var(--aqua);">Оплата и возврат</a></p>
     <p style="font-size: 13px;">Ecstatic Dance Almaty · осознанные вечеринки · трезвые танцы · экстатик данс Алматы</p>
     <!-- TODO: ссылки на соцсети -->
   </div>
@@ -1303,6 +1333,11 @@ svg.illu .acc { stroke: var(--aqua); }
 <button class="to-top" id="toTop" type="button" aria-label="Наверх" data-od-id="to-top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
 </button>
+
+<!-- WhatsApp button -->
+<a class="wa-btn" href="https://wa.me/77789837875" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" data-od-id="wa-btn">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
 (function () {
@@ -1417,44 +1452,87 @@ svg.illu .acc { stroke: var(--aqua); }
     });
   });
 
-  // === Update sticky CTA price from featured price card ===
-  var featured = document.querySelector('.price-card.featured .price-value');
+  // === Wave-aware pricing countdown ===
+  var priceCards = Array.prototype.slice.call(document.querySelectorAll('.price-card[data-deadline]'));
+  var pcEl = document.querySelector('.price-countdown');
+  var dEl = document.getElementById('pc-days');
+  var hEl = document.getElementById('pc-hours');
+  var mEl = document.getElementById('pc-mins');
+  var sEl = document.getElementById('pc-secs');
+  var pcLabel = pcEl && pcEl.querySelector('.pc-label');
   var stickyBtn = sticky && sticky.querySelector('.btn');
-  if (featured && stickyBtn) {
-    var txt = featured.textContent.trim();
-    stickyBtn.textContent = 'Купить билет — ' + txt;
+  var buyBtn = document.querySelector('.js-buy-btn');
+  var csPriceEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-price'));
+  var csDateEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-date'));
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function findCurrentWave() {
+    var now = Date.now();
+    for (var i = 0; i < priceCards.length; i++) {
+      var dl = new Date(priceCards[i].getAttribute('data-deadline')).getTime();
+      if (dl > now) return i;
+    }
+    return -1;
   }
 
-  // === Countdown to next price increase ===
-  var pcEl = document.querySelector('.price-countdown');
-  if (pcEl) {
-    var deadline = new Date(pcEl.getAttribute('data-deadline')).getTime();
-    var dEl = document.getElementById('pc-days');
-    var hEl = document.getElementById('pc-hours');
-    var mEl = document.getElementById('pc-mins');
-    var sEl = document.getElementById('pc-secs');
-    var pcLabel = pcEl.querySelector('.pc-label');
-    var pcTimer = pcEl.querySelector('.pc-timer');
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
-    function tick() {
-      var diff = deadline - Date.now();
-      if (diff <= 0) {
-        if (dEl) dEl.textContent = '0';
-        if (hEl) hEl.textContent = '00';
-        if (mEl) mEl.textContent = '00';
-        if (sEl) sEl.textContent = '00';
-        if (pcLabel) pcLabel.innerHTML = 'Цена повысилась — забери билет по <strong style="color:var(--coral);">11 111 ₸</strong> (до 19 июля)';
-        return;
-      }
-      var days = Math.floor(diff / 86400000);
-      var hours = Math.floor((diff % 86400000) / 3600000);
-      var mins = Math.floor((diff % 3600000) / 60000);
-      var secs = Math.floor((diff % 60000) / 1000);
-      if (dEl) dEl.textContent = days;
-      if (hEl) hEl.textContent = pad(hours);
-      if (mEl) mEl.textContent = pad(mins);
-      if (sEl) sEl.textContent = pad(secs);
+  var appliedIdx = -99;
+
+  function applyWaveState(idx) {
+    priceCards.forEach(function (card, i) {
+      card.classList.remove('featured', 'soldout');
+      if (i < idx) card.classList.add('soldout');
+      else if (i === idx) card.classList.add('featured');
+    });
+    var current = priceCards[idx];
+    if (!current) return;
+    var price = current.getAttribute('data-price');
+    var date = current.getAttribute('data-date');
+    if (stickyBtn) stickyBtn.textContent = 'Купить билет — ' + price;
+    if (buyBtn) buyBtn.textContent = 'Купить билет — ' + price;
+    csPriceEls.forEach(function (el) { el.textContent = price; });
+    csDateEls.forEach(function (el) { el.textContent = 'до ' + date; });
+    if (pcLabel) {
+      pcLabel.innerHTML = 'Цена растёт <strong style="color:var(--coral);">' + date + '</strong>. Осталось:';
     }
+  }
+
+  function tick() {
+    var idx = findCurrentWave();
+    if (idx === -1) {
+      if (appliedIdx !== -1) {
+        priceCards.forEach(function (card) { card.classList.remove('featured'); card.classList.add('soldout'); });
+        if (stickyBtn) stickyBtn.textContent = 'Купить билет — 20 000 ₸';
+        if (buyBtn) buyBtn.textContent = 'Купить билет — 20 000 ₸';
+        csPriceEls.forEach(function (el) { el.textContent = '20 000 ₸'; });
+        csDateEls.forEach(function (el) { el.textContent = 'в день события'; });
+        if (pcLabel) pcLabel.innerHTML = 'Цена дня события — <strong style="color:var(--coral);">20 000 ₸</strong> на входе';
+        appliedIdx = -1;
+      }
+      if (dEl) dEl.textContent = '0';
+      if (hEl) hEl.textContent = '00';
+      if (mEl) mEl.textContent = '00';
+      if (sEl) sEl.textContent = '00';
+      return;
+    }
+    if (idx !== appliedIdx) {
+      applyWaveState(idx);
+      appliedIdx = idx;
+    }
+    var current = priceCards[idx];
+    var deadline = new Date(current.getAttribute('data-deadline')).getTime();
+    var diff = deadline - Date.now();
+    var days = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    var secs = Math.floor((diff % 60000) / 1000);
+    if (dEl) dEl.textContent = days;
+    if (hEl) hEl.textContent = pad(hours);
+    if (mEl) mEl.textContent = pad(mins);
+    if (sEl) sEl.textContent = pad(secs);
+  }
+
+  if (priceCards.length && pcEl) {
     tick();
     setInterval(tick, 1000);
   }
