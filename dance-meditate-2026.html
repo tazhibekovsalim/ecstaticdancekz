@@ -238,6 +238,77 @@ p { max-width: 70ch; margin-inline: auto; }
 .review .src { font-size: var(--fs-small); color: var(--ink-soft); }
 
 /* ============================================
+   КАРУСЕЛЬ УЧАСТНИКОВ
+   ============================================ */
+.p-carousel-wrap { overflow: hidden; margin-top: 28px; position: relative; }
+.p-carousel {
+  display: flex; gap: 16px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.p-carousel::-webkit-scrollbar { display: none; }
+.p-carousel.expanded {
+  flex-wrap: wrap; overflow-x: visible;
+}
+.p-card {
+  flex: 0 0 300px; scroll-snap-align: start;
+  background: var(--sand-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(30,33,66,.05);
+  display: flex; flex-direction: column;
+}
+@media (max-width: 640px) { .p-card { flex: 0 0 280px; } }
+.p-carousel.expanded .p-card { flex: 0 0 300px; margin-bottom: 16px; }
+
+.p-card-photo {
+  width: 100%; aspect-ratio: 1;
+  overflow: hidden; background: var(--dusk-soft);
+}
+.p-card-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.p-card-body { padding: 20px; flex: 1 1 auto; display: flex; flex-direction: column; gap: 8px; }
+.p-card-body .p-name {
+  font-family: var(--font-display); font-size: 19px; font-weight: 600;
+  color: var(--dusk); letter-spacing: -0.01em;
+}
+.p-card-body .p-ig {
+  font-size: 13px; color: var(--lake); text-decoration: none; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.p-card-body .p-ig:hover { text-decoration: underline; }
+.p-card-body .p-role {
+  font-size: 13px; color: var(--ink-soft);
+  font-family: var(--font-display); letter-spacing: 0.04em; text-transform: uppercase;
+}
+.p-card-body .p-practice {
+  font-family: var(--font-display);
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sunset); font-weight: 500;
+}
+.p-card-body .p-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; margin-top: 2px; }
+
+.p-show-more {
+  display: block; margin: 24px auto 0;
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  padding: 12px 28px; border-radius: var(--radius-btn);
+  background: transparent; color: var(--lake);
+  border: 1.5px solid rgba(46,110,126,.4);
+  cursor: pointer; transition: all .2s ease;
+}
+.p-show-more:hover { border-color: var(--lake); background: rgba(46,110,126,.06); }
+.p-show-more.hidden { display: none; }
+
+/* Промо-слайд внутри карусели */
+.p-card.promo { background: var(--dusk); color: var(--cream); justify-content: center; text-align: center; min-height: 420px; }
+.p-card.promo .p-card-body { justify-content: center; align-items: center; }
+.p-card.promo .p-card-body h3 { color: var(--lantern); font-size: 20px; margin-bottom: 8px; }
+.p-card.promo .p-card-body p { color: var(--cream-soft); font-size: 14px; max-width: 260px; margin: 0 auto 16px; }
+
+/* ============================================
    FAQ (sec 9)
    ============================================ */
 .faq { max-width: 760px; margin: 0 auto; }
@@ -389,6 +460,114 @@ p { max-width: 70ch; margin-inline: auto; }
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ КАРУСЕЛЬ УЧАСТНИКОВ ============ -->
+<section id="participants" class="section section-light" data-od-id="participants" style="background:#FDFAF4;">
+  <div class="section-inner">
+    <p class="eyebrow">Ведущие и мастера</p>
+    <h2 data-od-id="participants-title">Кто проведёт ваш уикенд</h2>
+
+    <div class="p-carousel-wrap" id="participantsCarouselWrap">
+      <div class="p-carousel" id="participantsCarousel" data-od-id="participants-carousel">
+
+        <!-- Card 1: Елена — Танец стихий -->
+        <div class="p-card" data-od-id="p-card-elena-1">
+          <div class="p-card-photo"><img src="mrlvz24s-photo_2026-07-15_14-14-00.jpg" alt="Елена Кравчук" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Арт-терапевт · Телесный практик</div>
+            <div class="p-name">Елена Кравчук</div>
+            <a class="p-ig" href="https://www.instagram.com/yelenaagape" target="_blank" rel="noopener">@yelenaagape</a>
+            <div class="p-practice">Танец стихий</div>
+            <p class="p-desc">Путешествие к себе через движение. Мы исследуем энергии Воздуха, Огня, Воды и Земли — не нужно танцевать красиво или правильно. Важно танцевать свободно и доверять внутреннему ритму.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Елена — Мандала-терапия -->
+        <div class="p-card" data-od-id="p-card-elena-2">
+          <div class="p-card-photo"><img src="mrlvz6gi-photo_2026-07-15_14-14-39.jpg" alt="Мандала-терапия" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Арт-терапевт · @artbota</div>
+            <div class="p-name">Елена Кравчук</div>
+            <a class="p-ig" href="https://www.instagram.com/yelenaagape" target="_blank" rel="noopener">@yelenaagape</a>
+            <div class="p-practice">Мандала-терапия</div>
+            <p class="p-desc">Медитативная практика через создание рисунка в круге. Мягкое погружение внутрь себя, центрирование, соединение с телом. Не нужно уметь рисовать — только довериться процессу.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Богдана — Неоновый аквагрим -->
+        <div class="p-card" data-od-id="p-card-bogdana">
+          <div class="p-card-photo"><img src="mrlvz9sh-photo_2026-07-15_14-16-08.jpg" alt="Богдана Кравчук" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Художник студии АртБоТа</div>
+            <div class="p-name">Богдана Кравчук</div>
+            <a class="p-ig" href="https://www.instagram.com/kingggdana" target="_blank" rel="noopener">@kingggdana</a>
+            <div class="p-practice">Неоновый аквагрим</div>
+            <p class="p-desc">Светящиеся узоры, символы и мини-татуировки, которые засияют в свете ультрафиолета и добавят магии ночной программе фестиваля.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Елизавета — Сакральная баня -->
+        <div class="p-card" data-od-id="p-card-elisaveta">
+          <div class="p-card-photo"><img src="mrlvzcpa-photo_2026-07-15_14-16-41.jpg" alt="Елизавета Рон" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Актриса театра, кино и дубляжа</div>
+            <div class="p-name">Елизавета Рон</div>
+            <a class="p-ig" href="https://www.instagram.com/elizaveta_ron" target="_blank" rel="noopener">@elizaveta_ron</a>
+            <div class="p-practice">Сакральная баня</div>
+            <p class="p-desc">Каждая баня — это целая система оздоровления и глубокого расслабления. Индивидуальный ритуал парения для нового ресурсного состояния тела, ума и души.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Есения — Доски Садху -->
+        <div class="p-card" data-od-id="p-card-esenia">
+          <div class="p-card-photo"><img src="mrlvzglh-photo_2026-07-15_14-17-20.jpg" alt="Есения Карташова" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Клуб 369</div>
+            <div class="p-name">Есения Карташова</div>
+            <div class="p-practice">Практика по доскам Садху</div>
+            <p class="p-desc">Путешествие через семь энергетических центров. Через дыхание, намерение и гвозди — от чувства опоры до соединения с внутренним Источником.</p>
+          </div>
+        </div>
+
+        <!-- Card 6: Ольга — Утренние практики -->
+        <div class="p-card" data-od-id="p-card-olga">
+          <div class="p-card-photo"><img src="mrlvnqlv-photo_2026-07-15_14-15-53.jpg" alt="Ольга Нави" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Телесный терапевт · Психолог</div>
+            <div class="p-name">Ольга Нави</div>
+            <a class="p-ig" href="https://www.instagram.com/olga.navi_" target="_blank" rel="noopener">@olga.navi_</a>
+            <div class="p-practice">Утренние практики пробуждения</div>
+            <p class="p-desc">Даосские и славянские практики, чтобы бережно войти в новый день. Дыхание, плавное движение и гимнастика «Здрава» — для контакта с телом и внутренней силой.</p>
+          </div>
+        </div>
+
+        <!-- Card 7: Фердуса — Суфийские кружения -->
+        <div class="p-card" data-od-id="p-card-ferdusa">
+          <div class="p-card-photo"><img src="mrlvyz0j-IMG_9898.JPG" alt="Фердуса" loading="lazy"></div>
+          <div class="p-card-body">
+            <div class="p-role">Мастер медитаций · RYT500 · 27 лет практики</div>
+            <div class="p-name">Фердуса</div>
+            <a class="p-ig" href="https://www.instagram.com/whirling_ferdusa" target="_blank" rel="noopener">@whirling_ferdusa</a>
+            <div class="p-practice">Суфийские кружения</div>
+            <p class="p-desc">Древняя сакральная практика — глубокая медитация в движении. Ритмичное вращение создаёт «канал света» вдоль позвоночника. После практики — состояние «активного покоя»: одновременно спокойный и очень живой.</p>
+          </div>
+        </div>
+
+        <!-- Card 8: Промо — фестиваль -->
+        <div class="p-card promo" data-od-id="p-card-promo">
+          <div class="p-card-body">
+            <h3>Dance &amp; Meditate</h3>
+            <p>7–9 августа, южный берег Иссык-Куля. Три дня музыки, практик и свободы под открытым небом.</p>
+            <a class="btn btn-primary" href="#tickets" style="margin-top: 4px;">Смотреть программу и билеты</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="p-show-more" id="participantsShowMore" type="button" data-od-id="participants-show-more">Показать всех участников</button>
   </div>
 </section>
 
@@ -940,6 +1119,23 @@ p { max-width: 70ch; margin-inline: auto; }
       var msg = encodeURIComponent(lines.join('\n'));
       var url = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
       window.open(url, '_blank', 'noopener');
+    });
+  }
+  // === Карусель участников: показать ещё / скрыть ===
+  var showMore = document.getElementById('participantsShowMore');
+  var carousel = document.getElementById('participantsCarousel');
+  if (showMore && carousel) {
+    var expanded = false;
+    showMore.addEventListener('click', function () {
+      expanded = !expanded;
+      if (expanded) {
+        carousel.classList.add('expanded');
+        showMore.textContent = 'Скрыть';
+      } else {
+        carousel.classList.remove('expanded');
+        showMore.textContent = 'Показать всех участников';
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      }
     });
   }
 })();
