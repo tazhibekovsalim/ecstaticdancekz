@@ -489,7 +489,7 @@ p { max-width: 70ch; margin-inline: auto; }
     <p class="early-note">Early bird — первые 35 мест, осталось <strong id="early-left-hero">30</strong></p>
     <div class="hero-timer" id="hero-timer">
       <span class="hero-timer-label">Цена повысится <strong style="color:var(--lantern);">26 июля</strong></span>
-      <span class="hero-timer-digits"><span id="ht-days">0</span> дн · <span id="ht-hours">00</span> ч · <span id="ht-mins">00</span> м</span>
+      <span class="hero-timer-digits"><span id="ht-days">0</span> дн · <span id="ht-hours">00</span> ч · <span id="ht-mins">00</span> м · <span id="ht-secs">00</span> с</span>
     </div>
   </div>
 </header>
@@ -787,6 +787,7 @@ p { max-width: 70ch; margin-inline: auto; }
         <span class="t-digit"><span id="t-days">0</span><small>дн</small></span>
         <span class="t-digit"><span id="t-hours">00</span><small>ч</small></span>
         <span class="t-digit"><span id="t-mins">00</span><small>м</small></span>
+        <span class="t-digit"><span id="t-secs">00</span><small>с</small></span>
       </div>
     </div>
     <div class="price-grid" id="tickets-grid" style="margin-top: 36px;" data-od-id="tickets-grid">
@@ -1182,6 +1183,7 @@ p { max-width: 70ch; margin-inline: auto; }
   var dEl = document.getElementById('t-days');
   var hEl = document.getElementById('t-hours');
   var mEl = document.getElementById('t-mins');
+  var sEl = document.getElementById('t-secs');
   var labelEl = document.getElementById('timer-label');
   var footDate = document.getElementById('tickets-foot-date');
 
@@ -1201,6 +1203,7 @@ p { max-width: 70ch; margin-inline: auto; }
   var htD = document.getElementById('ht-days');
   var htH = document.getElementById('ht-hours');
   var htM = document.getElementById('ht-mins');
+  var htS = document.getElementById('ht-secs');
   var htLabel = document.querySelector('.hero-timer-label');
 
   function pad2(n) { return ('0' + n).slice(-2); }
@@ -1233,9 +1236,11 @@ p { max-width: 70ch; margin-inline: auto; }
       if (dEl) dEl.textContent = '0';
       if (hEl) hEl.textContent = '00';
       if (mEl) mEl.textContent = '00';
+      if (sEl) sEl.textContent = '00';
       if (htD) htD.textContent = '0';
       if (htH) htH.textContent = '00';
       if (htM) htM.textContent = '00';
+      if (htS) htS.textContent = '00';
       if (htLabel) htLabel.textContent = 'Цена дня события — 6000 сом на входе';
       if (timerEl) timerEl.style.opacity = '.5';
       return;
@@ -1248,13 +1253,16 @@ p { max-width: 70ch; margin-inline: auto; }
     var days = Math.floor(diff / 86400000);
     var hours = Math.floor((diff % 86400000) / 3600000);
     var mins = Math.floor((diff % 3600000) / 60000);
+    var secs = Math.floor((diff % 60000) / 1000);
     if (dEl) dEl.textContent = days;
     if (hEl) hEl.textContent = pad2(hours);
     if (mEl) mEl.textContent = pad2(mins);
+    if (sEl) sEl.textContent = pad2(secs);
     // Hero timer
     if (htD) htD.textContent = days;
     if (htH) htH.textContent = pad2(hours);
     if (htM) htM.textContent = pad2(mins);
+    if (htS) htS.textContent = pad2(secs);
     // Update label
     var date = card.getAttribute('data-date');
     if (htLabel) htLabel.innerHTML = 'Цена повысится <strong style="color:var(--lantern);">' + date + '</strong>';
@@ -1262,7 +1270,7 @@ p { max-width: 70ch; margin-inline: auto; }
 
   if (priceCards.length && timerEl) {
     tick();
-    setInterval(tick, 60000);
+    setInterval(tick, 1000);
   }
 
   // ==== Групповые билеты: раскрыть/скрыть ====
