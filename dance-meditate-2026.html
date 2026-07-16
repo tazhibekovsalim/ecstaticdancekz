@@ -1466,8 +1466,6 @@ p { max-width: 70ch; margin-inline: auto; }
       }
       lines.push('Меня зовут ' + name + ', телефон ' + phone + '.' + (from ? ' Еду из ' + from + '.' : ''));
       if (comment) lines.push('Комментарий: ' + comment);
-      var utm = new URLSearchParams(location.search).get('utm_source');
-      if (utm) lines.push('', 'utm: ' + utm);
       var msg = encodeURIComponent(lines.join('\n'));
       var url = 'https://wa.me/' + wa + '?text=' + msg;
       window.open(url, '_blank', 'noopener');
