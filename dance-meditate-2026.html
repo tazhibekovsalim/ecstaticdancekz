@@ -1164,15 +1164,13 @@ p { max-width: 70ch; margin-inline: auto; }
       if (!name || !phone) return;
       var wa = (activeBtn && activeBtn.getAttribute('data-wa')) || WA_NUMBER;
       var waMsg = (activeBtn && activeBtn.getAttribute('data-wa-msg')) || '';
-      var lines = [
-        'Новая бронь — Dance & Meditate 08/08',
-        '',
-        'Тариф: ' + tier,
-        'Имя: ' + name,
-        'Телефон: ' + phone,
-        'Откуда: ' + (from || 'Алматы')
-      ];
-      if (waMsg) lines.push('', 'Вопрос: ' + waMsg);
+      var lines = [];
+      if (waMsg) {
+        lines.push(waMsg);
+      } else {
+        lines.push('Здравствуйте! Хочу забронировать ' + tier + '.');
+      }
+      lines.push('Меня зовут ' + name + ', телефон ' + phone + '.' + (from ? ' Еду из ' + from + '.' : ''));
       if (comment) lines.push('Комментарий: ' + comment);
       var msg = encodeURIComponent(lines.join('\n'));
       var url = 'https://wa.me/' + wa + '?text=' + msg;
