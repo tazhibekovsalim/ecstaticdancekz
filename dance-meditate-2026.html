@@ -73,7 +73,7 @@ p { max-width: 70ch; margin-inline: auto; }
    ============================================ */
 .section { padding: var(--section-pad) 24px; }
 .section-inner { max-width: var(--maxw); margin: 0 auto; }
-.section-dark { background: var(--dusk); color: var(--cream); }
+.section-dark { background: var(--dusk); color: var(--cream); text-align: center; }
 .section-dark h2 { color: var(--lantern); }
 .section-dark h3 { color: var(--lantern); }
 .section-light { background: var(--sand); }
@@ -241,6 +241,10 @@ p { max-width: 70ch; margin-inline: auto; }
 /* ===== Soldout state on price cards ===== */
 .price-card.soldout { opacity: .45; pointer-events: none; }
 .price-card.soldout .price-value { text-decoration: line-through; text-decoration-color: var(--sunset); text-decoration-thickness: 2px; }
+.price-card.inactive { opacity: .5; }
+.price-card.inactive .btn { pointer-events: none; opacity: .45; }
+.soldout-plaque { font-size: 14px; color: var(--cream-soft); text-align: center; margin-top: 20px; }
+.soldout-plaque strong { color: var(--sunset); font-weight: 600; }
 
 /* ===== Групповые билеты ===== */
 .group-tickets-wrap { margin-top: 24px; }
@@ -485,8 +489,8 @@ p { max-width: 70ch; margin-inline: auto; }
       <span>южный берег Иссык-Куля</span>
       <span>open air</span>
     </div>
-    <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta">Забронировать билет · 4000 сом</a>
-    <p class="early-note">Early bird — первые 35 мест, осталось <strong id="early-left-hero">30</strong></p>
+    <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta" id="hero-cta">Забронировать билет · <span id="hero-cta-price">4000 сом</span></a>
+    <p class="early-note"><span id="hero-wave-name">Вторая волна</span> — осталось <strong id="early-left-hero">—</strong> билетов</p>
     <div class="hero-timer" id="hero-timer">
       <span class="hero-timer-label">Цена повысится <strong style="color:var(--lantern);">26 июля</strong></span>
       <span class="hero-timer-digits"><span id="ht-days">0</span> дн · <span id="ht-hours">00</span> ч · <span id="ht-mins">00</span> м · <span id="ht-secs">00</span> с</span>
@@ -503,7 +507,7 @@ p { max-width: 70ch; margin-inline: auto; }
     <div class="stat-row" data-od-id="about-stats">
       <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">дня open air</div></div>
       <div class="stat"><div class="stat-num">08/08</div><div class="stat-lbl">основная программа</div></div>
-      <div class="stat"><div class="stat-num">35</div><div class="stat-lbl">early-bird мест</div></div>
+      <div class="stat"><div class="stat-num" id="stat-tickets-left">—</div><div class="stat-lbl">билетов осталось</div></div>
       <div class="stat"><div class="stat-num">300</div><div class="stat-lbl">мест в продаже</div></div>
       <div class="stat"><div class="stat-num">10+</div><div class="stat-lbl">практик в программе</div></div>
     </div>
@@ -791,7 +795,6 @@ p { max-width: 70ch; margin-inline: auto; }
       </div>
     </div>
     <div class="price-grid" id="tickets-grid" style="margin-top: 36px;" data-od-id="tickets-grid">
-      <!-- TODO: заменить бронь → оплата эквайринга, когда подключат -->
       <div class="price-card soldout" data-od-id="ticket-wave1" data-deadline="2026-06-15T23:59:59" data-price="2900 сом" data-date="15 июня" data-tickets="100">
         <span class="badge">Первые 35 мест</span>
         <div class="tier">Early bird</div>
@@ -799,8 +802,8 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="desc">3 дня, место в кемпинге, вся программа</div>
         <div class="tickets-left" style="font-size:12px;color:var(--cream-soft);margin-bottom:12px;">Продано</div>
         <div class="btn-row">
-          <button class="btn btn-primary" type="button" data-book="wave-2900" data-tier="Early bird · 2900 сом" data-wa-msg="Здравствуйте! Можно ли мне ранний билет за 2900 сом?">Забронировать</button>
-          <button class="btn btn-secondary on-light" type="button" data-book="wave-2900-transfer" data-tier="Early bird · 2900 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне ранний билет с трансфером за 2900 сом?">Забронировать с трансфером</button>
+          <button class="btn btn-primary" type="button" disabled>Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" disabled>Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
@@ -815,7 +818,7 @@ p { max-width: 70ch; margin-inline: auto; }
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-wave3" data-deadline="2026-08-02T23:59:59" data-price="4500 сом" data-date="2 августа" data-tickets="100">
+      <div class="price-card inactive" data-od-id="ticket-wave3" data-deadline="2026-08-02T23:59:59" data-price="4500 сом" data-date="2 августа" data-tickets="100">
         <div class="tier">Третья волна</div>
         <div class="price-value">4500<small> сом</small></div>
         <div class="desc">До 2 августа</div>
@@ -826,7 +829,7 @@ p { max-width: 70ch; margin-inline: auto; }
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-wave4" data-deadline="2026-08-06T23:59:59" data-price="5000 сом" data-date="6 августа" data-tickets="100">
+      <div class="price-card inactive" data-od-id="ticket-wave4" data-deadline="2026-08-06T23:59:59" data-price="5000 сом" data-date="6 августа" data-tickets="100">
         <div class="tier">Четвёртая волна</div>
         <div class="price-value">5000<small> сом</small></div>
         <div class="desc">До 6 августа</div>
@@ -837,7 +840,7 @@ p { max-width: 70ch; margin-inline: auto; }
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-dayof" data-price="6000 сом" data-date="на входе">
+      <div class="price-card inactive" data-od-id="ticket-dayof" data-price="6000 сом" data-date="на входе">
         <div class="tier">В день события</div>
         <div class="price-value">6000<small> сом</small></div>
         <div class="desc">Оплата на входе</div>
@@ -846,6 +849,7 @@ p { max-width: 70ch; margin-inline: auto; }
         </div>
       </div>
     </div>
+    <div class="soldout-plaque">Early bird · 2900 сом — <strong>продано</strong> (до 15 июня)</div>
     <p class="tickets-foot" style="margin-top: 28px;">Цена растёт <strong style="color:var(--sunset);" id="tickets-foot-date">26 июля</strong> — чем раньше, тем выгоднее.</p>
 
     <!-- Групповые билеты -->
@@ -986,7 +990,7 @@ p { max-width: 70ch; margin-inline: auto; }
 <section id="final" class="section section-dark final" data-od-id="final">
   <div class="section-inner">
     <div class="divider-0808">— ∞ 08/08 ∞ —</div>
-    <h2 data-od-id="final-title">Осталось <span id="early-left-final">30</span> билетов по 2900 сом</h2>
+    <h2 data-od-id="final-title">Осталось <span id="early-left-final">—</span> билетов по <span id="final-wave-price">—</span></h2>
     <p class="sub" data-od-id="final-sub">7–9 августа пройдут без тебя или с тобой. Выбирай.</p>
     <a class="btn btn-primary" href="#tickets" data-od-id="final-cta">Забронировать билет</a>
     <div class="footer">
@@ -1046,26 +1050,51 @@ p { max-width: 70ch; margin-inline: auto; }
 <!-- ============ STICKY CTA (mobile) ============ -->
 <div class="sticky-cta" id="sticky-cta" data-od-id="sticky-cta">
   <a class="btn btn-primary" href="#tickets">
-    <span>Забронировать билет · 2900 сом</span>
-    <span class="count" id="sticky-count">осталось 30</span>
+    <span id="sticky-cta-price">Забронировать билет · 2900 сом</span>
+    <span class="count" id="sticky-count">осталось —</span>
   </a>
 </div>
 
 <script>
 (function () {
-  // ---- Early-bird counter ----
-  // TODO: поменяй число вручную по мере продаж
-  var EARLY_BIRD_LEFT = 30;
-  function setEarlyLeft(v) {
-    var els = ['early-left-hero', 'early-left-final'];
-    els.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.textContent = v;
-    });
-    var sc = document.getElementById('sticky-count');
-    if (sc) sc.textContent = 'осталось ' + v;
+  // ---- Dynamic hero/final/sticky from active wave ----
+  var EMPTY = '\u2014';
+  function pullWaveToHero() {
+    var idx = findWaveIdx();
+    if (idx === -1) {
+      var last = priceCards[priceCards.length - 1];
+      var lastPrice = (last && last.getAttribute('data-price')) || '';
+      var lastTier = (last && last.querySelector('.tier')) ? last.querySelector('.tier').textContent : '';
+      setAllWaveInfo(lastTier, lastPrice, '—');
+      return;
+    }
+    var card = priceCards[idx];
+    var tierEl = card.querySelector('.tier');
+    var countEl = card.querySelector('.tickets-left strong');
+    var tier = tierEl ? tierEl.textContent : '';
+    var price = card.getAttribute('data-price') || '';
+    var count = countEl ? countEl.textContent : EMPTY;
+    setAllWaveInfo(tier, price, count);
   }
-  setEarlyLeft(EARLY_BIRD_LEFT);
+
+  function setAllWaveInfo(tier, price, count) {
+    var hc = document.getElementById('hero-cta-price');
+    var hn = document.getElementById('hero-wave-name');
+    var elh = document.getElementById('early-left-hero');
+    var elf = document.getElementById('early-left-final');
+    var fp = document.getElementById('final-wave-price');
+    var st = document.getElementById('stat-tickets-left');
+    var sc = document.getElementById('sticky-count');
+    var sp = document.getElementById('sticky-cta-price');
+    if (hc) hc.textContent = price;
+    if (hn) hn.textContent = tier;
+    if (elh) elh.textContent = count;
+    if (elf) elf.textContent = count;
+    if (fp) fp.textContent = price;
+    if (st) st.textContent = count;
+    if (sc) sc.textContent = 'осталось ' + count;
+    if (sp) sp.textContent = 'Забронировать билет \u00B7 ' + price;
+  }
 
   // ---- Sticky CTA show-after-hero ----
   var hero = document.getElementById('hero');
@@ -1201,9 +1230,14 @@ p { max-width: 70ch; margin-inline: auto; }
     return -1;
   }
 
-  // Симуляция продажи билетов: 100 на волну, -10/день
+  // Симуляция продажи билетов: равномерное уменьшение до дедлайна
+  var TICKET_SEED_LEFT = 50; // осталось билетов актуальной волны на момент правок
+  var TICKET_SEED_DATE = '2026-07-16'; // дата замера
+
   function updateTicketCounts() {
     var now = Date.now();
+    var seedTime = new Date(TICKET_SEED_DATE + 'T00:00:00').getTime();
+
     priceCards.forEach(function (card) {
       var total = parseInt(card.getAttribute('data-tickets')) || 100;
       var dl = card.getAttribute('data-deadline');
@@ -1214,17 +1248,20 @@ p { max-width: 70ch; margin-inline: auto; }
         return;
       }
       if (!dl) { el.textContent = '—'; return; }
-      var end = new Date(dl).getTime();
-      // Find start: previous card's deadline, or 10 days before end
-      var prev = card.previousElementSibling;
-      var start = prev ? new Date(prev.getAttribute('data-deadline') || 0).getTime() : end - 10*86400000;
-      if (!start || start <= 0) start = end - 10*86400000;
-      var elapsed = Math.max(0, now - start);
-      var totalDuration = end - start;
-      if (totalDuration <= 0) { el.textContent = total; return; }
-      var sold = Math.floor((elapsed / totalDuration) * (total - 3));
-      var left = Math.max(3, total - sold);
-      el.textContent = left;
+
+      if (card.classList.contains('featured')) {
+        // Активная волна: линейно от TICKET_SEED_LEFT на seedDate до 3 на дедлайн
+        var end = new Date(dl).getTime();
+        var elapsed = Math.max(0, now - seedTime);
+        var totalDuration = end - seedTime;
+        if (totalDuration <= 0) { el.textContent = '3'; return; }
+        var sold = Math.floor((elapsed / totalDuration) * (TICKET_SEED_LEFT - 3));
+        var left = Math.max(3, TICKET_SEED_LEFT - sold);
+        el.textContent = left;
+      } else {
+        // Будущая волна: показываем полный запас
+        el.textContent = total;
+      }
     });
   }
 
@@ -1241,12 +1278,19 @@ p { max-width: 70ch; margin-inline: auto; }
 
   function applyWave(idx) {
     priceCards.forEach(function (card, i) {
-      card.classList.remove('featured', 'soldout');
+      card.classList.remove('featured', 'soldout', 'inactive');
       if (i < idx) card.classList.add('soldout');
       else if (i === idx) card.classList.add('featured');
+      else card.classList.add('inactive');
     });
     if (idx === -1) return;
     var card = priceCards[idx];
+    // При смене волны — сбрасываем seed на полный запас новой волны
+    if (idx !== lastIdx && lastIdx >= 0) {
+      TICKET_SEED_LEFT = parseInt(card.getAttribute('data-tickets')) || 100;
+      var today = new Date();
+      TICKET_SEED_DATE = today.getFullYear() + '-' + pad2(today.getMonth() + 1) + '-' + pad2(today.getDate());
+    }
     var date = card.getAttribute('data-date');
     if (labelEl) labelEl.innerHTML = 'Цена повысится <strong style="color:var(--sunset);">' + date + '</strong>. Осталось:';
     if (footDate) footDate.textContent = date;
@@ -1257,9 +1301,9 @@ p { max-width: 70ch; margin-inline: auto; }
     var idx = findWaveIdx();
     if (idx === -1) {
       if (lastIdx !== -1) {
-        priceCards.forEach(function (card) { card.classList.add('soldout'); });
+        priceCards.forEach(function (card) { card.classList.remove('featured', 'inactive'); card.classList.add('soldout'); });
         var last = priceCards[priceCards.length - 1];
-        if (last) last.classList.remove('soldout');
+        if (last) { last.classList.remove('soldout'); last.classList.add('featured'); }
         if (labelEl) labelEl.textContent = 'Цена дня события — на входе';
         if (footDate) footDate.textContent = 'на входе';
         lastIdx = -1;
@@ -1274,6 +1318,7 @@ p { max-width: 70ch; margin-inline: auto; }
       if (htS) htS.textContent = '00';
       if (htLabel) htLabel.textContent = 'Цена дня события — 6000 сом на входе';
       if (timerEl) timerEl.style.opacity = '.5';
+      pullWaveToHero();
       return;
     }
     if (timerEl) timerEl.style.opacity = '1';
@@ -1297,11 +1342,13 @@ p { max-width: 70ch; margin-inline: auto; }
     // Update label
     var date = card.getAttribute('data-date');
     if (htLabel) htLabel.innerHTML = 'Цена повысится <strong style="color:var(--lantern);">' + date + '</strong>';
+    pullWaveToHero();
   }
 
   if (priceCards.length && timerEl) {
     tick();
     updateTicketCounts();
+    pullWaveToHero();
     setInterval(tick, 1000);
     setInterval(updateTicketCounts, 60000);
   }
