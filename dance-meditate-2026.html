@@ -744,7 +744,7 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="price-value">2900<small> сом</small></div>
         <div class="desc">3 дня, место в кемпинге, вся программа</div>
         <div class="btn-row">
-          <button class="btn btn-primary" type="button" data-book="early-2900" data-tier="Ранний билет · 2900 сом" data-wa="77017830800" data-wa-msg="Здравствуйте! Можно ли мне ранний билет за 2900 сом?">Забронировать</button>
+          <button class="btn btn-primary" type="button" data-book="early-2900" data-tier="Ранний билет · 2900 сом" data-wa-msg="Здравствуйте! Можно ли мне ранний билет за 2900 сом?">Забронировать</button>
           <button class="btn btn-secondary on-light" type="button" data-book="early-2900-transfer" data-tier="Ранний билет · 2900 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне ранний билет с трансфером за 2900 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
@@ -1091,7 +1091,9 @@ p { max-width: 70ch; margin-inline: auto; }
 
   // ---- Booking modal ----
   // TODO: вставь реальный WhatsApp-номер координатора в формате без + (например "77700000000")
-  var WA_NUMBER = "77017830800";
+  var utmSource = new URLSearchParams(location.search).get('utm_source') || '';
+  var DEFAULT_WA = "77789837875";
+  var WA_NUMBER = utmSource === 'kravchuk' ? "77017830800" : DEFAULT_WA;
   var overlay = document.getElementById('book-overlay');
   var form = document.getElementById('book-form');
   var fKind = document.getElementById('book-kind');
