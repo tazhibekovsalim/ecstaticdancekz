@@ -1093,7 +1093,8 @@ p { max-width: 70ch; margin-inline: auto; }
   // TODO: вставь реальный WhatsApp-номер координатора в формате без + (например "77700000000")
   var utmSource = new URLSearchParams(location.search).get('utm_source') || '';
   var DEFAULT_WA = "77789837875";
-  var WA_NUMBER = utmSource === 'kravchuk' ? "77017830800" : DEFAULT_WA;
+  var UTM_WA = { kravchuk: "77017830800", ferdusa: "996554290970" };
+  var WA_NUMBER = UTM_WA[utmSource] || DEFAULT_WA;
   var overlay = document.getElementById('book-overlay');
   var form = document.getElementById('book-form');
   var fKind = document.getElementById('book-kind');
