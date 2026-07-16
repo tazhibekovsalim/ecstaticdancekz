@@ -130,6 +130,11 @@ p { max-width: 70ch; margin-inline: auto; }
 .early-note { font-size: var(--fs-small); color: var(--cream-soft); margin: 14px auto 0; text-align: center; max-width: none; }
 .early-note strong { color: var(--lantern); font-weight: 600; }
 
+/* ===== Hero timer ===== */
+.hero-timer { text-align: center; margin-top: 14px; }
+.hero-timer-label { font-size: 13px; color: var(--cream-soft); display: block; margin-bottom: 4px; }
+.hero-timer-digits { font-family: var(--font-display); font-size: 16px; color: var(--lantern); font-weight: 500; letter-spacing: 0.02em; }
+
 /* ============================================
    ЦИФРЫ (sec 2)
    ============================================ */
@@ -480,8 +485,12 @@ p { max-width: 70ch; margin-inline: auto; }
       <span>южный берег Иссык-Куля</span>
       <span>open air</span>
     </div>
-    <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta">Забронировать билет · 2900 сом</a>
+    <a class="btn btn-primary" href="#tickets" data-od-id="hero-cta">Забронировать билет · 4000 сом</a>
     <p class="early-note">Early bird — первые 35 мест, осталось <strong id="early-left-hero">30</strong></p>
+    <div class="hero-timer" id="hero-timer">
+      <span class="hero-timer-label">Цена повысится <strong style="color:var(--lantern);">26 июля</strong></span>
+      <span class="hero-timer-digits"><span id="ht-days">0</span> дн · <span id="ht-hours">00</span> ч · <span id="ht-mins">00</span> м</span>
+    </div>
   </div>
 </header>
 
@@ -780,7 +789,7 @@ p { max-width: 70ch; margin-inline: auto; }
         <span class="t-digit"><span id="t-mins">00</span><small>м</small></span>
       </div>
     </div>
-    <div class="price-grid" style="margin-top: 36px;" data-od-id="tickets-grid">
+    <div class="price-grid" id="tickets-grid" style="margin-top: 36px;" data-od-id="tickets-grid">
       <!-- TODO: заменить бронь → оплата эквайринга, когда подключат -->
       <div class="price-card soldout" data-od-id="ticket-wave1" data-deadline="2026-06-15T23:59:59" data-price="2900 сом" data-date="15 июня">
         <span class="badge">Первые 35 мест</span>
@@ -1188,6 +1197,14 @@ p { max-width: 70ch; margin-inline: auto; }
 
   var lastIdx = -99;
 
+  // Hero timer elements
+  var htD = document.getElementById('ht-days');
+  var htH = document.getElementById('ht-hours');
+  var htM = document.getElementById('ht-mins');
+  var htLabel = document.querySelector('.hero-timer-label');
+
+  function pad2(n) { return ('0' + n).slice(-2); }
+
   function applyWave(idx) {
     priceCards.forEach(function (card, i) {
       card.classList.remove('featured', 'soldout');
@@ -1216,6 +1233,10 @@ p { max-width: 70ch; margin-inline: auto; }
       if (dEl) dEl.textContent = '0';
       if (hEl) hEl.textContent = '00';
       if (mEl) mEl.textContent = '00';
+      if (htD) htD.textContent = '0';
+      if (htH) htH.textContent = '00';
+      if (htM) htM.textContent = '00';
+      if (htLabel) htLabel.textContent = 'Цена дня события — 6000 сом на входе';
       if (timerEl) timerEl.style.opacity = '.5';
       return;
     }
@@ -1228,8 +1249,15 @@ p { max-width: 70ch; margin-inline: auto; }
     var hours = Math.floor((diff % 86400000) / 3600000);
     var mins = Math.floor((diff % 3600000) / 60000);
     if (dEl) dEl.textContent = days;
-    if (hEl) hEl.textContent = ('0' + hours).slice(-2);
-    if (mEl) mEl.textContent = ('0' + mins).slice(-2);
+    if (hEl) hEl.textContent = pad2(hours);
+    if (mEl) mEl.textContent = pad2(mins);
+    // Hero timer
+    if (htD) htD.textContent = days;
+    if (htH) htH.textContent = pad2(hours);
+    if (htM) htM.textContent = pad2(mins);
+    // Update label
+    var date = card.getAttribute('data-date');
+    if (htLabel) htLabel.innerHTML = 'Цена повысится <strong style="color:var(--lantern);">' + date + '</strong>';
   }
 
   if (priceCards.length && timerEl) {
