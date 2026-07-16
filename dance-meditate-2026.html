@@ -314,6 +314,17 @@ p { max-width: 70ch; margin-inline: auto; }
 .p-toggle-btn .arr { display: inline-block; transition: transform .2s ease; font-size: 10px; }
 .p-card.expanded .p-toggle-btn .arr { transform: rotate(180deg); }
 
+.p-book-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  color: #fff; background: #25D366;
+  padding: 10px 20px; border-radius: 999px;
+  text-decoration: none; margin-top: 12px;
+  transition: transform .15s ease, box-shadow .15s ease;
+  align-self: flex-start;
+}
+.p-book-link:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,211,102,.35); }
+
 .p-show-more {
   display: block; margin: 24px auto 0;
   font-family: var(--font-body); font-weight: 600; font-size: 15px;
@@ -733,8 +744,8 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="price-value">2900<small> сом</small></div>
         <div class="desc">3 дня, место в кемпинге, вся программа</div>
         <div class="btn-row">
-          <button class="btn btn-primary" type="button" data-book="early-2900" data-tier="Ранний билет · 2900 сом">Забронировать</button>
-          <button class="btn btn-secondary on-light" type="button" data-book="early-2900-transfer" data-tier="Ранний билет · 2900 сом + трансфер">Забронировать с трансфером</button>
+          <button class="btn btn-primary" type="button" data-book="early-2900" data-tier="Ранний билет · 2900 сом" data-wa="77017830800" data-wa-msg="Здравствуйте! Можно ли мне ранний билет за 2900 сом?">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="early-2900-transfer" data-tier="Ранний билет · 2900 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне ранний билет с трансфером за 2900 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
@@ -743,8 +754,8 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="price-value">4000<small> сом</small></div>
         <div class="desc">После ранних билетов</div>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" data-book="standard-4000" data-tier="Стандарт · 4000 сом">Забронировать</button>
-          <button class="btn btn-secondary on-light" type="button" data-book="standard-4000-transfer" data-tier="Стандарт · 4000 сом + трансфер">Забронировать с трансфером</button>
+          <button class="btn btn-ghost" type="button" data-book="standard-4000" data-tier="Стандарт · 4000 сом" data-wa-msg="Здравствуйте! Можно ли мне стандартный билет за 4000 сом?">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="standard-4000-transfer" data-tier="Стандарт · 4000 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне стандартный билет с трансфером за 4000 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
@@ -753,8 +764,8 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="price-value">2900<small> сом/чел</small></div>
         <div class="desc">За человека</div>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" data-book="company4-2900" data-tier="Компания 4 · 2900 сом/чел">Забронировать</button>
-          <button class="btn btn-secondary on-light" type="button" data-book="company4-2900-transfer" data-tier="Компания 4 · 2900 сом/чел + трансфер">Забронировать с трансфером</button>
+          <button class="btn btn-ghost" type="button" data-book="company4-2900" data-tier="Компания 4 · 2900 сом/чел" data-wa-msg="Здравствуйте! Можно ли мне билет «Компания 4» за 2900 сом/чел?">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="company4-2900-transfer" data-tier="Компания 4 · 2900 сом/чел + трансфер" data-wa-msg="Здравствуйте! Можно ли мне билет «Компания 4» с трансфером за 2900 сом/чел?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
@@ -763,8 +774,8 @@ p { max-width: 70ch; margin-inline: auto; }
         <div class="price-value">2500<small> сом/чел</small></div>
         <div class="desc">За человека</div>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" data-book="company6-2500" data-tier="Компания 6 · 2500 сом/чел">Забронировать</button>
-          <button class="btn btn-secondary on-light" type="button" data-book="company6-2500-transfer" data-tier="Компания 6 · 2500 сом/чел + трансфер">Забронировать с трансфером</button>
+          <button class="btn btn-ghost" type="button" data-book="company6-2500" data-tier="Компания 6 · 2500 сом/чел" data-wa-msg="Здравствуйте! Можно ли мне билет «Компания 6» за 2500 сом/чел?">Забронировать</button>
+          <button class="btn btn-secondary on-light" type="button" data-book="company6-2500-transfer" data-tier="Компания 6 · 2500 сом/чел + трансфер" data-wa-msg="Здравствуйте! Можно ли мне билет «Компания 6» с трансфером за 2500 сом/чел?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
@@ -1148,6 +1159,7 @@ p { max-width: 70ch; margin-inline: auto; }
       var tier = (document.getElementById('bk-tier').value || '').trim();
       var comment = (document.getElementById('bk-comment').value || '').trim();
       if (!name || !phone) return;
+      var waMsg = btn.getAttribute('data-wa-msg') || '';
       var lines = [
         'Новая бронь — Dance & Meditate 08/08',
         '',
@@ -1156,6 +1168,7 @@ p { max-width: 70ch; margin-inline: auto; }
         'Телефон: ' + phone,
         'Откуда: ' + (from || 'Алматы')
       ];
+      if (waMsg) lines.push('', 'Вопрос: ' + waMsg);
       if (comment) lines.push('Комментарий: ' + comment);
       var msg = encodeURIComponent(lines.join('\n'));
       var url = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
