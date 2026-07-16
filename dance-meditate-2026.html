@@ -237,6 +237,28 @@ p { max-width: 70ch; margin-inline: auto; }
 .price-card.soldout { opacity: .45; pointer-events: none; }
 .price-card.soldout .price-value { text-decoration: line-through; text-decoration-color: var(--sunset); text-decoration-thickness: 2px; }
 
+/* ===== Групповые билеты ===== */
+.group-tickets-wrap { margin-top: 24px; }
+.group-toggle {
+  display: block; width: 100%;
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  color: var(--lantern); background: rgba(255,227,168,.08);
+  border: 1px dashed rgba(255,227,168,.25);
+  padding: 14px 20px; border-radius: 14px;
+  cursor: pointer; transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.group-toggle:hover { background: rgba(255,227,168,.12); }
+.group-toggle .arr { display: inline-block; transition: transform .2s ease; font-size: 10px; margin-left: 4px; }
+.group-tickets-wrap.open .group-toggle .arr { transform: rotate(180deg); }
+.group-grid {
+  display: grid; gap: 16px; margin-top: 16px;
+  grid-template-columns: 1fr;
+  max-height: 0; overflow: hidden; transition: max-height .3s ease;
+}
+.group-tickets-wrap.open .group-grid { max-height: 800px; }
+@media (min-width: 600px) { .group-grid { grid-template-columns: repeat(2, 1fr); } }
+
 /* ============================================
    ОТЗЫВЫ (sec 8)
    ============================================ */
@@ -771,46 +793,73 @@ p { max-width: 70ch; margin-inline: auto; }
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-wave2" data-deadline="2026-07-19T23:59:59" data-price="4000 сом" data-date="19 июля">
+      <div class="price-card" data-od-id="ticket-wave2" data-deadline="2026-07-26T23:59:59" data-price="4000 сом" data-date="26 июля">
         <div class="tier">Вторая волна</div>
         <div class="price-value">4000<small> сом</small></div>
-        <div class="desc">До 19 июля</div>
+        <div class="desc">До 26 июля</div>
         <div class="btn-row">
           <button class="btn btn-ghost" type="button" data-book="wave-4000" data-tier="Вторая волна · 4000 сом" data-wa-msg="Здравствуйте! Можно ли мне билет за 4000 сом?">Забронировать</button>
           <button class="btn btn-secondary on-light" type="button" data-book="wave-4000-transfer" data-tier="Вторая волна · 4000 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне билет с трансфером за 4000 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-wave3" data-deadline="2026-07-26T23:59:59" data-price="4500 сом" data-date="26 июля">
+      <div class="price-card" data-od-id="ticket-wave3" data-deadline="2026-08-02T23:59:59" data-price="4500 сом" data-date="2 августа">
         <div class="tier">Третья волна</div>
         <div class="price-value">4500<small> сом</small></div>
-        <div class="desc">До 26 июля</div>
+        <div class="desc">До 2 августа</div>
         <div class="btn-row">
           <button class="btn btn-ghost" type="button" data-book="wave-4500" data-tier="Третья волна · 4500 сом" data-wa-msg="Здравствуйте! Можно ли мне билет за 4500 сом?">Забронировать</button>
           <button class="btn btn-secondary on-light" type="button" data-book="wave-4500-transfer" data-tier="Третья волна · 4500 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне билет с трансфером за 4500 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-wave4" data-deadline="2026-08-08T12:00:00" data-price="5000 сом" data-date="8 августа">
+      <div class="price-card" data-od-id="ticket-wave4" data-deadline="2026-08-06T23:59:59" data-price="5000 сом" data-date="6 августа">
         <div class="tier">Четвёртая волна</div>
         <div class="price-value">5000<small> сом</small></div>
-        <div class="desc">До 8 августа</div>
+        <div class="desc">До 6 августа</div>
         <div class="btn-row">
           <button class="btn btn-ghost" type="button" data-book="wave-5000" data-tier="Четвёртая волна · 5000 сом" data-wa-msg="Здравствуйте! Можно ли мне билет за 5000 сом?">Забронировать</button>
           <button class="btn btn-secondary on-light" type="button" data-book="wave-5000-transfer" data-tier="Четвёртая волна · 5000 сом + трансфер" data-wa-msg="Здравствуйте! Можно ли мне билет с трансфером за 5000 сом?">Забронировать с трансфером</button>
         </div>
         <p class="transfer-note">Трансфер оплачивается отдельно</p>
       </div>
-      <div class="price-card" data-od-id="ticket-dayof" data-price="5500 сом" data-date="на входе">
+      <div class="price-card" data-od-id="ticket-dayof" data-price="6000 сом" data-date="на входе">
         <div class="tier">В день события</div>
-        <div class="price-value">5500<small> сом</small></div>
+        <div class="price-value">6000<small> сом</small></div>
         <div class="desc">Оплата на входе</div>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" data-book="wave-door" data-tier="На входе · 5500 сом" data-wa-msg="Здравствуйте! Можно ли мне билет на входе за 5500 сом?">Билет на входе</button>
+          <button class="btn btn-ghost" type="button" data-book="wave-door" data-tier="На входе · 6000 сом" data-wa-msg="Здравствуйте! Можно ли мне билет на входе за 6000 сом?">Билет на входе</button>
         </div>
       </div>
     </div>
-    <p class="tickets-foot" style="margin-top: 28px;">Цена растёт <strong style="color:var(--sunset);" id="tickets-foot-date">19 июля</strong> — чем раньше, тем выгоднее.</p>
+    <p class="tickets-foot" style="margin-top: 28px;">Цена растёт <strong style="color:var(--sunset);" id="tickets-foot-date">26 июля</strong> — чем раньше, тем выгоднее.</p>
+
+    <!-- Групповые билеты -->
+    <div class="group-tickets-wrap" id="group-tickets-wrap" data-od-id="group-tickets">
+      <button class="group-toggle" id="group-toggle" type="button">Групповые билеты — выгоднее <span class="arr">▾</span></button>
+      <div class="group-grid" id="group-grid">
+        <div class="price-card" data-od-id="ticket-group4">
+          <div class="tier">Компания 4 человека</div>
+          <div class="price-value" id="group4-price">3500<small> сом/чел</small></div>
+          <div class="desc">Скидка 500 сом с каждого</div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" type="button" data-book="group4" data-tier="Компания 4" data-wa-msg="Здравствуйте! Интересует групповой билет на 4 человек.">Забронировать</button>
+            <button class="btn btn-secondary on-light" type="button" data-book="group4-transfer" data-tier="Компания 4 + трансфер" data-wa-msg="Здравствуйте! Интересует групповой билет на 4 человек с трансфером.">С трансфером</button>
+          </div>
+          <p class="transfer-note">Трансфер оплачивается отдельно</p>
+        </div>
+        <div class="price-card" data-od-id="ticket-group6">
+          <div class="tier">Компания 6 человек</div>
+          <div class="price-value" id="group6-price">3250<small> сом/чел</small></div>
+          <div class="desc">Скидка 750 сом с каждого</div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" type="button" data-book="group6" data-tier="Компания 6" data-wa-msg="Здравствуйте! Интересует групповой билет на 6 человек.">Забронировать</button>
+            <button class="btn btn-secondary on-light" type="button" data-book="group6-transfer" data-tier="Компания 6 + трансфер" data-wa-msg="Здравствуйте! Интересует групповой билет на 6 человек с трансфером.">С трансфером</button>
+          </div>
+          <p class="transfer-note">Трансфер оплачивается отдельно</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1150,6 +1199,7 @@ p { max-width: 70ch; margin-inline: auto; }
     var date = card.getAttribute('data-date');
     if (labelEl) labelEl.innerHTML = 'Цена повысится <strong style="color:var(--sunset);">' + date + '</strong>. Осталось:';
     if (footDate) footDate.textContent = date;
+    updateGroupPrices();
   }
 
   function tick() {
@@ -1186,6 +1236,40 @@ p { max-width: 70ch; margin-inline: auto; }
     tick();
     setInterval(tick, 60000);
   }
+
+  // ==== Групповые билеты: раскрыть/скрыть ====
+  var groupToggle = document.getElementById('group-toggle');
+  var groupWrap = document.getElementById('group-tickets-wrap');
+  if (groupToggle && groupWrap) {
+    groupToggle.addEventListener('click', function () {
+      var open = groupWrap.classList.toggle('open');
+      groupToggle.innerHTML = open ? 'Групповые билеты — выгоднее <span class=\"arr\">▴</span>' : 'Групповые билеты — выгоднее <span class=\"arr\">▾</span>';
+    });
+  }
+
+  // ==== Динамические цены групповых билетов ====
+  var g4El = document.getElementById('group4-price');
+  var g6El = document.getElementById('group6-price');
+  function updateGroupPrices() {
+    var idx = findWaveIdx();
+    var base = 4000;
+    if (idx >= 0 && idx < priceCards.length) {
+      var p = priceCards[idx].getAttribute('data-price');
+      if (p) base = parseInt(p) || 4000;
+    } else {
+      var last = priceCards[priceCards.length - 1];
+      if (last) {
+        var lp = last.getAttribute('data-price');
+        if (lp) base = parseInt(lp) || 6000;
+      }
+    }
+    var g4 = base - 500;
+    var g6 = base - 750;
+    if (g4El) g4El.innerHTML = g4 + '<small> сом/чел</small>';
+    if (g6El) g6El.innerHTML = g6 + '<small> сом/чел</small>';
+  }
+  updateGroupPrices();
+  setInterval(updateGroupPrices, 60000);
   var overlay = document.getElementById('book-overlay');
   var form = document.getElementById('book-form');
   var fKind = document.getElementById('book-kind');
