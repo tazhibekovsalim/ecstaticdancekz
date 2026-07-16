@@ -1091,7 +1091,7 @@ p { max-width: 70ch; margin-inline: auto; }
 
   // ---- Booking modal ----
   // TODO: вставь реальный WhatsApp-номер координатора в формате без + (например "77700000000")
-  var WA_NUMBER = "77700000000";
+  var WA_NUMBER = "77789837875";
   var overlay = document.getElementById('book-overlay');
   var form = document.getElementById('book-form');
   var fKind = document.getElementById('book-kind');
@@ -1159,6 +1159,7 @@ p { max-width: 70ch; margin-inline: auto; }
       var tier = (document.getElementById('bk-tier').value || '').trim();
       var comment = (document.getElementById('bk-comment').value || '').trim();
       if (!name || !phone) return;
+      var wa = btn.getAttribute('data-wa') || WA_NUMBER;
       var waMsg = btn.getAttribute('data-wa-msg') || '';
       var lines = [
         'Новая бронь — Dance & Meditate 08/08',
@@ -1171,7 +1172,7 @@ p { max-width: 70ch; margin-inline: auto; }
       if (waMsg) lines.push('', 'Вопрос: ' + waMsg);
       if (comment) lines.push('Комментарий: ' + comment);
       var msg = encodeURIComponent(lines.join('\n'));
-      var url = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
+      var url = 'https://wa.me/' + wa + '?text=' + msg;
       window.open(url, '_blank', 'noopener');
     });
   }
