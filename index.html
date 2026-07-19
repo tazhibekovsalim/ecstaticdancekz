@@ -917,7 +917,7 @@ svg.illu .acc { stroke: var(--aqua); }
       <span style="opacity:.4;">·</span>
       <span style="white-space: nowrap;">босиком</span>
       <span style="width:100%;"></span>
-      <span style="color: var(--cream); font-weight: 600; white-space: nowrap;">2 августа, 14:00–22:00 · Тюркский парк</span><span style="opacity:.4;">·</span><span style="color: var(--cream); font-weight: 600; white-space: nowrap;">ранняя цена <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span></span>
+      <span style="color: var(--cream); font-weight: 600; white-space: nowrap;">2 августа, 14:00–22:00 · Тюркский парк</span><span style="opacity:.4;">·</span><span style="color: var(--cream); font-weight: 600; white-space: nowrap;">ранняя цена <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span><span class="js-cs-remaining"></span></span>
     </p>
   </div>
 </section>
@@ -1134,7 +1134,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Сравнения» -->
 <div class="cta-strip" data-od-id="cta-strip-1">
   <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span></span>
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span><span class="js-cs-remaining"></span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1208,7 +1208,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Соглашений» -->
 <div class="cta-strip" data-od-id="cta-strip-2">
   <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span></span>
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>2 августа</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 22 июля</span><span class="js-cs-remaining"></span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1574,6 +1574,27 @@ svg.illu .acc { stroke: var(--aqua); }
   var buyBtn = document.querySelector('.js-buy-btn');
   var csPriceEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-price'));
   var csDateEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-date'));
+  var csRemainingEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-remaining'));
+
+  // Tiers from the last successful /public/availability fetch (§2.2).
+  // null = no live data (fetch pending/failed) → " · осталось N" stays empty.
+  var lastAvailTiers = null;
+
+  function parsePriceNumber(s) {
+    return Number(String(s || '').replace(/[^\d]/g, ''));
+  }
+
+  function setCsRemaining(remaining) {
+    csRemainingEls.forEach(function (el) {
+      el.textContent = remaining == null ? '' : ' · осталось ' + remaining;
+    });
+  }
+
+  function csRemainingForPrice(priceNumber) {
+    if (!lastAvailTiers) return null;
+    var tier = lastAvailTiers.filter(function (t) { return t.price === priceNumber; })[0];
+    return tier ? tier.remaining : null;
+  }
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
@@ -1609,6 +1630,7 @@ svg.illu .acc { stroke: var(--aqua); }
     if (buyBtn) buyBtn.textContent = 'Купить билет — ' + price;
     csPriceEls.forEach(function (el) { el.textContent = price; });
     csDateEls.forEach(function (el) { el.textContent = 'до ' + date; });
+    setCsRemaining(csRemainingForPrice(parsePriceNumber(price)));
     if (pcLabel) {
       pcLabel.innerHTML = 'Цена растёт <strong style="color:var(--coral);">' + date + '</strong>. Осталось:';
     }
@@ -1633,6 +1655,7 @@ svg.illu .acc { stroke: var(--aqua); }
         if (buyBtn) buyBtn.textContent = 'Купить билет — 20 000 ₸';
         csPriceEls.forEach(function (el) { el.textContent = '20 000 ₸'; });
         csDateEls.forEach(function (el) { el.textContent = 'в день события'; });
+        setCsRemaining(null);
         if (pcLabel) pcLabel.innerHTML = 'Цена дня события — <strong style="color:var(--coral);">20 000 ₸</strong> на входе';
         appliedIdx = -1;
       }
@@ -1672,10 +1695,6 @@ svg.illu .acc { stroke: var(--aqua); }
   if (priceCards.length && 'AbortController' in window) {
     var EVENT_ID = 'eda-2026-08-02';
 
-    function parsePriceNumber(s) {
-      return Number(String(s || '').replace(/[^\d]/g, ''));
-    }
-
     function setRemainingText(card, remaining, limit) {
       if (!card || !limit) return;
       var el = card.querySelector('.js-remaining');
@@ -1690,6 +1709,7 @@ svg.illu .acc { stroke: var(--aqua); }
     function applyAvailability(data) {
       var evt = data && data[EVENT_ID];
       if (!evt || !evt.tiers || !evt.tiers.length) return;
+      lastAvailTiers = evt.tiers;
 
       var dateIdx = findCurrentWave();
       if (dateIdx === -1 || !priceCards[dateIdx]) return;
@@ -1700,6 +1720,7 @@ svg.illu .acc { stroke: var(--aqua); }
 
       if (activeTier.remaining > 0) {
         setRemainingText(priceCards[dateIdx], activeTier.remaining, activeTier.limit);
+        setCsRemaining(activeTier.remaining);
         return;
       }
 
