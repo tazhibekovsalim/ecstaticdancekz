@@ -4,6 +4,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ecstatic Dance Almaty — осознанные вечеринки и свободный танец в Алматы</title>
 <meta name="description" content="Осознанные вечеринки Ecstatic Dance в Алматы: свободный танец под live DJ-сеты, саунд-хилинг и чайная зона. Без алкоголя, без разговоров, без телефонов.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F8GB5B3SC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F8GB5B3SC4');
+</script>
 <link rel="canonical" href="https://ecstaticdance.kz/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ecstaticdance.kz/">
@@ -1657,6 +1666,24 @@ svg.illu .acc { stroke: var(--aqua); }
       .catch(function () { /* network/timeout/parse error — silently keep the static fallback */ })
       .finally(function () { clearTimeout(timeoutId); });
   }
+
+  // === GA4: begin_checkout on buy-button clicks ===
+  // Plain addEventListener, no preventDefault — must never block the
+  // redirect into the Telegram bot, even if an ad-blocker has stripped
+  // gtag() out entirely.
+  function trackBeginCheckout() {
+    try {
+      if (typeof gtag !== 'function') return;
+      var payload = { currency: 'KZT', item_name: 'eda-2026-08-02' };
+      var idx = appliedIdx;
+      if (idx !== -1 && idx !== -99 && priceCards[idx]) {
+        payload.value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
+      }
+      gtag('event', 'begin_checkout', payload);
+    } catch (e) { /* never block the click-through */ }
+  }
+  if (buyBtn) buyBtn.addEventListener('click', trackBeginCheckout);
+  if (stickyBtn) stickyBtn.addEventListener('click', trackBeginCheckout);
 })();
 </script>
 
