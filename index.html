@@ -269,6 +269,56 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .dj-photo img { width: 100%; height: 100%; object-fit: cover; }
 .dj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
+/* ===== Карусель мастеров события (как на Dance & Meditate, скин «Ночная спираль») ===== */
+.mc-carousel-wrap { overflow: hidden; margin-top: 28px; position: relative; }
+.mc-carousel {
+  display: flex; gap: 16px; align-items: flex-start;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.mc-carousel::-webkit-scrollbar { display: none; }
+.mc-card {
+  flex: 0 0 280px; scroll-snap-align: start;
+  background: var(--night-soft);
+  border: 1px solid rgba(247, 244, 238, 0.08);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+@media (max-width: 640px) { .mc-card { flex: 0 0 260px; } }
+.mc-photo {
+  width: 100%; aspect-ratio: 1;
+  overflow: hidden; background: linear-gradient(160deg, #2EC4B6 0%, #131628 55%, #FF7A45 100%);
+}
+.mc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mc-body { padding: 20px; flex: 1 1 auto; display: flex; flex-direction: column; gap: 8px; }
+.mc-body .mc-practice {
+  font-family: var(--font-display);
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--aqua); font-weight: 500;
+}
+.mc-body .mc-name {
+  font-family: var(--font-display); font-size: 19px; font-weight: 600;
+  color: var(--cream); letter-spacing: -0.01em;
+}
+.mc-body .mc-role { font-size: 13px; color: var(--cream-soft); }
+.mc-body .mc-ig { font-size: 13px; color: var(--aqua); text-decoration: none; }
+.mc-body .mc-ig:hover { text-decoration: underline; }
+.mc-body .mc-desc { font-size: 14px; color: var(--cream-soft); line-height: 1.55; }
+.mc-desc-wrap { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.mc-card.expanded .mc-desc-wrap { max-height: 600px; }
+.mc-toggle-btn {
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  color: var(--aqua); background: none; border: none; cursor: pointer;
+  padding: 4px 0; margin-top: auto; display: inline-flex; align-items: center; gap: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.mc-toggle-btn:hover { text-decoration: underline; }
+.mc-toggle-btn .arr { display: inline-block; transition: transform .2s ease; font-size: 10px; }
+.mc-card.expanded .mc-toggle-btn .arr { transform: rotate(180deg); }
+
 /* ===== Бейджи ===== */
 .badge { display: inline-block; background: var(--coral); color: var(--coral-dark); font-size: var(--fs-caption); font-weight: 600; padding: 5px 12px; border-radius: 999px; letter-spacing: 0.02em; }
 .badge-aqua { background: rgba(46,196,182,.15); color: var(--aqua); }
@@ -899,17 +949,61 @@ svg.illu .acc { stroke: var(--aqua); }
         </div>
       </div>
 
+      <!-- Карусель мастеров -->
+      <div class="mc-carousel-wrap reveal">
+        <div class="mc-carousel" id="mastersCarousel" data-od-id="masters-carousel">
+        <div class="mc-card" data-od-id="mc-salim">
+          <div class="mc-photo"><img src="salim-photo.jpg" alt="Salim — диджей за пультом" loading="lazy" style="object-position: top;"></div>
+          <div class="mc-body">
+            <p class="mc-practice">DJ · Ecstatic Dance</p>
+            <h3 class="mc-name">Salim</h3>
+            <p class="mc-role">Основатель Ecstatic Dance Almaty</p>
+            <a class="mc-ig" href="https://www.instagram.com/salim.the_dream/" target="_blank" rel="noopener">@salim.the_dream</a>
+            <p class="mc-desc">На этом Open Air проведёт Ecstatic Dance вместе с Фердусой: она откроет практику начальной активацией, после чего вместе они поведут вас через полноценное танцевальное путешествие.</p>
+            <div class="mc-desc-wrap">
+              <p class="mc-desc">Салим только что вернулся из Индии, где играл на крупнейшей площадке страны Shunya Wellness, был резидентом сообщества Arambolians, выступал на фестивале Foure рядом с хедлайнером Lizwi. За четыре года за пультом прошёл путь от резидента Gaia Dance Temple в Гватемале до одного из заметных диджеев международного сообщества. Обучался у пионеров жанра: Scott Nice, Temple Step Project, Atyya и Mose. Обучил более 20 диджеев — сегодня они проводят Ecstatic Dance по всему миру.</p>
+            </div>
+            <button class="mc-toggle-btn" type="button"><span class="arr">▾</span> <span class="mc-toggle-label">Подробнее</span></button>
+          </div>
+        </div>
+        <div class="mc-card" data-od-id="mc-alex-muller">
+          <div class="mc-photo"><img src="alex-muller-photo.jpg" alt="Alex Muller — диджей, основатель Muller Ecstatic Dance" loading="lazy" style="object-position: top;"></div>
+          <div class="mc-body">
+            <p class="mc-practice">DJ · Хедлайнер</p>
+            <h3 class="mc-name">Alex Muller</h3>
+            <p class="mc-role">Основатель Muller Ecstatic Dance, Сочи</p>
+            <a class="mc-ig" href="https://www.instagram.com/dj_alex_muller/" target="_blank" rel="noopener">@dj_alex_muller</a>
+            <p class="mc-desc">Основатель и идейный вдохновитель экстатичного сообщества Сочи. Музыкант-мультинструменталист с 9 лет: гитары, флейты, ханги — его друзья.</p>
+            <div class="mc-desc-wrap">
+              <p class="mc-desc">Обучался у диджеев мирового класса: DJ QuestLove, Armin Van Buuren. Сертифицированный проводник Ecstatic Dance — прошёл обучение у DJ Aman. Преподаватель тантры и телесно-ориентированной терапии. Раньше преподавал йогу, а сейчас обучает свободному, спонтанному движению, которое даёт тот же эффект — освобождает тело и психику. Обучает диджеингу других на авторских курсах. Считает, что его миссия — передача искусства осознанного танца, позволяющего проживать любые состояния с радостью.</p>
+            </div>
+            <button class="mc-toggle-btn" type="button"><span class="arr">▾</span> <span class="mc-toggle-label">Подробнее</span></button>
+          </div>
+        </div>
+        <div class="mc-card" data-od-id="mc-alina">
+          <div class="mc-photo"><img src="alina-haib-photo.jpg" alt="Алина Хаиб — автор методики Sacrum" loading="lazy" style="object-position: top;"></div>
+          <div class="mc-body">
+            <p class="mc-practice">Sacrum</p>
+            <h3 class="mc-name">Алина Хаиб</h3>
+            <p class="mc-role">Автор методики Sacrum</p>
+            <a class="mc-ig" href="https://www.instagram.com/alinahaib/" target="_blank" rel="noopener">@alinahaib</a>
+            <p class="mc-desc">Авторская танцевальная методика, объединяющая осознанное движение, дыхание и работу с телом. Через танец раскрываются разные зоны тела, освобождаются зажимы, возвращается чувствительность и внутренняя сила.</p>
+          </div>
+        </div>
+        <div class="mc-card" data-od-id="mc-petr">
+          <div class="mc-photo"><img src="petr-ezau-photo.jpg" alt="Пётр Эзау — контактная импровизация" loading="lazy" style="object-position: top;"></div>
+          <div class="mc-body">
+            <p class="mc-practice">Контактная импровизация</p>
+            <h3 class="mc-name">Пётр Эзау</h3>
+            <p class="mc-role">Проводник практики</p>
+            <a class="mc-ig" href="https://www.instagram.com/ezau.petr/" target="_blank" rel="noopener">@ezau.petr</a>
+            <p class="mc-desc">Контактная импровизация — танец-диалог через прикосновение, вес и совместное движение.</p>
+          </div>
+        </div>
+        </div><!-- /mc-carousel -->
+      </div><!-- /mc-carousel-wrap -->
+
       <div class="ne-info-bottom" data-od-id="ne-info-bottom">
-        <p class="ne-djs-label">Диджеи события</p>
-        <div class="ne-djs">
-          <span class="ne-dj">Salim</span>
-          <span class="ne-dj">Alex Muller</span>
-        </div>
-        <p class="ne-djs-label" style="margin-top:14px;">Проводники практик</p>
-        <div class="ne-djs">
-          <span class="ne-dj">Пётр Эзау — контактная импровизация</span>
-          <span class="ne-dj">Алина Хаиб — Sacrum</span>
-        </div>
         <p class="ne-note">Цена растёт по датам и выкупу: <strong style="color:var(--cream);">22, 26 июля и 1 августа</strong> — пороги повышения. Чем раньше, тем дешевле. В день события — 20 000 ₸.</p>
         <div style="margin-top: 22px;" data-od-id="ne-buy-cta">
           <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-08-02__src-landing" target="_blank" rel="noopener">Купить билет — 9999 ₸</a>
@@ -974,7 +1068,7 @@ svg.illu .acc { stroke: var(--aqua); }
       <div class="promo-strip reveal" data-od-id="promo-strip">
         <div class="ps-row">
           <span class="ps-text">Впервые на экстатике? Получи <strong>промокод −10%</strong> на первый раз</span>
-          <a class="btn" href="https://wa.me/77789837875?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20-10%25%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA%20%E2%80%94%20%D1%8F%20%D0%B2%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B5&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
+          <a class="btn" href="https://wa.me/77786297875?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20-10%25%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA%20%E2%80%94%20%D1%8F%20%D0%B2%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B5&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
         </div>
         <p class="ps-fine">Пришлём код в ответном сообщении. Действует только на первое посещение.</p>
       </div>
@@ -1152,47 +1246,6 @@ svg.illu .acc { stroke: var(--aqua); }
         <div class="route-labels"><span>Гватемала</span><span>Индия</span><span>Алматы</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ====================== 6. ДИДЖЕИ И КОМАНДА ====================== -->
-<section class="section section-dark" id="djs" data-od-id="djs">
-  <div class="section-inner">
-    <p class="eyebrow">Кто ведёт волну</p>
-    <h2>Резиденты и гости</h2>
-    <div class="grid reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-      <div class="dj-card" data-od-id="dj-salim">
-        <div class="dj-photo" style="background: linear-gradient(160deg, #2EC4B6 0%, #131628 55%, #FF7A45 100%);"></div>
-        <h3 style="color:var(--cream);">Salim <span style="font-size:12px; color:var(--cream-soft); font-weight:400; letter-spacing:0;">— основатель</span></h3>
-        <p style="font-size:15px;">Органичная электроника, этника, эмоциональная драматургия.</p>
-        <div class="dj-tags"><span class="badge badge-lav">Органика</span><span class="badge badge-lav">Этника</span></div>
-      </div>
-      <!-- скрыто до фото/описания: dj-skvorex
-      <div class="dj-card" data-od-id="dj-skvorex">
-        <div class="dj-photo" style="background: linear-gradient(160deg, #1E2340 0%, #B889E0 60%, #2EC4B6 100%);"></div>
-        <h3 style="color:var(--cream);">Skvorex</h3>
-        <p style="font-size:15px;">Резидент сообщества.</p>
-        <div class="dj-tags"><span class="badge badge-lav">Резидент</span></div>
-      </div>
-      -->
-      <!-- скрыто: dj-keytra
-      <div class="dj-card" data-od-id="dj-keytra">
-        <div class="dj-photo"><img src="image-flux-pro-ultra-mra81p4r.jpg" alt="Диджей за пультом в цветном свете" loading="lazy"></div>
-        <h3 style="color:var(--cream);">Keytra</h3>
-        <p style="font-size:15px;">Певица и DJ: этника + электроника + живой вокал, племенной вайб.</p>
-        <div class="dj-tags"><span class="badge badge-lav">Этника</span><span class="badge badge-lav">Живой вокал</span></div>
-      </div>
-      -->
-      <!-- скрыто до фото/описания: dj-zhanna
-      <div class="dj-card" data-od-id="dj-zhanna">
-        <div class="dj-photo" style="background: linear-gradient(160deg, #B889E0 0%, #1E2340 55%, #FF7A45 100%);"></div>
-        <h3 style="color:var(--cream);">Zhanna Aya</h3>
-        <p style="font-size:15px;">DJ, йог, танцовщица Tribal Fusion: музыку, которую слышишь телом.</p>
-        <div class="dj-tags"><span class="badge badge-lav">Tribal Fusion</span><span class="badge badge-lav">Этно-биты</span></div>
-      </div>
-      -->
-    </div>
-    <!-- TODO: состав резидентов обновлять перед каждым событием -->
   </div>
 </section>
 
@@ -1698,6 +1751,20 @@ svg.illu .acc { stroke: var(--aqua); }
   }
   if (buyBtn) buyBtn.addEventListener('click', trackBeginCheckout);
   if (stickyBtn) stickyBtn.addEventListener('click', trackBeginCheckout);
+
+  // === Карусель мастеров: раскрытие описаний ===
+  var mastersCarousel = document.getElementById('mastersCarousel');
+  if (mastersCarousel) {
+    mastersCarousel.addEventListener('click', function (e) {
+      var btn = e.target.closest('.mc-toggle-btn');
+      if (!btn) return;
+      var card = btn.closest('.mc-card');
+      if (!card) return;
+      card.classList.toggle('expanded');
+      var label = btn.querySelector('.mc-toggle-label');
+      if (label) label.textContent = card.classList.contains('expanded') ? 'Скрыть' : 'Подробнее';
+    });
+  }
 })();
 </script>
 
