@@ -903,7 +903,7 @@ svg.illu .acc { stroke: var(--aqua); }
         </div>
         <p class="ne-note">Цена растёт по датам и выкупу: <strong style="color:var(--cream);">22, 26 июля и 1 августа</strong> — пороги повышения. Чем раньше, тем дешевле. В день события — 20 000 ₸.</p>
         <div style="margin-top: 22px;" data-od-id="ne-buy-cta">
-          <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-08-02" target="_blank" rel="noopener">Купить билет — 9999 ₸</a>
+          <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-08-02__src-landing" target="_blank" rel="noopener">Купить билет — 9999 ₸</a>
           <p style="margin-top: 10px; font-size: 13px; color: var(--cream-soft);">Оплата картой через нашего Telegram-бота · займёт 2 минуты · билет придёт на почту 🔒</p>
         </div>
         <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;" data-od-id="ne-what-to-bring">
@@ -1244,16 +1244,23 @@ svg.illu .acc { stroke: var(--aqua); }
     <h2>Что говорят те, кто уже пришёл</h2>
 
     <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-      <div class="card" data-od-id="review-2">
-        <p class="quote">«Как танцует зал — можно смотреть вечно»</p>
-        <p class="quote-author">— участник вечера</p>
+      <div class="card" data-od-id="review-oleg-1">
+        <p class="quote">«После того как я перестал употреблять алкоголь, хотелось найти место, где можно танцевать свободным среди людей, которые тебя понимают. Ecstatic Dance Almaty стал таким местом»</p>
+        <p class="quote-author">— Олег</p>
+      </div>
+      <div class="card" data-od-id="review-yanina">
+        <p class="quote">«Это не просто танцы — это живая практика соединения с собой и своим телом»</p>
+        <p class="quote-author">— Янина</p>
+      </div>
+      <div class="card" data-od-id="review-oleg-2">
+        <p class="quote">«Не нужно заученных движений — ты просто слушаешь, и музыка сама тебя ведёт»</p>
+        <p class="quote-author">— Олег</p>
       </div>
       <div class="card" data-od-id="review-3">
         <p class="quote">«Очнулся, когда прыгал в центре толпы с ощущением давно забытой радости»</p>
         <p class="quote-author">— участник вечера</p>
       </div>
     </div>
-    <!-- TODO: заменить на реальные отзывы из хайлайта и комментариев -->
 
     <div class="gallery reveal" data-od-id="gallery">
       <div class="g wide"><img src="image-flux-pro-ultra-mra80r3x.jpg" alt="Атмосфера зала" loading="lazy"></div>
@@ -1504,6 +1511,13 @@ svg.illu .acc { stroke: var(--aqua); }
   }
 
   var appliedIdx = -99;
+  // Set by the live-availability fetch below when the site's date-based
+  // "active wave" has sold out for real (remaining=0) before its own
+  // deadline — overrides findCurrentWave() so tick() keeps featuring the
+  // next wave instead of reverting to the (sold-out) date-active one every
+  // second. null = no override, pure date-based fallback (also the state
+  // when the availability fetch fails/times out — nothing changes).
+  var apiActiveOverrideIdx = null;
 
   function applyWaveState(idx) {
     priceCards.forEach(function (card, i) {
@@ -1525,7 +1539,17 @@ svg.illu .acc { stroke: var(--aqua); }
   }
 
   function tick() {
-    var idx = findCurrentWave();
+    var idx = apiActiveOverrideIdx !== null ? apiActiveOverrideIdx : findCurrentWave();
+    if (idx !== -1 && apiActiveOverrideIdx !== null) {
+      // Belt-and-braces: if the overridden card's OWN deadline has since
+      // passed too, drop the override and fall back to plain date logic
+      // rather than showing a stuck/negative countdown.
+      var ovDl = new Date(priceCards[idx].getAttribute('data-deadline')).getTime();
+      if (ovDl <= Date.now()) {
+        apiActiveOverrideIdx = null;
+        idx = findCurrentWave();
+      }
+    }
     if (idx === -1) {
       if (appliedIdx !== -1) {
         priceCards.forEach(function (card) { card.classList.remove('featured'); card.classList.add('soldout'); });
@@ -1562,6 +1586,76 @@ svg.illu .acc { stroke: var(--aqua); }
   if (priceCards.length && pcEl) {
     tick();
     setInterval(tick, 1000);
+  }
+
+  // === Live ticket availability (site-conversion-stage2-spec.md §2.2) ===
+  // Best-effort enrichment only: 3s timeout, and ANY failure (network,
+  // CORS, timeout, bad JSON, no match) leaves the page exactly as the
+  // pure date-based logic above already rendered it — no error is ever
+  // shown to the visitor.
+  if (priceCards.length && 'AbortController' in window) {
+    var EVENT_ID = 'eda-2026-08-02';
+
+    function parsePriceNumber(s) {
+      return Number(String(s || '').replace(/[^\d]/g, ''));
+    }
+
+    function setRemainingText(card, remaining, limit) {
+      if (!card || !limit) return;
+      var el = card.querySelector('.js-remaining');
+      if (!el) {
+        el = document.createElement('div');
+        el.className = 'meta js-remaining';
+        card.appendChild(el);
+      }
+      el.textContent = 'осталось ' + remaining + ' из ' + limit;
+    }
+
+    function applyAvailability(data) {
+      var evt = data && data[EVENT_ID];
+      if (!evt || !evt.tiers || !evt.tiers.length) return;
+
+      var dateIdx = findCurrentWave();
+      if (dateIdx === -1 || !priceCards[dateIdx]) return;
+
+      var activeCardPrice = parsePriceNumber(priceCards[dateIdx].getAttribute('data-price'));
+      var activeTier = evt.tiers.filter(function (t) { return t.price === activeCardPrice; })[0];
+      if (!activeTier) return;
+
+      if (activeTier.remaining > 0) {
+        setRemainingText(priceCards[dateIdx], activeTier.remaining, activeTier.limit);
+        return;
+      }
+
+      // Date-active wave is sold out for real — find the wave the API says
+      // is actually active (its `active` flag is the source of truth here,
+      // data-deadline stays only the fallback for when this fetch fails).
+      var apiActive = evt.tiers.filter(function (t) { return t.active; })[0];
+      if (!apiActive) return;
+      var newIdx = -1;
+      for (var i = 0; i < priceCards.length; i++) {
+        if (parsePriceNumber(priceCards[i].getAttribute('data-price')) === apiActive.price) {
+          newIdx = i;
+          break;
+        }
+      }
+      if (newIdx === -1 || newIdx === dateIdx) return;
+
+      apiActiveOverrideIdx = newIdx;
+      applyWaveState(newIdx);
+      appliedIdx = newIdx;
+      setRemainingText(priceCards[newIdx], apiActive.remaining, apiActive.limit);
+    }
+
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function () { controller.abort(); }, 3000);
+    fetch('https://bot.ecstaticdance.kz/public/availability', { signal: controller.signal })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (data) applyAvailability(data);
+      })
+      .catch(function () { /* network/timeout/parse error — silently keep the static fallback */ })
+      .finally(function () { clearTimeout(timeoutId); });
   }
 })();
 </script>
