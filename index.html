@@ -271,6 +271,7 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 
 /* ===== Карусель мастеров события (как на Dance & Meditate, скин «Ночная спираль») ===== */
 .mc-carousel-wrap { overflow: hidden; margin-top: 28px; position: relative; }
+.next-event .mc-carousel-wrap { grid-column: 1 / -1; width: 100%; }
 .mc-carousel {
   display: flex; gap: 16px; align-items: flex-start;
   overflow-x: auto; scroll-snap-type: x mandatory;
@@ -670,7 +671,6 @@ svg.illu .acc { stroke: var(--aqua); }
   <div class="nav-links" data-od-id="nav-links">
     <a href="#tickets" data-od-id="nav-event">Событие</a>
     <a href="#what" data-od-id="nav-what">Что это</a>
-    <a href="#festivals" data-od-id="nav-festivals">Фестивали</a>
     <a href="#reviews" data-od-id="nav-reviews">Отзывы</a>
     <a href="#faq" data-od-id="nav-faq">FAQ</a>
   </div>
@@ -921,13 +921,6 @@ svg.illu .acc { stroke: var(--aqua); }
     </p>
   </div>
 </section>
-
-<!-- ===== Полоса-анонс: фестивали Лето-2026 ===== -->
-<div class="announce-strip" data-od-id="announce-festivals">
-  Лето-2026: фестиваль Dance &amp; Meditate на Иссык-Куле 7–9.08 и Ecstatic Fest Almaty 29–30.08
-  <span class="sep">→</span>
-  <a href="#festivals">Смотреть фестивали</a>
-</div>
 
 <!-- ====================== 2. БЛИЖАЙШЕЕ СОБЫТИЕ (компакт) ====================== -->
 <section class="next-event" id="tickets" data-od-id="tickets">
@@ -1228,7 +1221,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <div class="founder reveal" style="margin-top: 28px;" data-od-id="founder-body">
       <div class="founder-photo" data-od-id="founder-photo">
         <!-- TODO: фото Салима за пультом -->
-        <img src="image-flux-pro-ultra-mra81p4r.jpg" alt="Салим за диджейским пультом" loading="lazy">
+        <img src="salim-photo.jpg" alt="Салим за диджейским пультом" loading="lazy" style="object-position: top;">
       </div>
       <div class="founder-body">
         <p>Диджей из Алматы. За четыре года за пультом стал одним из заметных представителей международного сообщества Ecstatic Dance, выступая на крупнейших площадках Центральной Америки, Индии и Казахстана.</p>
@@ -1247,59 +1240,7 @@ svg.illu .acc { stroke: var(--aqua); }
       </div>
     </div>
   </div>
-</section>
 
-<!-- ====================== 7b. ФЕСТИВАЛИ ====================== -->
-<section class="section section-dark" id="festivals" data-od-id="festivals">
-  <div class="section-inner">
-    <p class="eyebrow">За пределами зала</p>
-    <h2>Наши фестивали</h2>
-    <p style="margin-top: 14px; max-width: 56ch;">Раз в сезон мы выезжаем за пределы зала — на большие open-air события.</p>
-
-    <div class="fest-grid reveal" data-od-id="fest-grid">
-
-      <!-- Карточка 1: Dance & Meditate (закатная гамма) -->
-      <article class="fest-card fest-dm" data-od-id="fest-dm">
-        <div class="fest-photo" data-od-id="fest-dm-photo">
-          <img src="image-flux-pro-ultra-mr964cqv.jpg" alt="Закат над Иссык-Кулем, палаточный лагерь с тёплыми фонарями среди деревьев, силуэты гор" loading="lazy">
-        </div>
-        <div class="fest-body">
-          <span class="fest-badge">Early bird 2900 сом — первые 35 мест</span>
-          <h3 class="fest-title">Dance &amp; Meditate · 08/08</h3>
-          <p>Три дня музыки, практик и свободы на берегу Иссык-Куля. Open air, палаточный лагерь у воды, DJ-сеты, экстатик, йога, sound healing и джемы у костра. Ведущий мастер — Фердуса.</p>
-          <div class="fest-facts">
-            <span>7–9 августа</span><span class="sep">·</span>
-            <span>южный берег Иссык-Куля</span><span class="sep">·</span>
-            <span>без алкоголя</span>
-          </div>
-          <a class="fest-btn" href="https://ecstaticdance.kz/dance-meditate-2026" data-od-id="fest-dm-btn">Подробнее и билеты</a>
-        </div>
-      </article>
-
-      <!-- Карточка 2: Ecstatic Fest Almaty (основная гамма) -->
-      <article class="fest-card fest-ef" data-od-id="fest-ef">
-        <div class="fest-photo" data-od-id="fest-ef-photo">
-          <!-- TODO: сгенерировать фото — open-air танцпол на закате в горах Алматы, силуэты танцующих -->
-        </div>
-        <div class="fest-body">
-          <span class="fest-badge">Скоро в продаже</span>
-          <h3 class="fest-title">Ecstatic Fest Almaty · 29–30 августа</h3>
-          <p>Два дня экстатика в Алматы: несколько DJ-волн, саунд-хилинг, чайная зона и все любимые форматы сообщества — в большом формате.</p>
-          <div class="fest-facts">
-            <span>29–30 августа</span><span class="sep">·</span>
-            <span>Алматы</span><span class="sep">·</span>
-            <!-- TODO: место -->
-            <span>место уточняется</span>
-          </div>
-          <!-- TODO: ссылка или якорь «оставить предзапись» -->
-          <a class="fest-btn" href="https://wa.me/77789837875?text=%D0%9F%D1%80%D0%B5%D0%B4%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%20%D0%BD%D0%B0%20Ecstatic%20Fest%2029-30.08&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=fest" target="_blank" rel="noopener" data-od-id="fest-ef-btn">Оставить предзапись</a>
-          <p style="font-size: 13px; color: rgba(246,239,228,.6); margin-top: 10px;">Откроем продажи — напишем первым, у предзаписи лучшая цена.</p>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
 
 <!-- ====================== 8. ОТЗЫВЫ + ГАЛЕРЕЯ ====================== -->
 <section class="section section-light" id="reviews" data-od-id="reviews">
@@ -1337,15 +1278,6 @@ svg.illu .acc { stroke: var(--aqua); }
         <p class="quote-author">Янина — о практике и глубине</p>
       </div>
     </div>
-
-    <div class="gallery reveal" data-od-id="gallery">
-      <div class="g wide"><img src="image-flux-pro-ultra-mra80r3x.jpg" alt="Атмосфера зала" loading="lazy"></div>
-      <div class="g" style="background: linear-gradient(160deg, #1E2340, #2EC4B6);"></div>
-      <div class="g" style="background: linear-gradient(160deg, #B889E0, #1E2340);"></div>
-      <div class="g" style="background: linear-gradient(160deg, #2EC4B6, #FF7A45);"></div>
-      <div class="g" style="background: linear-gradient(160deg, #FF7A45, #131628);"></div>
-    </div>
-    <!-- TODO: заменить заглушки галереи на сгенерированные фото (чайная зона, саунд-хилинг) -->
   </div>
 </section>
 
@@ -1772,6 +1704,39 @@ svg.illu .acc { stroke: var(--aqua); }
   }
   if (buyBtn) buyBtn.addEventListener('click', trackBeginCheckout);
   if (stickyBtn) stickyBtn.addEventListener('click', trackBeginCheckout);
+
+  // === UTM-атрибуция: проброс меток из URL сайта в диплинк бота (§2.3) ===
+  // Если посетитель пришёл на сайт по ссылке с ?utm_source=... (например,
+  // через редирект ecstaticdance.kz/ig — шапка профиля Instagram), ?start=
+  // кнопки покупки переписывается в формате
+  // <event_id>__src-<s>__med-<m>__cmp-<c>. Telegram пропускает в ?start=
+  // только [A-Za-z0-9_-] (≤64 символов), поэтому значения чистим до
+  // [a-z0-9_-] (одиночные '_' сохраняем — так совпадают с источниками в
+  // листе coordinators, напр. instagram_ads; двойные '__' — это разделитель
+  // сегментов, их схлопываем). Без utm_source в URL кнопка остаётся с
+  // дефолтным __src-landing.
+  (function forwardUtmToBot() {
+    if (!buyBtn) return;
+    function san(v) {
+      return String(v || '').toLowerCase()
+        .replace(/[^a-z0-9_-]+/g, '-')
+        .replace(/_{2,}/g, '-')
+        .replace(/^[-_]+|[-_]+$/g, '');
+    }
+    try {
+      var qs = new URLSearchParams(location.search);
+      var src = san(qs.get('utm_source'));
+      if (!src) return;
+      var med = san(qs.get('utm_medium'));
+      var cmp = san(qs.get('utm_campaign'));
+      var segs = ['eda-2026-08-02', 'src-' + src];
+      if (med) segs.push('med-' + med);
+      if (cmp) segs.push('cmp-' + cmp);
+      var payload = segs.join('__');
+      if (payload.length > 64) payload = payload.slice(0, 64).replace(/[-_]+$/, '');
+      buyBtn.href = 'https://t.me/ecstaticdancealmaty_bot?start=' + payload;
+    } catch (e) { /* старый браузер/битый URL — остаётся дефолтная ссылка с __src-landing */ }
+  })();
 
   // === Карусель мастеров: раскрытие описаний ===
   var mastersCarousel = document.getElementById('mastersCarousel');
