@@ -1218,7 +1218,9 @@ p { max-width: 70ch; margin-inline: auto; }
 
   // ---- Booking modal ----
   // TODO: вставь реальный WhatsApp-номер координатора в формате без + (например "77700000000")
-  var utmSource = new URLSearchParams(location.search).get('utm_source') || '';
+  var _dmPartner = sessionStorage.getItem('dm_partner');
+  if (_dmPartner) { sessionStorage.removeItem('dm_partner'); }
+  var utmSource = new URLSearchParams(location.search).get('utm_source') || _dmPartner || '';
   var DEFAULT_WA = "77789837875";
   var UTM_WA = { kravchuk: "77017830800", ferdusa: "996554290970" };
   var WA_NUMBER = UTM_WA[utmSource] || DEFAULT_WA;
