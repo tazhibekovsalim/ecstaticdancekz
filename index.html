@@ -1772,12 +1772,23 @@ svg.illu .acc { stroke: var(--aqua); }
       });
     } catch (e) { /* analytics must never block the Telegram redirect */ }
   }
-  function trackCheckout() {
-    trackBeginCheckout();
-    trackMetaCheckout();
-  }
-  if (buyBtn) buyBtn.addEventListener('click', trackCheckout);
-  if (stickyBtn) stickyBtn.addEventListener('click', trackCheckout);
+  // Track every outgoing Telegram/WhatsApp link, not only the two ticket
+  // buttons. This stays in capture phase so nested button markup is covered.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.href || '';
+    try {
+      if (href.indexOf('t.me') > -1) {
+        trackBeginCheckout();
+        trackMetaCheckout();
+      } else if (href.indexOf('wa.me') > -1 || href.indexOf('whatsapp.com') > -1) {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'WhatsApp promokod' });
+        }
+      }
+    } catch (err) { /* analytics must never interrupt navigation */ }
+  }, true);
 
   // === UTM-атрибуция: проброс меток из URL сайта в диплинк бота (§2.3) ===
   // Если посетитель пришёл на сайт по ссылке с ?utm_source=... (например,
