@@ -4,6 +4,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ecstatic Dance Almaty — осознанные вечеринки и свободный танец в Алматы</title>
 <meta name="description" content="Осознанные вечеринки Ecstatic Dance в Алматы: свободный танец под live DJ-сеты, саунд-хилинг и чайная зона. Без алкоголя, без разговоров, без телефонов.">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1722904238945276');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1722904238945276&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8GB5B3SC4"></script>
 <script>
@@ -1725,7 +1742,7 @@ svg.illu .acc { stroke: var(--aqua); }
       .finally(function () { clearTimeout(timeoutId); });
   }
 
-  // === GA4: begin_checkout on buy-button clicks ===
+  // === GA4 + Meta: checkout events on ticket CTA clicks ===
   // Plain addEventListener, no preventDefault — must never block the
   // redirect into the Telegram bot, even if an ad-blocker has stripped
   // gtag() out entirely.
@@ -1740,8 +1757,27 @@ svg.illu .acc { stroke: var(--aqua); }
       gtag('event', 'begin_checkout', payload);
     } catch (e) { /* never block the click-through */ }
   }
-  if (buyBtn) buyBtn.addEventListener('click', trackBeginCheckout);
-  if (stickyBtn) stickyBtn.addEventListener('click', trackBeginCheckout);
+  function trackMetaCheckout() {
+    try {
+      if (typeof fbq !== 'function') return;
+      var value = null;
+      var idx = appliedIdx;
+      if (idx !== -1 && idx !== -99 && priceCards[idx]) {
+        value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
+      }
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'EDA 16 августа',
+        value: value || 9999,
+        currency: 'KZT'
+      });
+    } catch (e) { /* analytics must never block the Telegram redirect */ }
+  }
+  function trackCheckout() {
+    trackBeginCheckout();
+    trackMetaCheckout();
+  }
+  if (buyBtn) buyBtn.addEventListener('click', trackCheckout);
+  if (stickyBtn) stickyBtn.addEventListener('click', trackCheckout);
 
   // === UTM-атрибуция: проброс меток из URL сайта в диплинк бота (§2.3) ===
   // Если посетитель пришёл на сайт по ссылке с ?utm_source=... (например,
@@ -1754,7 +1790,8 @@ svg.illu .acc { stroke: var(--aqua); }
   // сегментов, их схлопываем). Без utm_source в URL кнопка остаётся с
   // дефолтным __src-landing.
   (function forwardUtmToBot() {
-    if (!buyBtn) return;
+    var ticketButtons = [buyBtn, stickyBtn].filter(Boolean);
+    if (!ticketButtons.length) return;
     function san(v) {
       return String(v || '').toLowerCase()
         .replace(/[^a-z0-9_-]+/g, '-')
@@ -1763,8 +1800,7 @@ svg.illu .acc { stroke: var(--aqua); }
     }
     try {
       var qs = new URLSearchParams(location.search);
-      var src = san(qs.get('utm_source'));
-      if (!src) return;
+      var src = san(qs.get('utm_source')) || 'landing';
       var med = san(qs.get('utm_medium'));
       var cmp = san(qs.get('utm_campaign'));
       var segs = ['eda-2026-08-16', 'src-' + src];
@@ -1772,7 +1808,28 @@ svg.illu .acc { stroke: var(--aqua); }
       if (cmp) segs.push('cmp-' + cmp);
       var payload = segs.join('__');
       if (payload.length > 64) payload = payload.slice(0, 64).replace(/[-_]+$/, '');
-      buyBtn.href = 'https://t.me/ecstaticdancealmaty_bot?start=' + payload;
+      var botUrl = 'https://t.me/ecstaticdancealmaty_bot?start=' + payload;
+      ticketButtons.forEach(function (button) { button.href = botUrl; });
+
+      // fbclid regularly exceeds Telegram's 64-char start-payload limit.
+      // Exchange it for a short server-side token before navigation; if the
+      // exchange fails, the normal bot journey still works unchanged.
+      var fbclid = qs.get('fbclid');
+      if (!fbclid || !window.fetch) return;
+      fetch('https://bot.ecstaticdance.kz/public/meta-click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fbclid: fbclid })
+      })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (!data || !data.meta_click_id) return;
+          var metaPayload = payload + '__fb-' + data.meta_click_id;
+          if (metaPayload.length > 64) return;
+          var metaBotUrl = 'https://t.me/ecstaticdancealmaty_bot?start=' + metaPayload;
+          ticketButtons.forEach(function (button) { button.href = metaBotUrl; });
+        })
+        .catch(function () { /* keep the non-Meta link */ });
     } catch (e) { /* старый браузер/битый URL — остаётся дефолтная ссылка с __src-landing */ }
   })();
 
