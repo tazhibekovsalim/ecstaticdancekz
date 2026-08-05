@@ -1838,16 +1838,29 @@ svg.illu .acc { stroke: var(--aqua); }
       });
     } catch (e) { /* analytics must never block the Telegram redirect */ }
   }
-  // Track every outgoing Telegram/WhatsApp link, not only the two ticket
-  // buttons. This stays in capture phase so nested button markup is covered.
+  // Track outgoing Telegram/WhatsApp links, but only the two real ticket
+  // CTAs (buyBtn/stickyBtn) count as checkout intent. Every other t.me
+  // link (FAQ, the two "listen to a set" CTAs) is NOT a purchase signal —
+  // they used to match the same generic href.indexOf('t.me') check as the
+  // ticket buttons, which fired InitiateCheckout (value 11111) for anyone
+  // just clicking to listen to a set, diluting the signal the ad campaign
+  // optimizes on. Both listen CTAs (#listen-tg → the Telegram channel,
+  // #telegram-popover-set → the bot's set_preview deep link) get Lead
+  // instead; FAQ links get no event (they were never a real Lead).
+  // This stays in capture phase so nested button markup is covered.
+  var LISTEN_CTA_IDS = ['listen-tg', 'telegram-popover-set'];
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
     var href = a.href || '';
     try {
-      if (href.indexOf('t.me') > -1) {
+      if (a === buyBtn || a === stickyBtn) {
         trackBeginCheckout();
         trackMetaCheckout();
+      } else if (LISTEN_CTA_IDS.indexOf(a.getAttribute('data-od-id')) > -1) {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'Set listen' });
+        }
       } else if (href.indexOf('wa.me') > -1 || href.indexOf('whatsapp.com') > -1) {
         if (typeof fbq === 'function') {
           fbq('track', 'Lead', { content_name: 'WhatsApp promokod' });
