@@ -475,6 +475,18 @@ footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
 .promo-strip .btn { padding: 11px 22px; font-size: 14px; background: var(--aqua); color: var(--aqua-deep); border: 0; }
 .promo-strip .btn:hover { box-shadow: 0 4px 18px rgba(46,196,182,.4); transform: translateY(-1px); }
 
+/* ===== Telegram-приглашение после середины страницы ===== */
+.telegram-popover { position: fixed; right: 24px; bottom: 24px; z-index: 110; width: min(396px, calc(100vw - 32px)); padding: 22px; background: var(--night-soft); border: 1px solid rgba(184,137,224,.38); border-radius: 18px; box-shadow: 0 18px 52px rgba(5,8,15,.36); opacity: 0; transform: translateY(18px); pointer-events: none; transition: opacity .24s ease, transform .24s ease; }
+.telegram-popover.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.telegram-popover h2 { font-size: 24px; line-height: 1.12; letter-spacing: -0.01em; color: var(--cream); padding-right: 28px; }
+.telegram-popover p { margin-top: 9px; color: var(--cream-soft); font-size: 14px; line-height: 1.5; }
+.telegram-popover-actions { display: grid; gap: 10px; margin-top: 18px; }
+.telegram-popover-actions .btn { width: 100%; padding: 12px 16px; font-size: 14px; text-align: center; background: var(--lavender); color: var(--night); }
+.telegram-popover-actions .btn-secondary { background: transparent; border-color: rgba(247,244,238,.32); color: var(--cream); }
+.telegram-popover-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; color: var(--cream-soft); cursor: pointer; font-size: 24px; line-height: 1; }
+.telegram-popover-close:hover { background: rgba(247,244,238,.1); color: var(--cream); }
+@media (max-width: 768px) { .telegram-popover { right: 16px; bottom: 76px; padding: 20px; } }
+
 /* ===== Сравнение (vs обычная вечеринка) ===== */
 .compare { display: grid; gap: 14px; grid-template-columns: 1fr; margin-top: 28px; }
 .compare .col { border-radius: var(--radius-card); padding: 22px 22px 10px; }
@@ -1022,6 +1034,13 @@ svg.illu .acc { stroke: var(--aqua); }
           </div>
         </div>
         </div><!-- /mc-carousel -->
+        <!-- Остались вопросы — Telegram -->
+        <div class="promo-strip reveal" data-od-id="faq-strip" style="border-color: rgba(184,137,224,.3); background: rgba(184,137,224,.1); margin-top: 18px;">
+          <div class="ps-row">
+            <span class="ps-text" style="color: var(--cream);">Остались вопросы? Можете пообщаться с нашим агентом в Telegram — с радостью на них ответим</span>
+            <a class="btn" href="https://t.me/ecstaticdancealmaty_bot?start=faq" target="_blank" rel="noopener" data-od-id="faq-tg" style="background: var(--lavender); color: var(--night);">Написать в Telegram</a>
+          </div>
+        </div>
       </div><!-- /mc-carousel-wrap -->
 
       <div class="ne-info-bottom" data-od-id="ne-info-bottom">
@@ -1244,6 +1263,13 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- ====================== 5b. САЛИМ — ОСНОВАТЕЛЬ ====================== -->
 <section class="section section-dark" id="founder" data-od-id="founder">
   <div class="section-inner">
+    <!-- Остались вопросы — Telegram -->
+    <div class="promo-strip reveal" data-od-id="founder-faq-strip" style="border-color: rgba(184,137,224,.3); background: rgba(184,137,224,.1); margin: 0 0 32px;">
+      <div class="ps-row">
+        <span class="ps-text" style="color: var(--cream);">Остались вопросы? Можете пообщаться с нашим агентом в Telegram — с радостью на них ответим</span>
+        <a class="btn" href="https://t.me/ecstaticdancealmaty_bot?start=faq" target="_blank" rel="noopener" data-od-id="founder-faq-tg" style="background: var(--lavender); color: var(--night);">Написать в Telegram</a>
+      </div>
+    </div>
     <p class="eyebrow">Основатель</p>
     <h2>Салим — основатель Ecstatic Dance Almaty</h2>
     <div class="founder reveal" style="margin-top: 28px;" data-od-id="founder-body">
@@ -1437,6 +1463,17 @@ svg.illu .acc { stroke: var(--aqua); }
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- Telegram pop-up after the visitor has explored half the page -->
+<aside class="telegram-popover" id="telegramPopover" aria-labelledby="telegram-popover-title" aria-hidden="true" data-od-id="telegram-popover">
+  <button class="telegram-popover-close" id="telegramPopoverClose" type="button" aria-label="Закрыть">×</button>
+  <h2 id="telegram-popover-title">Остались вопросы?</h2>
+  <p>Напишите нашему агенту в Telegram или послушайте, какая музыка звучит на Ecstatic Dance.</p>
+  <div class="telegram-popover-actions">
+    <a class="btn" href="https://t.me/ecstaticdancealmaty_bot?start=faq" target="_blank" rel="noopener" data-od-id="telegram-popover-faq">Задать вопрос в Telegram</a>
+    <a class="btn btn-secondary" href="https://t.me/ecstaticdancealmaty_bot?start=set_preview" target="_blank" rel="noopener" data-od-id="telegram-popover-set">Послушать пример сета</a>
+  </div>
+</aside>
+
 <script>
 (function () {
   // === Scroll reveal (IO-based, no scrollIntoView) ===
@@ -1476,6 +1513,34 @@ svg.illu .acc { stroke: var(--aqua); }
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  // === Telegram pop-up: once after the visitor reaches the page midpoint ===
+  var telegramPopover = document.getElementById('telegramPopover');
+  var telegramPopoverClose = document.getElementById('telegramPopoverClose');
+  var telegramPopoverShown = false;
+  function closeTelegramPopover() {
+    if (!telegramPopover) return;
+    telegramPopoverShown = true;
+    telegramPopover.classList.remove('is-visible');
+    telegramPopover.setAttribute('aria-hidden', 'true');
+    try { sessionStorage.setItem('eda:telegram-popover-dismissed', '1'); } catch (_) {}
+  }
+  function showTelegramPopover() {
+    if (!telegramPopover || telegramPopoverShown) return;
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0 || window.scrollY < scrollable * 0.5) return;
+    telegramPopoverShown = true;
+    telegramPopover.classList.add('is-visible');
+    telegramPopover.setAttribute('aria-hidden', 'false');
+  }
+  if (telegramPopover) {
+    try { telegramPopoverShown = sessionStorage.getItem('eda:telegram-popover-dismissed') === '1'; } catch (_) {}
+    if (!telegramPopoverShown) {
+      window.addEventListener('scroll', showTelegramPopover, { passive: true });
+      showTelegramPopover();
+    }
+    if (telegramPopoverClose) telegramPopoverClose.addEventListener('click', closeTelegramPopover);
   }
 
   // === Scroll-spy: подсветка активного пункта navbar ===
