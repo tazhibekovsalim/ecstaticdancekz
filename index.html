@@ -1515,9 +1515,10 @@ svg.illu .acc { stroke: var(--aqua); }
     });
   }
 
-  // === Telegram pop-up: once after the visitor reaches the page midpoint ===
+  // === Telegram pop-up: once the "What is it" section enters view ===
   var telegramPopover = document.getElementById('telegramPopover');
   var telegramPopoverClose = document.getElementById('telegramPopoverClose');
+  var whatSection = document.getElementById('what');
   var telegramPopoverShown = false;
   function closeTelegramPopover() {
     if (!telegramPopover) return;
@@ -1528,17 +1529,25 @@ svg.illu .acc { stroke: var(--aqua); }
   }
   function showTelegramPopover() {
     if (!telegramPopover || telegramPopoverShown) return;
-    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    if (scrollable <= 0 || window.scrollY < scrollable * 0.5) return;
     telegramPopoverShown = true;
     telegramPopover.classList.add('is-visible');
     telegramPopover.setAttribute('aria-hidden', 'false');
   }
   if (telegramPopover) {
     try { telegramPopoverShown = sessionStorage.getItem('eda:telegram-popover-dismissed') === '1'; } catch (_) {}
-    if (!telegramPopoverShown) {
-      window.addEventListener('scroll', showTelegramPopover, { passive: true });
-      showTelegramPopover();
+    if (!telegramPopoverShown && whatSection) {
+      if ('IntersectionObserver' in window) {
+        var telegramPopoverObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            showTelegramPopover();
+            telegramPopoverObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.12 });
+        telegramPopoverObserver.observe(whatSection);
+      } else if (window.scrollY + window.innerHeight >= whatSection.offsetTop) {
+        showTelegramPopover();
+      }
     }
     if (telegramPopoverClose) telegramPopoverClose.addEventListener('click', closeTelegramPopover);
   }
