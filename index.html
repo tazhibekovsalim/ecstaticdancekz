@@ -475,17 +475,24 @@ footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
 .promo-strip .btn { padding: 11px 22px; font-size: 14px; background: var(--aqua); color: var(--aqua-deep); border: 0; }
 .promo-strip .btn:hover { box-shadow: 0 4px 18px rgba(46,196,182,.4); transform: translateY(-1px); }
 
-/* ===== Telegram-приглашение после середины страницы ===== */
-.telegram-popover { position: fixed; right: 24px; bottom: 24px; z-index: 110; width: min(396px, calc(100vw - 32px)); padding: 22px; background: var(--night-soft); border: 1px solid rgba(184,137,224,.38); border-radius: 18px; box-shadow: 0 18px 52px rgba(5,8,15,.36); opacity: 0; transform: translateY(18px); pointer-events: none; transition: opacity .24s ease, transform .24s ease; }
-.telegram-popover.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.telegram-popover h2 { font-size: 24px; line-height: 1.12; letter-spacing: -0.01em; color: var(--cream); padding-right: 28px; }
-.telegram-popover p { margin-top: 9px; color: var(--cream-soft); font-size: 14px; line-height: 1.5; }
-.telegram-popover-actions { display: grid; gap: 10px; margin-top: 18px; }
-.telegram-popover-actions .btn { width: 100%; padding: 12px 16px; font-size: 14px; text-align: center; background: var(--lavender); color: var(--night); }
+/* ===== Полноэкранное предложение для первого посещения ===== */
+.telegram-popover { position: fixed; inset: 0; z-index: 110; display: grid; place-items: center; padding: 24px; background: rgba(5,8,15,.86); opacity: 0; pointer-events: none; transition: opacity .24s ease; }
+.telegram-popover.is-visible { opacity: 1; pointer-events: auto; }
+.telegram-popover-card { position: relative; width: min(520px, 100%); padding: clamp(28px, 6vw, 52px); background: var(--night-soft); border: 1px solid rgba(184,137,224,.42); border-radius: 22px; box-shadow: 0 22px 70px rgba(5,8,15,.5); text-align: center; transform: translateY(14px); transition: transform .24s ease; }
+.telegram-popover.is-visible .telegram-popover-card { transform: translateY(0); }
+.telegram-popover h2 { font-size: clamp(26px, 5vw, 38px); line-height: 1.08; letter-spacing: -0.02em; color: var(--cream); }
+.telegram-popover p { margin: 14px auto 0; max-width: 38ch; color: var(--cream-soft); font-size: 15px; line-height: 1.55; }
+.telegram-popover-deal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 26px 0 22px; background: rgba(247,244,238,.14); border: 1px solid rgba(247,244,238,.14); }
+.telegram-popover-deal div { padding: 14px 8px; background: var(--night-soft); }
+.telegram-popover-deal small { display: block; color: var(--cream-soft); font-size: 11px; line-height: 1.35; }
+.telegram-popover-deal strong { display: block; margin-top: 5px; color: var(--cream); font-size: clamp(17px, 4vw, 22px); line-height: 1.1; }
+.telegram-popover-deal .discount strong { color: var(--aqua); }
+.telegram-popover-actions { display: grid; gap: 10px; }
+.telegram-popover-actions .btn { width: 100%; padding: 13px 16px; font-size: 14px; text-align: center; background: var(--lavender); color: var(--night); }
 .telegram-popover-actions .btn-secondary { background: transparent; border-color: rgba(247,244,238,.32); color: var(--cream); }
-.telegram-popover-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; color: var(--cream-soft); cursor: pointer; font-size: 24px; line-height: 1; }
+.telegram-popover-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--cream-soft); cursor: pointer; font-size: 24px; line-height: 1; }
 .telegram-popover-close:hover { background: rgba(247,244,238,.1); color: var(--cream); }
-@media (max-width: 768px) { .telegram-popover { right: 16px; bottom: 76px; padding: 20px; } }
+@media (max-width: 430px) { .telegram-popover { padding: 16px; } .telegram-popover-card { padding: 34px 18px 22px; border-radius: 18px; } .telegram-popover-deal { margin-top: 22px; } .telegram-popover-deal small { font-size: 10px; } .telegram-popover-deal strong { font-size: 16px; } }
 
 /* ===== Сравнение (vs обычная вечеринка) ===== */
 .compare { display: grid; gap: 14px; grid-template-columns: 1fr; margin-top: 28px; }
@@ -1107,8 +1114,8 @@ svg.illu .acc { stroke: var(--aqua); }
       <!-- Промокод для новичков -->
       <div class="promo-strip reveal" data-od-id="promo-strip">
         <div class="ps-row">
-          <span class="ps-text">Впервые на экстатике? Получи <strong>промокод −10%</strong> на первый раз</span>
-          <a class="btn" href="https://wa.me/77789837875?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20-10%25%20%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%81%D1%82%D0%B0%D1%82%D0%B8%D0%BA%20%E2%80%94%20%D1%8F%20%D0%B2%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B5&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=promo" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод в WhatsApp</a>
+          <span class="ps-text">Впервые на экстатике? Получи <strong>промокод −20%</strong> на первый раз</span>
+          <a class="btn" href="https://wa.me/77789837875?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%AF%20%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B6%D1%83%20%D0%B2%20%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9%20%D1%80%D0%B0%D0%B7.%20%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%20%D0%B4%D0%B0%D0%B9%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BF%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%20%D0%BD%D0%B0%20%D1%8D%D1%82%D0%BE%20%D0%BF%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5.&amp;utm_source=landing&amp;utm_medium=messenger&amp;utm_content=promo20" target="_blank" rel="noopener" data-od-id="promo-wa">Получить промокод −20% в WhatsApp</a>
         </div>
         <p class="ps-fine">Пришлём код в ответном сообщении. Действует только на первое посещение.</p>
       </div>
@@ -1463,14 +1470,21 @@ svg.illu .acc { stroke: var(--aqua); }
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- Telegram pop-up after the visitor has explored half the page -->
-<aside class="telegram-popover" id="telegramPopover" aria-labelledby="telegram-popover-title" aria-hidden="true" data-od-id="telegram-popover">
-  <button class="telegram-popover-close" id="telegramPopoverClose" type="button" aria-label="Закрыть">×</button>
-  <h2 id="telegram-popover-title">Остались вопросы?</h2>
-  <p>Напишите нашему агенту в Telegram или послушайте, какая музыка звучит на Ecstatic Dance.</p>
-  <div class="telegram-popover-actions">
-    <a class="btn" href="https://t.me/ecstaticdancealmaty_bot?start=faq" target="_blank" rel="noopener" data-od-id="telegram-popover-faq">Задать вопрос в Telegram</a>
-    <a class="btn btn-secondary" href="https://t.me/ecstaticdancealmaty_bot?start=set_preview" target="_blank" rel="noopener" data-od-id="telegram-popover-set">Послушать пример сета</a>
+<!-- Полноэкранный pop-up для первого посещения -->
+<aside class="telegram-popover" id="telegramPopover" role="dialog" aria-modal="true" aria-labelledby="telegram-popover-title" aria-hidden="true" data-od-id="telegram-popover">
+  <div class="telegram-popover-card">
+    <button class="telegram-popover-close" id="telegramPopoverClose" type="button" aria-label="Закрыть">×</button>
+    <h2 id="telegram-popover-title">Первый раз на Ecstatic Dance?</h2>
+    <p>Получи промокод <strong style="color:var(--aqua);">−20%</strong> на первое посещение и почувствуй разницу без лишних сомнений.</p>
+    <div class="telegram-popover-deal" aria-label="Расчёт скидки">
+      <div><small>Текущая цена</small><strong id="promo-current-price">—</strong></div>
+      <div class="discount"><small>Выгода −20%</small><strong id="promo-saving">—</strong></div>
+      <div><small>С промокодом</small><strong id="promo-final-price">—</strong></div>
+    </div>
+    <div class="telegram-popover-actions">
+      <a class="btn" id="promo-popup-wa" href="https://wa.me/77789837875" target="_blank" rel="noopener" data-od-id="promo-popup-wa">Получить промокод −20%</a>
+      <button class="btn btn-secondary" id="telegramPopoverCloseAction" type="button">Не сейчас</button>
+    </div>
   </div>
 </aside>
 
@@ -1515,17 +1529,38 @@ svg.illu .acc { stroke: var(--aqua); }
     });
   }
 
-  // === Telegram pop-up: once the "What is it" section enters view ===
+  // === First-visit discount pop-up: when the ticket block enters view ===
   var telegramPopover = document.getElementById('telegramPopover');
   var telegramPopoverClose = document.getElementById('telegramPopoverClose');
-  var whatSection = document.getElementById('what');
+  var telegramPopoverCloseAction = document.getElementById('telegramPopoverCloseAction');
+  var ticketSection = document.getElementById('tickets');
+  var promoCurrentPrice = document.getElementById('promo-current-price');
+  var promoSaving = document.getElementById('promo-saving');
+  var promoFinalPrice = document.getElementById('promo-final-price');
+  var promoPopupWa = document.getElementById('promo-popup-wa');
   var telegramPopoverShown = false;
+  function formatTenge(value) { return value.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₸'; }
+  function updatePromoPopupPrice() {
+    var activeCard = document.querySelector('.price-card.featured') || document.querySelector('.price-card[data-price]');
+    if (!activeCard) return;
+    var current = Number((activeCard.getAttribute('data-price') || '').replace(/[^\d]/g, ''));
+    if (!current) return;
+    var saving = Math.round(current * 0.2);
+    var finalPrice = current - saving;
+    if (promoCurrentPrice) promoCurrentPrice.textContent = formatTenge(current);
+    if (promoSaving) promoSaving.textContent = '−' + formatTenge(saving);
+    if (promoFinalPrice) promoFinalPrice.textContent = formatTenge(finalPrice);
+    if (promoPopupWa) {
+      var message = 'Здравствуйте! Я прихожу в первый раз. Пожалуйста, дайте мне промокод на это посещение.';
+      promoPopupWa.href = 'https://wa.me/77789837875?text=' + encodeURIComponent(message) + '&utm_source=landing&utm_medium=messenger&utm_content=promo20_popup';
+    }
+  }
   function closeTelegramPopover() {
     if (!telegramPopover) return;
     telegramPopoverShown = true;
     telegramPopover.classList.remove('is-visible');
     telegramPopover.setAttribute('aria-hidden', 'true');
-    try { sessionStorage.setItem('eda:telegram-popover-dismissed', '1'); } catch (_) {}
+    try { sessionStorage.setItem('eda:promo20-dismissed', '1'); } catch (_) {}
   }
   function showTelegramPopover() {
     if (!telegramPopover || telegramPopoverShown) return;
@@ -1534,22 +1569,25 @@ svg.illu .acc { stroke: var(--aqua); }
     telegramPopover.setAttribute('aria-hidden', 'false');
   }
   if (telegramPopover) {
-    try { telegramPopoverShown = sessionStorage.getItem('eda:telegram-popover-dismissed') === '1'; } catch (_) {}
-    if (!telegramPopoverShown && whatSection) {
+    try { telegramPopoverShown = sessionStorage.getItem('eda:promo20-dismissed') === '1'; } catch (_) {}
+    if (!telegramPopoverShown && ticketSection) {
       if ('IntersectionObserver' in window) {
         var telegramPopoverObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
+            updatePromoPopupPrice();
             showTelegramPopover();
             telegramPopoverObserver.unobserve(entry.target);
           });
         }, { threshold: 0.12 });
-        telegramPopoverObserver.observe(whatSection);
-      } else if (window.scrollY + window.innerHeight >= whatSection.offsetTop) {
+        telegramPopoverObserver.observe(ticketSection);
+      } else if (window.scrollY + window.innerHeight >= ticketSection.offsetTop) {
+        updatePromoPopupPrice();
         showTelegramPopover();
       }
     }
     if (telegramPopoverClose) telegramPopoverClose.addEventListener('click', closeTelegramPopover);
+    if (telegramPopoverCloseAction) telegramPopoverCloseAction.addEventListener('click', closeTelegramPopover);
   }
 
   // === Scroll-spy: подсветка активного пункта navbar ===
