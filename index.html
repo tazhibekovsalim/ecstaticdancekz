@@ -402,10 +402,11 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .final { text-align: center; position: relative; overflow: hidden; }
 .final .spiral-bg { position: absolute; inset: 0; opacity: .12; display: grid; place-items: center; pointer-events: none; }
 .final .spiral-bg svg { width: min(80vw, 520px); height: auto; color: var(--aqua); }
-.final-inner { position: relative; z-index: 1; }
+.final-inner { position: relative; z-index: 1; margin-left: auto; margin-right: auto; text-align: center; }
 .final h2 { margin-bottom: 14px; }
-.final .sub { color: var(--cream-soft); margin-bottom: 28px; font-size: clamp(15px, 2.4vw, 18px); }
-.final .btn { margin: 0 auto; }
+.final .sub { color: var(--cream-soft); margin: 0 auto 28px; font-size: clamp(15px, 2.4vw, 18px); max-width: 65ch; }
+.final .hero-cta { justify-content: center; align-items: center; width: 100%; }
+.final .btn { margin-left: auto; margin-right: auto; }
 footer { border-top: 1px solid rgba(247,244,238,.12); padding: 36px 24px; color: var(--cream-soft); font-size: 14px; }
 footer .section-inner { display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; }
 footer a { color: var(--cream); text-decoration: none; }
@@ -555,6 +556,82 @@ footer .socials a { display: inline-flex; align-items: center; gap: 8px; }
 .fest-card.fest-ef .fest-badge { background: rgba(46,196,182,.15); color: var(--aqua); font-weight: 600; font-size: var(--fs-caption); padding: 6px 14px; border-radius: 999px; letter-spacing: 0.02em; }
 .fest-card.fest-ef .fest-btn { background: var(--coral); color: var(--coral-dark); font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius-btn); text-decoration: none; align-self: flex-start; transition: transform .15s ease, box-shadow .15s ease; }
 .fest-card.fest-ef .fest-btn:hover { box-shadow: 0 6px 26px rgba(255,122,69,.45); transform: translateY(-2px); }
+
+/* ===== Архив прошедших событий ===== */
+.past-events { background: var(--night); color: var(--cream); padding: clamp(56px, 9vw, 96px) 24px; }
+.past-events .section-inner { max-width: var(--maxw); margin: 0 auto; }
+.past-events h2 { color: var(--cream); max-width: 18ch; }
+.past-events .past-lead { color: var(--cream-soft); margin-top: 14px; max-width: 54ch; }
+.past-events-grid { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 32px; }
+@media (min-width: 820px) { .past-events-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.past-event-card { background: var(--night-soft); border: 1px solid rgba(247,244,238,.12); border-radius: var(--radius-card); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.past-event-poster { background: var(--night); border-bottom: 1px solid rgba(247,244,238,.12); }
+.past-event-poster img { display: block; width: 100%; height: auto; }
+.past-event-body { display: flex; flex-direction: column; gap: 14px; padding: 24px; flex: 1; }
+.past-event-date { color: var(--aqua); font-family: var(--font-display); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.past-event-title { color: var(--cream); font-family: var(--font-display); font-size: clamp(20px, 3vw, 27px); font-weight: 600; line-height: 1.2; letter-spacing: -.01em; }
+.past-event-facts { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--cream-soft); font-size: 14px; }
+.past-event-facts .sep { color: var(--aqua); opacity: .65; }
+.past-event-summary { color: var(--cream-soft); font-size: 15px; line-height: 1.55; }
+.past-event-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: auto; padding-top: 4px; }
+.past-event-expand-btn, .past-event-open-btn, .past-modal-close { min-height: 44px; }
+.past-event-expand-btn { border: 0; background: transparent; color: var(--aqua); cursor: pointer; font: 500 14px var(--font-body); padding: 8px 0; letter-spacing: .02em; }
+.past-event-expand-btn:hover { color: var(--cream); text-decoration: underline; }
+.past-event-expand-btn .arr { display: inline-block; margin-left: 5px; transition: transform .2s ease; }
+.past-event-card.is-expanded .past-event-expand-btn .arr { transform: rotate(180deg); }
+.past-event-open-btn { border: 0; border-radius: var(--radius-btn); background: var(--coral); color: var(--coral-dark); cursor: pointer; font: 600 14px var(--font-body); letter-spacing: .02em; padding: 12px 20px; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+.past-event-open-btn:hover { background: var(--coral); box-shadow: 0 6px 22px rgba(255,122,69,.35); transform: translateY(-2px); }
+.past-event-brief { max-height: 0; overflow: hidden; transition: max-height .32s ease, opacity .25s ease; opacity: 0; }
+.past-event-card.is-expanded .past-event-brief { max-height: 520px; opacity: 1; }
+.past-event-brief-inner { border-top: 1px solid rgba(247,244,238,.12); padding-top: 16px; }
+.past-event-brief-label { color: var(--cream); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.past-event-brief-list { list-style: none; display: grid; gap: 8px; margin-top: 10px; padding: 0; color: var(--cream-soft); font-size: 14px; }
+.past-event-brief-list li { padding-left: 16px; position: relative; }
+.past-event-brief-list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--aqua); position: absolute; left: 0; top: .65em; }
+.past-event-card button:focus-visible, .past-modal button:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+
+/* ===== Детали события ===== */
+.past-modal { position: fixed; inset: 0; z-index: 220; display: grid; place-items: center; padding: 20px; background: rgba(5,8,15,.86); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .24s ease, visibility .24s ease; }
+.past-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+.past-modal-card { position: relative; width: min(920px, 100%); max-height: min(90vh, 900px); overflow: auto; background: var(--warm-white); color: var(--ink); border-radius: var(--radius-card); box-shadow: 0 24px 80px rgba(5,8,15,.55); transform: translateY(14px); transition: transform .24s ease; }
+.past-modal.is-open .past-modal-card { transform: translateY(0); }
+.past-modal-head { display: grid; gap: 18px; grid-template-columns: 1fr; padding: 28px 28px 0; }
+@media (min-width: 720px) { .past-modal-head { grid-template-columns: minmax(0, 1fr) 220px; align-items: start; } }
+.past-modal-copy { min-width: 0; }
+.past-modal-copy h2 { color: var(--ink); font-size: clamp(24px, 4vw, 36px); margin-top: 8px; }
+.past-modal-copy .past-event-facts { color: var(--ink-soft); margin-top: 14px; }
+.past-modal-copy > p:not(.eyebrow) { color: var(--ink-soft); margin-top: 14px; }
+.past-modal-poster { border-radius: 14px; overflow: hidden; background: var(--night); }
+.past-modal-poster img { display: block; width: 100%; height: auto; }
+.past-modal-close { position: absolute; z-index: 1; top: 14px; right: 14px; width: 44px; border: 1px solid rgba(35,33,43,.16); border-radius: 50%; background: rgba(247,244,238,.96); color: var(--ink); cursor: pointer; font: 400 25px/1 var(--font-body); }
+.past-modal-close:hover { background: var(--card-light); border-color: var(--ink); }
+.past-modal-content { display: grid; gap: 28px; padding: 28px; }
+.past-modal-section { border-top: 1px solid rgba(35,33,43,.12); padding-top: 22px; }
+.past-modal-section h3 { color: var(--ink); margin-bottom: 14px; }
+.past-modal-section > p { color: var(--ink-soft); }
+.past-program { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .past-program { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.past-program-item { background: var(--card-light); border: 1px solid rgba(35,33,43,.1); border-radius: 12px; padding: 16px; }
+.past-program-item strong { display: block; color: var(--ink); font-size: 15px; }
+.past-program-item span { display: block; color: var(--ink-soft); font-size: 14px; line-height: 1.5; margin-top: 5px; }
+.past-masters { display: flex; flex-wrap: wrap; gap: 8px; }
+.past-master { background: var(--night-soft); border-radius: 999px; color: var(--cream); font-size: 13px; padding: 8px 12px; }
+.past-media-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 560px) { .past-media-grid { grid-template-columns: 1fr; } }
+.past-media-item { min-width: 0; }
+.past-media-item img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--night); }
+.past-media-item figcaption { color: var(--ink-soft); font-size: 12px; margin-top: 7px; }
+.past-video-placeholder { min-height: 180px; display: grid; align-content: center; gap: 6px; padding: 24px; border: 1px dashed rgba(35,33,43,.25); border-radius: 12px; background: var(--card-light); }
+.past-video-placeholder strong { color: var(--ink); font-size: 16px; }
+.past-video-placeholder span, .past-video-placeholder p { color: var(--ink-soft); font-size: 13px; }
+.past-testimonials { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .past-testimonials { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.past-testimonial { background: var(--card-light); border: 1px solid rgba(35,33,43,.1); border-radius: 12px; padding: 16px; }
+.past-testimonial .quote { font-size: 17px; }
+.past-testimonial video { display: block; width: 100%; max-width: 240px; aspect-ratio: 9/16; margin: 12px auto 0; border-radius: 10px; background: var(--night); object-fit: cover; }
+.past-testimonial .quote-author { margin-top: 8px; }
+body.past-modal-open { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .past-event-brief, .past-modal, .past-modal-card { transition: none; } }
 
 /* ===== Цитата-разрыв (Руми) ===== */
 .pull-quote { background: var(--warm-white); padding: clamp(56px, 9vw, 96px) 24px; text-align: center; }
@@ -709,6 +786,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <a href="#tickets" data-od-id="nav-event">Событие</a>
     <a href="#what" data-od-id="nav-what">Что это</a>
     <a href="#reviews" data-od-id="nav-reviews">Отзывы</a>
+    <a href="#past-events" data-od-id="nav-past-events">Архив</a>
     <a href="#faq" data-od-id="nav-faq">FAQ</a>
   </div>
   <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false" data-od-id="nav-burger">
@@ -720,6 +798,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <a href="#what" data-od-id="dd-what">Что это <span class="dd-arrow">→</span></a>
     <a href="#festivals" data-od-id="dd-festivals">Фестивали <span class="dd-arrow">→</span></a>
     <a href="#reviews" data-od-id="dd-reviews">Отзывы <span class="dd-arrow">→</span></a>
+    <a href="#past-events" data-od-id="dd-past-events">Прошлые события <span class="dd-arrow">→</span></a>
     <a href="#faq" data-od-id="dd-faq">FAQ <span class="dd-arrow">→</span></a>
   </div>
 </nav>
@@ -1243,7 +1322,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <p class="eyebrow">Четыре соглашения</p>
     <h2>То, что делает пространство безопасным</h2>
     <div class="cards-4 reveal" style="margin-top: 28px;">
-      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
+      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px; font-size:clamp(17px, 4vw, 22px); overflow-wrap:anywhere;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
       <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
       <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
       <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
@@ -1301,6 +1380,7 @@ svg.illu .acc { stroke: var(--aqua); }
       </div>
     </div>
   </div>
+</section>
 
 
 <!-- ====================== 8. ОТЗЫВЫ + ГАЛЕРЕЯ ====================== -->
@@ -1389,6 +1469,44 @@ svg.illu .acc { stroke: var(--aqua); }
         <summary>Как купить билет?<span class="pm" aria-hidden="true">+</span></summary>
         <div class="ans">Жми «Купить билет» в блоке ближайшего события — откроется наш Telegram-бот: пара минут на бронь, оплата картой, билет придёт прямо в бот.</div>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 9a. ПРОШЕДШИЕ СОБЫТИЯ ====================== -->
+<section class="past-events" id="past-events" data-od-id="past-events">
+  <div class="section-inner">
+    <p class="eyebrow" data-od-id="past-events-eyebrow">Архив</p>
+    <h2 data-od-id="past-events-heading">Как это было</h2>
+    <p class="past-lead" data-od-id="past-events-lead">Сохраняем не только афиши, но и саму ткань вечера: кто вёл, как шла волна и что осталось после.</p>
+
+    <div class="past-events-grid reveal" data-od-id="past-events-grid">
+      <article class="past-event-card" data-od-id="past-event-august-16" data-event-id="august-16-2026">
+        <div class="past-event-poster">
+          <img src="poster-event-16-aug.jpg" alt="Афиша Ecstatic Dance Almaty — 16 августа 2026, Тюркский парк" width="1000" height="1249" loading="lazy">
+        </div>
+        <div class="past-event-body">
+          <p class="past-event-date">16 августа 2026</p>
+          <h3 class="past-event-title" data-od-id="past-event-august-16-title">Ecstatic Dance Almaty</h3>
+          <div class="past-event-facts" data-od-id="past-event-august-16-facts"><span>Тюркский парк</span><span class="sep">·</span><span>Алматы</span><span class="sep">·</span><span>Open Air</span></div>
+          <p class="past-event-summary">Дневной экстатик с живой музыкальной волной, практиками тела, саунд-хилингом и чайной зоной.</p>
+          <div class="past-event-brief" id="past-brief-august-16" aria-hidden="true">
+            <div class="past-event-brief-inner">
+              <p class="past-event-brief-label">В программе</p>
+              <ul class="past-event-brief-list">
+                <li>Открытие круга и настройка</li>
+                <li>DJ-сет: от мягкого погружения к ритму</li>
+                <li>Пик с этникой, электроникой и племенным вайбом</li>
+                <li>Саунд-хилинг и чайная зона</li>
+              </ul>
+            </div>
+          </div>
+          <div class="past-event-actions">
+            <button class="past-event-expand-btn" type="button" aria-expanded="false" aria-controls="past-brief-august-16" data-od-id="past-event-august-16-expand"><span class="past-expand-label">Коротко о вечере</span><span class="arr" aria-hidden="true">↓</span></button>
+            <button class="past-event-open-btn" type="button" data-event-modal="august-16-2026" data-od-id="past-event-august-16-open">Открыть историю</button>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -1487,6 +1605,61 @@ svg.illu .acc { stroke: var(--aqua); }
     </div>
   </div>
 </aside>
+
+<!-- Детали прошедшего события -->
+<div class="past-modal" id="pastEventModal" role="dialog" aria-modal="true" aria-labelledby="past-modal-title" aria-hidden="true" data-od-id="past-event-modal">
+  <div class="past-modal-card">
+    <button class="past-modal-close" id="pastModalClose" type="button" aria-label="Закрыть историю события">×</button>
+    <div class="past-modal-head">
+      <div class="past-modal-copy">
+        <p class="eyebrow">Прошедшее событие</p>
+        <h2 id="past-modal-title" data-od-id="past-modal-title">Ecstatic Dance Almaty</h2>
+        <div class="past-event-facts"><span>16 августа 2026</span><span class="sep">·</span><span>Тюркский парк, Алматы</span></div>
+        <p>Дневной Open Air, где музыка вела от настройки к пику, а затем мягко возвращала в тело и разговоры у чая.</p>
+      </div>
+      <div class="past-modal-poster"><img src="poster-event-16-aug.jpg" alt="Постер прошедшего события Ecstatic Dance Almaty — 16 августа 2026" width="1000" height="1249"></div>
+    </div>
+    <div class="past-modal-content">
+      <section class="past-modal-section" data-od-id="past-modal-program">
+        <h3>Как был устроен вечер</h3>
+        <div class="past-program">
+          <div class="past-program-item"><strong>Открытие круга</strong><span>Знакомство с пространством, настройка и мягкая активация тела.</span></div>
+          <div class="past-program-item"><strong>Первая волна</strong><span>DJ-сет от медленного погружения к ритму.</span></div>
+          <div class="past-program-item"><strong>Пик</strong><span>Самая мощная часть: этника, электроника и племенной вайб.</span></div>
+          <div class="past-program-item"><strong>Приземление</strong><span>Саунд-хилинг с поющими чашами и глубоким расслаблением лёжа.</span></div>
+          <div class="past-program-item"><strong>Чайная зона</strong><span>Тёплый чай, тишина и мягкое возвращение. Работала весь вечер.</span></div>
+        </div>
+      </section>
+
+      <section class="past-modal-section" data-od-id="past-modal-masters">
+        <h3>Мастера вечера</h3>
+        <div class="past-masters">
+          <span class="past-master" data-od-id="past-master-salim">Salim — DJ</span>
+          <span class="past-master" data-od-id="past-master-alex">Alex Muller — DJ</span>
+          <span class="past-master" data-od-id="past-master-alina">Алина Хаиб — Sacrum</span>
+          <span class="past-master" data-od-id="past-master-petr">Пётр Эзау — контактная импровизация</span>
+        </div>
+      </section>
+
+      <section class="past-modal-section" data-od-id="past-modal-gallery">
+        <h3>Кадры и видео</h3>
+        <div class="past-media-grid">
+          <figure class="past-media-item"><img src="event-photo-hero-2-recolored.jpg" alt="Танцпол Ecstatic Dance Almaty с диджеем и светом ночного города" width="1920" height="1037"><figcaption>Фрагмент атмосферы Ecstatic Dance Almaty</figcaption></figure>
+          <figure class="past-media-item"><img src="poster-event-16-aug.jpg" alt="Постер события 16 августа 2026" width="1000" height="1249"><figcaption>Постер события</figcaption></figure>
+          <div class="past-video-placeholder" data-od-id="past-event-video-slot"><span>Видео события</span><strong>Видео с этого вечера появится здесь</strong><p>В проекте пока есть видеоотзывы, но нет отдельного видео с самого события.</p></div>
+        </div>
+      </section>
+
+      <section class="past-modal-section" data-od-id="past-modal-testimonials">
+        <h3>Отзывы участников</h3>
+        <div class="past-testimonials">
+          <article class="past-testimonial" data-od-id="past-testimonial-oleg"><p class="quote">«Не нужно заученных движений — ты просто слушаешь, и музыка сама тебя ведёт»</p><p class="quote-author">— Олег</p><video controls playsinline preload="none" poster="otzyv-oleg-poster.jpg" src="otzyv-oleg.mp4" aria-label="Видеоотзыв Олега"></video></article>
+          <article class="past-testimonial" data-od-id="past-testimonial-yanina"><p class="quote">«Это не просто танцы — это живая практика соединения с собой и своим телом»</p><p class="quote-author">— Янина</p><video controls playsinline preload="none" poster="otzyv-yanina-poster.jpg" src="otzyv-yanina.mp4" aria-label="Видеоотзыв Янины"></video></article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -1981,6 +2154,56 @@ svg.illu .acc { stroke: var(--aqua); }
       card.classList.toggle('expanded');
       var label = btn.querySelector('.mc-toggle-label');
       if (label) label.textContent = card.classList.contains('expanded') ? 'Скрыть' : 'Подробнее';
+    });
+  }
+
+  // === Архив событий: короткое раскрытие карточки + подробное модальное окно ===
+  var pastModal = document.getElementById('pastEventModal');
+  var pastModalClose = document.getElementById('pastModalClose');
+  var pastModalTitle = document.getElementById('past-modal-title');
+  var pastModalLastFocus = null;
+  var pastModalOpeners = document.querySelectorAll('[data-event-modal]');
+
+  function closePastModal() {
+    if (!pastModal) return;
+    pastModal.querySelectorAll('video').forEach(function (video) { video.pause(); });
+    pastModal.classList.remove('is-open');
+    pastModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('past-modal-open');
+    if (pastModalLastFocus && typeof pastModalLastFocus.focus === 'function') pastModalLastFocus.focus();
+  }
+
+  function openPastModal(opener) {
+    if (!pastModal) return;
+    pastModalLastFocus = opener;
+    pastModal.classList.add('is-open');
+    pastModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('past-modal-open');
+    if (pastModalTitle) pastModalTitle.focus && pastModalTitle.focus();
+    if (pastModalClose) pastModalClose.focus();
+  }
+
+  document.querySelectorAll('.past-event-expand-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.past-event-card');
+      var brief = card && card.querySelector('.past-event-brief');
+      if (!card || !brief) return;
+      var expanded = card.classList.toggle('is-expanded');
+      btn.setAttribute('aria-expanded', String(expanded));
+      brief.setAttribute('aria-hidden', String(!expanded));
+      var label = btn.querySelector('.past-expand-label');
+      if (label) label.textContent = expanded ? 'Скрыть' : 'Коротко о вечере';
+    });
+  });
+
+  pastModalOpeners.forEach(function (opener) {
+    opener.addEventListener('click', function () { openPastModal(opener); });
+  });
+  if (pastModalClose) pastModalClose.addEventListener('click', closePastModal);
+  if (pastModal) {
+    pastModal.addEventListener('click', function (e) { if (e.target === pastModal) closePastModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && pastModal.classList.contains('is-open')) closePastModal();
     });
   }
 })();
