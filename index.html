@@ -2040,7 +2040,7 @@ svg.illu .acc { stroke: var(--aqua); }
   function trackBeginCheckout() {
     try {
       if (typeof gtag !== 'function') return;
-      var payload = { currency: 'KZT', item_name: 'eda-2026-08-16' };
+      var payload = { currency: 'KZT', item_name: 'eda-2026-09-26' };
       var idx = appliedIdx;
       if (idx !== -1 && idx !== -99 && priceCards[idx]) {
         payload.value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
@@ -2057,7 +2057,7 @@ svg.illu .acc { stroke: var(--aqua); }
         value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
       }
       fbq('track', 'InitiateCheckout', {
-        content_name: 'EDA 16 августа',
+        content_name: 'EDA 26 сентября',
         value: value || 9999,
         currency: 'KZT'
       });
