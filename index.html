@@ -1722,11 +1722,11 @@ svg.illu .acc { stroke: var(--aqua); }
     });
   }
 
-  // === First-visit discount pop-up: when the ticket block enters view ===
+  // === First-visit discount pop-up: after the ticket block, as the visitor reaches the «Что такое Ecstatic Dance» section ===
   var telegramPopover = document.getElementById('telegramPopover');
   var telegramPopoverClose = document.getElementById('telegramPopoverClose');
   var telegramPopoverCloseAction = document.getElementById('telegramPopoverCloseAction');
-  var ticketSection = document.getElementById('tickets');
+  var promoTriggerSection = document.getElementById('what');
   var promoCurrentPrice = document.getElementById('promo-current-price');
   var promoSaving = document.getElementById('promo-saving');
   var promoFinalPrice = document.getElementById('promo-final-price');
@@ -1763,7 +1763,7 @@ svg.illu .acc { stroke: var(--aqua); }
   }
   if (telegramPopover) {
     try { telegramPopoverShown = sessionStorage.getItem('eda:promo20-dismissed') === '1'; } catch (_) {}
-    if (!telegramPopoverShown && ticketSection) {
+    if (!telegramPopoverShown && promoTriggerSection) {
       if ('IntersectionObserver' in window) {
         var telegramPopoverObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
@@ -1772,9 +1772,9 @@ svg.illu .acc { stroke: var(--aqua); }
             showTelegramPopover();
             telegramPopoverObserver.unobserve(entry.target);
           });
-        }, { threshold: 0.12 });
-        telegramPopoverObserver.observe(ticketSection);
-      } else if (window.scrollY + window.innerHeight >= ticketSection.offsetTop) {
+        }, { threshold: 0, rootMargin: '0px 0px -30% 0px' });
+        telegramPopoverObserver.observe(promoTriggerSection);
+      } else if (window.scrollY + window.innerHeight >= promoTriggerSection.offsetTop) {
         updatePromoPopupPrice();
         showTelegramPopover();
       }
