@@ -2168,25 +2168,43 @@ svg.illu .acc { stroke: var(--aqua); }
   // дописываем В ТЕКСТ сообщения (бот парсит `utm_source=` из текста лида, а
   // владелец видит её в чате). Партнёр с личным промокодом (он подставляется
   // ботом по auto_utm_source) не должен получать общий -10% через WhatsApp —
-  // его ведём в бота. Новый партнёр = одна строка в PARTNER_PROMO.
-  var PARTNER_PROMO = { nurgul: 'NURGUL' };
+  // его ведём в бота, WhatsApp для него убран. Новый партнёр = одна строка в PARTNER_PROMO.
+  var PARTNER_PROMO = { nurgul: { code: 'NURGUL', name: 'Нургуль' } };
   var edaRef = (function () {
     try { return new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) { return ''; }
   })().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^[-_]+|[-_]+$/g, '');
   (function applyRefToWhatsApp() { try {
     var ref = edaRef || 'landing';
-    var partnerCode = PARTNER_PROMO[ref];
-    var strip = document.querySelector('[data-od-id="promo-strip"]');
-    if (partnerCode && strip && buyBtn) {
-      var text = strip.querySelector('.ps-text');
-      var btn = strip.querySelector('a.btn');
-      var fine = strip.querySelector('.ps-fine');
-      if (text) text.innerHTML = 'Твой промокод <strong>' + partnerCode + ' −10%</strong> подставится сам при покупке билета в боте';
-      if (btn) { btn.href = buyBtn.href; btn.textContent = 'Купить билет в боте'; btn.removeAttribute('data-od-id'); }
-      if (fine) fine.textContent = 'Действует только на первое посещение.';
+    var partner = PARTNER_PROMO[ref];
+    if (partner && buyBtn) {
+      // Партнёрский заход: WhatsApp убираем целиком, всё ведёт в бота по ссылке партнёра.
       telegramPopoverShown = true;
+      var strip = document.querySelector('[data-od-id="promo-strip"]');
+      if (strip) {
+        var text = strip.querySelector('.ps-text');
+        var btn = strip.querySelector('a.btn');
+        var fine = strip.querySelector('.ps-fine');
+        if (text) text.innerHTML = 'Вы пришли от ' + partner.name + ': по промокоду <strong>' + partner.code + '</strong> скидка <strong>−10%</strong> на первое посещение';
+        if (btn) { btn.href = buyBtn.href; btn.textContent = 'Купить билет в боте'; btn.removeAttribute('data-od-id'); }
+        if (fine) fine.textContent = 'Промокод подставится сам при покупке в боте. Действует только на первое посещение.';
+      }
+      var wa = document.querySelector('.wa-btn');
+      if (wa) {
+        wa.href = buyBtn.href;
+        wa.removeAttribute('aria-label');
+        wa.innerHTML = 'От ' + partner.name + ' · ' + partner.code + ' −10%';
+        wa.style.cssText = 'width:auto;height:auto;padding:12px 18px;border-radius:999px;background:var(--aqua);color:var(--aqua-deep);font-weight:600;font-size:14px;';
+      }
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
+        var prev = a.previousSibling;
+        if (a.getAttribute('data-od-id') === 'social-wa') { a.remove(); return; }
+        a.href = 'https://t.me/ecstaticdancealmaty_bot?start=faq';
+        a.textContent = 'Telegram-бот';
+        if (prev && prev.nodeType === 3) prev.nodeValue = prev.nodeValue.replace('WhatsApp', 'Telegram');
+      });
+      return;
     }
-    // Любая wa.me-ссылка (плавающая кнопка, подвал, FAQ, промо) несёт источник в тексте.
+    // Обычный заход: любая wa.me-ссылка несёт источник в тексте сообщения.
     document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
       try {
         var u = new URL(a.href);
