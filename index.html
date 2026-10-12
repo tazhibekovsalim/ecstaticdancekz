@@ -2185,16 +2185,17 @@ svg.illu .acc { stroke: var(--aqua); }
       if (btn) { btn.href = buyBtn.href; btn.textContent = 'Купить билет в боте'; btn.removeAttribute('data-od-id'); }
       if (fine) fine.textContent = 'Действует только на первое посещение.';
       telegramPopoverShown = true;
-      return;
     }
-    var promoWa = strip && strip.querySelector('a[href*="wa.me"]');
-    if (promoWa) {
+    // Любая wa.me-ссылка (плавающая кнопка, подвал, FAQ, промо) несёт источник в тексте.
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
       try {
-        var u = new URL(promoWa.href);
-        u.searchParams.set('text', (u.searchParams.get('text') || '') + ' utm_source=' + ref);
-        promoWa.href = u.toString();
+        var u = new URL(a.href);
+        var t = u.searchParams.get('text') || 'Здравствуйте!';
+        if (t.indexOf('utm_source=') !== -1) return;
+        u.searchParams.set('text', t + ' utm_source=' + ref);
+        a.href = u.toString();
       } catch (e) { /* оставляем ссылку как есть */ }
-    }
+    });
   } catch (e) { /* сайт важнее метки: любая ошибка здесь не должна ломать остальной скрипт */ } })();
 
   // === Карусель мастеров: раскрытие описаний ===
