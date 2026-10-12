@@ -1744,7 +1744,7 @@ svg.illu .acc { stroke: var(--aqua); }
     if (promoSaving) promoSaving.textContent = '−' + formatTenge(saving);
     if (promoFinalPrice) promoFinalPrice.textContent = formatTenge(finalPrice);
     if (promoPopupWa) {
-      var message = 'Здравствуйте! Я прихожу в первый раз. Пожалуйста, дайте мне промокод на это посещение.';
+      var message = 'Здравствуйте! Я прихожу в первый раз. Пожалуйста, дайте мне промокод на это посещение. utm_source=' + (edaRef || 'landing');
       promoPopupWa.href = 'https://wa.me/77789837875?text=' + encodeURIComponent(message) + '&utm_source=landing&utm_medium=messenger&utm_content=promo20_popup';
     }
   }
@@ -2162,6 +2162,40 @@ svg.illu .acc { stroke: var(--aqua); }
         .catch(function () { /* keep the non-Meta link */ });
     } catch (e) { /* старый браузер/битый URL — остаётся дефолтная ссылка с __src-landing */ }
   })();
+
+  // === Источник в WhatsApp + личные промокоды партнёров ===
+  // wa.me отбрасывает любые параметры вне text=, поэтому метку источника
+  // дописываем В ТЕКСТ сообщения (бот парсит `utm_source=` из текста лида, а
+  // владелец видит её в чате). Партнёр с личным промокодом (он подставляется
+  // ботом по auto_utm_source) не должен получать общий -10% через WhatsApp —
+  // его ведём в бота. Новый партнёр = одна строка в PARTNER_PROMO.
+  var PARTNER_PROMO = { nurgul: 'NURGUL' };
+  var edaRef = (function () {
+    try { return new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) { return ''; }
+  })().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^[-_]+|[-_]+$/g, '');
+  (function applyRefToWhatsApp() { try {
+    var ref = edaRef || 'landing';
+    var partnerCode = PARTNER_PROMO[ref];
+    var strip = document.querySelector('[data-od-id="promo-strip"]');
+    if (partnerCode && strip && buyBtn) {
+      var text = strip.querySelector('.ps-text');
+      var btn = strip.querySelector('a.btn');
+      var fine = strip.querySelector('.ps-fine');
+      if (text) text.innerHTML = 'Твой промокод <strong>' + partnerCode + ' −10%</strong> подставится сам при покупке билета в боте';
+      if (btn) { btn.href = buyBtn.href; btn.textContent = 'Купить билет в боте'; btn.removeAttribute('data-od-id'); }
+      if (fine) fine.textContent = 'Действует только на первое посещение.';
+      telegramPopoverShown = true;
+      return;
+    }
+    var promoWa = strip && strip.querySelector('a[href*="wa.me"]');
+    if (promoWa) {
+      try {
+        var u = new URL(promoWa.href);
+        u.searchParams.set('text', (u.searchParams.get('text') || '') + ' utm_source=' + ref);
+        promoWa.href = u.toString();
+      } catch (e) { /* оставляем ссылку как есть */ }
+    }
+  } catch (e) { /* сайт важнее метки: любая ошибка здесь не должна ломать остальной скрипт */ } })();
 
   // === Карусель мастеров: раскрытие описаний ===
   var mastersCarousel = document.getElementById('mastersCarousel');
