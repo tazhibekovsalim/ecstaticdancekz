@@ -860,6 +860,22 @@ svg.illu .acc { stroke: var(--aqua); }
   "organizer": { "@type": "Organization", "name": "Ecstatic Dance Almaty", "url": "https://ecstaticdance.kz/" }
 }
 </script>
+<style id="lp-variant-css">
+.lp-steps{list-style:none;display:flex;gap:10px 22px;flex-wrap:wrap;margin:22px 0 0;padding:0;counter-reset:s}
+.lp-steps li{counter-increment:s;display:flex;flex-direction:column;font-size:13px;color:var(--cream-soft);padding-left:34px;position:relative;min-width:120px}
+.lp-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--aqua);color:var(--aqua);display:grid;place-items:center;font-size:12px;font-weight:600}
+.lp-steps li b{color:var(--cream);font-size:15px;font-weight:600}
+.lp-fear{margin-top:14px;font-size:14px;color:var(--cream);max-width:48ch;opacity:.9}
+.lp-proof-grid{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:28px;align-items:center}
+.lp-proof-video video{width:100%;aspect-ratio:9/16;border-radius:var(--radius-card);object-fit:cover;background:var(--night);display:block}
+.lp-quote{font-size:clamp(18px,3vw,24px);line-height:1.4;color:var(--ink);margin:6px 0 8px}
+.lp-quote-sm{font-size:clamp(15px,2.4vw,18px);margin-top:18px;color:var(--ink-soft)}
+.lp-proof .btn{margin-top:22px}
+@media(max-width:700px){.lp-proof-grid{grid-template-columns:1fr}.lp-proof-video{max-width:260px;margin:0 auto}}
+.lp-band{margin:0;position:relative;max-height:420px;overflow:hidden;background:var(--night)}
+.lp-band img{width:100%;height:min(46vw,420px);min-height:220px;object-fit:cover;display:block}
+.lp-band figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 24px 16px;background:linear-gradient(transparent,rgba(10,12,28,.85));color:var(--cream);font-size:clamp(14px,2.2vw,17px)}
+</style>
 </head>
 <body>
 
@@ -1100,27 +1116,152 @@ svg.illu .acc { stroke: var(--aqua); }
   </defs>
 </svg>
 
-<!-- ====================== 1. HERO ====================== -->
+<!-- ====================== 1. HERO (variant: что это, как проходит, не страшно) ====================== -->
 <section class="hero section-dark" id="top" data-od-id="hero">
   <div class="hero-bg">
     <img src="event-photo-hero-2-recolored.jpg" alt="Живое фото с вечеринки Ecstatic Dance Almaty — диджей за пультом на фоне ночного города в бирюзово-лавандовом свете" fetchpriority="high">
   </div>
   <div class="hero-inner">
     <p class="eyebrow" style="margin-bottom: 14px;">24 октября · 17:00–22:00 · Студия «Воздух», Алматы</p>
-    <h1><span class="hl glow-aqua">Трезвая</span> вечеринка с live-диджеем</h1>
-    <p class="sub">Свободный танец без алкоголя и телефонов. Домой к нормальному сну.</p>
-    <div class="lp-lineup" style="display:flex;gap:18px;margin:22px 0 4px;flex-wrap:wrap;">
-      <div style="text-align:center;width:92px;"><img src="salim-photo.jpg" alt="Salim — диджей" style="width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--aqua);"><div style="font-size:13px;margin-top:6px;color:var(--cream);font-weight:600;">Salim</div><div style="font-size:11px;color:var(--cream-soft);">DJ-сет</div></div>
-      <div style="text-align:center;width:92px;"><img src="tribvlist-photo.jpg" alt="Tribvlist — иранский сетар" style="width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:30% 40%;border:2px solid var(--aqua);"><div style="font-size:13px;margin-top:6px;color:var(--cream);font-weight:600;">Tribvlist</div><div style="font-size:11px;color:var(--cream-soft);">саундхилинг</div></div>
-      <div style="text-align:center;width:92px;"><img src="petr-nabatnikov-photo.jpg" alt="Пётр Набатников — арома-бар" style="width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--aqua);"><div style="font-size:13px;margin-top:6px;color:var(--cream);font-weight:600;">Пётр</div><div style="font-size:11px;color:var(--cream-soft);">арома-бар</div></div>
+    <h1 style="max-width:18ch;"><span class="hl glow-aqua">Танцуем</span> 5 часов. Без алкоголя.</h1>
+    <p class="sub" style="max-width:52ch;">Ecstatic Dance — свободный танец под live-диджея: босиком, без телефонов, без «правильных» движений. К 22:00 ты дома, а завтра день целиком твой.</p>
+    <ol class="lp-steps">
+      <li><b>Погружение</b><span>мягкий вход, дыхание</span></li>
+      <li><b>Пик</b><span>этника, электроника</span></li>
+      <li><b>Приземление</b><span>саунд-хилинг, чай</span></li>
+    </ol>
+    <div class="hero-cta" style="margin-top:22px;">
+      <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener">Купить билет — 9999 ₸</a>
+      <a class="btn btn-secondary" href="#what">Как это проходит</a>
     </div>
-    <div class="hero-cta" style="margin-top:20px;">
-      <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener">Купить билет — <span class="js-cs-price">9999 ₸</span></a>
-      <a class="btn btn-secondary" href="#tickets">Цены и даты</a>
-    </div>
-    <p style="margin-top:12px;font-size:13px;color:var(--cream-soft);">Оплата картой в Telegram-боте · 2 минуты · билет придёт в бот</p>
+    <p class="lp-fear">Не умеешь танцевать? Здесь никто не умеет и никто не смотрит. Большинство приходит одно.</p>
   </div>
 </section>
+
+<!-- ====================== 1b. PROOF: голос участника сразу после hero ====================== -->
+<section class="section section-light lp-proof" id="proof" data-od-id="lp-proof">
+  <div class="section-inner">
+    <div class="lp-proof-grid reveal">
+      <div class="lp-proof-video">
+        <video controls playsinline preload="none" poster="otzyv-oleg-poster.jpg" src="otzyv-oleg.mp4" aria-label="Видеоотзыв Олега" data-track="oleg"></video>
+      </div>
+      <div class="lp-proof-text">
+        <p class="eyebrow">Голос участника</p>
+        <p class="lp-quote">«После того как я перестал употреблять алкоголь, хотелось найти место, где можно танцевать свободным среди людей, которые тебя понимают. Ecstatic Dance Almaty стал таким местом»</p>
+        <p class="quote-author">— Олег</p>
+        <p class="lp-quote lp-quote-sm">«Не нужно заученных движений — ты просто слушаешь, и музыка сама тебя ведёт»</p>
+        <p class="quote-author">— Олег</p>
+        <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener">Купить билет — 9999 ₸</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 3. ЧТО ТАКОЕ ECSTATIC DANCE ====================== -->
+<section class="section section-light" id="what" data-od-id="what-is">
+  <div class="section-inner">
+    <p class="eyebrow">Что это такое</p>
+    <h2>И вечеринка, и практика</h2>
+    <p class="lead" style="margin-top: 18px;">Ecstatic Dance — это свободное танцевальное путешествие в безопасном пространстве, которое ведёт диджей: волна музыки поднимается от мягкого погружения к пику и плавно опускается. Ты двигаешься так, как просит тело — без правильных движений, зрителей и оценок. Похожа на вечеринку — работает как практика: состояние делают музыка, дыхание и общая волна зала, а не алкоголь.</p>
+
+    <svg class="illu wave-diagram" viewBox="0 0 320 90" role="img" aria-label="Волна сета: погружение, пик, приземление"><use href="#i-wave"></use></svg>
+    <div class="wave-labels"><span>погружение</span><span class="mid">пик</span><span>приземление</span></div>
+
+    <div class="stats reveal" data-od-id="stats">
+      <div class="stat" data-od-id="stat-cities"><div class="num">100+</div><div class="lbl">городов мира</div></div>
+      <div class="stat" data-od-id="stat-hours"><div class="num">5 часов</div><div class="lbl">путешествия</div></div>
+      <div class="stat" data-od-id="stat-alcohol"><div class="num">0%</div><div class="lbl">алкоголя</div></div>
+      <div class="stat" data-od-id="stat-barefoot"><div class="num">7 дней</div><div class="lbl">послевкусия</div></div>
+    </div>
+
+    <div class="note-strip reveal">Не умеешь танцевать? Идеально. Здесь никто не умеет и никто не смотрит. Свободный танец — он для всех.</div>
+  </div>
+</section>
+
+<figure class="lp-band reveal"><img src="event-photo-hero-recolored.jpg" alt="Круг людей, одна волна: так выглядит пик вечера" loading="lazy" style="object-position:center;"><figcaption>Круг людей, одна волна: так выглядит пик вечера</figcaption></figure>
+
+<!-- ====================== 5. КАК ПРОХОДИТ ВЕЧЕР ====================== -->
+<section class="section section-light" id="flow" data-od-id="flow">
+  <div class="section-inner">
+    <p class="eyebrow">Как проходит вечер</p>
+    <h2>Волна длиной в пять часов</h2>
+    <ol class="timeline reveal" style="margin-top: 28px;">
+      <li class="has-illu" data-od-id="flow-opening"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-circle"></use></svg><div class="tl-content"><h3>Открытие круга</h3><p>Знакомство с пространством, настройка, лёгкая разминка или тантра/арома-активация.</p></div></li>
+      <li class="has-illu" data-od-id="flow-wave1"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-wave-up"></use></svg><div class="tl-content"><h3>Первая волна</h3><p>DJ-сет: от медленного погружения к ритму.</p></div></li>
+      <li class="has-illu" data-od-id="flow-peak"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-figure"></use></svg><div class="tl-content"><h3>Пик</h3><p>Самая мощная часть: этника, электроника, племенной вайб.</p></div></li>
+      <li class="has-illu" data-od-id="flow-land"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-bowl"></use></svg><div class="tl-content"><h3>Приземление</h3><p>Саунд-хилинг: поющие чаши, глубокое расслабление лёжа.</p></div></li>
+      <li class="has-illu" data-od-id="flow-tea"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-teapot"></use></svg><div class="tl-content"><h3>Чайная зона</h3><p>Тёплый чай, тишина, мягкое возвращение. Работает весь вечер.</p></div></li>
+    </ol>
+    <!-- TODO: тайминги уточнить перед событием -->
+  </div>
+</section>
+
+<!-- ====================== 3b. ЧЕМ ОТЛИЧАЕТСЯ ОТ ОБЫЧНОЙ ВЕЧЕРИНКИ ====================== -->
+<section class="section section-light" id="compare" data-od-id="compare">
+  <div class="section-inner">
+    <p class="eyebrow">Чем это отличается</p>
+    <h2>Не обычная вечеринка</h2>
+    <div class="compare reveal" data-od-id="compare-grid">
+      <div class="col col-usual" data-od-id="compare-usual">
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3>Обычная вечеринка</h3></div>
+        <div class="line">Состояние делает алкоголь</div>
+        <div class="line">Утром — разбитость и провал в памяти</div>
+        <div class="line">Танцуешь «как положено», ловишь взгляды</div>
+        <div class="line">Знакомства под градусом, наутро неловко</div>
+        <div class="line">Перекрикивать музыку, чтобы поговорить</div>
+        <div class="line">Счёт в баре больше входного</div>
+        <div class="line">Эффект заканчивается с ночью</div>
+        <div class="line">Начинается в полночь, разгон к трём утра</div>
+        <div class="line">Домой под утро, день потерян</div>
+      </div>
+      <div class="col col-ecstatic" data-od-id="compare-ecstatic">
+        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-barefoot"></use></svg><h3>Ecstatic Dance</h3></div>
+        <div class="line">Состояние делают музыка, дыхание и общая волна зала</div>
+        <div class="line">Утром — лёгкость, ясность и тело, которое говорит спасибо</div>
+        <div class="line">Танцуешь как хочешь: с закрытыми глазами, на полу, в прыжке</div>
+        <div class="line">Честные знакомства в чайной зоне на трезвую голову</div>
+        <div class="line">Тишина на танцполе — редкий отдых от слов</div>
+        <div class="line">Билет + чай. Всё</div>
+        <div class="line">Эффект практики накапливается от события к событию</div>
+        <div class="line">Начинается в 17:00 — на пике твоей энергии, а не на её остатках</div>
+        <div class="line">В 22:00 ты дома: душ, нормальный сон — и следующий день целиком твой</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA-полоска после «Сравнения» -->
+<div class="cta-strip" data-od-id="cta-strip-1">
+  <div class="cs-inner">
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>24 октября</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 11 октября</span><span class="js-cs-remaining"></span></span>
+    <a class="btn btn-primary" href="#tickets">Купить билет</a>
+  </div>
+</div>
+
+<figure class="lp-band reveal"><img src="mrg28gzh-IMG_8773-compressed.jpg" alt="Босиком, без телефонов, каждый в своём танце" loading="lazy" style="object-position:center;"><figcaption>Босиком, без телефонов, каждый в своём танце</figcaption></figure>
+
+<!-- ====================== 6. СОГЛАШЕНИЯ ====================== -->
+<section class="section section-light" id="agreements" data-od-id="agreements">
+  <div class="section-inner">
+    <p class="eyebrow">Четыре соглашения</p>
+    <h2>То, что делает пространство безопасным</h2>
+    <div class="cards-4 reveal" style="margin-top: 28px;">
+      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px; font-size:clamp(17px, 4vw, 22px); overflow-wrap:anywhere;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
+      <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
+      <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
+      <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
+    </div>
+    <p style="margin-top: 22px; font-size: 15px;">Эти правила — мировой стандарт Ecstatic Dance. Именно они превращают вечеринку в практику.</p>
+  </div>
+</section>
+
+<!-- CTA-полоска после «Соглашений» -->
+<div class="cta-strip" data-od-id="cta-strip-2">
+  <div class="cs-inner">
+    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>24 октября</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 11 октября</span><span class="js-cs-remaining"></span></span>
+    <a class="btn btn-primary" href="#tickets">Купить билет</a>
+  </div>
+</div>
 
 <!-- ====================== 2. БЛИЖАЙШЕЕ СОБЫТИЕ (компакт) ====================== -->
 <section class="next-event" id="tickets" data-od-id="tickets">
@@ -1281,148 +1422,43 @@ svg.illu .acc { stroke: var(--aqua); }
   </div>
 </section>
 
-<!-- ====================== 3. ЧТО ТАКОЕ ECSTATIC DANCE ====================== -->
-<section class="section section-light" id="what" data-od-id="what-is">
+<!-- ====================== 8. ОТЗЫВЫ + ГАЛЕРЕЯ ====================== -->
+<section class="section section-light" id="reviews" data-od-id="reviews">
   <div class="section-inner">
-    <p class="eyebrow">Что это такое</p>
-    <h2>И вечеринка, и практика</h2>
-    <p class="lead" style="margin-top: 18px;">Ecstatic Dance — это свободное танцевальное путешествие в безопасном пространстве, которое ведёт диджей: волна музыки поднимается от мягкого погружения к пику и плавно опускается. Ты двигаешься так, как просит тело — без правильных движений, зрителей и оценок. Похожа на вечеринку — работает как практика: состояние делают музыка, дыхание и общая волна зала, а не алкоголь.</p>
+    <p class="eyebrow">После события</p>
+    <h2>Что говорят те, кто уже пришёл</h2>
 
-    <svg class="illu wave-diagram" viewBox="0 0 320 90" role="img" aria-label="Волна сета: погружение, пик, приземление"><use href="#i-wave"></use></svg>
-    <div class="wave-labels"><span>погружение</span><span class="mid">пик</span><span>приземление</span></div>
-
-    <div class="stats reveal" data-od-id="stats">
-      <div class="stat" data-od-id="stat-cities"><div class="num">100+</div><div class="lbl">городов мира</div></div>
-      <div class="stat" data-od-id="stat-hours"><div class="num">5 часов</div><div class="lbl">путешествия</div></div>
-      <div class="stat" data-od-id="stat-alcohol"><div class="num">0%</div><div class="lbl">алкоголя</div></div>
-      <div class="stat" data-od-id="stat-barefoot"><div class="num">7 дней</div><div class="lbl">послевкусия</div></div>
-    </div>
-
-    <div class="note-strip reveal">Не умеешь танцевать? Идеально. Здесь никто не умеет и никто не смотрит. Свободный танец — он для всех.</div>
-  </div>
-</section>
-
-<!-- ====================== 3b. ЧЕМ ОТЛИЧАЕТСЯ ОТ ОБЫЧНОЙ ВЕЧЕРИНКИ ====================== -->
-<section class="section section-light" id="compare" data-od-id="compare">
-  <div class="section-inner">
-    <p class="eyebrow">Чем это отличается</p>
-    <h2>Не обычная вечеринка</h2>
-    <div class="compare reveal" data-od-id="compare-grid">
-      <div class="col col-usual" data-od-id="compare-usual">
-        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3>Обычная вечеринка</h3></div>
-        <div class="line">Состояние делает алкоголь</div>
-        <div class="line">Утром — разбитость и провал в памяти</div>
-        <div class="line">Танцуешь «как положено», ловишь взгляды</div>
-        <div class="line">Знакомства под градусом, наутро неловко</div>
-        <div class="line">Перекрикивать музыку, чтобы поговорить</div>
-        <div class="line">Счёт в баре больше входного</div>
-        <div class="line">Эффект заканчивается с ночью</div>
-        <div class="line">Начинается в полночь, разгон к трём утра</div>
-        <div class="line">Домой под утро, день потерян</div>
-      </div>
-      <div class="col col-ecstatic" data-od-id="compare-ecstatic">
-        <div class="compare-head"><svg class="illu" viewBox="0 0 64 64"><use href="#i-barefoot"></use></svg><h3>Ecstatic Dance</h3></div>
-        <div class="line">Состояние делают музыка, дыхание и общая волна зала</div>
-        <div class="line">Утром — лёгкость, ясность и тело, которое говорит спасибо</div>
-        <div class="line">Танцуешь как хочешь: с закрытыми глазами, на полу, в прыжке</div>
-        <div class="line">Честные знакомства в чайной зоне на трезвую голову</div>
-        <div class="line">Тишина на танцполе — редкий отдых от слов</div>
-        <div class="line">Билет + чай. Всё</div>
-        <div class="line">Эффект практики накапливается от события к событию</div>
-        <div class="line">Начинается в 17:00 — на пике твоей энергии, а не на её остатках</div>
-        <div class="line">В 22:00 ты дома: душ, нормальный сон — и следующий день целиком твой</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA-полоска после «Сравнения» -->
-<div class="cta-strip" data-od-id="cta-strip-1">
-  <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>24 октября</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 11 октября</span><span class="js-cs-remaining"></span></span>
-    <a class="btn btn-primary" href="#tickets">Купить билет</a>
-  </div>
-</div>
-
-<!-- ====================== 4. ПОЧЕМУ ВЫБИРАЮТ ЭТИ СОБЫТИЯ ====================== -->
-<section class="section section-light" id="why" data-od-id="why">
-  <div class="section-inner">
-    <p class="eyebrow">Почему выбирают</p>
-    <h2>Почему осознанные люди по всему миру выбирают эти события</h2>
-    <p class="lead" style="margin-top: 18px;">Ecstatic Dance проходит более чем в 100 городах — от Амстердама и Бали до Гватемалы и Гоа. Формат вырос из простого наблюдения: телу нужно движение, психике — разрядка, а человеку — живое общение без химии.</p>
     <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-      <div class="card illu-card" data-od-id="why-joy"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-sun-spiral"></use></svg><div class="why-word">РАДОСТЬ</div><p>Свободный танец даёт мощный эмоциональный заряд и снимает стресс. Гормоны счастья — без единого грамма алкоголя.</p></div>
-      <div class="card illu-card" data-od-id="why-depth"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-meditation"></use></svg><div class="why-word">ГЛУБИНА</div><p>Медитация в движении: поток мыслей останавливается, остаются ритм и тело.</p></div>
-      <div class="card illu-card" data-od-id="why-freedom"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-flow"></use></svg><div class="why-word">СВОБОДА</div><p>Танец без правил и инструкций. Тело само знает, как правильно именно сейчас.</p></div>
-      <div class="card illu-card" data-od-id="why-reload"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-bolt"></use></svg><div class="why-word">ПЕРЕЗАГРУЗКА</div><p>5 часов движения снимают напряжение, которое не берёт ни массаж, ни спортзал.</p></div>
-      <div class="card illu-card" data-od-id="why-tribe"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-cups"></use></svg><div class="why-word">СРЕДА</div><p>События собирают предпринимателей, творцов, йогов, психологов. Чайная зона знакомит лучше любого нетворкинга.</p></div>
-      <div class="card illu-card" data-od-id="why-safety"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-hands"></use></svg><div class="why-word">БЕЗОПАСНОСТЬ</div><p>Соглашения и культура согласия: танцпол, где спокойно каждому.</p></div>
-      <div class="card illu-card" data-od-id="why-rhythm"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-horizon"></use></svg><div class="why-word">РИТМ</div><p>Вечеринка без ночи: 17:00–22:00. Не ломает сон, не крадёт следующий день. В понедельник ты в лучшей форме недели, а не в худшей.</p></div>
+      <div class="card" data-od-id="review-oleg-1">
+        <p class="quote">«После того как я перестал употреблять алкоголь, хотелось найти место, где можно танцевать свободным среди людей, которые тебя понимают. Ecstatic Dance Almaty стал таким местом»</p>
+        <p class="quote-author">— Олег</p>
+      </div>
+      <div class="card" data-od-id="review-yanina">
+        <p class="quote">«Это не просто танцы — это живая практика соединения с собой и своим телом»</p>
+        <p class="quote-author">— Янина</p>
+      </div>
+      <div class="card" data-od-id="review-oleg-2">
+        <p class="quote">«Не нужно заученных движений — ты просто слушаешь, и музыка сама тебя ведёт»</p>
+        <p class="quote-author">— Олег</p>
+      </div>
+      <div class="card" data-od-id="review-3">
+        <p class="quote">«Очнулся, когда прыгал в центре толпы с ощущением давно забытой радости»</p>
+        <p class="quote-author">— участник вечера</p>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ====================== 5. КАК ПРОХОДИТ ВЕЧЕР ====================== -->
-<section class="section section-light" id="flow" data-od-id="flow">
-  <div class="section-inner">
-    <p class="eyebrow">Как проходит вечер</p>
-    <h2>Волна длиной в пять часов</h2>
-    <ol class="timeline reveal" style="margin-top: 28px;">
-      <li class="has-illu" data-od-id="flow-opening"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-circle"></use></svg><div class="tl-content"><h3>Открытие круга</h3><p>Знакомство с пространством, настройка, лёгкая разминка или тантра/арома-активация.</p></div></li>
-      <li class="has-illu" data-od-id="flow-wave1"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-wave-up"></use></svg><div class="tl-content"><h3>Первая волна</h3><p>DJ-сет: от медленного погружения к ритму.</p></div></li>
-      <li class="has-illu" data-od-id="flow-peak"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-figure"></use></svg><div class="tl-content"><h3>Пик</h3><p>Самая мощная часть: этника, электроника, племенной вайб.</p></div></li>
-      <li class="has-illu" data-od-id="flow-land"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-bowl"></use></svg><div class="tl-content"><h3>Приземление</h3><p>Саунд-хилинг: поющие чаши, глубокое расслабление лёжа.</p></div></li>
-      <li class="has-illu" data-od-id="flow-tea"><svg class="illu tl-illu" viewBox="0 0 64 64"><use href="#i-teapot"></use></svg><div class="tl-content"><h3>Чайная зона</h3><p>Тёплый чай, тишина, мягкое возвращение. Работает весь вечер.</p></div></li>
-    </ol>
-    <!-- TODO: тайминги уточнить перед событием -->
-  </div>
-</section>
-
-<!-- ===== Послушай, как это звучит ===== -->
-<section class="section section-light" id="listen" data-od-id="listen">
-  <div class="section-inner">
-    <p class="eyebrow">Послушать сет</p>
-    <div class="listen-block reveal" data-od-id="listen-block">
-      <svg class="illu lb-eq" viewBox="0 0 200 120" role="img" aria-label="Волна сета"><use href="#i-equalizer"></use></svg>
-      <div class="lb-text">
-        <h3>Хочешь услышать, под что мы танцуем?</h3>
-        <p>Сет с прошлого экстатика и плейлисты резидентов — в нашем Telegram-канале. Там же анонсы и ранние цены.</p>
-        <a class="btn btn-secondary on-light" href="https://t.me/ecstaticdancealmaty1?utm_source=landing&amp;utm_medium=referral&amp;utm_content=playlist" target="_blank" rel="noopener" data-od-id="listen-tg">Слушать сет в Telegram</a>
+    <p class="eyebrow" style="margin-top: 36px;">Видео-отзывы</p>
+    <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; margin-top: 16px;">
+      <div style="text-align: center;">
+        <video controls playsinline preload="none" poster="otzyv-oleg-poster.jpg" src="otzyv-oleg.mp4" style="width: min(280px, 80vw); aspect-ratio: 9/16; border-radius: var(--radius-card); object-fit: cover; background: var(--night);"></video>
+        <p class="quote-author">Олег — о том, как нашёл трезвые танцы</p>
+      </div>
+      <div style="text-align: center;">
+        <video controls playsinline preload="none" poster="otzyv-yanina-poster.jpg" src="otzyv-yanina.mp4" style="width: min(280px, 80vw); aspect-ratio: 9/16; border-radius: var(--radius-card); object-fit: cover; background: var(--night);"></video>
+        <p class="quote-author">Янина — о практике и глубине</p>
       </div>
     </div>
   </div>
-</section>
-
-<div class="spiral-divider" aria-hidden="true">◌ ◌ ◉ ◌ ◌</div>
-
-<!-- ====================== 6. СОГЛАШЕНИЯ ====================== -->
-<section class="section section-light" id="agreements" data-od-id="agreements">
-  <div class="section-inner">
-    <p class="eyebrow">Четыре соглашения</p>
-    <h2>То, что делает пространство безопасным</h2>
-    <div class="cards-4 reveal" style="margin-top: 28px;">
-      <div class="card illu-card" data-od-id="agr-present"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-phone"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px; font-size:clamp(17px, 4vw, 22px); overflow-wrap:anywhere;">Будь присутствующим</h3><p>Без телефонов. Танцпол — зона без экранов и съёмки.</p></div>
-      <div class="card illu-card" data-od-id="agr-clean"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-glass"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь чистым</h3><p>Без алкоголя и других интоксикантов. Состояние делает музыка.</p></div>
-      <div class="card illu-card" data-od-id="agr-body"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-lips"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь в теле</h3><p>Без разговоров на танцполе. Говорим в чайной зоне.</p></div>
-      <div class="card illu-card" data-od-id="agr-respect"><svg class="illu illu-sm" viewBox="0 0 64 64"><use href="#i-hands-meet"></use></svg><h3 style="color:var(--aqua-deep); margin-bottom:6px;">Будь уважительным</h3><p>Только совместное согласие. «Нет» здесь слышат.</p></div>
-    </div>
-    <p style="margin-top: 22px; font-size: 15px;">Эти правила — мировой стандарт Ecstatic Dance. Именно они превращают вечеринку в практику.</p>
-  </div>
-</section>
-
-<!-- CTA-полоска после «Соглашений» -->
-<div class="cta-strip" data-od-id="cta-strip-2">
-  <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>24 октября</strong>. Early bird <strong class="js-cs-price">9999 ₸</strong> — <span class="js-cs-date">до 11 октября</span><span class="js-cs-remaining"></span></span>
-    <a class="btn btn-primary" href="#tickets">Купить билет</a>
-  </div>
-</div>
-
-<!-- ===== Цитата-разрыв: Руми ===== -->
-<section class="pull-quote" data-od-id="rumi-quote">
-  <svg class="illu dervish" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-dervish"></use></svg>
-  <blockquote>«Танцуй, когда ты сломлен. Танцуй, когда сорвал повязки. Танцуй посреди битвы. Танцуй, когда ты совершенно свободен»</blockquote>
-  <cite>Руми</cite>
 </section>
 
 <!-- ====================== 5b. САЛИМ — ОСНОВАТЕЛЬ ====================== -->
@@ -1462,44 +1498,6 @@ svg.illu .acc { stroke: var(--aqua); }
 </section>
 
 
-<!-- ====================== 8. ОТЗЫВЫ + ГАЛЕРЕЯ ====================== -->
-<section class="section section-light" id="reviews" data-od-id="reviews">
-  <div class="section-inner">
-    <p class="eyebrow">После события</p>
-    <h2>Что говорят те, кто уже пришёл</h2>
-
-    <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-      <div class="card" data-od-id="review-oleg-1">
-        <p class="quote">«После того как я перестал употреблять алкоголь, хотелось найти место, где можно танцевать свободным среди людей, которые тебя понимают. Ecstatic Dance Almaty стал таким местом»</p>
-        <p class="quote-author">— Олег</p>
-      </div>
-      <div class="card" data-od-id="review-yanina">
-        <p class="quote">«Это не просто танцы — это живая практика соединения с собой и своим телом»</p>
-        <p class="quote-author">— Янина</p>
-      </div>
-      <div class="card" data-od-id="review-oleg-2">
-        <p class="quote">«Не нужно заученных движений — ты просто слушаешь, и музыка сама тебя ведёт»</p>
-        <p class="quote-author">— Олег</p>
-      </div>
-      <div class="card" data-od-id="review-3">
-        <p class="quote">«Очнулся, когда прыгал в центре толпы с ощущением давно забытой радости»</p>
-        <p class="quote-author">— участник вечера</p>
-      </div>
-    </div>
-
-    <p class="eyebrow" style="margin-top: 36px;">Видео-отзывы</p>
-    <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; margin-top: 16px;">
-      <div style="text-align: center;">
-        <video controls playsinline preload="none" poster="otzyv-oleg-poster.jpg" src="otzyv-oleg.mp4" style="width: min(280px, 80vw); aspect-ratio: 9/16; border-radius: var(--radius-card); object-fit: cover; background: var(--night);"></video>
-        <p class="quote-author">Олег — о том, как нашёл трезвые танцы</p>
-      </div>
-      <div style="text-align: center;">
-        <video controls playsinline preload="none" poster="otzyv-yanina-poster.jpg" src="otzyv-yanina.mp4" style="width: min(280px, 80vw); aspect-ratio: 9/16; border-radius: var(--radius-card); object-fit: cover; background: var(--night);"></video>
-        <p class="quote-author">Янина — о практике и глубине</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ====================== 9. FAQ ====================== -->
 <section class="section section-light" id="faq" data-od-id="faq">
@@ -1550,6 +1548,48 @@ svg.illu .acc { stroke: var(--aqua); }
       </details>
     </div>
   </div>
+</section>
+
+<!-- ====================== 4. ПОЧЕМУ ВЫБИРАЮТ ЭТИ СОБЫТИЯ ====================== -->
+<section class="section section-light" id="why" data-od-id="why">
+  <div class="section-inner">
+    <p class="eyebrow">Почему выбирают</p>
+    <h2>Почему осознанные люди по всему миру выбирают эти события</h2>
+    <p class="lead" style="margin-top: 18px;">Ecstatic Dance проходит более чем в 100 городах — от Амстердама и Бали до Гватемалы и Гоа. Формат вырос из простого наблюдения: телу нужно движение, психике — разрядка, а человеку — живое общение без химии.</p>
+    <div class="cards-4 reveal" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="card illu-card" data-od-id="why-joy"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-sun-spiral"></use></svg><div class="why-word">РАДОСТЬ</div><p>Свободный танец даёт мощный эмоциональный заряд и снимает стресс. Гормоны счастья — без единого грамма алкоголя.</p></div>
+      <div class="card illu-card" data-od-id="why-depth"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-meditation"></use></svg><div class="why-word">ГЛУБИНА</div><p>Медитация в движении: поток мыслей останавливается, остаются ритм и тело.</p></div>
+      <div class="card illu-card" data-od-id="why-freedom"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-flow"></use></svg><div class="why-word">СВОБОДА</div><p>Танец без правил и инструкций. Тело само знает, как правильно именно сейчас.</p></div>
+      <div class="card illu-card" data-od-id="why-reload"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-bolt"></use></svg><div class="why-word">ПЕРЕЗАГРУЗКА</div><p>5 часов движения снимают напряжение, которое не берёт ни массаж, ни спортзал.</p></div>
+      <div class="card illu-card" data-od-id="why-tribe"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-cups"></use></svg><div class="why-word">СРЕДА</div><p>События собирают предпринимателей, творцов, йогов, психологов. Чайная зона знакомит лучше любого нетворкинга.</p></div>
+      <div class="card illu-card" data-od-id="why-safety"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-hands"></use></svg><div class="why-word">БЕЗОПАСНОСТЬ</div><p>Соглашения и культура согласия: танцпол, где спокойно каждому.</p></div>
+      <div class="card illu-card" data-od-id="why-rhythm"><svg class="illu illu-spot" viewBox="0 0 64 64"><use href="#i-horizon"></use></svg><div class="why-word">РИТМ</div><p>Вечеринка без ночи: 17:00–22:00. Не ломает сон, не крадёт следующий день. В понедельник ты в лучшей форме недели, а не в худшей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Послушай, как это звучит ===== -->
+<section class="section section-light" id="listen" data-od-id="listen">
+  <div class="section-inner">
+    <p class="eyebrow">Послушать сет</p>
+    <div class="listen-block reveal" data-od-id="listen-block">
+      <svg class="illu lb-eq" viewBox="0 0 200 120" role="img" aria-label="Волна сета"><use href="#i-equalizer"></use></svg>
+      <div class="lb-text">
+        <h3>Хочешь услышать, под что мы танцуем?</h3>
+        <p>Сет с прошлого экстатика и плейлисты резидентов — в нашем Telegram-канале. Там же анонсы и ранние цены.</p>
+        <a class="btn btn-secondary on-light" href="https://t.me/ecstaticdancealmaty1?utm_source=landing&amp;utm_medium=referral&amp;utm_content=playlist" target="_blank" rel="noopener" data-od-id="listen-tg">Слушать сет в Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spiral-divider" aria-hidden="true">◌ ◌ ◉ ◌ ◌</div>
+
+<!-- ===== Цитата-разрыв: Руми ===== -->
+<section class="pull-quote" data-od-id="rumi-quote">
+  <svg class="illu dervish" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-dervish"></use></svg>
+  <blockquote>«Танцуй, когда ты сломлен. Танцуй, когда сорвал повязки. Танцуй посреди битвы. Танцуй, когда ты совершенно свободен»</blockquote>
+  <cite>Руми</cite>
 </section>
 
 <!-- ====================== 9a. ПРОШЕДШИЕ СОБЫТИЯ ====================== -->
@@ -2004,7 +2044,7 @@ svg.illu .acc { stroke: var(--aqua); }
     var price = current.getAttribute('data-price');
     var date = current.getAttribute('data-date');
     if (stickyBtn) stickyBtn.textContent = 'Купить билет — ' + price;
-    if (buyBtn) buyBtn.textContent = 'Купить билет — ' + price;
+    document.querySelectorAll('.js-buy-btn').forEach(function (b) { b.textContent = 'Купить билет — ' + price; });
     csPriceEls.forEach(function (el) { el.textContent = price; });
     csDateEls.forEach(function (el) { el.textContent = 'до ' + date; });
     setCsRemaining(csRemainingForPrice(parsePriceNumber(price)));
@@ -2029,7 +2069,7 @@ svg.illu .acc { stroke: var(--aqua); }
       if (appliedIdx !== -1) {
         priceCards.forEach(function (card) { card.classList.remove('featured'); card.classList.add('soldout'); });
         if (stickyBtn) stickyBtn.textContent = 'Купить билет — 20 000 ₸';
-        if (buyBtn) buyBtn.textContent = 'Купить билет — 20 000 ₸';
+        document.querySelectorAll('.js-buy-btn').forEach(function (b) { b.textContent = 'Купить билет — 20 000 ₸'; });
         csPriceEls.forEach(function (el) { el.textContent = '20 000 ₸'; });
         csDateEls.forEach(function (el) { el.textContent = 'в день события'; });
         setCsRemaining(null);
@@ -2367,4 +2407,25 @@ svg.illu .acc { stroke: var(--aqua); }
 })();
 </script>
 
+<script>
+// Variant analytics: сколько людей доходит до каких секций, глубина скролла, клики по видео. Не блокирует страницу.
+(function () {
+  function ev(name, params) { try { if (typeof gtag === 'function') { params = params || {}; params.page_variant = 'lineup'; gtag('event', name, params); } } catch (e) {} }
+  var sent = {};
+  function once(k, name, params) { if (sent[k]) return; sent[k] = 1; ev(name, params); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { once('s' + e.target.id, 'section_view', { section_id: e.target.id }); io.unobserve(e.target); } });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
+  }
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement; var d = (h.scrollTop + window.innerHeight) / h.scrollHeight * 100;
+    [25, 50, 75, 90].forEach(function (t) { if (d >= t) once('d' + t, 'scroll_depth', { percent: t }); });
+  }, { passive: true });
+  document.querySelectorAll('video').forEach(function (v) {
+    v.addEventListener('play', function () { once('v' + (v.getAttribute('data-track') || v.getAttribute('src')), 'video_play', { video: v.getAttribute('data-track') || v.getAttribute('src') }); });
+  });
+})();
+</script>
 </body></html>
