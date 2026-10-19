@@ -2265,7 +2265,7 @@ svg.illu .acc { stroke: var(--aqua); }
   // владелец видит её в чате). Партнёр с личным промокодом (он подставляется
   // ботом по auto_utm_source) не должен получать общий -10% через WhatsApp —
   // его ведём в бота, WhatsApp для него убран. Новый партнёр = одна строка в PARTNER_PROMO.
-  var PARTNER_PROMO = { nurgul: { code: 'NURGUL', name: 'Нургуль' }, vozduh: { code: 'VOZDUH', name: 'студии «Воздух»' } };
+  var PARTNER_PROMO = { nurgul: { code: 'NURGUL', name: 'Нургуль' }, vozduh: { code: 'VOZDUH', name: 'студии «Воздух»' }, phoenix: { code: 'PHOENIX', name: 'Phoenix' } };
   var edaRef = (function () {
     try { return new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) { return ''; }
   })().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^[-_]+|[-_]+$/g, '');
