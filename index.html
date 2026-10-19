@@ -371,6 +371,13 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .pc-done { font-size: 14px; color: var(--coral); font-weight: 600; }
 
 /* At-door price strip (separate from ladder) */
+.trio-strip { background: linear-gradient(135deg, rgba(255,122,89,.16), rgba(46,196,182,.12)); border: 1px solid rgba(255,122,89,.45); border-radius: 14px; padding: 18px 20px; margin-top: 12px; }
+.trio-strip .ts-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; justify-content: space-between; }
+.trio-strip .ts-title { font-family: var(--font-display); font-size: clamp(18px, 3.6vw, 22px); font-weight: 600; color: var(--cream); }
+.trio-strip .ts-text { font-size: 15px; color: var(--cream); margin-top: 4px; }
+.trio-strip .ts-text strong { color: var(--coral); }
+.trio-strip .ts-fine { font-size: 12px; color: var(--cream-soft); margin-top: 8px; }
+.trio-strip .btn { padding: 11px 22px; font-size: 14px; }
 .at-door-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; background: rgba(247,244,238,.05); border: 1px dashed rgba(247,244,238,.22); border-radius: var(--radius-card); padding: 14px 20px; margin-top: 12px; }
 .at-door-strip .ads-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
 .at-door-strip .ads-price { font-family: var(--font-display); font-size: clamp(20px, 4vw, 26px); font-weight: 600; color: var(--cream); letter-spacing: -0.01em; }
@@ -1265,6 +1272,18 @@ svg.illu .acc { stroke: var(--aqua); }
           <div class="price-value">14 444 ₸</div>
           <div class="meta">до 23 октября</div>
         </div>
+      </div>
+
+      <!-- Акция 2+1 (цену считает скрипт ниже по активной волне) -->
+      <div class="trio-strip reveal" data-od-id="ne-trio" id="trio-strip" hidden>
+        <div class="ts-row">
+          <div>
+            <div class="ts-title">🎁 Акция 2+1: третий билет в подарок</div>
+            <div class="ts-text">Приходите втроём: <strong id="trio-unit">9 000 ₸</strong> с человека, <span id="trio-total">27 000 ₸</span> за троих. Экономия <span id="trio-save"></span>.</div>
+          </div>
+          <a class="btn btn-primary" id="trio-buy" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener" data-od-id="ne-trio-btn">Взять на троих</a>
+        </div>
+        <p class="ts-fine">В боте выберите «🎁 Билет на троих · 2+1». Только на три билета сразу, с промокодами не суммируется.</p>
       </div>
 
       <div class="at-door-strip reveal" data-od-id="ne-price-at-door">
@@ -2216,7 +2235,7 @@ svg.illu .acc { stroke: var(--aqua); }
   // сегментов, их схлопываем). Без utm_source в URL кнопка остаётся с
   // дефолтным __src-landing.
   (function forwardUtmToBot() {
-    var ticketButtons = [buyBtn, stickyBtn].filter(Boolean);
+    var ticketButtons = [buyBtn, stickyBtn, document.getElementById('trio-buy')].filter(Boolean);
     if (!ticketButtons.length) return;
     function san(v) {
       return String(v || '').toLowerCase()
@@ -2258,6 +2277,24 @@ svg.illu .acc { stroke: var(--aqua); }
         .catch(function () { /* keep the non-Meta link */ });
     } catch (e) { /* старый браузер/битый URL — остаётся дефолтная ссылка с __src-landing */ }
   })();
+
+  // === Акция 2+1: цена по активной волне (≤11 111 ₸ → 8 000, иначе 9 000 — как trioUnitPrice в боте) ===
+  (function trioStrip() { try {
+    var el = document.getElementById('trio-strip');
+    var cards = document.querySelectorAll('.price-card[data-deadline]');
+    var now = Date.now(), cur = null;
+    for (var i = 0; i < cards.length; i++) {
+      if (new Date(cards[i].getAttribute('data-deadline')).getTime() > now) { cur = cards[i]; break; }
+    }
+    if (!el || !cur) return;
+    var price = parseInt(cur.getAttribute('data-price').replace(/\D/g, ''), 10);
+    var unit = price <= 11111 ? 8000 : 9000;
+    var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + '\u00a0₸'; };
+    document.getElementById('trio-unit').textContent = fmt(unit);
+    document.getElementById('trio-total').textContent = fmt(unit * 3);
+    document.getElementById('trio-save').textContent = fmt((price - unit) * 3);
+    el.hidden = false;
+  } catch (e) {} })();
 
   // === Источник в WhatsApp + личные промокоды партнёров ===
   // wa.me отбрасывает любые параметры вне text=, поэтому метку источника
