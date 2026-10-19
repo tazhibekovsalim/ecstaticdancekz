@@ -371,13 +371,16 @@ section[id], div.next-event[id] { scroll-margin-top: 24px; }
 .pc-done { font-size: 14px; color: var(--coral); font-weight: 600; }
 
 /* At-door price strip (separate from ladder) */
-.trio-strip { background: linear-gradient(135deg, rgba(255,122,89,.16), rgba(46,196,182,.12)); border: 1px solid rgba(255,122,89,.45); border-radius: 14px; padding: 18px 20px; margin-top: 12px; }
-.trio-strip .ts-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; justify-content: space-between; }
-.trio-strip .ts-title { font-family: var(--font-display); font-size: clamp(18px, 3.6vw, 22px); font-weight: 600; color: var(--cream); }
-.trio-strip .ts-text { font-size: 15px; color: var(--cream); margin-top: 4px; }
-.trio-strip .ts-text strong { color: var(--coral); }
-.trio-strip .ts-fine { font-size: 12px; color: var(--cream-soft); margin-top: 8px; }
-.trio-strip .btn { padding: 11px 22px; font-size: 14px; }
+/* Акция 2+1: карточка прямо под лестницей цен */
+.trio-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; text-align: left; border: 2px dashed var(--coral); padding: 18px 22px; }
+.trio-card .tc-main { min-width: 0; }
+.trio-card .tier { color: var(--coral); }
+.trio-card .tc-title { font-family: var(--font-display); font-size: clamp(18px, 3.6vw, 22px); font-weight: 600; color: var(--cream); margin-top: 2px; }
+.trio-card .tc-meta { font-size: 13px; color: var(--cream-soft); margin-top: 4px; }
+.trio-card .tc-price { text-align: right; }
+.trio-card .price-value { color: var(--coral); }
+.trio-card .tc-total { font-size: 12px; color: var(--cream-soft); }
+@media (max-width: 520px) { .trio-card .tc-price { text-align: left; } }
 .at-door-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; background: rgba(247,244,238,.05); border: 1px dashed rgba(247,244,238,.22); border-radius: var(--radius-card); padding: 14px 20px; margin-top: 12px; }
 .at-door-strip .ads-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; }
 .at-door-strip .ads-price { font-family: var(--font-display); font-size: clamp(20px, 4vw, 26px); font-weight: 600; color: var(--cream); letter-spacing: -0.01em; }
@@ -702,6 +705,7 @@ svg.illu .acc { stroke: var(--aqua); }
     "info-rest"
     "countdown"
     "prices"
+    "trio"
     "at-door"
     "promo";
   align-items: start;
@@ -711,6 +715,7 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event .ne-info-bottom    { grid-area: info-rest; }
 .next-event .price-countdown   { grid-area: countdown; }
 .next-event .price-grid        { grid-area: prices; margin: 0; }
+.next-event .trio-card         { grid-area: trio; margin-top: 0; }
 .next-event .at-door-strip     { grid-area: at-door; margin-top: 0; }
 .next-event .promo-strip       { grid-area: promo; margin-top: 0; }
 
@@ -723,6 +728,7 @@ svg.illu .acc { stroke: var(--aqua); }
       "info-rest  poster"
       "countdown  countdown"
       "prices     prices"
+      "trio       trio"
       "at-door    at-door"
       "promo      promo";
     gap: 24px 40px;
@@ -1274,16 +1280,17 @@ svg.illu .acc { stroke: var(--aqua); }
         </div>
       </div>
 
-      <!-- Акция 2+1 (цену считает скрипт ниже по активной волне) -->
-      <div class="trio-strip" data-od-id="ne-trio" id="trio-strip">
-        <div class="ts-row">
-          <div>
-            <div class="ts-title">🎁 Акция 2+1: третий билет в подарок</div>
-            <div class="ts-text">Приходите втроём: <strong id="trio-unit">9 000 ₸</strong> с человека, <span id="trio-total">27 000 ₸</span> за троих. Экономия <span id="trio-save">9&nbsp;666&nbsp;₸</span>.</div>
-          </div>
-          <a class="btn btn-primary" id="trio-buy" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener" data-od-id="ne-trio-btn">Взять на троих</a>
+      <!-- Акция 2+1 (цену пересчитывает скрипт по активной волне) -->
+      <div class="price-card trio-card" data-od-id="ne-trio" id="trio-strip">
+        <div class="tc-main">
+          <div class="tier">🎁 Акция · билет на троих</div>
+          <div class="tc-title">2+1: третий билет в подарок</div>
+          <div class="tc-meta">Только на три билета сразу, с промокодами не суммируется. Выбрать в боте: «Билет на троих».</div>
         </div>
-        <p class="ts-fine">В боте выберите «🎁 Билет на троих · 2+1». Только на три билета сразу, с промокодами не суммируется.</p>
+        <div class="tc-price">
+          <div class="price-value"><span id="trio-unit">9&nbsp;000&nbsp;₸</span> <span style="font-size:14px;font-weight:400;">с человека</span></div>
+          <div class="tc-total"><span id="trio-total">27&nbsp;000&nbsp;₸</span> за троих · экономия <span id="trio-save">9&nbsp;666&nbsp;₸</span></div>
+        </div>
       </div>
 
       <div class="at-door-strip reveal" data-od-id="ne-price-at-door">
@@ -2235,7 +2242,7 @@ svg.illu .acc { stroke: var(--aqua); }
   // сегментов, их схлопываем). Без utm_source в URL кнопка остаётся с
   // дефолтным __src-landing.
   (function forwardUtmToBot() {
-    var ticketButtons = [buyBtn, stickyBtn, document.getElementById('trio-buy')].filter(Boolean);
+    var ticketButtons = [buyBtn, stickyBtn].filter(Boolean);
     if (!ticketButtons.length) return;
     function san(v) {
       return String(v || '').toLowerCase()
