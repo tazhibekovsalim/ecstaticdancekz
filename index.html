@@ -1275,11 +1275,11 @@ svg.illu .acc { stroke: var(--aqua); }
       </div>
 
       <!-- Акция 2+1 (цену считает скрипт ниже по активной волне) -->
-      <div class="trio-strip reveal" data-od-id="ne-trio" id="trio-strip" hidden>
+      <div class="trio-strip" data-od-id="ne-trio" id="trio-strip">
         <div class="ts-row">
           <div>
             <div class="ts-title">🎁 Акция 2+1: третий билет в подарок</div>
-            <div class="ts-text">Приходите втроём: <strong id="trio-unit">9 000 ₸</strong> с человека, <span id="trio-total">27 000 ₸</span> за троих. Экономия <span id="trio-save"></span>.</div>
+            <div class="ts-text">Приходите втроём: <strong id="trio-unit">9 000 ₸</strong> с человека, <span id="trio-total">27 000 ₸</span> за троих. Экономия <span id="trio-save">9&nbsp;666&nbsp;₸</span>.</div>
           </div>
           <a class="btn btn-primary" id="trio-buy" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-10-24__src-landing" target="_blank" rel="noopener" data-od-id="ne-trio-btn">Взять на троих</a>
         </div>
@@ -2286,14 +2286,14 @@ svg.illu .acc { stroke: var(--aqua); }
     for (var i = 0; i < cards.length; i++) {
       if (new Date(cards[i].getAttribute('data-deadline')).getTime() > now) { cur = cards[i]; break; }
     }
-    if (!el || !cur) return;
+    if (!el) return;
+    if (!cur) { el.hidden = true; return; }
     var price = parseInt(cur.getAttribute('data-price').replace(/\D/g, ''), 10);
     var unit = price <= 11111 ? 8000 : 9000;
     var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + '\u00a0₸'; };
     document.getElementById('trio-unit').textContent = fmt(unit);
     document.getElementById('trio-total').textContent = fmt(unit * 3);
     document.getElementById('trio-save').textContent = fmt((price - unit) * 3);
-    el.hidden = false;
   } catch (e) {} })();
 
   // === Источник в WhatsApp + личные промокоды партнёров ===
