@@ -2210,7 +2210,7 @@ svg.illu .acc { stroke: var(--aqua); }
       fetch('https://bot.ecstaticdance.kz/public/meta-click', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fbclid: fbclid })
+        body: JSON.stringify({ fbclid: fbclid, fbp: ((document.cookie.match(/(?:^|; )_fbp=([^;]+)/) || [])[1] || '') })
       })
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (data) {
@@ -2236,7 +2236,7 @@ svg.illu .acc { stroke: var(--aqua); }
   })().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^[-_]+|[-_]+$/g, '');
   (function applyRefToWhatsApp() { try {
     var ref = edaRef || 'landing';
-    var partner = PARTNER_PROMO[ref];
+    var partner = PARTNER_PROMO[ref] || (ref === 'facebook_ads' ? { ads: true } : null);
     if (partner && buyBtn) {
       // Партнёрский заход: WhatsApp убираем целиком, всё ведёт в бота по ссылке партнёра.
       telegramPopoverShown = true;
@@ -2245,15 +2245,15 @@ svg.illu .acc { stroke: var(--aqua); }
         var text = strip.querySelector('.ps-text');
         var btn = strip.querySelector('a.btn');
         var fine = strip.querySelector('.ps-fine');
-        if (text) text.innerHTML = 'Вы пришли от ' + partner.name + ': по промокоду <strong>' + partner.code + '</strong> скидка <strong>−10%</strong> на первое посещение';
+        if (text) text.innerHTML = partner.ads ? 'Первый раз у нас? Скидка <strong>−10%</strong> на первое посещение' : 'Вы пришли от ' + partner.name + ': по промокоду <strong>' + partner.code + '</strong> скидка <strong>−10%</strong> на первое посещение';
         if (btn) { btn.href = buyBtn.href; btn.textContent = 'Купить билет в боте'; btn.removeAttribute('data-od-id'); }
-        if (fine) fine.textContent = 'Промокод подставится сам при покупке в боте. Действует только на первое посещение.';
+        if (fine) fine.textContent = partner.ads ? 'Скидка применится сама при покупке в боте. Действует один раз, на первое посещение.' : 'Промокод подставится сам при покупке в боте. Действует только на первое посещение.';
       }
       var wa = document.querySelector('.wa-btn');
       if (wa) {
         wa.href = buyBtn.href;
         wa.removeAttribute('aria-label');
-        wa.innerHTML = 'От ' + partner.name + ' · ' + partner.code + ' −10%';
+        wa.innerHTML = partner.ads ? 'Купить в боте · −10%' : 'От ' + partner.name + ' · ' + partner.code + ' −10%';
         wa.style.cssText = 'width:auto;height:auto;padding:12px 18px;border-radius:999px;background:var(--aqua);color:var(--aqua-deep);font-weight:600;font-size:14px;';
       }
       document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {

@@ -2271,7 +2271,7 @@ svg.illu .acc { stroke: var(--aqua); }
       fetch('https://bot.ecstaticdance.kz/public/meta-click', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fbclid: fbclid })
+        body: JSON.stringify({ fbclid: fbclid, fbp: ((document.cookie.match(/(?:^|; )_fbp=([^;]+)/) || [])[1] || '') })
       })
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (data) {
