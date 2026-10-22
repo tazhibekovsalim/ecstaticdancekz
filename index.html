@@ -1858,7 +1858,7 @@ svg.illu .acc { stroke: var(--aqua); }
     if (promoSaving) promoSaving.textContent = '−' + formatTenge(saving);
     if (promoFinalPrice) promoFinalPrice.textContent = formatTenge(finalPrice);
     if (promoPopupWa) {
-      var message = 'Здравствуйте! Я прихожу в первый раз. Пожалуйста, дайте мне промокод на это посещение. utm_source=' + (edaRef || 'landing');
+      var message = 'Здравствуйте! Я прихожу в первый раз. Пожалуйста, дайте мне промокод на это посещение. utm_source=' + (edaRef || 'landing') + edaCmpText;
       promoPopupWa.href = 'https://wa.me/77789837875?text=' + encodeURIComponent(message) + '&utm_source=landing&utm_medium=messenger&utm_content=promo20_popup';
     }
   }
@@ -2310,6 +2310,12 @@ svg.illu .acc { stroke: var(--aqua); }
   // ботом по auto_utm_source) не должен получать общий -10% через WhatsApp —
   // его ведём в бота, WhatsApp для него убран. Новый партнёр = одна строка в PARTNER_PROMO.
   var PARTNER_PROMO = { nurgul: { code: 'NURGUL', name: 'Нургуль' }, vozduh: { code: 'VOZDUH', name: 'студии «Воздух»' }, phoenix: { code: 'PHOENIX', name: 'Phoenix' } };
+  var edaCmpText = (function () {
+    try {
+      var c = (new URLSearchParams(location.search).get('utm_campaign') || '').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').slice(0, 40);
+      return c ? ' utm_campaign=' + c : '';
+    } catch (e) { return ''; }
+  })();
   var edaRef = (function () {
     try { return new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) { return ''; }
   })().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^[-_]+|[-_]+$/g, '');
@@ -2350,7 +2356,7 @@ svg.illu .acc { stroke: var(--aqua); }
         var u = new URL(a.href);
         var t = u.searchParams.get('text') || 'Здравствуйте!';
         if (t.indexOf('utm_source=') !== -1) return;
-        u.searchParams.set('text', t + ' utm_source=' + ref);
+        u.searchParams.set('text', t + ' utm_source=' + ref + edaCmpText);
         a.href = u.toString();
       } catch (e) { /* оставляем ссылку как есть */ }
     });
