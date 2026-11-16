@@ -694,6 +694,23 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event { background: var(--night); color: var(--cream); padding: clamp(40px, 7vw, 72px) 24px; }
 .next-event .ne-inner { max-width: var(--maxw); margin: 0 auto; }
 
+
+/* === Выбор дня: две карточки-вкладки над блоками событий === */
+.ev-picker-band { background: var(--night); color: var(--cream); padding: clamp(36px, 6vw, 56px) 24px 0; }
+.ev-picker-band .ev-inner { max-width: var(--maxw); margin: 0 auto; }
+.ev-picker-band .eyebrow { margin-bottom: 14px; }
+.ev-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ev-tab { text-align: left; font: inherit; color: var(--cream); cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 14px 14px 12px; border-radius: var(--radius-card); border: 1.5px solid rgba(247,244,238,.16); background: rgba(247,244,238,.05); transition: border-color .2s, background .2s; }
+.ev-tab:hover { border-color: rgba(46,196,182,.55); }
+.ev-tab[aria-selected="true"] { border-color: var(--aqua); background: rgba(46,196,182,.12); }
+.ev-tab:focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
+.ev-tab .ev-date { font-size: clamp(20px, 5vw, 26px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+.ev-tab .ev-name { font-size: 14px; font-weight: 600; }
+.ev-tab .ev-desc { font-size: 12.5px; color: var(--cream-soft); line-height: 1.35; }
+.ev-tab .ev-price { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--aqua); }
+.ev-picker-band + .next-event, .ev-picker-band ~ .next-event { padding-top: clamp(24px, 4vw, 36px); }
+@media (min-width: 820px) { .ev-tab { padding: 18px 20px 16px; } .ev-tab .ev-name { font-size: 16px; } .ev-tab .ev-desc { font-size: 14px; } }
+
 /* === Mobile-first (single column, poster-first for visual anchor) === */
 .next-event .ne-grid {
   display: grid;
@@ -741,6 +758,7 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event .ne-meta .pin { width: 14px; height: 14px; display: inline-block; vertical-align: -2px; margin-right: 4px; color: var(--aqua); }
 .next-event .ne-djs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; }
 .next-event .ne-djs .ne-dj { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: rgba(46,196,182,.12); color: var(--aqua); letter-spacing: 0.02em; }
+.next-event .ne-text { font-size: 15px; line-height: 1.65; color: var(--cream); max-width: 60ch; margin: 0 0 12px; }
 .next-event .ne-djs-label { font-size: 12px; color: var(--cream-soft); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
 .next-event .ne-note { font-size: 13px; color: var(--cream-soft); margin-top: 14px; }
 .next-event .ne-poster { border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.35); }
@@ -872,6 +890,22 @@ svg.illu .acc { stroke: var(--aqua); }
   "organizer": { "@type": "Organization", "name": "Ecstatic Dance Almaty", "url": "https://ecstaticdance.kz/" }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DanceEvent",
+  "name": "Sacred Ecstatic Dance — 22 ноября, Sacred Kitchen",
+  "startDate": "2026-11-22T15:00:00+05:00",
+  "endDate": "2026-11-22T19:00:00+05:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": { "@type": "Place", "name": "Sacred Kitchen", "address": { "@type": "PostalAddress", "addressLocality": "Алматы", "addressCountry": "KZ" } },
+  "image": "https://ecstaticdance.kz/poster-event-22-nov.jpg",
+  "description": "Ecstatic Dance в ресторане Sacred Kitchen в центре Алматы, диджей Ssia. В цену билета включено специальное экстатичное меню на 4 000 ₸.",
+  "offers": { "@type": "AggregateOffer", "url": "https://ecstaticdance.kz/#tickets-sacred", "priceCurrency": "KZT", "lowPrice": "8000", "highPrice": "10000", "availability": "https://schema.org/InStock" },
+  "organizer": { "@type": "Organization", "name": "Ecstatic Dance Almaty", "url": "https://ecstaticdance.kz/" }
+}
+</script>
 </head>
 <body>
 
@@ -884,7 +918,7 @@ svg.illu .acc { stroke: var(--aqua); }
     Ecstatic Dance Almaty
   </a>
   <div class="nav-links" data-od-id="nav-links">
-    <a href="#tickets" data-od-id="nav-event">Событие</a>
+    <a href="#events" data-od-id="nav-event">Событие</a>
     <a href="#what" data-od-id="nav-what">Что это</a>
     <a href="#reviews" data-od-id="nav-reviews">Отзывы</a>
     <a href="#past-events" data-od-id="nav-past-events">Архив</a>
@@ -895,7 +929,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
   </button>
   <div class="nav-dropdown" id="navDropdown" data-od-id="nav-dropdown">
-    <a href="#tickets" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
+    <a href="#events" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
     <a href="#what" data-od-id="dd-what">Что это <span class="dd-arrow">→</span></a>
     <a href="#festivals" data-od-id="dd-festivals">Фестивали <span class="dd-arrow">→</span></a>
     <a href="#reviews" data-od-id="dd-reviews">Отзывы <span class="dd-arrow">→</span></a>
@@ -1122,7 +1156,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <h1><span class="hl glow-aqua">Осознанная</span> вечеринка</h1>
     <p class="sub">Ecstatic Dance — танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#tickets">Билет на ближайшее событие</a>
+      <a class="btn btn-primary" href="#events">Билет на ближайшее событие</a>
       <a class="btn btn-secondary" href="#what">Что такое экстатик?</a>
     </div>
     <p class="hero-facts" style="margin-top: 20px; font-size: 14px; color: var(--cream-soft); letter-spacing: 0.02em; display: flex; flex-wrap: wrap; gap: 4px 10px;">
@@ -1134,23 +1168,117 @@ svg.illu .acc { stroke: var(--aqua); }
       <span style="opacity:.4;">·</span>
       <span style="white-space: nowrap;">босиком</span>
       <span style="width:100%;"></span>
-      <span style="color: var(--cream); font-weight: 600; white-space: nowrap;">29 ноября, 16:00–21:00 · Центр медитации Ханака, возле Кок-тобе</span><span style="opacity:.4;">·</span><span style="color: var(--cream); font-weight: 600; white-space: nowrap;">цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
+      <span style="color: var(--cream); font-weight: 600;">22 ноября, 15:00–19:00 · Sacred Kitchen в центре города · от 8000 ₸, меню на 4000 ₸ включено</span><span style="width:100%;"></span><span style="color: var(--cream); font-weight: 600; white-space: nowrap;">29 ноября, 16:00–21:00 · Центр медитации Ханака, возле Кок-тобе</span><span style="opacity:.4;">·</span><span style="color: var(--cream); font-weight: 600; white-space: nowrap;">цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
     </p>
   </div>
 </section>
 
-<!-- ====================== 2. БЛИЖАЙШЕЕ СОБЫТИЕ (компакт) ====================== -->
+<!-- ====================== 2. ВЫБОР ДНЯ ====================== -->
+<div class="ev-picker-band" id="events" data-od-id="ev-picker">
+  <div class="ev-inner">
+    <p class="eyebrow">Выберите день</p>
+    <div class="ev-picker" role="tablist" aria-label="Ближайшие события">
+      <button class="ev-tab" type="button" role="tab" aria-selected="true" aria-controls="tickets-sacred" data-od-id="ev-tab-sacred">
+        <span class="ev-date">22 ноября</span>
+        <span class="ev-name">Sacred Kitchen</span>
+        <span class="ev-desc">танец и ужин в центре города · 15:00–19:00</span>
+        <span class="ev-price">от 8 000 ₸, меню на 4 000 ₸ включено</span>
+      </button>
+      <button class="ev-tab" type="button" role="tab" aria-selected="false" aria-controls="tickets" data-od-id="ev-tab-hanaka">
+        <span class="ev-date">29 ноября</span>
+        <span class="ev-name">Ханака</span>
+        <span class="ev-desc">большой вечер, ретритный формат · 16:00–21:00</span>
+        <span class="ev-price">от 8 000 ₸</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== 2a. SACRED KITCHEN, 22 НОЯБРЯ ====================== -->
+<section class="next-event" id="tickets-sacred" data-od-id="tickets-sacred">
+  <div class="ne-inner">
+    <div class="ne-grid">
+      <div class="ne-info-top" data-od-id="sk-info-top">
+        <p class="eyebrow">Ближайшее событие · новый формат</p>
+        <h2>Sacred Ecstatic Dance в центре города</h2>
+        <div class="ne-meta">
+          <span>22 ноября · 15:00–19:00</span><span class="dot">·</span>
+          <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"></path><circle cx="8" cy="6" r="1.5"></circle></svg><a href="https://2gis.kz/almaty/geo/70000001115110168/76.902920,43.237726" target="_blank" rel="noopener" style="color:inherit;">Ресторан Sacred Kitchen, Алматы</a></span>
+        </div>
+        <p class="ne-text">Ecstatic Dance в новом формате: не за городом и не в зале, а в центре Алматы, в ресторане Sacred Kitchen. Воскресным днём, с 15:00 до 19:00, диджей Ssia ведёт четыре часа свободного танца. Без правил и без «правильных» движений: музыка поднимается от мягкого погружения к пику и снова опускается.</p>
+        <p class="ne-text">А потом можно просто остаться за столом: попробовать экстатичное меню, выдохнуть, поговорить с теми, с кем только что танцевали. Зал камерный, 30 человек, поэтому это не толпа, а своя компания на один вечер.</p>
+        <p class="ne-djs-label">Диджей</p>
+        <div class="ne-djs"><span class="ne-dj">15:00–19:00 · Ecstatic Dance — DJ Ssia</span></div>
+        <div class="note-strip" style="margin-top:14px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;">
+          <strong style="color:var(--cream);">В билет включено:</strong> 4 000 ₸ на специальное экстатичное меню Sacred Kitchen. Выбираете блюда и напитки прямо в ресторане, отдельно платить за них не нужно.
+        </div>
+        <p style="margin-top:14px;font-size:13px;color:var(--cream-soft);">Зал небольшой, мест всего 30: лучше взять билет заранее.</p>
+      </div>
+
+      <div class="ne-poster-wrapper" data-od-id="sk-poster-wrapper">
+        <div class="ne-poster reveal" data-od-id="sk-poster">
+          <img src="poster-event-22-nov.jpg" alt="Афиша Sacred Ecstatic Dance — 22 ноября, Sacred Kitchen, DJ Ssia" width="1080" height="1350" loading="lazy">
+        </div>
+      </div>
+
+      <div class="ne-info-bottom" data-od-id="sk-info-bottom">
+        <p class="ne-note">Цена растёт после <strong style="color:var(--cream);">20 ноября</strong> (или раньше, если волна раскуплена). Чем раньше, тем дешевле.</p>
+        <div style="margin-top: 22px;" data-od-id="sk-buy-cta">
+          <a class="btn btn-primary js-buy-btn" href="https://t.me/ecstaticdancealmaty_bot?start=eda-2026-11-22__src-landing" target="_blank" rel="noopener">Купить билет — 8000 ₸</a>
+          <p style="margin-top: 10px; font-size: 13px; color: var(--cream-soft);">Оплата картой через нашего Telegram-бота · займёт 2 минуты · билет придёт прямо в бот 🔒</p>
+        </div>
+        <div class="note-strip reveal" style="margin-top: 20px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;">
+          <strong style="color:var(--cream);">Что взять:</strong> удобную одежду и обувь, в которой можно двигаться (в ресторане танцуем не босиком), бутылку воды.
+        </div>
+      </div>
+
+      <div class="price-countdown reveal" data-od-id="sk-price-countdown" data-deadline="2026-11-20T23:59:59+05:00">
+        <span class="pc-label">Цена растёт после <strong style="color:var(--coral);">20 ноября</strong>. Осталось:</span>
+        <div class="pc-timer" role="timer" aria-live="off">
+          <div class="pc-unit"><span class="pc-num" data-pc="days">--</span><span class="pc-lbl">дней</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" data-pc="hours">--</span><span class="pc-lbl">часов</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" data-pc="mins">--</span><span class="pc-lbl">минут</span></div>
+          <span class="pc-sep">:</span>
+          <div class="pc-unit"><span class="pc-num" data-pc="secs">--</span><span class="pc-lbl">секунд</span></div>
+        </div>
+      </div>
+
+      <div class="price-grid reveal" data-od-id="sk-price-ladder">
+        <div class="price-card" data-od-id="sk-price-8000" data-deadline="2026-11-20T23:59:59+05:00" data-price="8000 ₸" data-date="20 ноября">
+          <span class="badge badge-active">Early bird</span>
+          <span class="badge badge-done">Завершено</span>
+          <div class="tier">Первые 20 билетов</div>
+          <div class="price-value">8000 ₸</div>
+          <div class="meta">до 20 ноября · меню на 4 000 ₸ включено</div>
+        </div>
+        <div class="price-card" data-od-id="sk-price-10000" data-deadline="2026-11-22T23:59:59+05:00" data-price="10 000 ₸" data-date="22 ноября">
+          <span class="badge badge-active">Сейчас</span>
+          <span class="badge badge-done">Завершено</span>
+          <div class="tier">Последние 10 билетов</div>
+          <div class="price-value">10 000 ₸</div>
+          <div class="meta">до 22 ноября · меню на 4 000 ₸ включено</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 2. СЛЕДУЮЩЕЕ СОБЫТИЕ, 29 НОЯБРЯ (компакт) ====================== -->
 <section class="next-event" id="tickets" data-od-id="tickets">
   <div class="ne-inner">
     <div class="ne-grid">
       <div class="ne-info-top" data-od-id="ne-info-top">
-        <p class="eyebrow">Ближайшее событие</p>
+        <p class="eyebrow">Следующее событие · 29 ноября</p>
         <h2>Забери билет по лучшей цене</h2>
         <!-- TODO: обновить дату/место/остаток перед каждым событием -->
         <div class="ne-meta">
           <span>29 ноября · 16:00–21:00</span><span class="dot">·</span>
           <span><svg class="pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2a4 4 0 0 1 4 4c0 2.5-4 8-4 8S4 8.5 4 6a4 4 0 0 1 4-4z"></path><circle cx="8" cy="6" r="1.5"></circle></svg>Центр медитации Ханака, возле Кок-тобе, Алматы</span>
         </div>
+        <p class="ne-text">Наш большой ретритный формат: один вечер, в который вмещается целый ретрит. С 16:00 до 21:00 в центре медитации Ханака, возле Кок-тобе, четыре практики идут одна за другой: мягкий Welcome Dance, Ошо-практика, основной Ecstatic Dance и завершающий концерт на иранском сетаре.</p>
+        <p class="ne-text">Вы приходите, оставляете день снаружи и просто следуете за программой: сначала разогреваетесь, потом входите в практику, танцуете под живой сет Salim, а в конце опускаетесь в тишину и звук. Никаких решений по дороге и никаких телефонов, только вы, тело и люди, которые пришли за тем же.</p>
         <p class="ne-djs-label">Программа</p>
         <div class="ne-djs">
           <span class="ne-dj">16:00–17:00 · Welcome Dance — DJ Subra</span>
@@ -1240,13 +1368,13 @@ svg.illu .acc { stroke: var(--aqua); }
       <div class="price-countdown reveal" data-od-id="price-countdown" data-deadline="2026-11-22T23:59:59+05:00">
         <span class="pc-label">Цена растёт после <strong style="color:var(--coral);">22 ноября</strong>. Осталось:</span>
         <div class="pc-timer" role="timer" aria-live="off">
-          <div class="pc-unit"><span class="pc-num" id="pc-days">--</span><span class="pc-lbl">дней</span></div>
+          <div class="pc-unit"><span class="pc-num" data-pc="days">--</span><span class="pc-lbl">дней</span></div>
           <span class="pc-sep">:</span>
-          <div class="pc-unit"><span class="pc-num" id="pc-hours">--</span><span class="pc-lbl">часов</span></div>
+          <div class="pc-unit"><span class="pc-num" data-pc="hours">--</span><span class="pc-lbl">часов</span></div>
           <span class="pc-sep">:</span>
-          <div class="pc-unit"><span class="pc-num" id="pc-mins">--</span><span class="pc-lbl">минут</span></div>
+          <div class="pc-unit"><span class="pc-num" data-pc="mins">--</span><span class="pc-lbl">минут</span></div>
           <span class="pc-sep">:</span>
-          <div class="pc-unit"><span class="pc-num" id="pc-secs">--</span><span class="pc-lbl">секунд</span></div>
+          <div class="pc-unit"><span class="pc-num" data-pc="secs">--</span><span class="pc-lbl">секунд</span></div>
         </div>
       </div>
 
@@ -1364,7 +1492,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Сравнения» -->
 <div class="cta-strip" data-od-id="cta-strip-1">
   <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>29 ноября</strong>. Цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
+    <span class="cs-text js-cs-text">Большой экстатик в Ханаке — <strong>29 ноября</strong>. Цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1438,7 +1566,7 @@ svg.illu .acc { stroke: var(--aqua); }
 <!-- CTA-полоска после «Соглашений» -->
 <div class="cta-strip" data-od-id="cta-strip-2">
   <div class="cs-inner">
-    <span class="cs-text js-cs-text">Ближайший экстатик — <strong>29 ноября</strong>. Цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
+    <span class="cs-text js-cs-text">Большой экстатик в Ханаке — <strong>29 ноября</strong>. Цена сейчас <strong class="js-cs-price">8000 ₸</strong> — <span class="js-cs-date">до 22 ноября</span><span class="js-cs-remaining"></span></span>
     <a class="btn btn-primary" href="#tickets">Купить билет</a>
   </div>
 </div>
@@ -1964,19 +2092,20 @@ svg.illu .acc { stroke: var(--aqua); }
     });
   });
 
-  // === Wave-aware pricing countdown ===
-  var priceCards = Array.prototype.slice.call(document.querySelectorAll('.price-card[data-deadline]'));
-  var pcEl = document.querySelector('.price-countdown');
-  var dEl = document.getElementById('pc-days');
-  var hEl = document.getElementById('pc-hours');
-  var mEl = document.getElementById('pc-mins');
-  var sEl = document.getElementById('pc-secs');
+  // === Wave-aware pricing countdown (one instance per event block) ===
+  function edaWaves(root, cfg) {
+  var priceCards = Array.prototype.slice.call(root.querySelectorAll('.price-card[data-deadline]'));
+  var pcEl = root.querySelector('.price-countdown');
+  var dEl = root.querySelector('[data-pc="days"]');
+  var hEl = root.querySelector('[data-pc="hours"]');
+  var mEl = root.querySelector('[data-pc="mins"]');
+  var sEl = root.querySelector('[data-pc="secs"]');
   var pcLabel = pcEl && pcEl.querySelector('.pc-label');
-  var stickyBtn = sticky && sticky.querySelector('.btn');
-  var buyBtn = document.querySelector('.js-buy-btn');
-  var csPriceEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-price'));
-  var csDateEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-date'));
-  var csRemainingEls = Array.prototype.slice.call(document.querySelectorAll('.js-cs-remaining'));
+  var stickyBtn = cfg.main && sticky ? sticky.querySelector('.btn') : null;
+  var buyBtn = root.querySelector('.js-buy-btn');
+  var csPriceEls = cfg.main ? Array.prototype.slice.call(document.querySelectorAll('.js-cs-price')) : [];
+  var csDateEls = cfg.main ? Array.prototype.slice.call(document.querySelectorAll('.js-cs-date')) : [];
+  var csRemainingEls = cfg.main ? Array.prototype.slice.call(document.querySelectorAll('.js-cs-remaining')) : [];
 
   // Tiers from the last successful /public/availability fetch (§2.2).
   // null = no live data (fetch pending/failed) → " · осталось N" stays empty.
@@ -2057,12 +2186,12 @@ svg.illu .acc { stroke: var(--aqua); }
     if (idx === -1) {
       if (appliedIdx !== -1) {
         priceCards.forEach(function (card) { card.classList.remove('featured'); card.classList.add('soldout'); });
-        if (stickyBtn) stickyBtn.textContent = 'Купить билет — 12 000 ₸';
-        if (buyBtn) buyBtn.textContent = 'Купить билет — 12 000 ₸';
-        csPriceEls.forEach(function (el) { el.textContent = '12 000 ₸'; });
+        if (stickyBtn) stickyBtn.textContent = 'Купить билет — ' + cfg.dayPrice;
+        if (buyBtn) buyBtn.textContent = 'Купить билет — ' + cfg.dayPrice;
+        csPriceEls.forEach(function (el) { el.textContent = cfg.dayPrice; });
         csDateEls.forEach(function (el) { el.textContent = 'в день события'; });
         setCsRemaining(null);
-        if (pcLabel) pcLabel.innerHTML = 'Цена дня события — <strong style="color:var(--coral);">12 000 ₸</strong> на входе';
+        if (pcLabel) pcLabel.innerHTML = 'Цена дня события — <strong style="color:var(--coral);">' + cfg.dayPrice + '</strong> на входе';
         appliedIdx = -1;
       }
       if (dEl) dEl.textContent = '0';
@@ -2099,7 +2228,7 @@ svg.illu .acc { stroke: var(--aqua); }
   // pure date-based logic above already rendered it — no error is ever
   // shown to the visitor.
   if (priceCards.length && 'AbortController' in window) {
-    var EVENT_ID = 'eda-2026-11-29';
+    var EVENT_ID = cfg.eventId;
 
     function setRemainingText(card, remaining, limit) {
       if (!card || !limit) return;
@@ -2165,31 +2294,40 @@ svg.illu .acc { stroke: var(--aqua); }
       .finally(function () { clearTimeout(timeoutId); });
   }
 
+  return { eventId: cfg.eventId, label: cfg.label, buyBtn: buyBtn, priceCards: priceCards, applied: function () { return appliedIdx; } };
+  }
+
+  var hanaka = edaWaves(document.getElementById('tickets'), { eventId: 'eda-2026-11-29', label: 'EDA 29 ноября', dayPrice: '12 000 ₸', main: true });
+  var sacred = edaWaves(document.getElementById('tickets-sacred'), { eventId: 'eda-2026-11-22', label: 'EDA 22 ноября Sacred Kitchen', dayPrice: '10 000 ₸', main: false });
+  // The sticky bar, top strips, trio and partner flow below follow the 29 Nov block.
+  var priceCards = hanaka.priceCards, buyBtn = hanaka.buyBtn;
+  var stickyBtn = sticky && sticky.querySelector('.btn');
+
   // === GA4 + Meta: checkout events on ticket CTA clicks ===
   // Plain addEventListener, no preventDefault — must never block the
   // redirect into the Telegram bot, even if an ad-blocker has stripped
   // gtag() out entirely.
-  function trackBeginCheckout() {
+  function trackBeginCheckout(ev) {
     try {
       if (typeof gtag !== 'function') return;
-      var payload = { currency: 'KZT', item_name: 'eda-2026-11-29' };
-      var idx = appliedIdx;
-      if (idx !== -1 && idx !== -99 && priceCards[idx]) {
-        payload.value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
+      var payload = { currency: 'KZT', item_name: ev.eventId };
+      var idx = ev.applied();
+      if (idx !== -1 && idx !== -99 && ev.priceCards[idx]) {
+        payload.value = parsePriceNumber(ev.priceCards[idx].getAttribute('data-price'));
       }
       gtag('event', 'begin_checkout', payload);
     } catch (e) { /* never block the click-through */ }
   }
-  function trackMetaCheckout() {
+  function trackMetaCheckout(ev) {
     try {
       if (typeof fbq !== 'function') return;
       var value = null;
-      var idx = appliedIdx;
-      if (idx !== -1 && idx !== -99 && priceCards[idx]) {
-        value = parsePriceNumber(priceCards[idx].getAttribute('data-price'));
+      var idx = ev.applied();
+      if (idx !== -1 && idx !== -99 && ev.priceCards[idx]) {
+        value = parsePriceNumber(ev.priceCards[idx].getAttribute('data-price'));
       }
       fbq('track', 'InitiateCheckout', {
-        content_name: 'EDA 29 ноября',
+        content_name: ev.label,
         value: value || 8000,
         currency: 'KZT'
       });
@@ -2211,9 +2349,10 @@ svg.illu .acc { stroke: var(--aqua); }
     if (!a) return;
     var href = a.href || '';
     try {
-      if (a === buyBtn || a === stickyBtn) {
-        trackBeginCheckout();
-        trackMetaCheckout();
+      var ev = (a === hanaka.buyBtn || a === stickyBtn) ? hanaka : (a === sacred.buyBtn ? sacred : null);
+      if (ev) {
+        trackBeginCheckout(ev);
+        trackMetaCheckout(ev);
       } else if (LISTEN_CTA_IDS.indexOf(a.getAttribute('data-od-id')) > -1) {
         if (typeof fbq === 'function') {
           fbq('track', 'Lead', { content_name: 'Set listen' });
@@ -2237,8 +2376,14 @@ svg.illu .acc { stroke: var(--aqua); }
   // сегментов, их схлопываем). Без utm_source в URL кнопка остаётся с
   // дефолтным __src-landing.
   (function forwardUtmToBot() {
-    var ticketButtons = [buyBtn, stickyBtn].filter(Boolean);
-    if (!ticketButtons.length) return;
+    var targets = [[hanaka, [hanaka.buyBtn, stickyBtn]], [sacred, [sacred.buyBtn]]];
+    function setLinks(tail) {
+      targets.forEach(function (t) {
+        var p = [t[0].eventId].concat(tail).join('__');
+        if (p.length > 64) p = p.slice(0, 64).replace(/[-_]+$/, '');
+        t[1].filter(Boolean).forEach(function (btn) { btn.href = 'https://t.me/ecstaticdancealmaty_bot?start=' + p; });
+      });
+    }
     function san(v) {
       return String(v || '').toLowerCase()
         .replace(/[^a-z0-9_-]+/g, '-')
@@ -2250,13 +2395,10 @@ svg.illu .acc { stroke: var(--aqua); }
       var src = san(qs.get('utm_source')) || 'landing';
       var med = san(qs.get('utm_medium'));
       var cmp = san(qs.get('utm_campaign'));
-      var segs = ['eda-2026-11-29', 'src-' + src];
+      var segs = ['src-' + src];
       if (med) segs.push('med-' + med);
       if (cmp) segs.push('cmp-' + cmp);
-      var payload = segs.join('__');
-      if (payload.length > 64) payload = payload.slice(0, 64).replace(/[-_]+$/, '');
-      var botUrl = 'https://t.me/ecstaticdancealmaty_bot?start=' + payload;
-      ticketButtons.forEach(function (button) { button.href = botUrl; });
+      setLinks(segs);
 
       // fbclid regularly exceeds Telegram's 64-char start-payload limit.
       // Exchange it for a short server-side token before navigation; if the
@@ -2271,10 +2413,8 @@ svg.illu .acc { stroke: var(--aqua); }
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (data) {
           if (!data || !data.meta_click_id) return;
-          var metaPayload = payload + '__fb-' + data.meta_click_id;
-          if (metaPayload.length > 64) return;
-          var metaBotUrl = 'https://t.me/ecstaticdancealmaty_bot?start=' + metaPayload;
-          ticketButtons.forEach(function (button) { button.href = metaBotUrl; });
+          if ((hanaka.eventId + '__' + segs.concat('fb-' + data.meta_click_id).join('__')).length > 64) return;
+          setLinks(segs.concat('fb-' + data.meta_click_id));
         })
         .catch(function () { /* keep the non-Meta link */ });
     } catch (e) { /* старый браузер/битый URL — остаётся дефолтная ссылка с __src-landing */ }
@@ -2283,7 +2423,7 @@ svg.illu .acc { stroke: var(--aqua); }
   // === Акция 2+1: цена по активной волне (≤11 111 ₸ → 8 000, иначе 9 000 — как trioUnitPrice в боте) ===
   (function trioStrip() { try {
     var el = document.getElementById('trio-strip');
-    var cards = document.querySelectorAll('.price-card[data-deadline]');
+    var cards = hanaka.priceCards;
     var now = Date.now(), cur = null;
     for (var i = 0; i < cards.length; i++) {
       if (new Date(cards[i].getAttribute('data-deadline')).getTime() > now) { cur = cards[i]; break; }
@@ -2424,4 +2564,32 @@ svg.illu .acc { stroke: var(--aqua); }
 })();
 </script>
 
+<script>
+// Выбор дня: одна вкладка видна, вторая скрыта. Без JS видны оба блока подряд.
+(function () {
+  var tabs = [].slice.call(document.querySelectorAll('.ev-tab'));
+  var ids = tabs.map(function (t) { return t.getAttribute('aria-controls'); });
+  var band = document.getElementById('events');
+  if (!tabs.length || !band) return;
+  function show(id) {
+    ids.forEach(function (i) { document.getElementById(i).hidden = (i !== id); });
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('aria-controls') === id ? 'true' : 'false'); });
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('aria-controls')); }); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#tickets"], a[href="#tickets-sacred"]');
+    if (!a) return;
+    e.preventDefault();
+    show(a.getAttribute('href').slice(1));
+    band.scrollIntoView();
+  });
+  function fromHash() {
+    var id = location.hash.slice(1);
+    if (ids.indexOf(id) > -1) { show(id); band.scrollIntoView(); }
+  }
+  show(ids[0]);
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
+</script>
 </body></html>
