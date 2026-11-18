@@ -1218,6 +1218,7 @@ svg.illu .acc { stroke: var(--aqua); }
         <div class="note-strip" style="margin-top:14px; background: rgba(247, 244, 238, 0.06); border-left-color: var(--aqua); color: var(--cream); max-width: 60ch;">
           <strong style="color:var(--cream);">В билет входит:</strong> разминка, Ecstatic Dance, саундхилинг и 4 000 ₸ депозитом на специальное экстатичное меню Sacred Kitchen, чтобы попробовать его после практики.
         </div>
+        <p style="margin-top:14px;font-size:13px;color:var(--cream-soft);">Промокоды и скидки на это событие не действуют.</p>
         <p style="margin-top:14px;font-size:13px;color:var(--cream-soft);">Не переживайте: наш ретритный формат остаётся. Большие вечера в Ханаке продолжаются, ближайший 29 ноября.</p>
       </div>
 
@@ -1856,7 +1857,7 @@ svg.illu .acc { stroke: var(--aqua); }
   <div class="telegram-popover-card">
     <button class="telegram-popover-close" id="telegramPopoverClose" type="button" aria-label="Закрыть">×</button>
     <h2 id="telegram-popover-title">Первый раз на Ecstatic Dance?</h2>
-    <p>Получи промокод <strong style="color:var(--aqua);">−10%</strong> на первое посещение и почувствуй разницу без лишних сомнений.</p>
+    <p>Получи промокод <strong style="color:var(--aqua);">−10%</strong> на первое посещение в Ханаке (29 ноября) и почувствуй разницу без лишних сомнений. На Sacred Kitchen 22 ноября промокоды не действуют.</p>
     <div class="telegram-popover-deal" aria-label="Расчёт скидки">
       <div><small>Текущая цена</small><strong id="promo-current-price">—</strong></div>
       <div class="discount"><small>Выгода −10%</small><strong id="promo-saving">—</strong></div>
@@ -1977,7 +1978,7 @@ svg.illu .acc { stroke: var(--aqua); }
   var telegramPopoverShown = false;
   function formatTenge(value) { return value.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₸'; }
   function updatePromoPopupPrice() {
-    var activeCard = document.querySelector('.price-card.featured') || document.querySelector('.price-card[data-price]');
+    var activeCard = document.querySelector('#tickets .price-card.featured') || document.querySelector('#tickets .price-card[data-price]');
     if (!activeCard) return;
     var current = Number((activeCard.getAttribute('data-price') || '').replace(/[^\d]/g, ''));
     if (!current) return;
