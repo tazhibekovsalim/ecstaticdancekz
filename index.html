@@ -695,22 +695,6 @@ svg.illu .acc { stroke: var(--aqua); }
 .next-event .ne-inner { max-width: var(--maxw); margin: 0 auto; }
 
 
-/* === Выбор дня: две карточки-вкладки над блоками событий === */
-.ev-picker-band { background: var(--night); color: var(--cream); padding: clamp(36px, 6vw, 56px) 24px 0; }
-.ev-picker-band .ev-inner { max-width: var(--maxw); margin: 0 auto; }
-.ev-picker-band .eyebrow { margin-bottom: 14px; }
-.ev-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.ev-tab { text-align: left; font: inherit; color: var(--cream); cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 14px 14px 12px; border-radius: var(--radius-card); border: 1.5px solid rgba(247,244,238,.16); background: rgba(247,244,238,.05); transition: border-color .2s, background .2s; }
-.ev-tab:hover { border-color: rgba(46,196,182,.55); }
-.ev-tab[aria-selected="true"] { border-color: var(--aqua); background: rgba(46,196,182,.12); }
-.ev-tab:focus-visible { outline: 2px solid var(--aqua); outline-offset: 2px; }
-.ev-tab .ev-date { font-size: clamp(20px, 5vw, 26px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
-.ev-tab .ev-name { font-size: 14px; font-weight: 600; }
-.ev-tab .ev-desc { font-size: 12.5px; color: var(--cream-soft); line-height: 1.35; }
-.ev-tab .ev-price { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--aqua); }
-.ev-picker-band + .next-event, .ev-picker-band ~ .next-event { padding-top: clamp(24px, 4vw, 36px); }
-@media (min-width: 820px) { .ev-tab { padding: 18px 20px 16px; } .ev-tab .ev-name { font-size: 16px; } .ev-tab .ev-desc { font-size: 14px; } }
-
 /* === Mobile-first (single column, poster-first for visual anchor) === */
 .next-event .ne-grid {
   display: grid;
@@ -903,7 +887,7 @@ svg.illu .acc { stroke: var(--aqua); }
     Ecstatic Dance Almaty
   </a>
   <div class="nav-links" data-od-id="nav-links">
-    <a href="#events" data-od-id="nav-event">Событие</a>
+    <a href="#tickets" data-od-id="nav-event">Событие</a>
     <a href="#what" data-od-id="nav-what">Что это</a>
     <a href="#reviews" data-od-id="nav-reviews">Отзывы</a>
     <a href="#past-events" data-od-id="nav-past-events">Архив</a>
@@ -914,7 +898,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <svg class="burger-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
   </button>
   <div class="nav-dropdown" id="navDropdown" data-od-id="nav-dropdown">
-    <a href="#events" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
+    <a href="#tickets" data-od-id="dd-event">Событие <span class="dd-arrow">→</span></a>
     <a href="#what" data-od-id="dd-what">Что это <span class="dd-arrow">→</span></a>
     <a href="#festivals" data-od-id="dd-festivals">Фестивали <span class="dd-arrow">→</span></a>
     <a href="#reviews" data-od-id="dd-reviews">Отзывы <span class="dd-arrow">→</span></a>
@@ -1141,7 +1125,7 @@ svg.illu .acc { stroke: var(--aqua); }
     <h1><span class="hl glow-aqua">Осознанная</span> вечеринка</h1>
     <p class="sub">Ecstatic Dance — танцевальное путешествие под live DJ-сет. Без алкоголя, без разговоров, без телефонов. Только музыка, движение и присутствие.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#events">Билет на ближайшее событие</a>
+      <a class="btn btn-primary" href="#tickets">Билет на ближайшее событие</a>
       <a class="btn btn-secondary" href="#what">Что такое экстатик?</a>
     </div>
     <p class="hero-facts" style="margin-top: 20px; font-size: 14px; color: var(--cream-soft); letter-spacing: 0.02em; display: flex; flex-wrap: wrap; gap: 4px 10px;">
@@ -1157,21 +1141,6 @@ svg.illu .acc { stroke: var(--aqua); }
     </p>
   </div>
 </section>
-
-<!-- ====================== 2. ВЫБОР ДНЯ ====================== -->
-<div class="ev-picker-band" id="events" data-od-id="ev-picker">
-  <div class="ev-inner">
-    <p class="eyebrow">Выберите день</p>
-    <div class="ev-picker" role="tablist" aria-label="Ближайшее событие">
-      <button class="ev-tab" type="button" role="tab" aria-selected="true" aria-controls="tickets" data-od-id="ev-tab-hanaka">
-        <span class="ev-date">29 ноября</span>
-        <span class="ev-name">Ханака</span>
-        <span class="ev-desc">большой вечер, ретритный формат · 16:00–21:00</span>
-        <span class="ev-price">от 8 000 ₸</span>
-      </button>
-    </div>
-  </div>
-</div>
 
 <!-- ====================== 2. СЛЕДУЮЩЕЕ СОБЫТИЕ, 29 НОЯБРЯ (компакт) ====================== -->
 <section class="next-event" id="tickets" data-od-id="tickets">
@@ -2496,32 +2465,4 @@ svg.illu .acc { stroke: var(--aqua); }
 })();
 </script>
 
-<script>
-// Выбор дня: одна вкладка видна, вторая скрыта. Без JS видны оба блока подряд.
-(function () {
-  var tabs = [].slice.call(document.querySelectorAll('.ev-tab'));
-  var ids = tabs.map(function (t) { return t.getAttribute('aria-controls'); });
-  var band = document.getElementById('events');
-  if (!tabs.length || !band) return;
-  function show(id) {
-    ids.forEach(function (i) { document.getElementById(i).hidden = (i !== id); });
-    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('aria-controls') === id ? 'true' : 'false'); });
-  }
-  tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('aria-controls')); }); });
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href="#tickets"]');
-    if (!a) return;
-    e.preventDefault();
-    show(a.getAttribute('href').slice(1));
-    band.scrollIntoView();
-  });
-  function fromHash() {
-    var id = location.hash.slice(1);
-    if (ids.indexOf(id) > -1) { show(id); band.scrollIntoView(); }
-  }
-  show(ids[0]);
-  fromHash();
-  window.addEventListener('hashchange', fromHash);
-})();
-</script>
 </body></html>
